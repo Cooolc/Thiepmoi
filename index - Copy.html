@@ -92,7 +92,7 @@
     </script>
 
     <style>
-        /* Tùy chỉnh thanh cuộn */
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -122,7 +122,7 @@
             overflow: visible;
         }
 
-        /* Viền vàng tinh tế cho bao thư */
+        /* Delicate inner gold border frame for physical envelope */
         .envelope-body::before {
             content: '';
             position: absolute;
@@ -133,7 +133,7 @@
             z-index: 25;
         }
 
-        /* Cánh gập trái & phải của phong bì */
+        /* Side Flaps with thin, elegant crease lines */
         .envelope-side-left {
             position: absolute;
             top: 0;
@@ -176,7 +176,7 @@
             pointer-events: none;
         }
 
-        /* Nắp gập dưới */
+        /* Bottom Fold Flap with ultra-slim gold edge */
         .envelope-bottom-flap {
             position: absolute;
             bottom: 0;
@@ -203,7 +203,7 @@
             pointer-events: none;
         }
 
-        /* Nắp tam giác trên của phong bì */
+        /* Top Triangular Flap with ultra-fine, sharp gold trim */
         .envelope-top-flap {
             position: absolute;
             top: 0;
@@ -246,7 +246,7 @@
             z-index: 5;
         }
 
-        /* Thiệp trượt ra khỏi phong bì */
+        /* Card sliding out of envelope */
         .card-slide {
             transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
             will-change: transform, opacity;
@@ -257,13 +257,13 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.35);
         }
 
-        /* Nút con dấu sáp đỏ vàng */
+        /* Wax Seal stamp visual styling */
         .wax-seal-button {
             background: radial-gradient(circle at 35% 35%, #D4AF37 0%, #AA820A 70%, #684E00 100%);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -3px 6px rgba(0, 0, 0, 0.5);
         }
 
-        /* Hiệu ứng xoay đĩa than */
+        /* Vinyl disc rotation */
         @keyframes spin-slow {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -272,7 +272,7 @@
             animation: spin-slow 8s linear infinite;
         }
 
-        /* Sóng âm thanh */
+        /* Audio wave bar animation */
         @keyframes sound-wave {
             0%, 100% { height: 4px; }
             50% { height: 18px; }
@@ -281,7 +281,7 @@
         .wave-bar-2 { animation: sound-wave 1s ease-in-out infinite 0.3s; }
         .wave-bar-3 { animation: sound-wave 1s ease-in-out infinite 0.2s; }
 
-        /* Canvas cánh hoa rơi */
+        /* Canvas Overlay */
         #petals-canvas {
             position: fixed;
             top: 0;
@@ -292,7 +292,14 @@
             z-index: 15;
         }
 
-        /* Hiệu ứng xuất hiện chung khi cuộn trang */
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(255, 253, 249, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+        }
+
+        /* Scroll Reveal Animations */
         .reveal-init {
             opacity: 0;
             transform: translateY(30px);
@@ -326,42 +333,7 @@
             transform: translateY(0) translateX(0) scale(1) !important;
         }
 
-        /* HIỆU ỨNG XUẤT HIỆN NGẪU NHIÊN KHI SCROLL CHO PHẦN ALBUM ẢNH */
-        .gal-random-item {
-            opacity: 0;
-            will-change: transform, opacity;
-            transition-property: opacity, transform, box-shadow;
-            transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .gal-anim-rise { transform: translateY(60px) scale(0.92); }
-        .gal-anim-tilt-left { transform: translateY(50px) rotate(-6deg) scale(0.9); }
-        .gal-anim-tilt-right { transform: translateY(50px) rotate(6deg) scale(0.9); }
-        .gal-anim-from-left { transform: translateX(-55px) translateY(25px) scale(0.93); }
-        .gal-anim-from-right { transform: translateX(55px) translateY(25px) scale(0.93); }
-        .gal-anim-flip { transform: perspective(900px) rotateX(28deg) translateY(45px) scale(0.9); }
-        .gal-anim-pop { transform: scale(0.82) translateY(35px); }
-
-        .gal-random-item.gal-visible {
-            opacity: 1 !important;
-            transform: translateY(0) translateX(0) rotate(0deg) scale(1) !important;
-        }
-
-        /* Timeline Creative Accents */
-        .timeline-line {
-            background: linear-gradient(180deg, rgba(212, 175, 55, 0.1) 0%, #D4AF37 15%, #F3E5AB 50%, #AA820A 85%, rgba(212, 175, 55, 0.1) 100%);
-        }
-
-        .timeline-card-glow {
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .timeline-card-glow:hover {
-            transform: translateY(-4px) scale(1.015);
-            border-color: #D4AF37;
-            box-shadow: 0 15px 35px -5px rgba(212, 175, 55, 0.25), 0 0 15px rgba(212, 175, 55, 0.2);
-        }
-
-        /* Nút chọn ngôn ngữ */
+        /* Language Button Active State */
         .lang-btn.active {
             background: linear-gradient(135deg, #D4AF37 0%, #AA820A 100%);
             color: #1F100B;
@@ -373,12 +345,12 @@
 </head>
 <body class="bg-crimson-deep text-ivory font-sans relative overflow-x-hidden selection:bg-gold selection:text-crimson-dark">
 
-    <!-- Background Petals Canvas -->
+    <!-- Background Petals/Stars Canvas -->
     <canvas id="petals-canvas"></canvas>
 
     <!-- 1. REALISTIC 3D PHYSICAL ENVELOPE INTRO OVERLAY -->
     <div id="envelope-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-retro-dark/95 backdrop-blur-md p-4 transition-all duration-1000 overflow-hidden">
-        <!-- Nút chọn ngôn ngữ trên màn hình mở thiệp -->
+        <!-- Floating Language Picker on Envelope Screen -->
         <div class="absolute top-4 right-4 z-50 flex items-center gap-1 bg-crimson-dark/90 p-1.5 rounded-full border border-gold/40 shadow-xl backdrop-blur-md">
             <button onclick="setLanguage('vi')" class="lang-btn px-2.5 py-1 text-[11px] rounded-full text-gold hover:bg-gold/20 transition-all font-semibold active" data-lang-choice="vi">🇻🇳 VI</button>
             <button onclick="setLanguage('zh')" class="lang-btn px-2.5 py-1 text-[11px] rounded-full text-gold hover:bg-gold/20 transition-all font-semibold" data-lang-choice="zh">中文</button>
@@ -614,250 +586,53 @@
         </div>
     </section>
 
-    <!-- 6. CREATIVE MODERN WEDDING PROGRAM TIMELINE -->
-    <section id="program" class="py-20 bg-gradient-to-b from-crimson via-[#52000E] to-crimson-deep border-t border-gold/30 relative overflow-hidden">
-        
-        <!-- Background decorative ambient circles -->
-        <div class="absolute top-1/4 -left-20 w-80 h-80 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-crimson-bright/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-5xl mx-auto px-4 relative z-10">
-            <!-- Section Header -->
-            <div class="text-center mb-16">
-                <span data-i18n="prog_subtitle" class="text-xs font-bold uppercase tracking-[0.3em] text-gold bg-gold/15 px-4 py-1.5 rounded-full border border-gold/40 inline-flex items-center gap-1.5 reveal-init">
-                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> VẠN SỰ CÁT TƯỜNG • TRÌNH TỰ SỰ KIỆN
-                </span>
-                <h2 data-i18n="prog_title" class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-ivory mt-3 reveal-init">
-                    Lịch Trình Tiệc Cưới
-                </h2>
-                <p data-i18n="prog_desc_lead" class="text-xs md:text-sm text-ivory/80 max-w-xl mx-auto mt-2 font-serif italic reveal-init">
-                    "Từng khoảnh khắc đong đầy cảm xúc trong ngày vui trăm năm của chúng mình"
-                </p>
-                <div class="w-20 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-4 reveal-zoom"></div>
+    <!-- 6. WEDDING PROGRAM -->
+    <section id="program" class="py-16 bg-crimson border-t border-gold/30">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <span data-i18n="prog_subtitle" class="text-xs font-bold uppercase tracking-widest text-gold reveal-init">TRÌNH TỰ SỰ KIỆN</span>
+                <h2 data-i18n="prog_title" class="font-serif text-3xl md:text-4xl font-bold text-ivory mt-1 reveal-init">Lịch Trình Tiệc Cưới</h2>
+                <div class="w-16 h-0.5 bg-gold mx-auto mt-3 reveal-zoom"></div>
             </div>
 
-            <!-- Timeline Container -->
-            <div class="relative max-w-4xl mx-auto">
-                <!-- Central Timeline Vertical Stem -->
-                <div class="timeline-line absolute left-6 md:left-1/2 top-4 bottom-4 w-1 -translate-x-1/2 rounded-full hidden sm:block"></div>
-
-                <div class="space-y-8 md:space-y-12">
-                    
-                    <!-- Milestone 1: 18:00 Đón Khách & Photobooth Check-in -->
-                    <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 reveal-left group">
-                        <div class="w-full md:w-[45%] order-2 md:order-1 text-left md:text-right">
-                            <div class="timeline-card-glow bg-gradient-to-br from-crimson-dark/95 via-[#45000A] to-retro-dark p-5 sm:p-6 rounded-2xl border border-gold/40 shadow-xl relative overflow-hidden">
-                                <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-gold/30 via-gold to-gold/30"></div>
-                                
-                                <div class="flex items-center md:justify-end gap-2 text-gold text-xs font-bold uppercase tracking-wider mb-2">
-                                    <span class="bg-gold/20 px-2.5 py-0.5 rounded-full border border-gold/40" data-i18n="prog_badge_welcome">WELCOME &amp; FUN</span>
-                                </div>
-                                
-                                <div class="flex flex-col md:flex-row-reverse items-start md:items-center gap-3.5 my-2">
-                                    <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border border-gold/50 shadow-md shrink-0 bg-retro-dark">
-                                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=300&q=80" alt="Đón khách & Photobooth" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                                    </div>
-                                    <div class="flex-1">
-                                        <h3 data-i18n="prog_step1_title" class="font-serif text-lg sm:text-xl font-bold text-ivory group-hover:text-gold transition-colors">
-                                            Đón Khách &amp; Check-in Photobooth
-                                        </h3>
-                                        <p data-i18n="prog_step1_desc" class="text-xs text-ivory/80 mt-1 leading-relaxed font-sans">
-                                            Chào đón quý khách, thưởng thức Welcome Drink thanh mát và cùng quẩy góc Photobooth in ảnh lấy liền lưu lại kỷ niệm siêu nhí nhố!
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="bg-crimson-dark/90 rounded-2xl p-6 md:p-8 border border-gold/40 text-center flex flex-col items-center justify-between shadow-xl reveal-init group hover:border-gold transition-colors">
+                    <div>
+                        <div class="w-16 h-16 rounded-full bg-gold/10 border border-gold/60 text-gold flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="camera" class="w-7 h-7"></i>
                         </div>
-
-                        <!-- Center Node -->
-                        <div class="absolute left-6 md:left-1/2 -translate-x-1/2 hidden sm:flex items-center justify-center z-20">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-gold-dark via-gold to-gold-light p-1 shadow-gold-glow group-hover:scale-110 transition-transform">
-                                <div class="w-full h-full rounded-full bg-crimson-deep flex items-center justify-center text-gold">
-                                    <i data-lucide="camera" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="w-full md:w-[45%] order-1 md:order-2 pl-12 sm:pl-0">
-                            <div class="inline-flex items-center gap-2 bg-crimson-dark/90 px-4 py-2 rounded-2xl border border-gold/50 shadow-md">
-                                <span class="font-serif text-2xl sm:text-3xl font-bold text-gold">18:00</span>
-                                <span class="text-[10px] sm:text-xs text-gold-light uppercase tracking-wider font-semibold border-l border-gold/30 pl-2" data-i18n="prog_time_tag1">KHỞI ĐẦU HỶ SỰ</span>
-                            </div>
-                        </div>
+                        <span class="font-serif text-2xl font-bold text-gold block">17:30</span>
+                        <h3 data-i18n="prog_step1_title" class="font-serif text-xl font-bold text-ivory mt-1">Đón Khách &amp; Photobooth</h3>
                     </div>
+                    <p data-i18n="prog_step1_desc" class="text-xs sm:text-sm text-ivory/80 mt-4 leading-relaxed">
+                        Check-in rạng rỡ, chụp ảnh lấy liền không giới hạn tại góc Photobooth vui nhộn cùng dâu rể!
+                    </p>
+                </div>
 
-                    <!-- Milestone 2: 18:30 - 18:45 Lễ Thành Hôn -->
-                    <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 reveal-right group">
-                        <div class="w-full md:w-[45%] order-1 text-left md:text-right pl-12 sm:pl-0">
-                            <div class="inline-flex items-center gap-2 bg-crimson-dark/90 px-4 py-2 rounded-2xl border border-gold/50 shadow-md">
-                                <span class="font-serif text-2xl sm:text-3xl font-bold text-gold">18:30 - 18:45</span>
-                                <span class="text-[10px] sm:text-xs text-gold-light uppercase tracking-wider font-semibold border-l border-gold/30 pl-2" data-i18n="prog_time_tag2">KHOẢNH KHẮC THIÊNG LIÊNG</span>
-                            </div>
+                <div class="bg-crimson-dark/90 rounded-2xl p-6 md:p-8 border border-gold/40 text-center flex flex-col items-center justify-between shadow-xl reveal-init group hover:border-gold transition-colors">
+                    <div>
+                        <div class="w-16 h-16 rounded-full bg-gold/10 border border-gold/60 text-gold flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="heart-handshake" class="w-7 h-7"></i>
                         </div>
-
-                        <!-- Center Node -->
-                        <div class="absolute left-6 md:left-1/2 -translate-x-1/2 hidden sm:flex items-center justify-center z-20">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-gold-dark via-gold to-gold-light p-1 shadow-gold-glow group-hover:scale-110 transition-transform">
-                                <div class="w-full h-full rounded-full bg-crimson-deep flex items-center justify-center text-gold">
-                                    <i data-lucide="gem" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="w-full md:w-[45%] order-2 text-left">
-                            <div class="timeline-card-glow bg-gradient-to-br from-crimson-dark/95 via-[#45000A] to-retro-dark p-5 sm:p-6 rounded-2xl border border-gold/40 shadow-xl relative overflow-hidden">
-                                <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-gold/30 via-gold to-gold/30"></div>
-                                
-                                <div class="flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-wider mb-2">
-                                    <span class="bg-gold/20 px-2.5 py-0.5 rounded-full border border-gold/40" data-i18n="prog_badge_ceremony">THE CEREMONY</span>
-                                </div>
-                                
-                                <div class="flex items-center gap-3.5 my-2">
-                                    <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border border-gold/50 shadow-md shrink-0 bg-retro-dark">
-                                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=300&q=80" alt="Lễ Thành Hôn Thiêng Liêng" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                                    </div>
-                                    <div class="flex-1">
-                                        <h3 data-i18n="prog_step2_title" class="font-serif text-lg sm:text-xl font-bold text-ivory group-hover:text-gold transition-colors">
-                                            Lễ Thành Hôn Thiêng Liêng
-                                        </h3>
-                                        <p data-i18n="prog_step2_desc" class="text-xs text-ivory/80 mt-1 leading-relaxed font-sans">
-                                            Dâu rể bước lên lễ đường, trao nhau đôi nhẫn nguyện ước trăm năm, cùng rót tháp rượu hạnh phúc và nhận lời chúc phúc trọn vẹn từ hai bên gia đình.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <span class="font-serif text-2xl font-bold text-gold block">18:30</span>
+                        <h3 data-i18n="prog_step2_title" class="font-serif text-xl font-bold text-ivory mt-1">Lễ Thành Hôn</h3>
                     </div>
+                    <p data-i18n="prog_step2_desc" class="text-xs sm:text-sm text-ivory/80 mt-4 leading-relaxed">
+                        Nghi thức kết duyên thiêng liêng, trao nhẫn cưới và nhận lời chúc phúc từ hai bên gia đình.
+                    </p>
+                </div>
 
-                    <!-- Milestone 3: 19:00 Khai Tiệc Mừng & Ban Nhạc Acoustic -->
-                    <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 reveal-left group">
-                        <div class="w-full md:w-[45%] order-2 md:order-1 text-left md:text-right">
-                            <div class="timeline-card-glow bg-gradient-to-br from-crimson-dark/95 via-[#45000A] to-retro-dark p-5 sm:p-6 rounded-2xl border border-gold/40 shadow-xl relative overflow-hidden">
-                                <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-gold/30 via-gold to-gold/30"></div>
-                                
-                                <div class="flex items-center md:justify-end gap-2 text-gold text-xs font-bold uppercase tracking-wider mb-2">
-                                    <span class="bg-gold/20 px-2.5 py-0.5 rounded-full border border-gold/40" data-i18n="prog_badge_banquet">FEAST &amp; ACOUSTIC</span>
-                                </div>
-                                
-                                <div class="flex flex-col md:flex-row-reverse items-start md:items-center gap-3.5 my-2">
-                                    <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border border-gold/50 shadow-md shrink-0 bg-retro-dark">
-                                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=300&q=80" alt="Ban nhạc Acoustic & Khai Tiệc" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                                    </div>
-                                    <div class="flex-1">
-                                        <h3 data-i18n="prog_step3_title" class="font-serif text-lg sm:text-xl font-bold text-ivory group-hover:text-gold transition-colors">
-                                            Khai Tiệc &amp; Ban Nhạc Acoustic Live
-                                        </h3>
-                                        <p data-i18n="prog_step3_desc" class="text-xs text-ivory/80 mt-1 leading-relaxed font-sans">
-                                            Nâng ly khai tiệc mừng, thưởng thức thực đơn thịnh soạn hòa cùng những giai điệu Acoustic ngọt ngào, trữ tình và các bản tình ca hoa ngữ thập niên 80 hoài niệm.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="bg-crimson-dark/90 rounded-2xl p-6 md:p-8 border border-gold/40 text-center flex flex-col items-center justify-between shadow-xl reveal-init group hover:border-gold transition-colors">
+                    <div>
+                        <div class="w-16 h-16 rounded-full bg-gold/10 border border-gold/60 text-gold flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="utensils" class="w-7 h-7"></i>
                         </div>
-
-                        <!-- Center Node -->
-                        <div class="absolute left-6 md:left-1/2 -translate-x-1/2 hidden sm:flex items-center justify-center z-20">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-gold-dark via-gold to-gold-light p-1 shadow-gold-glow group-hover:scale-110 transition-transform">
-                                <div class="w-full h-full rounded-full bg-crimson-deep flex items-center justify-center text-gold">
-                                    <i data-lucide="music" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="w-full md:w-[45%] order-1 md:order-2 pl-12 sm:pl-0">
-                            <div class="inline-flex items-center gap-2 bg-crimson-dark/90 px-4 py-2 rounded-2xl border border-gold/50 shadow-md">
-                                <span class="font-serif text-2xl sm:text-3xl font-bold text-gold">19:00</span>
-                                <span class="text-[10px] sm:text-xs text-gold-light uppercase tracking-wider font-semibold border-l border-gold/30 pl-2" data-i18n="prog_time_tag3">MỸ VỊ &amp; ÂM NHẠC</span>
-                            </div>
-                        </div>
+                        <span class="font-serif text-2xl font-bold text-gold block">19:00</span>
+                        <h3 data-i18n="prog_step3_title" class="font-serif text-xl font-bold text-ivory mt-1">Khai Tiệc Mừng</h3>
                     </div>
-
-                    <!-- Milestone 4: 20:00 Minigame & Giao Lưu Karaoke Quẩy Cực Sung -->
-                    <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 reveal-right group">
-                        <div class="w-full md:w-[45%] order-1 text-left md:text-right pl-12 sm:pl-0">
-                            <div class="inline-flex items-center gap-2 bg-crimson-dark/90 px-4 py-2 rounded-2xl border border-gold/50 shadow-md">
-                                <span class="font-serif text-2xl sm:text-3xl font-bold text-gold">20:00</span>
-                                <span class="text-[10px] sm:text-xs text-gold-light uppercase tracking-wider font-semibold border-l border-gold/30 pl-2" data-i18n="prog_time_tag4">VUI CƯỜI THẢ GA</span>
-                            </div>
-                        </div>
-
-                        <!-- Center Node -->
-                        <div class="absolute left-6 md:left-1/2 -translate-x-1/2 hidden sm:flex items-center justify-center z-20">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-gold-dark via-gold to-gold-light p-1 shadow-gold-glow group-hover:scale-110 transition-transform">
-                                <div class="w-full h-full rounded-full bg-crimson-deep flex items-center justify-center text-gold">
-                                    <i data-lucide="mic-2" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="w-full md:w-[45%] order-2 text-left">
-                            <div class="timeline-card-glow bg-gradient-to-br from-crimson-dark/95 via-[#45000A] to-retro-dark p-5 sm:p-6 rounded-2xl border border-gold/40 shadow-xl relative overflow-hidden">
-                                <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-gold/30 via-gold to-gold/30"></div>
-                                
-                                <div class="flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-wider mb-2">
-                                    <span class="bg-gold/20 px-2.5 py-0.5 rounded-full border border-gold/40" data-i18n="prog_badge_games">GAMES &amp; KARAOKE</span>
-                                </div>
-                                
-                                <div class="flex items-center gap-3.5 my-2">
-                                    <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border border-gold/50 shadow-md shrink-0 bg-retro-dark">
-                                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=300&q=80" alt="Minigame & Karaoke" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                                    </div>
-                                    <div class="flex-1">
-                                        <h3 data-i18n="prog_step4_title" class="font-serif text-lg sm:text-xl font-bold text-ivory group-hover:text-gold transition-colors">
-                                            Minigame &amp; Giao Lưu Karaoke
-                                        </h3>
-                                        <p data-i18n="prog_step4_desc" class="text-xs text-ivory/80 mt-1 leading-relaxed font-sans">
-                                            Bùng nổ sân khấu với trò chơi minigame vui nhộn, tung hoa cưới may mắn và cơ hội "khoe giọng oanh vàng" giao lưu Karaoke quẩy hết mình cùng dâu rể!
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Milestone 5: 21:00 Chụp Ảnh Lưu Niệm & Lời Cảm Tạ -->
-                    <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 reveal-left group">
-                        <div class="w-full md:w-[45%] order-2 md:order-1 text-left md:text-right">
-                            <div class="timeline-card-glow bg-gradient-to-br from-crimson-dark/95 via-[#45000A] to-retro-dark p-5 sm:p-6 rounded-2xl border border-gold/40 shadow-xl relative overflow-hidden">
-                                <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-gold/30 via-gold to-gold/30"></div>
-                                
-                                <div class="flex items-center md:justify-end gap-2 text-gold text-xs font-bold uppercase tracking-wider mb-2">
-                                    <span class="bg-gold/20 px-2.5 py-0.5 rounded-full border border-gold/40" data-i18n="prog_badge_farewell">MEMORIES &amp; THANKS</span>
-                                </div>
-                                
-                                <div class="flex flex-col md:flex-row-reverse items-start md:items-center gap-3.5 my-2">
-                                    <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border border-gold/50 shadow-md shrink-0 bg-retro-dark">
-                                        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=300&q=80" alt="Chụp ảnh kỷ niệm" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                                    </div>
-                                    <div class="flex-1">
-                                        <h3 data-i18n="prog_step5_title" class="font-serif text-lg sm:text-xl font-bold text-ivory group-hover:text-gold transition-colors">
-                                            Chụp Ảnh Lưu Niệm &amp; Lời Cảm Tạ
-                                        </h3>
-                                        <p data-i18n="prog_step5_desc" class="text-xs text-ivory/80 mt-1 leading-relaxed font-sans">
-                                            Dâu rể chụp những bức ảnh kỷ niệm ấm áp cuối tiệc và gửi lời cảm tạ chân thành nhất đến quý khách vì đã cùng sẻ chia khoảnh khắc hạnh phúc trọn vẹn này.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Center Node -->
-                        <div class="absolute left-6 md:left-1/2 -translate-x-1/2 hidden sm:flex items-center justify-center z-20">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-gold-dark via-gold to-gold-light p-1 shadow-gold-glow group-hover:scale-110 transition-transform">
-                                <div class="w-full h-full rounded-full bg-crimson-deep flex items-center justify-center text-gold">
-                                    <i data-lucide="heart-handshake" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="w-full md:w-[45%] order-1 md:order-2 pl-12 sm:pl-0">
-                            <div class="inline-flex items-center gap-2 bg-crimson-dark/90 px-4 py-2 rounded-2xl border border-gold/50 shadow-md">
-                                <span class="font-serif text-2xl sm:text-3xl font-bold text-gold">21:00</span>
-                                <span class="text-[10px] sm:text-xs text-gold-light uppercase tracking-wider font-semibold border-l border-gold/30 pl-2" data-i18n="prog_time_tag5">TRỌN VẸN YÊU THƯƠNG</span>
-                            </div>
-                        </div>
-                    </div>
-
+                    <p data-i18n="prog_step3_desc" class="text-xs sm:text-sm text-ivory/80 mt-4 leading-relaxed">
+                        Cùng nâng ly chúc mừng và thưởng thức tiệc tối thịnh soạn trong không gian âm nhạc hoa ngữ du dương.
+                    </p>
                 </div>
             </div>
         </div>
@@ -880,43 +655,29 @@
             <div class="bg-crimson-dark/95 border-2 border-gold/50 rounded-3xl p-6 md:p-10 shadow-2xl reveal-zoom">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     
-                    <!-- Scattered Photos Illustration Area -->
-                    <div class="lg:col-span-5 flex justify-center items-center py-6">
-                        <div class="relative w-full max-w-[320px] h-[340px] flex items-center justify-center">
-                            
-                            <!-- Photo 3 (Background Right) -->
-                            <div class="absolute z-0 top-2 right-2 w-[180px] bg-ivory p-2 pb-6 rounded-xl shadow-lg border border-gold/40 transform rotate-[15deg] hover:z-20 hover:scale-105 transition-all duration-300">
-                                <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&w=400&q=80" alt="Photobooth Props" class="w-full aspect-square object-cover rounded-md border border-gray-200">
-                            </div>
-                            
-                            <!-- Photo 2 (Middle Left) -->
-                            <div class="absolute z-10 bottom-4 left-0 w-[200px] bg-ivory p-2.5 pb-8 rounded-xl shadow-xl border border-gold/50 transform -rotate-[12deg] hover:z-20 hover:scale-105 transition-all duration-300">
-                                <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=400&q=80" alt="Friends having fun" class="w-full aspect-[4/3] object-cover rounded-md border border-gray-200 grayscale-[20%]">
-                            </div>
-
-                            <!-- Photo 1 (Main Front Center) -->
-                            <div class="absolute z-20 w-[230px] bg-ivory text-retro-dark p-3 rounded-2xl shadow-2xl border-2 border-gold/60 transform rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                    <div class="lg:col-span-5 flex justify-center items-center">
+                        <div class="relative w-full max-w-[280px]">
+                            <div class="bg-ivory text-retro-dark p-3 rounded-2xl shadow-2xl border-2 border-gold/60 transform -rotate-6 hover:rotate-0 transition-transform duration-300">
                                 <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-retro-dark mb-2 border border-gold/30">
                                     <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Photobooth Funny Moments" loading="lazy" class="w-full h-full object-cover">
                                 </div>
                                 <div class="text-center">
                                     <span data-i18n="pb_card_name" class="font-cursive text-xl text-crimson-dark font-bold">Chấn Cơ &amp; Hảo Nghi</span>
-                                    <p class="text-[10px] text-retro-brown font-mono font-bold tracking-widest uppercase mt-0.5">PHOTOSTRIP • 11.10.2026</p>
+                                    <p class="text-[10px] text-retro-brown font-mono font-bold tracking-widest uppercase">PHOTOSTRIP • 11.10.2026</p>
                                 </div>
                             </div>
 
-                            <!-- Floating Badges -->
-                            <div class="absolute z-30 -top-1 -right-4 bg-gradient-to-r from-gold via-gold-light to-gold text-retro-dark text-[11px] font-bold px-3 py-1 rounded-full shadow-lg border border-retro-dark flex items-center gap-1 animate-bounce">
+                            <div class="absolute -top-3 -right-3 bg-gradient-to-r from-gold via-gold-light to-gold text-retro-dark text-[11px] font-bold px-3 py-1 rounded-full shadow-lg border border-retro-dark flex items-center gap-1 animate-bounce">
                                 <span data-i18n="pb_badge1">📸 IN ẢNH TỨC THÌ</span>
                             </div>
 
-                            <div class="absolute z-30 -bottom-2 -left-2 bg-crimson-bright text-ivory text-[10px] font-bold px-3 py-1 rounded-full shadow-md border border-gold">
+                            <div class="absolute -bottom-3 -left-3 bg-crimson-bright text-ivory text-[10px] font-bold px-3 py-1 rounded-full shadow-md border border-gold">
                                 <span data-i18n="pb_badge2">✌️ ĐẠO CỤ HÀI HƯỚC</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="lg:col-span-7 space-y-4 text-ivory/90 mt-4 lg:mt-0">
+                    <div class="lg:col-span-7 space-y-4 text-ivory/90">
                         <div data-i18n="pb_free_tag" class="inline-block bg-gold/10 text-gold px-3 py-1 rounded-lg border border-gold/30 text-xs font-semibold">
                             ✨ MIỄN PHÍ 100% CHO TẤT CẢ KHÁCH MỜI
                         </div>
@@ -924,7 +685,7 @@
                         <h3 data-i18n="pb_header" class="font-serif text-2xl font-bold text-gold">Check-in Vui Hết Nấc • Nhận Ảnh Liền Tay</h3>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                            <div class="bg-crimson/60 border border-gold/30 p-3.5 rounded-xl flex items-start gap-3 hover:bg-crimson/80 transition-colors">
+                            <div class="bg-crimson/60 border border-gold/30 p-3.5 rounded-xl flex items-start gap-3">
                                 <div class="w-8 h-8 rounded-full bg-gold/20 text-gold flex items-center justify-center shrink-0 mt-0.5">
                                     <i data-lucide="printer" class="w-4 h-4"></i>
                                 </div>
@@ -934,7 +695,7 @@
                                 </div>
                             </div>
 
-                            <div class="bg-crimson/60 border border-gold/30 p-3.5 rounded-xl flex items-start gap-3 hover:bg-crimson/80 transition-colors">
+                            <div class="bg-crimson/60 border border-gold/30 p-3.5 rounded-xl flex items-start gap-3">
                                 <div class="w-8 h-8 rounded-full bg-gold/20 text-gold flex items-center justify-center shrink-0 mt-0.5">
                                     <i data-lucide="glasses" class="w-4 h-4"></i>
                                 </div>
@@ -944,7 +705,7 @@
                                 </div>
                             </div>
 
-                            <div class="bg-crimson/60 border border-gold/30 p-3.5 rounded-xl flex items-start gap-3 hover:bg-crimson/80 transition-colors">
+                            <div class="bg-crimson/60 border border-gold/30 p-3.5 rounded-xl flex items-start gap-3">
                                 <div class="w-8 h-8 rounded-full bg-gold/20 text-gold flex items-center justify-center shrink-0 mt-0.5">
                                     <i data-lucide="qr-code" class="w-4 h-4"></i>
                                 </div>
@@ -954,7 +715,7 @@
                                 </div>
                             </div>
 
-                            <div class="bg-crimson/60 border border-gold/30 p-3.5 rounded-xl flex items-start gap-3 hover:bg-crimson/80 transition-colors">
+                            <div class="bg-crimson/60 border border-gold/30 p-3.5 rounded-xl flex items-start gap-3">
                                 <div class="w-8 h-8 rounded-full bg-gold/20 text-gold flex items-center justify-center shrink-0 mt-0.5">
                                     <i data-lucide="smile" class="w-4 h-4"></i>
                                 </div>
@@ -966,7 +727,7 @@
                         </div>
 
                         <p data-i18n="pb_note" class="text-xs text-gold-light italic pt-2">
-                            * Vui lòng ghé sảnh tiệc sớm từ <strong>18:00</strong> để cùng dâu rể quẩy banh nóc góc chụp ảnh nhé!
+                            * Vui lòng ghé sảnh tiệc sớm từ <strong>17:30</strong> để cùng dâu rể quẩy banh nóc góc chụp ảnh nhé!
                         </p>
                     </div>
 
@@ -1008,7 +769,7 @@
                         <div class="flex items-start gap-3">
                             <i data-lucide="clock" class="w-5 h-5 text-gold shrink-0 mt-0.5"></i>
                             <div>
-                                <strong data-i18n="loc_time_txt">Đón Khách: 18:00 | Nghi Lễ: 18:30 - 18:45 | Khai Tiệc: 19:00</strong>
+                                <strong data-i18n="loc_time_txt">Đón Khách: 17:30 | Nghi Lễ: 18:30 | Khai Tiệc: 19:00</strong>
                                 <p data-i18n="loc_time_sub" class="text-ivory/70 text-xs mt-0.5">Rất mong quý khách có mặt đúng giờ để chung vui cùng gia đình</p>
                             </div>
                         </div>
@@ -1129,13 +890,13 @@
                 </p>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=L%E1%BB%85+Th%C3%A0nh+H%C3%B4n+La+Ch%E1%BA%A5n+C%C6%A1+%26+Hu%E1%BB%B3nh+H%E1%BA%A3o+Nghi&dates=20261011T110000Z/20261011T143000Z&details=Tr%C3%A2n+tr%E1%BB%8Dng+k%C3%ADnh+m%E1%BB%9Di+qu%C3%BD+kh%C3%A1ch+t%E1%BB%9Bi+tham+d%E1%BB%B1+bu%E1%BB%95i+l%E1%BB%85+th%C3%A0nh+h%C3%B4n+c%E1%BB%A7a+La+Ch%E1%BA%A5n+C%C6%A1+%26+Hu%E1%BB%B3nh+H%E1%BA%A3o+Nghi!&location=Trung+T%C3%A2m+H%E1%BB%99i+Ngh%E1%BB%8B+-+Ti%E1%BB%87c+C%C6%B0%E1%BB%9Bi+Riverside+Palace%2C+360D+B%E1%BA%BFn+V%C3%A2n+%C4%90%E1%BB%93n%2C+Ph%C6%B0%E1%BB%9Dng+1%2C+Qu%E1%BA%ADn+4%2C+TP.+H%E1%BB%93+Ch%C3%AD+Minh" 
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=L%E1%BB%85+Th%C3%A0nh+H%C3%B4n+La+Ch%E1%BA%A5n+C%C6%A1+%26+Hu%E1%BB%B3nh+H%E1%BA%A3o+Nghi&dates=20261011T103000Z/20261011T143000Z&details=Tr%C3%A2n+tr%E1%BB%8Dng+k%C3%ADnh+m%E1%BB%9Di+qu%C3%BD+kh%C3%A1ch+t%E1%BB%9Bi+tham+d%E1%BB%B1+bu%E1%BB%95i+l%E1%BB%85+th%C3%A0nh+h%C3%B4n+c%E1%BB%A7a+La+Ch%E1%BA%A5n+C%C6%A1+%26+Hu%E1%BB%B3nh+H%E1%BA%A3o+Nghi!&location=Trung+T%C3%A2m+H%E1%BB%99i+Ngh%E1%BB%8B+-+Ti%E1%BB%87c+C%C6%B0%E1%BB%9Bi+Riverside+Palace%2C+360D+B%E1%BA%BFn+V%C3%A2n+%C4%90%E1%BB%93n%2C+Ph%C6%B0%E1%BB%9Dng+1%2C+Qu%E1%BA%ADn+4%2C+TP.+H%E1%BB%93+Ch%C3%AD+Minh" 
                        target="_blank" rel="noopener noreferrer"
                        class="py-3 px-4 rounded-xl bg-gold text-retro-dark text-xs font-bold hover:bg-gold-light transition-all flex items-center justify-center gap-2 shadow-md">
                         <i data-lucide="calendar" class="w-4 h-4"></i> <span data-i18n="btn_google_cal">Thêm Vào Google Calendar</span>
                     </a>
 
-                    <button onclick="addToCalendar('Lễ Thành Hôn La Chấn Cơ & Huỳnh Hảo Nghi', 'Riverside Palace, 360D Bến Vân Đồn, Quận 4, TP. HCM', '2026-10-11T18:00:00')" 
+                    <button onclick="addToCalendar('Lễ Thành Hôn La Chấn Cơ & Huỳnh Hảo Nghi', 'Riverside Palace, 360D Bến Vân Đồn, Quận 4, TP. HCM', '2026-10-11T17:30:00')" 
                             class="py-3 px-4 rounded-xl border border-gold text-gold text-xs font-semibold hover:bg-gold/10 transition-all flex items-center justify-center gap-2 cursor-pointer">
                         <i data-lucide="download" class="w-4 h-4"></i> <span data-i18n="btn_ics_cal">Tải File Lịch (.ics cho Apple / Outlook)</span>
                     </button>
@@ -1145,7 +906,7 @@
         </div>
     </section>
 
-    <!-- 9. PHOTO GALLERY LIGHTBOX -->
+    <!-- 9. PHOTO GALLERY LIGHTBOX (MASONRY RESPONSIVE FIX) -->
     <section id="gallery" class="py-16 bg-crimson border-t border-gold/30">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-12">
@@ -1154,12 +915,12 @@
                 <div class="w-16 h-0.5 bg-gold mx-auto mt-3 reveal-zoom"></div>
             </div>
 
-            <!-- Masonry Multi-Column Layout for Photos -->
+            <!-- Modern Masonry Multi-Column Layout for All Aspect Ratios -->
             <div id="gallery-grid" class="columns-2 sm:columns-3 lg:columns-4 gap-3 sm:gap-4 space-y-3 sm:space-y-4">
-                <!-- Javascript sẽ tự động gắn hiệu ứng animation ngẫu nhiên vào từng tấm ảnh -->
+                <!-- Javascript renders dynamic photo cards here -->
             </div>
 
-            <!-- Nút Xem Thêm / Thu Gọn Ảnh -->
+            <!-- Expand / Collapse Button -->
             <div id="gallery-more-wrapper" class="text-center mt-8 hidden">
                 <button onclick="toggleGalleryExpand()" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-gold bg-crimson-dark/80 text-gold text-xs font-bold uppercase tracking-wider hover:bg-gold hover:text-retro-dark transition-all shadow-md cursor-pointer">
                     <span id="gallery-toggle-text" data-i18n="gal_btn_more">Xem Thêm Ảnh</span>
@@ -1169,7 +930,7 @@
         </div>
     </section>
 
-    <!-- Lightbox Modal Container -->
+    <!-- Lightbox Modal Container with Responsive Image Frame -->
     <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center p-2 sm:p-4 backdrop-blur-md transition-opacity duration-300 select-none">
         <!-- Close Button -->
         <button onclick="closeLightbox()" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/80 hover:text-gold transition-colors z-50 p-2 cursor-pointer bg-retro-dark/60 rounded-full border border-gold/30" title="Đóng">
@@ -1186,7 +947,7 @@
             <i data-lucide="chevron-right" class="w-6 h-6 sm:w-8 sm:h-8"></i>
         </button>
 
-        <!-- Center Container -->
+        <!-- Responsive Lightbox Center Container -->
         <div id="lightbox-content-box" class="max-w-5xl w-full flex flex-col items-center justify-center relative z-40 px-6 sm:px-14">
             <div class="relative flex items-center justify-center max-w-full max-h-[75vh]">
                 <img id="lightbox-img" 
@@ -1318,7 +1079,7 @@
                 <i data-lucide="heart" class="w-7 h-7 fill-retro-dark"></i>
             </div>
             <h3 data-i18n="modal_thanks_title" class="font-serif text-2xl font-bold text-gold mb-2">Cảm Ơn Bạn!</h3>
-            <p data-i18n="modal_thanks_desc" class="text-xs md:text-sm text-ivory/90 mb-6 leading-relaxed">Xác nhận của bạn đã được ghi nhận. Dữ liệu RSVP đã được tự động lưu tải xuống tệp report.csv trên máy của bạn!</p>
+            <p data-i18n="modal_thanks_desc" class="text-xs md:text-sm text-ivory/90 mb-6 leading-relaxed">Xác nhận của bạn đã được ghi nhận thành công. Chúng mình rất mong được đón tiếp bạn trong ngày vui trọng đại!</p>
             <button onclick="closeRSVPModal()" data-i18n="modal_btn_close" class="w-full py-2.5 bg-gold text-retro-dark font-bold rounded-xl hover:bg-gold-light transition-colors cursor-pointer text-xs md:text-sm">
                 Đóng
             </button>
@@ -1362,29 +1123,14 @@
                 cd_hours: "Giờ",
                 cd_minutes: "Phút",
                 cd_seconds: "Giây",
-                prog_subtitle: "VẠN SỰ CÁT TƯỜNG • TRÌNH TỰ SỰ KIỆN",
+                prog_subtitle: "TRÌNH TỰ SỰ KIỆN",
                 prog_title: "Lịch Trình Tiệc Cưới",
-                prog_desc_lead: "\"Từng khoảnh khắc đong đầy cảm xúc trong ngày vui trăm năm của chúng mình\"",
-                prog_badge_welcome: "WELCOME & FUN",
-                prog_time_tag1: "KHỞI ĐẦU HỶ SỰ",
-                prog_step1_title: "Đón Khách & Check-in Photobooth",
-                prog_step1_desc: "Chào đón quý khách, thưởng thức Welcome Drink thanh mát và cùng quẩy góc Photobooth in ảnh lấy liền lưu lại kỷ niệm siêu nhí nhố!",
-                prog_badge_ceremony: "THE CEREMONY",
-                prog_time_tag2: "KHOẢNH KHẮC THIÊNG LIÊNG",
-                prog_step2_title: "Lễ Thành Hôn Thiêng Liêng",
-                prog_step2_desc: "Dâu rể bước lên lễ đường, trao nhau đôi nhẫn nguyện ước trăm năm, cùng rót tháp rượu hạnh phúc và nhận lời chúc phúc trọn vẹn từ hai bên gia đình.",
-                prog_badge_banquet: "FEAST & ACOUSTIC",
-                prog_time_tag3: "MỸ VỊ & ÂM NHẠC",
-                prog_step3_title: "Khai Tiệc & Ban Nhạc Acoustic Live",
-                prog_step3_desc: "Nâng ly khai tiệc mừng, thưởng thức thực đơn thịnh soạn hòa cùng những giai điệu Acoustic ngọt ngào, trữ tình và các bản tình ca hoa ngữ thập niên 80 hoài niệm.",
-                prog_badge_games: "GAMES & KARAOKE",
-                prog_time_tag4: "VUI CƯỜI THẢ GA",
-                prog_step4_title: "Minigame & Giao Lưu Karaoke",
-                prog_step4_desc: "Bùng nổ sân khấu với trò chơi minigame vui nhộn, tung hoa cưới may mắn và cơ hội \"khoe giọng oanh vàng\" giao lưu Karaoke quẩy hết mình cùng dâu rể!",
-                prog_badge_farewell: "MEMORIES & THANKS",
-                prog_time_tag5: "TRỌN VẸN YÊU THƯƠNG",
-                prog_step5_title: "Chụp Ảnh Lưu Niệm & Lời Cảm Tạ",
-                prog_step5_desc: "Dâu rể chụp những bức ảnh kỷ niệm ấm áp cuối tiệc và gửi lời cảm tạ chân thành nhất đến quý khách vì đã cùng sẻ chia khoảnh khắc hạnh phúc trọn vẹn này.",
+                prog_step1_title: "Đón Khách & Photobooth",
+                prog_step1_desc: "Check-in rạng rỡ, chụp ảnh lấy liền không giới hạn tại góc Photobooth vui nhộn cùng dâu rể!",
+                prog_step2_title: "Lễ Thành Hôn",
+                prog_step2_desc: "Nghi thức kết duyên thiêng liêng, trao nhẫn cưới và nhận lời chúc phúc từ hai bên gia đình.",
+                prog_step3_title: "Khai Tiệc Mừng",
+                prog_step3_desc: "Cùng nâng ly chúc mừng và thưởng thức tiệc tối thịnh soạn trong không gian âm nhạc hoa ngữ du dương.",
                 pb_tag: "KHU VỰC ĐẶC BIỆT DÀNH CHO KHÁCH MỜI",
                 pb_title: "Góc Photobooth Chụp Ảnh Lấy Liền",
                 pb_desc: "Chấn Cơ & Hảo Nghi đã chuẩn bị sẵn một góc Photobooth xịn xò với máy in ảnh tức thì để bạn thoả sức lưu lại những khoảnh khắc nhí nhố nhất!",
@@ -1401,7 +1147,7 @@
                 pb_f3_desc: "Quét mã QR để tải ngay file ảnh gốc & video ngắn về điện thoại.",
                 pb_f4_title: "Chụp Bao Nhiêu Tuỳ Thích",
                 pb_f4_desc: "Không giới hạn số lượt chụp, càng đông càng vui!",
-                pb_note: "* Vui lòng ghé sảnh tiệc sớm từ 18:00 để cùng dâu rể quẩy banh nóc góc chụp ảnh nhé!",
+                pb_note: "* Vui lòng ghé sảnh tiệc sớm từ 17:30 để cùng dâu rể quẩy banh nóc góc chụp ảnh nhé!",
                 loc_subtitle: "THỜI GIAN & ĐỊA ĐIỂM",
                 loc_title: "Tiệc Cưới Trọng Đại",
                 loc_badge: "ĐỊA ĐIỂM DUY NHẤT",
@@ -1409,7 +1155,7 @@
                 loc_hall_name: "Sảnh Grand Ballroom (Tầng 2)",
                 loc_date_txt: "Chủ Nhật, ngày 11 tháng 10 năm 2026",
                 loc_lunar_txt: "(Tức ngày 02 tháng 09 năm Bính Ngọ - Âm Lịch)",
-                loc_time_txt: "Đón Khách: 18:00 | Nghi Lễ: 18:30 - 18:45 | Khai Tiệc: 19:00",
+                loc_time_txt: "Đón Khách: 17:30 | Nghi Lễ: 18:30 | Khai Tiệc: 19:00",
                 loc_time_sub: "Rất mong quý khách có mặt đúng giờ để chung vui cùng gia đình",
                 loc_address_txt: "360D Bến Vân Đồn, Phường 1, Quận 4, TP. Hồ Chí Minh",
                 loc_parking_txt: "Có bãi đỗ xe ô tô và xe máy rộng rãi, thuận tiện",
@@ -1454,7 +1200,7 @@
                 footer_quote: "\"Sự hiện diện của quý khách là niềm vinh hạnh lớn nhất của gia đình chúng tôi!\"",
                 footer_signature: "La Chấn Cơ & Huỳnh Hảo Nghi • Lễ Thành Hôn 2026",
                 modal_thanks_title: "Cảm Ơn Bạn!",
-                modal_thanks_desc: "Xác nhận của bạn đã được ghi nhận. Dữ liệu RSVP đã được tự động gửi đến dâu rể!",
+                modal_thanks_desc: "Xác nhận của bạn đã được ghi nhận thành công. Chúng mình rất mong được đón tiếp bạn trong ngày vui trọng đại!",
                 modal_btn_close: "Đóng"
             },
             zh: {
@@ -1491,29 +1237,14 @@
                 cd_hours: "時",
                 cd_minutes: "分",
                 cd_seconds: "秒",
-                prog_subtitle: "吉星高照 • 良辰吉日流程",
+                prog_subtitle: "婚禮流程",
                 prog_title: "良辰吉日 • 流程安排",
-                prog_desc_lead: "「記錄我們人生最幸福溫馨的每一個珍貴時刻」",
-                prog_badge_welcome: "WELCOME & FUN",
-                prog_time_tag1: "吉日啟程",
-                prog_step1_title: "恭迎賓客 & 拍照打卡",
-                prog_step1_desc: "熱烈歡迎各位貴賓蒞臨，享用迎賓特飲，並在Photobooth即拍即印區與新人留下搞怪歡樂合影！",
-                prog_badge_ceremony: "THE CEREMONY",
-                prog_time_tag2: "神聖誓約",
-                prog_step2_title: "新婚典禮 • 永結同心",
-                prog_step2_desc: "新人步入婚禮殿堂，交換定情信物戒指，倒香檳塔、切蛋糕，接受雙方父母與親友的深情祝福。",
-                prog_badge_banquet: "FEAST & ACOUSTIC",
-                prog_time_tag3: "喜筵佳餚",
-                prog_step3_title: "喜筵開席 & Acoustic 樂團現場演奏",
-                prog_step3_desc: "全場舉杯同慶，在 Acoustic 樂團悠揚浪漫的現場演奏與經典粵語金曲中，共嚐精緻美饌。",
-                prog_badge_games: "GAMES & KARAOKE",
-                prog_time_tag4: "開懷暢聚",
-                prog_step4_title: "趣味互動 & 卡拉OK大歡唱",
-                prog_step4_desc: "熱鬧歡樂的舞台互動遊戲、傳遞幸福拋花球，以及各路歌神好友一展歌喉的歡樂 Karaoke 環節！",
-                prog_badge_farewell: "MEMORIES & THANKS",
-                prog_time_tag5: "圓滿謝幕",
-                prog_step5_title: "合影留念 & 謝賓送客",
-                prog_step5_desc: "新人與親朋好友合影留念並依依惜別。衷心感謝各位貴賓的蒞臨與美好祝福！",
+                prog_step1_title: "恭迎賓客 & 拍照互動",
+                prog_step1_desc: "歡迎提早抵達，在Photobooth即拍即印拍照區與新人留下歡樂合影！",
+                prog_step2_title: "新婚典禮",
+                prog_step2_desc: "交換戒指、宣讀誓言，在親朋好友見證下許諾一生。",
+                prog_step3_title: "喜筵開席",
+                prog_step3_desc: "舉杯同慶，享受精緻佳餚與經典懷舊音樂相伴的溫馨夜晚。",
                 pb_tag: "特別為來賓準備的驚喜",
                 pb_title: "Photobooth 拍立得即拍即印區",
                 pb_desc: "振基 & 巧儀 特別準備了<strong>高品質即拍即印相印機與搞怪道具</strong>，讓大家盡情打卡留念！",
@@ -1530,7 +1261,7 @@
                 pb_f3_desc: "掃描QR Code即可下載原始照片與動態短片到手機。",
                 pb_f4_title: "無限次拍照",
                 pb_f4_desc: "不限拍攝次數，越多人拍越熱鬧！",
-                pb_note: "* 歡迎大家於 18:00 提前抵達宴會廳，與新人一起盡情拍照打卡！",
+                pb_note: "* 歡迎大家於 17:30 提前抵達宴會廳，與新人一起盡情拍照打卡！",
                 loc_subtitle: "婚宴時間 & 地點",
                 loc_title: "盛大婚宴",
                 loc_badge: "唯一婚宴場地",
@@ -1538,7 +1269,7 @@
                 loc_hall_name: "Grand Ballroom 大宴會廳 (2樓)",
                 loc_date_txt: "2026年10月11日 星期日",
                 loc_lunar_txt: "(農曆 丙午年 九月初二日)",
-                loc_time_txt: "迎賓: 18:00 | 典禮: 18:30 - 18:45 | 開席: 19:00",
+                loc_time_txt: "迎賓: 17:30 | 典禮: 18:30 | 開席: 19:00",
                 loc_time_sub: "敬請各位貴賓準時入席，共襄盛舉",
                 loc_address_txt: "胡志明市 第四郡 第一坊 奔雲敦街 360D (360D Bến Vân Đồn)",
                 loc_parking_txt: "設有寬敞方便的汽車與機車停車場",
@@ -1583,7 +1314,7 @@
                 footer_quote: "「您的蒞臨是我們全體家人最大的榮耀！」",
                 footer_signature: "羅振基 & 黃巧儀 • 2026 喜結良緣",
                 modal_thanks_title: "感謝您的回覆！",
-                modal_thanks_desc: "您的出席資訊已成功記錄並發送給新人。我們衷心期待在婚禮當天與您相聚！",
+                modal_thanks_desc: "您的出席資訊已成功記錄，我們衷心期待在婚禮當天與您相聚！",
                 modal_btn_close: "關閉"
             },
             ja: {
@@ -1622,27 +1353,12 @@
                 cd_seconds: "秒",
                 prog_subtitle: "当日のスケジュール",
                 prog_title: "タイムスケジュール",
-                prog_desc_lead: "「二人の大切な一日を彩る特別なタイムライン」",
-                prog_badge_welcome: "WELCOME & FUN",
-                prog_time_tag1: "開場・受付",
                 prog_step1_title: "受付 ＆ フォトブース",
-                prog_step1_desc: "ウェルカムドリンクと特設フォトブースでのインスタント写真撮影をお楽しみください！",
-                prog_badge_ceremony: "THE CEREMONY",
-                prog_time_tag2: "誓いの儀式",
+                prog_step1_desc: "受付後、楽しいフォトブースでチェキプリント＆記念撮影をお楽しみください！",
                 prog_step2_title: "挙式・披露宴セレモニー",
-                prog_step2_desc: "新郎新婦入場、指輪の交換、シャンパンタワー、そして両親とゲストへの感謝のセレモニー。",
-                prog_badge_banquet: "FEAST & ACOUSTIC",
-                prog_time_tag3: "祝宴＆音楽",
-                prog_step3_title: "開宴 ＆ アコースティック生演奏",
-                prog_step3_desc: "美味しいお料理とともに、アコースティックバンドによる温かい生演奏と80年代の名曲をお楽しみください。",
-                prog_badge_games: "GAMES & KARAOKE",
-                prog_time_tag4: "お楽しみイベント",
-                prog_step4_title: "ミニゲーム ＆ カラオケタイム",
-                prog_step4_desc: "会場全体で盛り上がるステージゲーム、ブーケトス、そして皆で楽しむカラオケパーティー！",
-                prog_badge_farewell: "MEMORIES & THANKS",
-                prog_time_tag5: "お見送り",
-                prog_step5_title: "記念撮影 ＆ お見送り",
-                prog_step5_desc: "皆様との記念撮影と感謝のお見送り。温かいご臨席、誠にありがとうございました！",
+                prog_step2_desc: "指輪の交換と誓いの儀式。皆様の前で永遠の愛を誓います。",
+                prog_step3_title: "開宴・祝宴",
+                prog_step3_desc: "美味しいお料理と華やかな音楽と共に、楽しい時間をお過ごしください。",
                 pb_tag: "ゲストの皆様への特別コーナー",
                 pb_title: "即時印刷フォトブース",
                 pb_desc: "高画質インスタント写真プリンターとユニークな撮影アイテムをご用意しました！",
@@ -1659,7 +1375,7 @@
                 pb_f3_desc: "QRコードを読み取るだけでスマホにオリジナル画像＆動画を保存可能。",
                 pb_f4_title: "何度でも撮影自由",
                 pb_f4_desc: "撮影枚数に制限はありません。たくさんの思い出を残してください！",
-                pb_note: "※ぜひ18:00よりお早めにお越しいただき、フォトブースをお楽しみください！",
+                pb_note: "※ぜひ17:30よりお早めにお越しいただき、フォトブースをお楽しみください！",
                 loc_subtitle: "日時と会場のご案内",
                 loc_title: "披露宴会場のご案内",
                 loc_badge: "挙式・披露宴会場",
@@ -1667,7 +1383,7 @@
                 loc_hall_name: "Grand Ballroom（2階大宴会場）",
                 loc_date_txt: "2026年10月11日（日曜日）",
                 loc_lunar_txt: "(旧暦 丙午年 9月2日)",
-                loc_time_txt: "受付: 18:00 | 挙式: 18:30 - 18:45 | 開宴: 19:00",
+                loc_time_txt: "受付: 17:30 | 挙式: 18:30 | 開宴: 19:00",
                 loc_time_sub: "皆様にお会いできることを楽しみにしております",
                 loc_address_txt: "360D Bến Vân Đồn, Phường 1, Quận 4, TP. Hồ Chí Minh",
                 loc_parking_txt: "お車・バイクの専用駐車場がございます",
@@ -1712,7 +1428,7 @@
                 footer_quote: "「皆様の温かいご臨席を、心よりお待ち申し上げております。」",
                 footer_signature: "ラ・チャン・コー & フィン・ハオ・ギー • 2026 Wedding",
                 modal_thanks_title: "ご送信ありがとうございます！",
-                modal_thanks_desc: "出欠のご連絡を正常に受け付けました。新郎新婦に送信されました。当日皆様にお会いできることを楽しみにしております！",
+                modal_thanks_desc: "出欠のご連絡を正常に受け付けました。当日皆様にお会いできることを楽しみにしております！",
                 modal_btn_close: "閉じる"
             }
         };
@@ -1748,7 +1464,7 @@
 
         window.isPlayingAudio = false;
 
-        // DYNAMIC PHOTO GALLERY DATA
+        // 9. DYNAMIC PHOTO GALLERY DATA (Hỗ trợ ảnh nhiều kích thước khác nhau)
         const weddingGalleryList = [
             {
                 src: 'img/NCQ_4070.jpg',
@@ -1794,16 +1510,6 @@
         let isGalleryExpanded = false;
         const INITIAL_VISIBLE_PHOTOS = 8;
 
-        const animVariants = [
-            'gal-anim-rise',
-            'gal-anim-tilt-left',
-            'gal-anim-tilt-right',
-            'gal-anim-from-left',
-            'gal-anim-from-right',
-            'gal-anim-flip',
-            'gal-anim-pop'
-        ];
-
         function renderGallery() {
             const container = document.getElementById('gallery-grid');
             const toggleWrapper = document.getElementById('gallery-more-wrapper');
@@ -1813,15 +1519,9 @@
             const photosToDisplay = isGalleryExpanded ? weddingGalleryList : weddingGalleryList.slice(0, INITIAL_VISIBLE_PHOTOS);
 
             photosToDisplay.forEach((item, index) => {
-                const randomAnim = animVariants[Math.floor(Math.random() * animVariants.length)];
-                const randomDuration = (0.75 + Math.random() * 0.4).toFixed(2);
-                const randomDelay = ((index % 4) * 0.12 + Math.random() * 0.1).toFixed(2);
-
                 const photoCard = document.createElement('div');
-                photoCard.className = `gal-random-item ${randomAnim} relative rounded-2xl overflow-hidden group cursor-pointer border border-gold/40 shadow-lg break-inside-avoid mb-3 sm:mb-4 bg-retro-dark transform transition-all hover:-translate-y-1 hover:border-gold hover:shadow-gold-glow`;
-                
-                photoCard.style.transitionDuration = `${randomDuration}s`;
-                photoCard.style.transitionDelay = `${randomDelay}s`;
+                // break-inside-avoid ngăn phần tử bị chia cắt giữa các cột masonry
+                photoCard.className = `relative rounded-2xl overflow-hidden group cursor-pointer border border-gold/40 shadow-lg reveal-init break-inside-avoid mb-3 sm:mb-4 bg-retro-dark transform transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-gold-glow`;
                 photoCard.onclick = () => openLightbox(index);
 
                 photoCard.innerHTML = `
@@ -1832,6 +1532,7 @@
                              loading="lazy" 
                              class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500 block">
                         
+                        <!-- Hover Overlay -->
                         <div class="absolute inset-0 bg-retro-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5 sm:p-4">
                             <div class="flex justify-end">
                                 <div class="w-8 h-8 rounded-full bg-gold/20 border border-gold text-gold flex items-center justify-center backdrop-blur-xs">
@@ -1870,6 +1571,7 @@
             renderGallery();
         };
 
+        // Lightbox Navigation Functions
         window.openLightbox = function(index) {
             currentLightboxIndex = typeof index === 'number' ? index : 0;
             updateLightboxContent();
@@ -1927,6 +1629,7 @@
             if (counter) counter.innerText = `${currentLightboxIndex + 1} / ${weddingGalleryList.length}`;
         }
 
+        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             const modal = document.getElementById('lightbox-modal');
             if (modal && !modal.classList.contains('hidden')) {
@@ -1936,6 +1639,7 @@
             }
         });
 
+        // Touch Swipe Navigation for Mobile Lightbox
         let touchStartX = 0;
         let touchEndX = 0;
         const lightboxModal = document.getElementById('lightbox-modal');
@@ -1976,7 +1680,7 @@
         });
 
         function initScrollRevealObserver() {
-            const revealElements = document.querySelectorAll('.reveal-init, .reveal-left, .reveal-right, .reveal-zoom, .gal-random-item:not(.gal-visible)');
+            const revealElements = document.querySelectorAll('.reveal-init, .reveal-left, .reveal-right, .reveal-zoom');
             
             if ('IntersectionObserver' in window) {
                 const observerOptions = {
@@ -1988,11 +1692,7 @@
                 const scrollObserver = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            if (entry.target.classList.contains('gal-random-item')) {
-                                entry.target.classList.add('gal-visible');
-                            } else {
-                                entry.target.classList.add('reveal-active');
-                            }
+                            entry.target.classList.add('reveal-active');
                             observer.unobserve(entry.target);
                         }
                     });
@@ -2000,13 +1700,7 @@
 
                 revealElements.forEach(el => scrollObserver.observe(el));
             } else {
-                revealElements.forEach(el => {
-                    if (el.classList.contains('gal-random-item')) {
-                        el.classList.add('gal-visible');
-                    } else {
-                        el.classList.add('reveal-active');
-                    }
-                });
+                revealElements.forEach(el => el.classList.add('reveal-active'));
             }
         }
 
@@ -2092,7 +1786,7 @@
             }
         };
 
-        const targetWeddingDate = new Date('2026-10-11T18:00:00').getTime();
+        const targetWeddingDate = new Date('2026-10-11T17:30:00').getTime();
 
         function updateWeddingCountdown() {
             const now = new Date().getTime();
@@ -2142,65 +1836,19 @@
             }
         };
 
-        // Biến lưu trữ link Google Sheets Web App
-        const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwGz5dX-Htf9tP6EmAeGEytH04AhwOLpV3cEle8mim1bqxpt5yzdj24N8G31vD5rUpAxg/exec'; 
-
-        window.handleRSVPSubmit = async function(event) {
+        window.handleRSVPSubmit = function(event) {
             event.preventDefault();
-            
-            const nameInput = document.getElementById('rsvp-name').value.trim();
-            const attendInput = document.getElementById('rsvp-attend').options[document.getElementById('rsvp-attend').selectedIndex].text;
-            const countInput = document.getElementById('rsvp-count').options[document.getElementById('rsvp-count').selectedIndex].text;
-            const mealInput = document.getElementById('rsvp-meal').options[document.getElementById('rsvp-meal').selectedIndex].text;
-            const timestamp = new Date().toLocaleString('vi-VN');
-            
-            // Thay đổi nút bấm sang trạng thái loading
-            const btn = event.target.querySelector('button[type="submit"]');
-            const originalBtnText = btn.innerHTML;
-            btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> ĐANG GỬI...';
-            btn.disabled = true;
-            if (window.lucide) window.lucide.createIcons();
-
-            // Gói dữ liệu để gửi đi
-            const formData = new FormData();
-            formData.append('name', nameInput);
-            formData.append('attend', attendInput);
-            formData.append('count', countInput);
-            formData.append('meal', mealInput);
-            formData.append('time', timestamp);
-
-            try {
-                if(GOOGLE_SHEETS_WEB_APP_URL !== 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE') {
-                    // Gửi request POST tới Google Apps Script
-                    await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
-                        method: 'POST',
-                        body: formData,
-                        mode: 'no-cors' // Quan trọng: Google Apps Script yêu cầu chế độ này để không bị lỗi CORS
-                    });
-                } else {
-                    console.warn("Chưa cấu hình GOOGLE_SHEETS_WEB_APP_URL. Dữ liệu Test:", {nameInput, attendInput, countInput, mealInput});
-                }
-
-                // Hiện Popup cảm ơn thành công
-                const modal = document.getElementById('rsvp-modal');
-                if (modal) {
-                    modal.classList.remove('hidden');
-                    modal.classList.add('flex');
-                }
-                
-                // Bắn pháo hoa
-                if (typeof window.confetti === 'function') {
-                    window.confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
-                }
-                
-            } catch (error) {
-                console.error("Lỗi khi gửi thông tin RSVP:", error);
-                alert("Có lỗi kết nối máy chủ. Vui lòng thử lại!");
-            } finally {
-                // Phục hồi trạng thái nút bấm
-                btn.innerHTML = originalBtnText;
-                btn.disabled = false;
-                if (window.lucide) window.lucide.createIcons();
+            const modal = document.getElementById('rsvp-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 80,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
             }
         };
 
@@ -2302,166 +1950,6 @@ END:VCALENDAR`;
             }
 
             animatePetals();
-        }
-    </script>
-
-    <!-- FIREBASE CLOUD DATABASE & XUẤT CSV -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Thiết lập App ID và Config
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'co-nghi-wedding-app';
-        let firebaseConfig = {};
-        
-        // Cảnh báo cho việc deploy lên Vercel
-        if (typeof __firebase_config !== 'undefined') {
-            firebaseConfig = JSON.parse(__firebase_config);
-        } else {
-            console.warn("LƯU Ý: Để tính năng RSVP lưu được dữ liệu khi public lên Vercel, bạn cần tạo 1 dự án Firebase miễn phí và điền firebaseConfig vào đây.");
-            // Ví dụ cấu hình bạn lấy từ Firebase:
-            /* firebaseConfig = {
-                apiKey: "YOUR_API_KEY",
-                authDomain: "YOUR_AUTH_DOMAIN",
-                projectId: "YOUR_PROJECT_ID",
-                storageBucket: "YOUR_STORAGE_BUCKET",
-                messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-                appId: "YOUR_APP_ID"
-            }; */
-        }
-
-        let app, db, auth;
-        if (Object.keys(firebaseConfig).length > 0) {
-            app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-        }
-
-        // Hàm Đăng nhập Firebase
-        async function authenticateFirebase() {
-            if (!auth) return null;
-            let user = auth.currentUser;
-            if (!user) {
-                if (typeof __initial_auth_token !== 'undefined') {
-                    const userCredential = await signInWithCustomToken(auth, __initial_auth_token);
-                    user = userCredential.user;
-                } else {
-                    const userCredential = await signInAnonymously(auth);
-                    user = userCredential.user;
-                }
-            }
-            return user;
-        }
-
-        // Ghi đè hàm gửi RSVP từ file gốc
-        window.handleRSVPSubmit = async function(event) {
-            event.preventDefault();
-            
-            const nameInput = document.getElementById('rsvp-name').value.trim();
-            const attendInput = document.getElementById('rsvp-attend').options[document.getElementById('rsvp-attend').selectedIndex].text;
-            const countInput = document.getElementById('rsvp-count').options[document.getElementById('rsvp-count').selectedIndex].text;
-            const mealInput = document.getElementById('rsvp-meal').options[document.getElementById('rsvp-meal').selectedIndex].text;
-            const timestamp = new Date().toLocaleString('vi-VN');
-            
-            // Thay đổi nút bấm sang trạng thái loading
-            const btn = event.target.querySelector('button[type="submit"]');
-            const originalBtnText = btn.innerHTML;
-            btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> ĐANG XỬ LÝ...';
-            btn.disabled = true;
-            if (window.lucide) window.lucide.createIcons();
-
-            try {
-                // Đăng nhập và đẩy dữ liệu lên Firestore
-                if (db) {
-                    const user = await authenticateFirebase();
-                    if (!user) throw new Error("Chưa xác thực được Firebase.");
-
-                    // Theo đúng rule bảo mật, dữ liệu chung phải lưu ở path public/data
-                    const rsvpRef = collection(db, 'artifacts', appId, 'public', 'data', 'rsvps');
-                    await addDoc(rsvpRef, {
-                        name: nameInput,
-                        attend: attendInput,
-                        count: countInput,
-                        meal: mealInput,
-                        time: timestamp
-                    });
-                } else {
-                    console.log("Firebase chưa cấu hình. Demo Log:", { nameInput, attendInput, countInput, mealInput, timestamp });
-                }
-
-                // Hiện Popup cảm ơn thành công
-                const modal = document.getElementById('rsvp-modal');
-                if (modal) {
-                    modal.classList.remove('hidden');
-                    modal.classList.add('flex');
-                }
-                
-                // Bắn pháo hoa
-                if (typeof window.confetti === 'function') {
-                    window.confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
-                }
-                
-            } catch (error) {
-                console.error("Lỗi khi gửi thông tin RSVP:", error);
-                alert("Có lỗi xảy ra khi gửi RSVP. Vui lòng thử lại!");
-            } finally {
-                // Phục hồi trạng thái nút bấm
-                btn.innerHTML = originalBtnText;
-                btn.disabled = false;
-                if (window.lucide) window.lucide.createIcons();
-            }
-        };
-
-        // Hàm dành riêng cho Admin để tải file report.csv
-        window.downloadAdminCSV = async function() {
-            try {
-                if (!db) {
-                    alert("Chưa cấu hình cơ sở dữ liệu Firebase. Không có dữ liệu để tải.");
-                    return;
-                }
-                
-                const user = await authenticateFirebase();
-                if (!user) return;
-
-                const rsvpRef = collection(db, 'artifacts', appId, 'public', 'data', 'rsvps');
-                const snapshot = await getDocs(rsvpRef);
-                
-                if (snapshot.empty) {
-                    alert("Hiện tại chưa có khách mời nào điền RSVP.");
-                    return;
-                }
-
-                // Tạo dữ liệu CSV
-                let csvContent = 'Họ và tên,Xác nhận tham dự,Số lượng,Khẩu vị,Thời gian\r\n';
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    let name = data.name || '';
-                    // Escape dấu phẩy trong tên
-                    if (name.includes(',')) name = `"${name}"`;
-                    
-                    csvContent += `${name},${data.attend || ''},${data.count || ''},${data.meal || ''},${data.time || ''}\r\n`;
-                });
-
-                // Sử dụng BOM để Excel hiển thị đúng tiếng Việt có dấu
-                const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
-                const blob = new Blob([bom, csvContent], { type: 'text/csv;charset=utf-8;' });
-                
-                const link = document.createElement("a");
-                if (link.download !== undefined) {
-                    const url = URL.createObjectURL(blob);
-                    link.setAttribute("href", url);
-                    link.setAttribute("download", "report.csv");
-                    link.style.visibility = 'hidden';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                }
-
-            } catch (error) {
-                console.error("Lỗi tải CSV:", error);
-                alert("Lỗi khi tải danh sách. Vui lòng xem Console Log.");
-            }
         }
     </script>
 </body>
