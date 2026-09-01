@@ -1318,7 +1318,7 @@
                 <i data-lucide="heart" class="w-7 h-7 fill-retro-dark"></i>
             </div>
             <h3 data-i18n="modal_thanks_title" class="font-serif text-2xl font-bold text-gold mb-2">Cảm Ơn Bạn!</h3>
-            <p data-i18n="modal_thanks_desc" class="text-xs md:text-sm text-ivory/90 mb-6 leading-relaxed">Xác nhận của bạn đã được ghi nhận. Dữ liệu RSVP đã được tự động lưu tải xuống tệp report.csv trên máy của bạn!</p>
+            <p data-i18n="modal_thanks_desc" class="text-xs md:text-sm text-ivory/90 mb-6 leading-relaxed">Xác nhận của bạn đã được ghi nhận và gửi đến dâu rể. Cảm ơn bạn!</p>
             <button onclick="closeRSVPModal()" data-i18n="modal_btn_close" class="w-full py-2.5 bg-gold text-retro-dark font-bold rounded-xl hover:bg-gold-light transition-colors cursor-pointer text-xs md:text-sm">
                 Đóng
             </button>
@@ -2142,66 +2142,9 @@
             }
         };
 
-        // Biến lưu trữ link Google Sheets Web App
-        const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwGz5dX-Htf9tP6EmAeGEytH04AhwOLpV3cEle8mim1bqxpt5yzdj24N8G31vD5rUpAxg/exec'; 
-
-        window.handleRSVPSubmit = async function(event) {
+        window.handleRSVPSubmit = function(event) {
             event.preventDefault();
-            
-            const nameInput = document.getElementById('rsvp-name').value.trim();
-            const attendInput = document.getElementById('rsvp-attend').options[document.getElementById('rsvp-attend').selectedIndex].text;
-            const countInput = document.getElementById('rsvp-count').options[document.getElementById('rsvp-count').selectedIndex].text;
-            const mealInput = document.getElementById('rsvp-meal').options[document.getElementById('rsvp-meal').selectedIndex].text;
-            const timestamp = new Date().toLocaleString('vi-VN');
-            
-            // Thay đổi nút bấm sang trạng thái loading
-            const btn = event.target.querySelector('button[type="submit"]');
-            const originalBtnText = btn.innerHTML;
-            btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> ĐANG GỬI...';
-            btn.disabled = true;
-            if (window.lucide) window.lucide.createIcons();
-
-            // Gói dữ liệu để gửi đi
-            const formData = new FormData();
-            formData.append('name', nameInput);
-            formData.append('attend', attendInput);
-            formData.append('count', countInput);
-            formData.append('meal', mealInput);
-            formData.append('time', timestamp);
-
-            try {
-                if(GOOGLE_SHEETS_WEB_APP_URL !== 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE') {
-                    // Gửi request POST tới Google Apps Script
-                    await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
-                        method: 'POST',
-                        body: formData,
-                        mode: 'no-cors' // Quan trọng: Google Apps Script yêu cầu chế độ này để không bị lỗi CORS
-                    });
-                } else {
-                    console.warn("Chưa cấu hình GOOGLE_SHEETS_WEB_APP_URL. Dữ liệu Test:", {nameInput, attendInput, countInput, mealInput});
-                }
-
-                // Hiện Popup cảm ơn thành công
-                const modal = document.getElementById('rsvp-modal');
-                if (modal) {
-                    modal.classList.remove('hidden');
-                    modal.classList.add('flex');
-                }
-                
-                // Bắn pháo hoa
-                if (typeof window.confetti === 'function') {
-                    window.confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
-                }
-                
-            } catch (error) {
-                console.error("Lỗi khi gửi thông tin RSVP:", error);
-                alert("Có lỗi kết nối máy chủ. Vui lòng thử lại!");
-            } finally {
-                // Phục hồi trạng thái nút bấm
-                btn.innerHTML = originalBtnText;
-                btn.disabled = false;
-                if (window.lucide) window.lucide.createIcons();
-            }
+            // Việc xử lý Submit RSVP thực tế sẽ được đưa vào block <script type="module"> ở bên dưới để lưu trữ vào Cloud Database
         };
 
         window.closeRSVPModal = function() {
@@ -2305,164 +2248,79 @@ END:VCALENDAR`;
         }
     </script>
 
-    <!-- FIREBASE CLOUD DATABASE & XUẤT CSV -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <!-- GOOGLE SHEETS RSVP VIA GOOGLE APPS SCRIPT -->
+    <script>
+        // BƯỚC DUY NHẤT CẦN CẤU HÌNH:
+        // Sau khi Deploy Google Apps Script dưới dạng Web App, dán URL /exec vào đây.
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzq4wPpsP5k7_7P8KSc3xBiZ9HEQLxNbD-eN68qnzAwV33bbbfbbhIIwSEpKqQ4Z4kblg/exec';
 
-        // Thiết lập App ID và Config
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'co-nghi-wedding-app';
-        let firebaseConfig = {};
-        
-        // Cảnh báo cho việc deploy lên Vercel
-        if (typeof __firebase_config !== 'undefined') {
-            firebaseConfig = JSON.parse(__firebase_config);
-        } else {
-            console.warn("LƯU Ý: Để tính năng RSVP lưu được dữ liệu khi public lên Vercel, bạn cần tạo 1 dự án Firebase miễn phí và điền firebaseConfig vào đây.");
-            // Ví dụ cấu hình bạn lấy từ Firebase:
-            /* firebaseConfig = {
-                apiKey: "YOUR_API_KEY",
-                authDomain: "YOUR_AUTH_DOMAIN",
-                projectId: "YOUR_PROJECT_ID",
-                storageBucket: "YOUR_STORAGE_BUCKET",
-                messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-                appId: "YOUR_APP_ID"
-            }; */
-        }
-
-        let app, db, auth;
-        if (Object.keys(firebaseConfig).length > 0) {
-            app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-        }
-
-        // Hàm Đăng nhập Firebase
-        async function authenticateFirebase() {
-            if (!auth) return null;
-            let user = auth.currentUser;
-            if (!user) {
-                if (typeof __initial_auth_token !== 'undefined') {
-                    const userCredential = await signInWithCustomToken(auth, __initial_auth_token);
-                    user = userCredential.user;
-                } else {
-                    const userCredential = await signInAnonymously(auth);
-                    user = userCredential.user;
-                }
-            }
-            return user;
-        }
-
-        // Ghi đè hàm gửi RSVP từ file gốc
         window.handleRSVPSubmit = async function(event) {
             event.preventDefault();
-            
+
+            const form = event.target;
             const nameInput = document.getElementById('rsvp-name').value.trim();
-            const attendInput = document.getElementById('rsvp-attend').options[document.getElementById('rsvp-attend').selectedIndex].text;
-            const countInput = document.getElementById('rsvp-count').options[document.getElementById('rsvp-count').selectedIndex].text;
-            const mealInput = document.getElementById('rsvp-meal').options[document.getElementById('rsvp-meal').selectedIndex].text;
-            const timestamp = new Date().toLocaleString('vi-VN');
-            
-            // Thay đổi nút bấm sang trạng thái loading
-            const btn = event.target.querySelector('button[type="submit"]');
+            const attendInput = document.getElementById('rsvp-attend').value;
+            const countInput = document.getElementById('rsvp-count').value;
+            const mealInput = document.getElementById('rsvp-meal').value;
+            const btn = form.querySelector('button[type="submit"]');
             const originalBtnText = btn.innerHTML;
-            btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> ĐANG XỬ LÝ...';
+
+            if (!nameInput) return;
+
+            btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> ĐANG GỬI...';
             btn.disabled = true;
             if (window.lucide) window.lucide.createIcons();
 
             try {
-                // Đăng nhập và đẩy dữ liệu lên Firestore
-                if (db) {
-                    const user = await authenticateFirebase();
-                    if (!user) throw new Error("Chưa xác thực được Firebase.");
-
-                    // Theo đúng rule bảo mật, dữ liệu chung phải lưu ở path public/data
-                    const rsvpRef = collection(db, 'artifacts', appId, 'public', 'data', 'rsvps');
-                    await addDoc(rsvpRef, {
-                        name: nameInput,
-                        attend: attendInput,
-                        count: countInput,
-                        meal: mealInput,
-                        time: timestamp
-                    });
-                } else {
-                    console.log("Firebase chưa cấu hình. Demo Log:", { nameInput, attendInput, countInput, mealInput, timestamp });
+                if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes('PASTE_YOUR_')) {
+                    throw new Error('Google Apps Script URL chưa được cấu hình.');
                 }
 
-                // Hiện Popup cảm ơn thành công
+                const payload = new URLSearchParams({
+                    name: nameInput,
+                    attend: attendInput,
+                    count: countInput,
+                    meal: mealInput,
+                    timestamp: new Date().toISOString(),
+                    language: window.currentLang || 'vi',
+                    pageUrl: window.location.href,
+                    submissionId: (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`
+                });
+
+                // Apps Script Web App nhận dữ liệu form-urlencoded. no-cors giúp hoạt động ổn định
+                // khi trang được host trên Vercel và endpoint nằm trên script.google.com.
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+                    body: payload.toString()
+                });
+
                 const modal = document.getElementById('rsvp-modal');
                 if (modal) {
                     modal.classList.remove('hidden');
                     modal.classList.add('flex');
                 }
-                
-                // Bắn pháo hoa
+
                 if (typeof window.confetti === 'function') {
                     window.confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
                 }
-                
+
+                form.reset();
             } catch (error) {
-                console.error("Lỗi khi gửi thông tin RSVP:", error);
-                alert("Có lỗi xảy ra khi gửi RSVP. Vui lòng thử lại!");
+                console.error('Lỗi khi gửi RSVP:', error);
+                const msg = window.currentLang === 'zh'
+                    ? 'RSVP 傳送失敗，請稍後再試。'
+                    : window.currentLang === 'ja'
+                    ? 'RSVPの送信に失敗しました。しばらくしてからもう一度お試しください。'
+                    : 'Không thể gửi RSVP. Vui lòng thử lại sau.';
+                alert(msg);
             } finally {
-                // Phục hồi trạng thái nút bấm
                 btn.innerHTML = originalBtnText;
                 btn.disabled = false;
                 if (window.lucide) window.lucide.createIcons();
             }
         };
-
-        // Hàm dành riêng cho Admin để tải file report.csv
-        window.downloadAdminCSV = async function() {
-            try {
-                if (!db) {
-                    alert("Chưa cấu hình cơ sở dữ liệu Firebase. Không có dữ liệu để tải.");
-                    return;
-                }
-                
-                const user = await authenticateFirebase();
-                if (!user) return;
-
-                const rsvpRef = collection(db, 'artifacts', appId, 'public', 'data', 'rsvps');
-                const snapshot = await getDocs(rsvpRef);
-                
-                if (snapshot.empty) {
-                    alert("Hiện tại chưa có khách mời nào điền RSVP.");
-                    return;
-                }
-
-                // Tạo dữ liệu CSV
-                let csvContent = 'Họ và tên,Xác nhận tham dự,Số lượng,Khẩu vị,Thời gian\r\n';
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    let name = data.name || '';
-                    // Escape dấu phẩy trong tên
-                    if (name.includes(',')) name = `"${name}"`;
-                    
-                    csvContent += `${name},${data.attend || ''},${data.count || ''},${data.meal || ''},${data.time || ''}\r\n`;
-                });
-
-                // Sử dụng BOM để Excel hiển thị đúng tiếng Việt có dấu
-                const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
-                const blob = new Blob([bom, csvContent], { type: 'text/csv;charset=utf-8;' });
-                
-                const link = document.createElement("a");
-                if (link.download !== undefined) {
-                    const url = URL.createObjectURL(blob);
-                    link.setAttribute("href", url);
-                    link.setAttribute("download", "report.csv");
-                    link.style.visibility = 'hidden';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                }
-
-            } catch (error) {
-                console.error("Lỗi tải CSV:", error);
-                alert("Lỗi khi tải danh sách. Vui lòng xem Console Log.");
-            }
-        }
     </script>
 </body>
 </html>
