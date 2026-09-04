@@ -15,7 +15,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://co-nghi-wedding.vercel.app/">
     <meta property="og:title" content="Thiệp Cưới Online - La Chấn Cơ & Huỳnh Hảo Nghi ✤ 11.10.2026">
-    <meta property="og:description" content="Trân trọng kính mời quý khách tới dự Lễ Thành Hôn của chúng mìn    h tại Riverside Palace, Quận 4. Chạm để mở thiệp & xem thông tin chi tiết!">
+    <meta property="og:description" content="Trân trọng kính mời quý khách tới dự Lễ Thành Hôn của chúng mình tại Riverside Palace, Quận 4. Chạm để mở thiệp & xem thông tin chi tiết!">
     <meta property="og:image" content="https://co-nghi-wedding.vercel.app/moviposterfunny.png">
     <meta property="og:image:secure_url" content="https://co-nghi-wedding.vercel.app/moviposterfunny.png">
     <meta property="og:image:width" content="800">
@@ -38,7 +38,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Alex+Brush&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -78,8 +78,8 @@
                     },
                     fontFamily: {
                         cursive: ['Great Vibes', 'Alex Brush', 'cursive'],
-                        serif: ['Cormorant Garamond', 'Playfair Display', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Noto Serif', 'Noto Serif SC', 'Cormorant Garamond', 'Playfair Display', 'serif'],
+                        sans: ['Noto Sans', 'Plus Jakarta Sans', 'sans-serif'],
                     },
                     boxShadow: {
                         'gold-glow': '0 0 25px rgba(212, 175, 55, 0.4)',
@@ -369,6 +369,857 @@
             border-color: #F3E5AB;
             box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
+
+        /* Typography Trung Hoa hiện đại: nét serif trang trọng, vàng son và khoảng chữ thoáng */
+        body {
+            font-family: 'Noto Sans', 'Plus Jakarta Sans', sans-serif;
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Noto Serif', 'Noto Serif SC', 'Cormorant Garamond', 'Playfair Display', serif !important;
+        }
+        .oriental-title {
+            font-family: 'Noto Serif SC', 'Noto Serif', serif;
+            font-weight: 700;
+            letter-spacing: 0.10em;
+            text-shadow: 0 2px 14px rgba(212, 175, 55, 0.18);
+        }
+        .oriental-kicker {
+            font-family: 'Noto Serif SC', 'Noto Serif', serif;
+            letter-spacing: 0.22em;
+        }
+        .oriental-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .oriental-card::before, .oriental-card::after {
+            content: '◆';
+            position: absolute;
+            top: 10px;
+            color: rgba(212, 175, 55, 0.45);
+            font-size: 9px;
+        }
+        .oriental-card::before { left: 12px; }
+        .oriental-card::after { right: 12px; }
+
+
+
+        /* Horizontal Chinese firecracker divider between main sections */
+        .firecracker-divider {
+            position: relative;
+            height: 86px;
+            width: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 8;
+            background: linear-gradient(to bottom, rgba(59,0,10,.92), rgba(82,0,14,.96), rgba(59,0,10,.92));
+            border-top: 1px solid rgba(212,175,55,.16);
+            border-bottom: 1px solid rgba(212,175,55,.16);
+        }
+        .firecracker-divider-inner {
+            position: absolute;
+            left: 50%; top: 10px;
+            width: min(760px, 92vw);
+            height: 62px;
+            transform: translateX(-50%);
+            transform-origin: 50% 0;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,.34));
+        }
+        .firecracker-divider-cord {
+            position: absolute;
+            left: 2%; right: 2%; top: 15px;
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, transparent 0%, #8f6910 5%, #D4AF37 18%, #F3E5AB 50%, #D4AF37 82%, #8f6910 95%, transparent 100%);
+            box-shadow: 0 0 8px rgba(212,175,55,.25);
+        }
+        .horizontal-cracker {
+            position: absolute;
+            top: 15px;
+            width: 20px;
+            height: 39px;
+            border-radius: 4px 4px 7px 7px;
+            background: linear-gradient(90deg,#7d0014 0%,#d92f36 45%,#8d0018 100%);
+            border: 1px solid rgba(243,229,171,.66);
+            box-shadow: inset 0 0 7px rgba(255,196,120,.20), 0 4px 7px rgba(0,0,0,.32);
+            transform-origin: 50% -8px;
+        }
+        .horizontal-cracker::before {
+            content: '';
+            position: absolute;
+            left: 9px; top: -8px;
+            width: 2px; height: 9px;
+            background: #D4AF37;
+        }
+        .horizontal-cracker::after {
+            content: '福';
+            position: absolute;
+            inset: 7px 0 auto;
+            text-align: center;
+            color: #F3E5AB;
+            font-family: 'Noto Serif SC','Noto Serif',serif;
+            font-size: 10px;
+            font-weight: 700;
+        }
+        .horizontal-cracker:nth-of-type(3n) { transform: rotate(-11deg) scale(.88); }
+        .horizontal-cracker:nth-of-type(4n) { transform: rotate(12deg) scale(.93); }
+        .horizontal-cracker:nth-of-type(5n) { transform: rotate(-6deg) scale(.82); }
+        .firecracker-divider-knot {
+            position: absolute;
+            left: 50%; top: 4px;
+            width: 18px; height: 18px;
+            border: 2px solid #D4AF37;
+            background: #7A0016;
+            transform: translateX(-50%) rotate(45deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,.35);
+        }
+        .firecracker-divider-knot::after {
+            content: '囍';
+            position: absolute;
+            left: 50%; top: 50%;
+            transform: translate(-50%,-50%) rotate(-45deg);
+            color: #F3E5AB;
+            font-size: 8px;
+            font-weight: 700;
+        }
+        .cracker-spark {
+            position: absolute;
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #F3E5AB;
+            box-shadow: 0 -13px 0 -2px #D4AF37, 0 13px 0 -2px #D4AF37, 13px 0 0 -2px #D4AF37, -13px 0 0 -2px #D4AF37,
+                        9px 9px 0 -2px #F3E5AB, -9px -9px 0 -2px #F3E5AB, 9px -9px 0 -2px #F3E5AB, -9px 9px 0 -2px #F3E5AB;
+            opacity: 0;
+        }
+        .cracker-spark.spark-left { left: 7%; top: 17px; }
+        .cracker-spark.spark-right { right: 7%; top: 17px; }
+        .cracker-spark.spark-mid { left: 50%; top: 16px; transform: translateX(-50%); }
+
+        @media (max-width: 640px) {
+            .firecracker-divider { height: 68px; }
+            .firecracker-divider-inner { top: 6px; width: 96vw; height: 52px; }
+            .firecracker-divider-cord { top: 12px; }
+            .horizontal-cracker {
+                top: 12px;
+                width: 14px;
+                height: 29px;
+                border-radius: 3px 3px 5px 5px;
+            }
+            .horizontal-cracker::before { left: 6px; top: -6px; height: 7px; }
+            .horizontal-cracker::after { top: 5px; font-size: 7px; }
+            .firecracker-divider-knot { top: 2px; width: 14px; height: 14px; }
+            .firecracker-divider-knot::after { font-size: 6px; }
+            .cracker-spark { transform: scale(.68); }
+            .cracker-spark.spark-mid { transform: translateX(-50%) scale(.68); }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .firecracker-divider-inner { animation: horizontal-garland-sway 4.8s ease-in-out infinite; }
+            .horizontal-cracker:nth-of-type(odd) { animation: horizontal-cracker-sway-a 3.7s ease-in-out infinite; }
+            .horizontal-cracker:nth-of-type(even) { animation: horizontal-cracker-sway-b 4.3s ease-in-out infinite; }
+            .cracker-spark.spark-left { animation: firecracker-pop 6.2s ease-out infinite 1.1s; }
+            .cracker-spark.spark-right { animation: firecracker-pop 7.1s ease-out infinite 3.6s; }
+            .cracker-spark.spark-mid { animation: firecracker-pop 8.3s ease-out infinite 5.2s; }
+            @keyframes horizontal-garland-sway {
+                0%,100% { transform: translateX(-50%) rotate(-.45deg) translateY(0); }
+                50% { transform: translateX(-50%) rotate(.45deg) translateY(2px); }
+            }
+            @keyframes horizontal-cracker-sway-a {
+                0%,100% { margin-top: 0; }
+                50% { margin-top: 3px; }
+            }
+            @keyframes horizontal-cracker-sway-b {
+                0%,100% { margin-top: 2px; }
+                50% { margin-top: -1px; }
+            }
+            @keyframes firecracker-pop {
+                0%, 82%, 100% { opacity: 0; transform: scale(.35); filter: blur(.4px); }
+                85% { opacity: 1; transform: scale(1.15); filter: blur(0); }
+                89% { opacity: .75; transform: scale(.8); }
+                93% { opacity: 0; transform: scale(1.45); }
+            }
+            @media (max-width: 640px) {
+                @keyframes firecracker-pop {
+                    0%, 82%, 100% { opacity: 0; transform: scale(.25); }
+                    85% { opacity: .9; transform: scale(.72); }
+                    93% { opacity: 0; transform: scale(.95); }
+                }
+            }
+        }
+
+    
+        /* Chinese wedding auspicious floating effect */
+        #petals-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+    
+        /* ===== Family playful Chinese wedding icons ===== */
+        .family-card-chinese {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .family-card-chinese::before {
+            content: "囍";
+            position: absolute;
+            right: -12px;
+            bottom: -28px;
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: 92px;
+            line-height: 1;
+            color: rgba(212,175,55,.055);
+            transform: rotate(-8deg);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .family-avatar {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 9px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background:
+                radial-gradient(circle at 50% 38%, rgba(243,229,171,.18), transparent 36%),
+                linear-gradient(145deg, rgba(140,0,27,.96), rgba(59,0,10,.98));
+            border: 1px solid rgba(212,175,55,.78);
+            box-shadow: 0 8px 22px rgba(0,0,0,.28), inset 0 0 0 4px rgba(212,175,55,.08);
+            position: relative;
+        }
+        .family-avatar::after {
+            content: "";
+            position: absolute;
+            inset: 5px;
+            border-radius: 999px;
+            border: 1px dashed rgba(243,229,171,.28);
+        }
+        .family-avatar svg {
+            width: 55px;
+            height: 55px;
+            filter: drop-shadow(0 3px 4px rgba(0,0,0,.28));
+        }
+        .family-blessing {
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: 9px;
+            letter-spacing: .18em;
+            color: rgba(243,229,171,.75);
+            margin-top: -4px;
+            margin-bottom: 8px;
+            white-space: nowrap;
+        }
+
+        /* ===== Ornate Chinese RSVP card ===== */
+        .rsvp-section-chinese {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 10% 12%, rgba(212,175,55,.09), transparent 22%),
+                radial-gradient(circle at 90% 82%, rgba(201,42,42,.10), transparent 24%),
+                linear-gradient(180deg, #3B000A 0%, #52000E 48%, #330007 100%);
+        }
+        .rsvp-palace-card {
+            position: relative;
+            border-radius: 26px;
+            padding: 7px;
+            background: linear-gradient(135deg, #AA820A, #F3E5AB 35%, #D4AF37 55%, #8C6808);
+            box-shadow: 0 24px 55px rgba(0,0,0,.45), 0 0 30px rgba(212,175,55,.12);
+        }
+        .rsvp-palace-inner {
+            position: relative;
+            border-radius: 21px;
+            padding: 26px 22px;
+            background:
+                linear-gradient(rgba(75,0,13,.96), rgba(36,0,7,.98)),
+                repeating-linear-gradient(45deg, transparent 0 14px, rgba(212,175,55,.03) 14px 15px);
+            border: 1px solid rgba(255,240,180,.48);
+            overflow: hidden;
+        }
+        .rsvp-palace-inner::before,
+        .rsvp-palace-inner::after {
+            content: "囍";
+            position: absolute;
+            top: 48%;
+            transform: translateY(-50%);
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: 118px;
+            line-height: 1;
+            color: rgba(212,175,55,.035);
+            pointer-events: none;
+        }
+        .rsvp-palace-inner::before { left: -26px; }
+        .rsvp-palace-inner::after { right: -26px; }
+
+        .rsvp-corner {
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            color: rgba(243,229,171,.72);
+            pointer-events: none;
+            z-index: 2;
+        }
+        .rsvp-corner.tl { top: 8px; left: 8px; }
+        .rsvp-corner.tr { top: 8px; right: 8px; transform: scaleX(-1); }
+        .rsvp-corner.bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
+        .rsvp-corner.br { bottom: 8px; right: 8px; transform: scale(-1); }
+
+        .rsvp-seal {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at 35% 28%, #C92A2A, #8C001B 58%, #52000E);
+            border: 2px solid #D4AF37;
+            box-shadow: inset 0 0 0 5px rgba(212,175,55,.10), 0 7px 18px rgba(0,0,0,.30), 0 0 16px rgba(212,175,55,.18);
+            color: #F3E5AB;
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: 34px;
+            font-weight: 800;
+        }
+        .rsvp-ornament-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            color: rgba(243,229,171,.72);
+            margin: 10px 0 20px;
+            font-size: 11px;
+            letter-spacing: .12em;
+        }
+        .rsvp-ornament-line::before,
+        .rsvp-ornament-line::after {
+            content: "";
+            height: 1px;
+            width: 64px;
+            background: linear-gradient(90deg, transparent, #D4AF37);
+        }
+        .rsvp-ornament-line::after {
+            background: linear-gradient(90deg, #D4AF37, transparent);
+        }
+        .rsvp-field {
+            position: relative;
+        }
+        .rsvp-field label {
+            letter-spacing: .10em;
+        }
+        .rsvp-input-chinese {
+            background: linear-gradient(180deg, rgba(30,8,5,.93), rgba(20,3,5,.96)) !important;
+            border: 1px solid rgba(212,175,55,.42) !important;
+            border-radius: 10px !important;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+            transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+        }
+        .rsvp-input-chinese:focus {
+            border-color: #F3E5AB !important;
+            box-shadow: 0 0 0 3px rgba(212,175,55,.10), 0 0 18px rgba(212,175,55,.10);
+        }
+        .rsvp-submit-chinese {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,248,205,.70);
+            background: linear-gradient(135deg,#8C6808 0%,#D4AF37 26%,#F3E5AB 52%,#D4AF37 76%,#8C6808 100%) !important;
+            box-shadow: 0 10px 24px rgba(0,0,0,.32), 0 0 18px rgba(212,175,55,.20);
+            border-radius: 12px !important;
+            letter-spacing: .08em;
+        }
+        .rsvp-submit-chinese::before {
+            content: "";
+            position: absolute;
+            top: -100%;
+            left: -25%;
+            width: 20%;
+            height: 300%;
+            background: rgba(255,255,255,.40);
+            transform: rotate(22deg);
+            transition: left .65s ease;
+        }
+        .rsvp-submit-chinese:hover::before { left: 118%; }
+
+        @media (max-width: 639px) {
+            .family-avatar { width: 60px; height: 60px; }
+            .family-avatar svg { width: 46px; height: 46px; }
+            .family-blessing { font-size: 7px; letter-spacing: .10em; }
+            .rsvp-palace-card { padding: 4px; border-radius: 20px; }
+            .rsvp-palace-inner { padding: 22px 14px 20px; border-radius: 16px; }
+            .rsvp-corner { width: 45px; height: 45px; opacity: .72; }
+            .rsvp-palace-inner::before,
+            .rsvp-palace-inner::after { font-size: 84px; }
+        }
+
+    
+        /* ===== Global Chinese-style section framing ===== */
+        section:not(#hero):not(#rsvp) {
+            position: relative;
+            overflow: hidden;
+        }
+        section:not(#hero):not(#rsvp)::before,
+        section:not(#hero):not(#rsvp)::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(94%, 1100px);
+            height: 1px;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,.2) 8%, #D4AF37 24%, #F3E5AB 50%, #D4AF37 76%, rgba(212,175,55,.2) 92%, transparent 100%);
+        }
+        section:not(#hero):not(#rsvp)::before { top: 10px; }
+        section:not(#hero):not(#rsvp)::after { bottom: 10px; }
+
+        .cn-section-frame {
+            position: relative;
+            border-radius: 24px;
+            padding: 6px;
+            background: linear-gradient(135deg, rgba(170,130,10,.95), rgba(243,229,171,.85) 36%, rgba(212,175,55,.95) 62%, rgba(122,0,22,.85));
+            box-shadow: 0 16px 40px rgba(0,0,0,.22);
+        }
+        .cn-section-frame-inner {
+            position: relative;
+            border-radius: 19px;
+            border: 1px solid rgba(243,229,171,.48);
+            background:
+                radial-gradient(circle at 10% 10%, rgba(212,175,55,.06), transparent 22%),
+                radial-gradient(circle at 90% 90%, rgba(201,42,42,.08), transparent 24%),
+                linear-gradient(180deg, rgba(83,0,15,.98), rgba(49,0,9,.98));
+            padding: 26px 20px;
+            overflow: hidden;
+        }
+        .cn-section-frame-inner::before,
+        .cn-section-frame-inner::after {
+            content: "如意";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: 11px;
+            letter-spacing: .35em;
+            color: rgba(243,229,171,.18);
+            pointer-events: none;
+        }
+        .cn-section-frame-inner::before { left: -2px; }
+        .cn-section-frame-inner::after { right: -2px; transform: translateY(-50%) rotate(90deg); }
+
+        .cn-title,
+        section h2,
+        section h3 {
+            font-family: "Noto Serif SC","Noto Serif","Cormorant Garamond","Playfair Display",serif !important;
+        }
+        section h2 {
+            letter-spacing: .035em;
+            text-shadow: 0 2px 12px rgba(0,0,0,.22), 0 0 10px rgba(212,175,55,.06);
+        }
+        section [data-i18n$="_subtitle"],
+        section [data-i18n$="_title"] {
+            font-family: "Noto Serif SC","Noto Serif","Cormorant Garamond",serif;
+        }
+
+        .cn-mini-ornament {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 8px auto 0;
+            color: rgba(243,229,171,.72);
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: 10px;
+            letter-spacing: .18em;
+        }
+        .cn-mini-ornament::before,
+        .cn-mini-ornament::after {
+            content: "";
+            height: 1px;
+            width: 38px;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,.8));
+        }
+        .cn-mini-ornament::after {
+            background: linear-gradient(90deg, rgba(212,175,55,.8), transparent);
+        }
+
+        /* Countdown: Chinese imperial-card styling */
+        .countdown-cn-card {
+            background:
+                linear-gradient(180deg, rgba(105,0,18,.98), rgba(56,0,9,.98)) !important;
+            border: 1px solid rgba(243,229,171,.48) !important;
+            box-shadow: inset 0 0 0 3px rgba(212,175,55,.04), 0 10px 24px rgba(0,0,0,.22);
+            position: relative;
+            overflow: hidden;
+        }
+        .countdown-cn-card::before {
+            content: "囍";
+            position: absolute;
+            right: -8px;
+            bottom: -18px;
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: 52px;
+            color: rgba(212,175,55,.055);
+            pointer-events: none;
+        }
+        .countdown-cn-card span:first-child {
+            font-family: "Noto Serif SC","Noto Serif",serif;
+        }
+
+        @media (max-width: 639px) {
+            .cn-section-frame { border-radius: 18px; padding: 3px; }
+            .cn-section-frame-inner { border-radius: 14px; padding: 20px 12px; }
+            .cn-section-frame-inner::before,
+            .cn-section-frame-inner::after { font-size: 8px; opacity: .8; }
+            section h2 { letter-spacing: .015em; }
+        }
+
+    
+        /* ===== Extra ornate Chinese decorative system ===== */
+        .cn-section-frame-inner {
+            background:
+                radial-gradient(circle at 12% 16%, rgba(212,175,55,.08), transparent 20%),
+                radial-gradient(circle at 88% 84%, rgba(201,42,42,.10), transparent 22%),
+                linear-gradient(180deg, rgba(83,0,15,.985), rgba(45,0,8,.99));
+        }
+
+        /* cloud / lattice motifs in every framed section */
+        .cn-section-frame-inner .cn-ornate-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .cn-section-frame-inner .cn-ornate-bg::before {
+            content: "";
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(212,175,55,.14);
+            border-radius: 14px;
+            background:
+                linear-gradient(90deg, rgba(212,175,55,.08) 1px, transparent 1px) 0 0 / 18px 18px,
+                linear-gradient(rgba(212,175,55,.05) 1px, transparent 1px) 0 0 / 18px 18px;
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), transparent 28%, transparent 72%, rgba(0,0,0,.45));
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), transparent 28%, transparent 72%, rgba(0,0,0,.45));
+            opacity: .55;
+        }
+        .cn-section-frame-inner .cn-ornate-bg::after {
+            content: "囍";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: clamp(90px, 15vw, 180px);
+            line-height: 1;
+            color: rgba(212,175,55,.028);
+        }
+        .cn-section-frame-inner > *:not(.cn-ornate-bg):not(.cn-corner-decoration) {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cn-corner-decoration {
+            position: absolute;
+            width: 72px;
+            height: 72px;
+            pointer-events: none;
+            z-index: 1;
+            opacity: .62;
+            color: #D4AF37;
+        }
+        .cn-corner-decoration.tl { top: 9px; left: 9px; }
+        .cn-corner-decoration.tr { top: 9px; right: 9px; transform: scaleX(-1); }
+        .cn-corner-decoration.bl { bottom: 9px; left: 9px; transform: scaleY(-1); }
+        .cn-corner-decoration.br { bottom: 9px; right: 9px; transform: scale(-1); }
+
+        .cn-hanging-knot {
+            position: absolute;
+            top: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(243,229,171,.6);
+            transform-origin: center;
+            rotate: 45deg;
+            background: rgba(122,0,22,.82);
+            box-shadow: inset 0 0 0 4px rgba(212,175,55,.07), 0 4px 12px rgba(0,0,0,.25);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .cn-hanging-knot::before,
+        .cn-hanging-knot::after {
+            content: "";
+            position: absolute;
+            background: #D4AF37;
+            opacity: .65;
+        }
+        .cn-hanging-knot::before {
+            width: 1px;
+            height: 22px;
+            left: 50%;
+            top: 100%;
+        }
+        .cn-hanging-knot::after {
+            width: 18px;
+            height: 1px;
+            left: 50%;
+            top: calc(100% + 18px);
+            transform: translateX(-50%);
+        }
+
+        /* section title flourish */
+        .cn-title-flourish {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: rgba(243,229,171,.68);
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: 10px;
+            letter-spacing: .12em;
+            margin-top: 7px;
+        }
+        .cn-title-flourish::before,
+        .cn-title-flourish::after {
+            content: "◆";
+            color: rgba(212,175,55,.8);
+            font-size: 7px;
+        }
+
+        /* Countdown Hanzi mode */
+        html[data-lang="zh"] .countdown-number-hanzi {
+            font-family: "Noto Serif SC","Noto Serif",serif !important;
+            letter-spacing: .02em;
+            font-size: .88em;
+        }
+
+        @media (max-width: 639px) {
+            .cn-corner-decoration { width: 48px; height: 48px; opacity: .46; }
+            .cn-hanging-knot { width: 22px; height: 22px; top: 5px; }
+            .cn-hanging-knot::before { height: 14px; }
+            .cn-hanging-knot::after { top: calc(100% + 12px); width: 12px; }
+            .cn-section-frame-inner .cn-ornate-bg::after { font-size: 82px; }
+            .cn-section-frame-inner .cn-ornate-bg::before { inset: 9px; opacity: .38; }
+        }
+
+    
+        /* ===== Gift box: ancient Chinese coin -> QR reveal ===== */
+        .gift-reveal-wrap {
+            width: 7rem;
+            height: 7rem;
+            perspective: 900px;
+            margin-bottom: .75rem;
+            position: relative;
+            cursor: pointer;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .gift-reveal-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform .78s cubic-bezier(.2,.75,.25,1);
+        }
+        .gift-reveal-wrap.is-open .gift-reveal-inner {
+            transform: rotateY(180deg);
+        }
+        .gift-reveal-face {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            overflow: hidden;
+        }
+        .gift-reveal-front {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle at 50% 42%, rgba(243,229,171,.12), transparent 42%),
+                linear-gradient(160deg,#5A000F,#390007);
+            border: 1px solid rgba(212,175,55,.5);
+            box-shadow: inset 0 0 0 3px rgba(212,175,55,.05), 0 8px 22px rgba(0,0,0,.26);
+        }
+        .gift-reveal-back {
+            transform: rotateY(180deg);
+            background: #fff;
+            padding: 6px;
+            border: 1px solid rgba(212,175,55,.65);
+            box-shadow: 0 8px 22px rgba(0,0,0,.28);
+        }
+        .gift-reveal-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .ancient-coin {
+            width: 82%;
+            height: 82%;
+            filter: drop-shadow(0 7px 10px rgba(0,0,0,.35));
+            transition: transform .35s ease, filter .35s ease;
+        }
+        .gift-reveal-wrap:hover .ancient-coin {
+            transform: rotate(-4deg) scale(1.035);
+            filter: drop-shadow(0 9px 14px rgba(0,0,0,.40)) drop-shadow(0 0 8px rgba(212,175,55,.22));
+        }
+
+        .gift-open-hint {
+            position: absolute;
+            left: 50%;
+            bottom: 5px;
+            transform: translateX(-50%);
+            z-index: 4;
+            white-space: nowrap;
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: 7px;
+            letter-spacing: .08em;
+            color: #F3E5AB;
+            background: rgba(59,0,10,.72);
+            border: 1px solid rgba(212,175,55,.28);
+            border-radius: 999px;
+            padding: 2px 6px;
+            pointer-events: none;
+            transition: opacity .25s ease, transform .25s ease;
+        }
+        .gift-reveal-wrap.is-open .gift-open-hint {
+            opacity: 0;
+            transform: translate(-50%,4px);
+        }
+
+        .gift-reveal-wrap::before,
+        .gift-reveal-wrap::after {
+            content: "✦";
+            position: absolute;
+            z-index: 5;
+            color: #F3E5AB;
+            font-size: 8px;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .gift-reveal-wrap::before { left: 7px; top: 10px; }
+        .gift-reveal-wrap::after { right: 7px; bottom: 12px; }
+
+        .gift-reveal-wrap.is-opening::before {
+            animation: giftSparkA .75s ease-out;
+        }
+        .gift-reveal-wrap.is-opening::after {
+            animation: giftSparkB .75s .08s ease-out;
+        }
+        @keyframes giftSparkA {
+            0% { opacity:0; transform:scale(.3) translate(8px,8px); }
+            38% { opacity:1; transform:scale(1.7) translate(-2px,-4px); }
+            100% { opacity:0; transform:scale(.7) translate(-8px,-12px); }
+        }
+        @keyframes giftSparkB {
+            0% { opacity:0; transform:scale(.3) translate(-6px,-6px); }
+            38% { opacity:1; transform:scale(1.6) translate(2px,3px); }
+            100% { opacity:0; transform:scale(.7) translate(7px,10px); }
+        }
+
+        @media (min-width: 640px) {
+            .gift-reveal-wrap {
+                width: 11rem;
+                height: 11rem;
+                margin-bottom: 1rem;
+            }
+            .gift-reveal-back { padding: 8px; }
+            .gift-open-hint {
+                bottom: 9px;
+                font-size: 9px;
+                padding: 3px 9px;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .gift-reveal-inner { transition-duration: .01ms; }
+            .gift-reveal-wrap.is-opening::before,
+            .gift-reveal-wrap.is-opening::after { animation: none; }
+        }
+
+    
+        /* ===== FIX gift reveal visibility + hide account info until opened ===== */
+        .gift-reveal-wrap {
+            display: block !important;
+            flex: 0 0 auto;
+            border: 0;
+            padding: 0;
+            background: transparent;
+        }
+        .gift-reveal-inner {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .gift-reveal-face {
+            display: flex !important;
+            width: 100%;
+            height: 100%;
+        }
+        .gift-reveal-front {
+            visibility: visible;
+            opacity: 1;
+        }
+        .gift-reveal-back {
+            align-items: center;
+            justify-content: center;
+        }
+        .ancient-coin {
+            display: block !important;
+            min-width: 82%;
+            min-height: 82%;
+        }
+
+        .gift-account-details {
+            width: 100%;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition:
+                opacity .38s ease .26s,
+                transform .42s ease .24s,
+                max-height .48s ease;
+        }
+        .gift-card-open .gift-account-details {
+            opacity: 1;
+            max-height: 240px;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .gift-reveal-wrap:not(.is-open) + .gift-account-details {
+            opacity: 0;
+            max-height: 0;
+        }
+
+        .gift-card-shell {
+            transition: border-color .35s ease, box-shadow .35s ease, transform .35s ease;
+        }
+        .gift-card-shell.gift-card-open {
+            border-color: rgba(243,229,171,.66);
+            box-shadow: 0 18px 38px rgba(0,0,0,.32), 0 0 20px rgba(212,175,55,.10);
+        }
+
+        /* keep enough vertical space in closed state without exposing banking details */
+        .gift-card-shell:not(.gift-card-open) {
+            justify-content: flex-start;
+        }
+
+        @media (max-width: 639px) {
+            .gift-account-details {
+                transition:
+                    opacity .32s ease .22s,
+                    transform .36s ease .20s,
+                    max-height .42s ease;
+            }
+        }
+
     </style>
 </head>
 <body class="bg-crimson-deep text-ivory font-sans relative overflow-x-hidden selection:bg-gold selection:text-crimson-dark">
@@ -381,8 +1232,8 @@
         <!-- Nút chọn ngôn ngữ trên màn hình mở thiệp -->
         <div class="absolute top-4 right-4 z-50 flex items-center gap-1 bg-crimson-dark/90 p-1.5 rounded-full border border-gold/40 shadow-xl backdrop-blur-md">
             <button onclick="setLanguage('vi')" class="lang-btn px-2.5 py-1 text-[11px] rounded-full text-gold hover:bg-gold/20 transition-all font-semibold active" data-lang-choice="vi">🇻🇳 VI</button>
-            <button onclick="setLanguage('zh')" class="lang-btn px-2.5 py-1 text-[11px] rounded-full text-gold hover:bg-gold/20 transition-all font-semibold" data-lang-choice="zh">中文</button>
-            <button onclick="setLanguage('ja')" class="lang-btn px-2.5 py-1 text-[11px] rounded-full text-gold hover:bg-gold/20 transition-all font-semibold" data-lang-choice="ja">日本語</button>
+            <button onclick="setLanguage('zh')" class="lang-btn px-2.5 py-1 text-[11px] rounded-full text-gold hover:bg-gold/20 transition-all font-semibold" data-lang-choice="zh">🇨🇳 中文</button>
+            <button onclick="setLanguage('ja')" class="lang-btn px-2.5 py-1 text-[11px] rounded-full text-gold hover:bg-gold/20 transition-all font-semibold" data-lang-choice="ja">🇯🇵 日本語</button>
         </div>
 
         <div class="envelope-perspective relative w-full max-w-lg text-center">
@@ -407,7 +1258,7 @@
 
                     <div class="my-auto text-center">
                         <span data-i18n="env_tag" class="inline-block px-3.5 py-0.5 rounded-full bg-gold/20 text-gold text-[10px] font-semibold tracking-widest uppercase border border-gold/40 mb-2">
-                            THIỆP MỜI BÁO HỶ
+                            THIỆP MỜI BÁO HỶ    
                         </span>
                         <h1 data-i18n="couple_names" class="font-serif text-3xl md:text-4xl text-gold font-bold tracking-wider drop-shadow-md">
                             La Chấn Cơ & Huỳnh Hảo Nghi
@@ -475,7 +1326,7 @@
     <nav class="sticky top-0 z-30 bg-crimson-dark/95 backdrop-blur-md border-b border-gold/30 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
             <a href="#" class="font-serif text-base sm:text-lg md:text-xl text-gold font-bold tracking-widest flex items-center gap-2 truncate">
-                <span class="text-crimson-bright font-serif text-2xl">囍</span> <span data-i18n="nav_title">LA CHẤN CƠ &amp; HUỲNH HẢO NGHI</span>
+                <span class="text-crimson-bright font-serif text-2xl">囍</span>
             </a>
             
             <div class="hidden lg:flex items-center gap-5 text-xs uppercase tracking-wider font-medium text-ivory/90">
@@ -531,11 +1382,11 @@
 
             <div class="text-center relative z-10 my-4 reveal-init">
                 <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 font-serif">
-                    <span data-i18n="groom_name" class="text-3xl sm:text-5xl md:text-6xl font-bold text-ivory tracking-wide">
+                    <span data-i18n="groom_name" class="text-3xl sm:text-5xl md:text-6xl font-bold text-ivory tracking-wide" style="font-size: -webkit-xxx-large;">
                         La Chấn Cơ
                     </span>
                     <span class="font-cursive text-4xl sm:text-5xl md:text-6xl text-gold mx-2">&amp;</span>
-                    <span data-i18n="bride_name" class="text-3xl sm:text-5xl md:text-6xl font-bold text-ivory tracking-wide">
+                    <span data-i18n="bride_name" class="text-3xl sm:text-5xl md:text-6xl font-bold text-ivory tracking-wide" style="font-size: -webkit-xxx-large;">
                         Huỳnh Hảo Nghi
                     </span>
                 </div>
@@ -584,29 +1435,186 @@
         </div>
     </section>
 
+    <!-- FAMILY INFORMATION -->
+    <section id="family-info" class="py-10 sm:py-12 bg-crimson-dark border-y border-gold/30">
+        <div class="max-w-4xl mx-auto px-3 sm:px-4">
+            <div class="cn-section-frame mt-2">
+                <div class="cn-section-frame-inner">
+
+                <svg class="cn-corner-decoration tl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration tr" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration bl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration br" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <div class="cn-hanging-knot" aria-hidden="true"></div>
+                <div class="cn-ornate-bg" aria-hidden="true"></div>
+
+            <div class="text-center mb-6 sm:mb-8 reveal-init">
+                <span data-i18n="family_title" class="text-xs font-bold uppercase tracking-[0.25em] text-gold">THÔNG TIN GIA ĐÌNH</span>
+                <div class="w-14 h-0.5 bg-gold mx-auto mt-2"></div>
+            </div>
+
+            <!-- Giữ 2 bên gia đình luôn nằm chung một hàng, kể cả trên điện thoại -->
+            <div class="grid grid-cols-2 gap-2 sm:gap-5 md:gap-8">
+                <div class="family-card-chinese bg-gradient-to-b from-[#55000F] to-crimson-deep border border-gold/40 rounded-2xl px-2.5 py-4 sm:p-6 text-center shadow-xl reveal-left min-w-0">
+
+                    <div class="family-avatar" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none">
+                            <circle cx="32" cy="27" r="12" fill="#F3D7B7"/>
+                            <path d="M20 27c1-11 6-17 12-17s11 6 12 17c-4-4-8-5-12-5s-8 1-12 5Z" fill="#23130D"/>
+                            <path d="M16 56c2-13 8-18 16-18s14 5 16 18H16Z" fill="#9D001C" stroke="#D4AF37" stroke-width="1.3"/>
+                            <path d="M27 39l5 7 5-7M32 46v10" stroke="#F3E5AB" stroke-width="1.5"/>
+                            <path d="M21 14h22l-3-6H24l-3 6Z" fill="#8C001B" stroke="#D4AF37" stroke-width="1.2"/>
+                            <path d="M24 8h16M28 8V4h8v4" stroke="#D4AF37" stroke-width="1.3"/>
+                            <circle cx="27.5" cy="28" r="1.1" fill="#2A1710"/>
+                            <circle cx="36.5" cy="28" r="1.1" fill="#2A1710"/>
+                            <path d="M28 33c2.7 2 5.3 2 8 0" stroke="#9A4D48" stroke-width="1.2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="family-blessing">新郎 • 吉祥如意</div>
+                    <div data-i18n="family_groom_side" class="text-gold font-serif font-bold text-sm sm:text-lg uppercase tracking-wider mb-3">Nhà Trai</div>
+                    <div class="space-y-1.5 font-serif text-ivory leading-snug">
+                        <p class="text-[11px] sm:text-sm"><span data-i18n="family_father" class="text-gold/80">Ba:</span> <strong>La Thành Phát</strong></p>
+                        <p class="text-[11px] sm:text-sm"><span data-i18n="family_mother" class="text-gold/80">Mẹ:</span> <strong>Thái Lý Ên</strong></p>
+                        <p data-i18n="family_groom_address" class="pt-2 mt-2 border-t border-gold/20 text-[10px] sm:text-xs text-ivory/75">Phường Bình Tân, TP.HCM</p>
+                    </div>
+                </div>
+
+                <div class="family-card-chinese bg-gradient-to-b from-[#55000F] to-crimson-deep border border-gold/40 rounded-2xl px-2.5 py-4 sm:p-6 text-center shadow-xl reveal-right min-w-0">
+
+                    <div class="family-avatar" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none">
+                            <circle cx="32" cy="27" r="12" fill="#F3D7B7"/>
+                            <path d="M20 28c0-12 5-18 12-18s12 6 12 18c-3-5-8-7-12-7s-9 2-12 7Z" fill="#24130E"/>
+                            <path d="M16 56c2-13 8-18 16-18s14 5 16 18H16Z" fill="#B00020" stroke="#D4AF37" stroke-width="1.3"/>
+                            <path d="M22 14c4-8 16-8 20 0l-4 5H26l-4-5Z" fill="#9D001C" stroke="#D4AF37" stroke-width="1.2"/>
+                            <path d="M32 8v8M26 10l2 7M38 10l-2 7" stroke="#F3E5AB" stroke-width="1.2"/>
+                            <circle cx="32" cy="7" r="2.2" fill="#D4AF37"/>
+                            <circle cx="27.5" cy="28" r="1.1" fill="#2A1710"/>
+                            <circle cx="36.5" cy="28" r="1.1" fill="#2A1710"/>
+                            <path d="M28 33c2.7 2 5.3 2 8 0" stroke="#B35C58" stroke-width="1.2" stroke-linecap="round"/>
+                            <path d="M21 17c-3 5-4 12-2 18M43 17c3 5 4 12 2 18" stroke="#D4AF37" stroke-width="1.1" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="family-blessing">新娘 • 百年好合</div>
+                    <div data-i18n="family_bride_side" class="text-gold font-serif font-bold text-sm sm:text-lg uppercase tracking-wider mb-3">Nhà Gái</div>
+                    <div class="space-y-1.5 font-serif text-ivory leading-snug">
+                        <p class="text-[11px] sm:text-sm"><span data-i18n="family_father" class="text-gold/80">Ba:</span> <strong>Huỳnh Lập Biếu</strong></p>
+                        <p class="text-[11px] sm:text-sm flex items-center justify-center gap-1 flex-wrap"><span><span data-i18n="family_mother" class="text-gold/80">Mẹ:</span> <strong>Lâm Thị Thu Thuỷ</strong></span><span class="text-base sm:text-lg opacity-80" aria-label="hoa sen tưởng niệm" title="Hoa sen tưởng niệm" style="filter: grayscale(1) brightness(1.45) contrast(.85);">🪷</span></p>
+                        <p data-i18n="family_bride_address" class="pt-2 mt-2 border-t border-gold/20 text-[10px] sm:text-xs text-ivory/75">Phường Phú Định, TP.HCM</p>
+                    </div>
+                </div>
+            </div>
+                        </div>
+            </div>
+</div>
+    </section>
+
+    <!-- LỄ VU QUY -->
+    <section id="vu-quy" class="py-12 sm:py-16 bg-gradient-to-b from-[#3B000A] via-[#52000E] to-crimson-dark border-y border-gold/30 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: radial-gradient(circle at 20% 20%, rgba(212,175,55,.16) 0 1px, transparent 1.5px), radial-gradient(circle at 80% 75%, rgba(212,175,55,.12) 0 1px, transparent 1.5px); background-size: 24px 24px, 30px 30px;"></div>
+        <div class="max-w-3xl mx-auto px-4 relative z-10">
+            <div class="cn-section-frame mt-2">
+                <div class="cn-section-frame-inner">
+
+                <svg class="cn-corner-decoration tl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration tr" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration bl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration br" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <div class="cn-hanging-knot" aria-hidden="true"></div>
+                <div class="cn-ornate-bg" aria-hidden="true"></div>
+
+            <div class="text-center reveal-init">
+                <div class="inline-flex items-center gap-3 text-gold/90 mb-2">
+                    <span class="text-xl">囍</span>
+                    <span data-i18n="vuquy_kicker" class="oriental-kicker text-[10px] sm:text-xs font-bold uppercase">HỶ SỰ • LỄ VU QUY</span>
+                    <span class="text-xl">囍</span>
+                </div>
+                <h2 data-i18n="vuquy_title" class="oriental-title text-3xl sm:text-4xl md:text-5xl text-ivory mb-3">Lễ Vu Quy</h2>
+                <p data-i18n="vuquy_desc" class="font-serif italic text-xs sm:text-sm text-ivory/70 max-w-xl mx-auto">Trân trọng kính mời quý khách cùng chung vui trong nghi lễ Vu Quy của gia đình nhà gái</p>
+                <div class="w-20 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-4 mb-7"></div>
+            </div>
+
+            <div class="oriental-card bg-gradient-to-br from-[#640014] via-[#4B000D] to-[#2B0007] border border-gold/50 rounded-2xl sm:rounded-3xl shadow-2xl px-4 py-6 sm:p-8 reveal-zoom">
+                <div class="grid grid-cols-2 gap-3 sm:gap-8 text-center">
+                    <div class="min-w-0 border-r border-gold/25 pr-2 sm:pr-6">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-full border border-gold/50 bg-gold/10 flex items-center justify-center text-gold mb-3">
+                            <i data-lucide="calendar-days" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                        </div>
+                        <p data-i18n="vuquy_time_label" class="oriental-kicker text-[9px] sm:text-xs text-gold/80 font-bold uppercase mb-1">Thời Gian</p>
+                        <p data-i18n="vuquy_time" class="font-serif text-[11px] sm:text-base md:text-lg font-semibold text-ivory leading-relaxed">Sáng Thứ Bảy<br>10/10/2026</p>
+                    </div>
+                    <div class="min-w-0 pl-2 sm:pl-6">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-full border border-gold/50 bg-gold/10 flex items-center justify-center text-gold mb-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                        </div>
+                        <p data-i18n="vuquy_location_label" class="oriental-kicker text-[9px] sm:text-xs text-gold/80 font-bold uppercase mb-1">Địa Điểm</p>
+                        <p data-i18n="vuquy_location" class="font-serif text-[11px] sm:text-base md:text-lg font-semibold text-ivory leading-relaxed">Nhà Hàng<br>Ái Huê 2</p>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gold/20 text-center">
+                    <span class="font-serif text-gold/80 text-sm tracking-[0.35em]">百年好合 • 永結同心</span>
+                </div>
+            </div>
+                        </div>
+            </div>
+</div>
+    </section>
+
     <!-- 4. LIVE COUNTDOWN TIMER -->
     <section class="py-12 bg-crimson-dark border-y-2 border-gold/30">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <span data-i18n="cd_subtitle" class="font-serif text-gold text-xs uppercase tracking-widest block mb-1 reveal-init">CÙNG ĐẾM NGƯỢC THỜI GIAN</span>
-            <h2 data-i18n="cd_title" class="font-serif text-2xl md:text-3xl font-bold text-ivory mb-2 reveal-init">
+            <h2 data-i18n="cd_title" class="font-serif oriental-title text-2xl md:text-3xl font-bold text-ivory mb-2 reveal-init">
                 Đếm Ngược Tới Ngày Trọng Đại
             </h2>
-            <div class="w-16 h-0.5 bg-gold mx-auto mb-8 reveal-zoom"></div>
+            <div class="w-16 h-0.5 bg-gold mx-auto mb-2 reveal-zoom"></div><div class="cn-mini-ornament mb-1">祥云 • 囍 • 如意</div><div class="cn-title-flourish mb-5">花好月圓 • 百年好合</div>
 
             <div class="grid grid-cols-4 gap-3 sm:gap-6 max-w-xl mx-auto">
-                <div class="bg-crimson/80 p-3 sm:p-5 rounded-xl border border-gold/40 text-center shadow-lg reveal-init">
+                <div class="countdown-cn-card bg-crimson/80 p-3 sm:p-5 rounded-xl border border-gold/40 text-center shadow-lg reveal-init">
                     <span id="cd-days" class="font-serif text-3xl sm:text-5xl font-bold text-gold block">00</span>
                     <span data-i18n="cd_days" class="text-[10px] sm:text-xs text-ivory/80 font-semibold uppercase tracking-wider">Ngày</span>
                 </div>
-                <div class="bg-crimson/80 p-3 sm:p-5 rounded-xl border border-gold/40 text-center shadow-lg reveal-init">
+                <div class="countdown-cn-card bg-crimson/80 p-3 sm:p-5 rounded-xl border border-gold/40 text-center shadow-lg reveal-init">
                     <span id="cd-hours" class="font-serif text-3xl sm:text-5xl font-bold text-gold block">00</span>
                     <span data-i18n="cd_hours" class="text-[10px] sm:text-xs text-ivory/80 font-semibold uppercase tracking-wider">Giờ</span>
                 </div>
-                <div class="bg-crimson/80 p-3 sm:p-5 rounded-xl border border-gold/40 text-center shadow-lg reveal-init">
+                <div class="countdown-cn-card bg-crimson/80 p-3 sm:p-5 rounded-xl border border-gold/40 text-center shadow-lg reveal-init">
                     <span id="cd-minutes" class="font-serif text-3xl sm:text-5xl font-bold text-gold block">00</span>
                     <span data-i18n="cd_minutes" class="text-[10px] sm:text-xs text-ivory/80 font-semibold uppercase tracking-wider">Phút</span>
                 </div>
-                <div class="bg-crimson/80 p-3 sm:p-5 rounded-xl border border-gold/40 text-center shadow-lg reveal-init">
+                <div class="countdown-cn-card bg-crimson/80 p-3 sm:p-5 rounded-xl border border-gold/40 text-center shadow-lg reveal-init">
                     <span id="cd-seconds" class="font-serif text-3xl sm:text-5xl font-bold text-gold block">00</span>
                     <span data-i18n="cd_seconds" class="text-[10px] sm:text-xs text-ivory/80 font-semibold uppercase tracking-wider">Giây</span>
                 </div>
@@ -622,6 +1630,32 @@
         <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-crimson-bright/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto px-4 relative z-10">
+            <div class="cn-section-frame mt-2">
+                <div class="cn-section-frame-inner">
+
+                <svg class="cn-corner-decoration tl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration tr" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration bl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration br" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <div class="cn-hanging-knot" aria-hidden="true"></div>
+                <div class="cn-ornate-bg" aria-hidden="true"></div>
+
             <!-- Section Header -->
             <div class="text-center mb-16">
                 <span data-i18n="prog_subtitle" class="text-xs font-bold uppercase tracking-[0.3em] text-gold bg-gold/15 px-4 py-1.5 rounded-full border border-gold/40 inline-flex items-center gap-1.5 reveal-init">
@@ -654,8 +1688,20 @@
                                 </div>
                                 
                                 <div class="flex flex-col md:flex-row-reverse items-start md:items-center gap-3.5 my-2">
-                                    <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border border-gold/50 shadow-md shrink-0 bg-retro-dark">
-                                        <img src="hinh/photobooth.png" alt="Đón khách & Photobooth" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                    <!-- <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border border-gold/50 shadow-md shrink-0 bg-retro-dark">
+                                        <img src="img/photobooth_chay.png" alt="Đón khách & Photobooth" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                    </div> -->
+                                    <!-- Bọc thẻ cha flex ngang -->
+                                    <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                                        <!-- Ảnh 1 -->
+                                        <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border border-gold/50 shadow-md shrink-0 bg-retro-dark">
+                                            <img src="img/photobooth_chay.png" alt="Ảnh 1" loading="lazy" class="w-full h-full object-cover">
+                                        </div>
+
+                                        <!-- Ảnh 2 (Cloned) -->
+                                        <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border border-gold/50 shadow-md shrink-0 bg-retro-dark">
+                                            <img src="hinh/photobooth.png" alt="Ảnh 2" loading="lazy" class="w-full h-full object-cover">
+                                        </div>
                                     </div>
                                     <div class="flex-1">
                                         <h3 data-i18n="prog_step1_title" class="font-serif text-lg sm:text-xl font-bold text-ivory group-hover:text-gold transition-colors">
@@ -795,19 +1841,19 @@
                                 <div class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-gold/30 via-gold to-gold/30"></div>
                                 
                                 <div class="flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-wider mb-2">
-                                    <span class="bg-gold/20 px-2.5 py-0.5 rounded-full border border-gold/40" data-i18n="prog_badge_games">GAMES &amp; KARAOKE</span>
+                                    <span class="bg-gold/20 px-2.5 py-0.5 rounded-full border border-gold/40" data-i18n="prog_badge_games">KARAOKE</span>
                                 </div>
                                 
                                 <div class="flex items-center gap-3.5 my-2">
                                     <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border border-gold/50 shadow-md shrink-0 bg-retro-dark">
-                                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=300&q=80" alt="Minigame & Karaoke" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=300&q=80" alt="Giao Lưu Karaoke" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                     </div>
                                     <div class="flex-1">
                                         <h3 data-i18n="prog_step4_title" class="font-serif text-lg sm:text-xl font-bold text-ivory group-hover:text-gold transition-colors">
-                                            Minigame &amp; Giao Lưu Karaoke
+                        Giao Lưu Karaoke
                                         </h3>
                                         <p data-i18n="prog_step4_desc" class="text-xs text-ivory/80 mt-1 leading-relaxed font-sans">
-                                            Bùng nổ sân khấu với trò chơi minigame vui nhộn, tung hoa cưới may mắn và cơ hội "khoe giọng oanh vàng" giao lưu Karaoke quẩy hết mình cùng dâu rể!
+                        Cơ hội "khoe giọng oanh vàng" giao lưu Karaoke bùng nổ và quẩy hết mình cùng dâu rể!
                                         </p>
                                     </div>
                                 </div>
@@ -860,12 +1906,40 @@
 
                 </div>
             </div>
-        </div>
+                        </div>
+            </div>
+</div>
     </section>
 
     <!-- 6.5 SPECIAL PHOTOBOOTH SECTION -->
     <section id="photobooth" class="py-16 bg-gradient-to-b from-crimson to-crimson-deep border-t border-gold/30 relative overflow-hidden">
         <div class="max-w-5xl mx-auto px-4 relative z-10">
+            <div class="cn-section-frame mt-2">
+                <div class="cn-section-frame-inner">
+
+                <svg class="cn-corner-decoration tl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration tr" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration bl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration br" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <div class="cn-hanging-knot" aria-hidden="true"></div>
+                <div class="cn-ornate-bg" aria-hidden="true"></div>
+
             <div class="text-center mb-10">
                 <span data-i18n="pb_tag" class="text-xs font-bold uppercase tracking-widest text-gold bg-gold/15 px-4 py-1.5 rounded-full border border-gold/40 inline-flex items-center gap-1.5 reveal-init">
                     <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> KHU VỰC ĐẶC BIỆT DÀNH CHO KHÁCH MỜI
@@ -900,7 +1974,6 @@
                                     <img src="hinh/photobooth.png" alt="Photobooth Funny Moments" loading="lazy" class="w-full h-full object-cover">
                                 </div>
                                 <div class="text-center">
-                                    <!-- <span data-i18n="pb_card_name" class="font-cursive text-xl text-crimson-dark font-bold">Chấn Cơ &amp; Hảo Nghi</span> -->
                                     <p class="text-[10px] text-retro-brown font-mono font-bold tracking-widest uppercase mt-0.5">PHOTOSTRIP • 11.10.2026</p>
                                 </div>
                             </div>
@@ -972,7 +2045,9 @@
 
                 </div>
             </div>
-        </div>
+                        </div>
+            </div>
+</div>
     </section>
 
     <!-- 7. EVENT LOCATION & GOOGLE MAPS -->
@@ -993,7 +2068,7 @@
 
                     <div>
                         <h3 data-i18n="loc_venue_name" class="font-serif text-2xl sm:text-3xl font-bold text-gold">Trung Tâm Hội Nghị - Tiệc Cưới Riverside Palace</h3>
-                        <p data-i18n="loc_hall_name" class="font-serif text-lg text-ivory mt-1">Sảnh Grand Ballroom (Tầng 2)</p>
+                        <p data-i18n="loc_hall_name" class="font-serif text-lg text-ivory mt-1">Sảnh Nile (Tầng 1)</p>
                     </div>
 
                     <div class="space-y-4 text-xs md:text-sm text-ivory/90 pt-2 border-t border-gold/20">
@@ -1058,6 +2133,32 @@
     <!-- 8. SAVE THE DATE & CALENDAR WIDGET -->
     <section id="calendar-save" class="py-16 bg-crimson-deep border-t border-gold/30">
         <div class="max-w-4xl mx-auto px-4">
+            <div class="cn-section-frame mt-2">
+                <div class="cn-section-frame-inner">
+
+                <svg class="cn-corner-decoration tl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration tr" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration bl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration br" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <div class="cn-hanging-knot" aria-hidden="true"></div>
+                <div class="cn-ornate-bg" aria-hidden="true"></div>
+
             <div class="text-center mb-10">
                 <span data-i18n="cal_subtitle" class="text-xs font-bold uppercase tracking-widest text-gold reveal-init">LƯU GIỮ KHOẢNH KHẮC</span>
                 <h2 data-i18n="cal_title" class="font-serif text-3xl md:text-4xl font-bold text-ivory mt-1 reveal-init">Đánh Dấu Lịch Hẹn</h2>
@@ -1142,12 +2243,40 @@
                 </div>
 
             </div>
-        </div>
+                        </div>
+            </div>
+</div>
     </section>
 
     <!-- 9. PHOTO GALLERY LIGHTBOX -->
     <section id="gallery" class="py-16 bg-crimson border-t border-gold/30">
         <div class="max-w-6xl mx-auto px-4">
+            <div class="cn-section-frame mt-2">
+                <div class="cn-section-frame-inner">
+
+                <svg class="cn-corner-decoration tl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration tr" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration bl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration br" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <div class="cn-hanging-knot" aria-hidden="true"></div>
+                <div class="cn-ornate-bg" aria-hidden="true"></div>
+
             <div class="text-center mb-12">
                 <span data-i18n="gal_subtitle" class="text-xs font-bold uppercase tracking-widest text-gold reveal-init">ALBUM HÌNH ẢNH</span>
                 <h2 data-i18n="gal_title" class="font-serif text-3xl md:text-4xl font-bold text-ivory mt-1 reveal-init">Khoảnh Khắc Đáng Nhớ</h2>
@@ -1166,7 +2295,9 @@
                     <i id="gallery-toggle-icon" data-lucide="chevron-down" class="w-4 h-4"></i>
                 </button>
             </div>
-        </div>
+                        </div>
+            </div>
+</div>
     </section>
 
     <!-- Lightbox Modal Container -->
@@ -1203,53 +2334,88 @@
     </div>
 
     <!-- 10. RSVP FORM SECTION -->
-    <section id="rsvp" class="py-16 bg-crimson-deep border-t border-gold/30">
+    <section id="rsvp" class="rsvp-section-chinese py-16 sm:py-20 border-t border-gold/30">
         <div class="max-w-3xl mx-auto px-4 relative z-10">
-            <div class="text-center mb-10">
-                <span data-i18n="rsvp_subtitle" class="font-serif text-gold text-xs uppercase tracking-widest block mb-1 reveal-init">XÁC NHẬN THAM DỰ</span>
-                <h2 data-i18n="rsvp_title" class="font-serif text-3xl md:text-4xl font-bold text-ivory reveal-init">Gửi RSVP Cho Chúng Mình</h2>
-                <p data-i18n="rsvp_desc" class="text-xs md:text-sm text-ivory/80 mt-2 reveal-init">Sự hiện diện của quý khách tại Riverside Palace là niềm vinh hạnh lớn nhất đối với gia đình chúng tôi</p>
-                <div class="w-16 h-0.5 bg-gold mx-auto mt-3 reveal-zoom"></div>
+            <div class="text-center mb-8 sm:mb-10">
+                <div class="rsvp-seal reveal-zoom">囍</div>
+                <span data-i18n="rsvp_subtitle" class="font-serif text-gold text-xs uppercase tracking-[0.24em] block mb-1 reveal-init">XÁC NHẬN THAM DỰ</span>
+                <h2 data-i18n="rsvp_title" class="font-serif oriental-title text-3xl md:text-4xl font-bold text-ivory reveal-init">Gửi RSVP Cho Chúng Mình</h2>
+                <p data-i18n="rsvp_desc" class="text-xs md:text-sm text-ivory/80 mt-2 max-w-xl mx-auto reveal-init">Sự hiện diện của quý khách tại Riverside Palace là niềm vinh hạnh lớn nhất đối với gia đình chúng tôi</p>
+                <div class="rsvp-ornament-line reveal-init"><span>祥云 • 囍 • 祥云</span></div>
             </div>
 
-            <div class="bg-crimson-dark p-6 md:p-8 rounded-2xl border-2 border-gold/40 shadow-2xl reveal-init">
-                <form id="rsvp-form" onsubmit="handleRSVPSubmit(event)" class="space-y-5">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label data-i18n="rsvp_lbl_name" class="block text-xs font-semibold text-gold uppercase mb-2">Họ và tên *</label>
-                            <input type="text" id="rsvp-name" required placeholder="Ví dụ: Nguyễn Văn A" class="w-full px-4 py-2.5 rounded-xl bg-retro-dark/80 border border-gold/30 text-white placeholder-ivory/40 focus:border-gold outline-none text-xs md:text-sm">
-                        </div>
-                        <div>
-                            <label data-i18n="rsvp_lbl_attend" class="block text-xs font-semibold text-gold uppercase mb-2">Xác nhận tham dự *</label>
-                            <select id="rsvp-attend" required class="w-full px-4 py-2.5 rounded-xl bg-retro-dark border border-gold/30 text-white focus:border-gold outline-none text-xs md:text-sm">
-                                <option value="Chắc chắn tham dự" data-i18n="rsvp_opt_yes">Chắc chắn tham dự</option>
-                                <option value="Rất tiếc không thể đến" data-i18n="rsvp_opt_no">Rất tiếc không thể đến</option>
-                            </select>
+            <div class="rsvp-palace-card reveal-init">
+                <div class="rsvp-palace-inner">
+                    <!-- Chinese cloud corner ornaments -->
+                    <svg class="rsvp-corner tl" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                        <path d="M4 36c14 0 12-15 24-15 8 0 9 7 15 7 7 0 7-9 17-9M4 48c9 0 10-8 17-8 6 0 7 5 13 5 8 0 7-10 18-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M4 4v24M4 4h24" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M9 9h14M9 9v14" stroke="currentColor" stroke-width="1"/>
+                    </svg>
+                    <svg class="rsvp-corner tr" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                        <path d="M4 36c14 0 12-15 24-15 8 0 9 7 15 7 7 0 7-9 17-9M4 48c9 0 10-8 17-8 6 0 7 5 13 5 8 0 7-10 18-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M4 4v24M4 4h24" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M9 9h14M9 9v14" stroke="currentColor" stroke-width="1"/>
+                    </svg>
+                    <svg class="rsvp-corner bl" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                        <path d="M4 36c14 0 12-15 24-15 8 0 9 7 15 7 7 0 7-9 17-9M4 48c9 0 10-8 17-8 6 0 7 5 13 5 8 0 7-10 18-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M4 4v24M4 4h24" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M9 9h14M9 9v14" stroke="currentColor" stroke-width="1"/>
+                    </svg>
+                    <svg class="rsvp-corner br" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                        <path d="M4 36c14 0 12-15 24-15 8 0 9 7 15 7 7 0 7-9 17-9M4 48c9 0 10-8 17-8 6 0 7 5 13 5 8 0 7-10 18-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M4 4v24M4 4h24" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M9 9h14M9 9v14" stroke="currentColor" stroke-width="1"/>
+                    </svg>
+
+                    <div class="relative z-10 text-center mb-5">
+                        <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-gold/35 bg-gold/10 text-gold-light text-[10px] sm:text-xs font-serif tracking-[0.18em]">
+                            <span>✦</span><span>佳偶天成 • 永結同心</span><span>✦</span>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label data-i18n="rsvp_lbl_count" class="block text-xs font-semibold text-gold uppercase mb-2">Số lượng người đi cùng</label>
-                            <select id="rsvp-count" class="w-full px-4 py-2.5 rounded-xl bg-retro-dark border border-gold/30 text-white focus:border-gold outline-none text-xs md:text-sm">
-                                <option value="1 người" data-i18n="rsvp_count_1">Đi 1 người</option>
-                                <option value="2 người" data-i18n="rsvp_count_2">Đi 2 người (+1)</option>
-                                <option value="Gia đình" data-i18n="rsvp_count_fam">Đi cùng gia đình</option>
-                            </select>
+                    <form id="rsvp-form" onsubmit="handleRSVPSubmit(event)" class="space-y-5 relative z-10">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="rsvp-field">
+                                <label data-i18n="rsvp_lbl_name" class="block text-xs font-semibold text-gold uppercase mb-2">Họ và tên *</label>
+                                <input type="text" id="rsvp-name" required placeholder="Ví dụ: Nguyễn Văn A" class="rsvp-input-chinese w-full px-4 py-2.5 text-white placeholder-ivory/40 outline-none text-xs md:text-sm">
+                            </div>
+                            <div class="rsvp-field">
+                                <label data-i18n="rsvp_lbl_attend" class="block text-xs font-semibold text-gold uppercase mb-2">Xác nhận tham dự *</label>
+                                <select id="rsvp-attend" required class="rsvp-input-chinese w-full px-4 py-2.5 text-white outline-none text-xs md:text-sm">
+                                    <option value="Chắc chắn tham dự" data-i18n="rsvp_opt_yes">Chắc chắn tham dự</option>
+                                    <option value="Rất tiếc không thể đến" data-i18n="rsvp_opt_no">Rất tiếc không thể đến</option>
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <label data-i18n="rsvp_lbl_meal" class="block text-xs font-semibold text-gold uppercase mb-2">Khẩu vị tiệc</label>
-                            <select id="rsvp-meal" class="w-full px-4 py-2.5 rounded-xl bg-retro-dark border border-gold/30 text-white focus:border-gold outline-none text-xs md:text-sm">
-                                <option value="Tiệc mặn" data-i18n="rsvp_meal_meat">Tiệc mặn truyền thống</option>
-                                <option value="Tiệc chay" data-i18n="rsvp_meal_veg">Tiệc chay thanh tịnh</option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-gold via-gold-light to-gold text-retro-dark font-bold rounded-xl shadow-gold-glow hover:brightness-110 transition-all flex items-center justify-center gap-2 text-sm cursor-pointer">
-                        <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-i18n="btn_submit_rsvp">XÁC NHẬN GỬI RSVP</span>
-                    </button>
-                </form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="rsvp-field">
+                                <label data-i18n="rsvp_lbl_count" class="block text-xs font-semibold text-gold uppercase mb-2">Số lượng người đi cùng</label>
+                                <select id="rsvp-count" class="rsvp-input-chinese w-full px-4 py-2.5 text-white outline-none text-xs md:text-sm">
+                                    <option value="1 người" data-i18n="rsvp_count_1">Đi 1 người</option>
+                                    <option value="2 người" data-i18n="rsvp_count_2">Đi 2 người (+1)</option>
+                                    <option value="Gia đình" data-i18n="rsvp_count_fam">Đi cùng gia đình</option>
+                                </select>
+                            </div>
+                            <div class="rsvp-field">
+                                <label data-i18n="rsvp_lbl_meal" class="block text-xs font-semibold text-gold uppercase mb-2">Khẩu vị tiệc</label>
+                                <select id="rsvp-meal" class="rsvp-input-chinese w-full px-4 py-2.5 text-white outline-none text-xs md:text-sm">
+                                    <option value="Tiệc mặn" data-i18n="rsvp_meal_meat">Tiệc mặn truyền thống</option>
+                                    <option value="Tiệc chay" data-i18n="rsvp_meal_veg">Tiệc chay thanh tịnh</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="pt-1">
+                            <button type="submit" class="rsvp-submit-chinese w-full py-3.5 text-retro-dark font-black transition-all flex items-center justify-center gap-2 text-sm cursor-pointer hover:-translate-y-0.5">
+                                <span class="font-serif text-lg">囍</span>
+                                <span data-i18n="btn_submit_rsvp">XÁC NHẬN GỬI RSVP</span>
+                                <span class="font-serif text-lg">囍</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -1257,41 +2423,136 @@
     <!-- 11. WEDDING GIFT BOX -->
     <section id="gift" class="py-16 bg-crimson-deep border-t border-gold/30">
         <div class="max-w-4xl mx-auto px-4">
+            <div class="cn-section-frame mt-2">
+                <div class="cn-section-frame-inner">
+
+                <svg class="cn-corner-decoration tl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration tr" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration bl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <svg class="cn-corner-decoration br" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                    <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                    <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M18 53c8 0 8-8 15-8s7 7 14 7 8-8 18-8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                </svg>
+                <div class="cn-hanging-knot" aria-hidden="true"></div>
+                <div class="cn-ornate-bg" aria-hidden="true"></div>
+
             <div class="text-center mb-12">
                 <span data-i18n="gift_subtitle" class="text-xs font-bold uppercase tracking-widest text-gold reveal-init">MỪNG CƯỚI ONLINE</span>
-                <h2 data-i18n="gift_title" class="font-serif text-3xl md:text-4xl font-bold text-ivory mt-1 reveal-init">Hộp Mừng Cưới</h2>
+                <h2 data-i18n="gift_title" class="font-serif oriental-title text-3xl md:text-4xl font-bold text-ivory mt-1 reveal-init">Hộp Mừng Cưới</h2>
                 <p data-i18n="gift_desc" class="text-xs md:text-sm text-ivory/70 mt-2 reveal-init">Dành cho những tấm lòng ở xa muốn gửi quà mừng chúc phúc</p>
                 <div class="w-16 h-0.5 bg-gold mx-auto mt-3 reveal-zoom"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-crimson-dark p-6 rounded-2xl border-2 border-gold/40 text-center flex flex-col items-center shadow-2xl reveal-left">
-                    <span data-i18n="gift_groom_tag" class="bg-gold text-retro-dark px-4 py-1 rounded-full text-xs font-bold tracking-wider mb-4">MỪNG CƯỚI CHÚ RỂ</span>
-                    <div class="w-44 h-44 bg-white p-2 rounded-2xl border border-gold/40 shadow-md mb-4">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=STK-190356789999-MBBank-LACHANCO" alt="VietQR Groom" loading="lazy" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="font-serif text-base font-bold text-ivory">Ngân Hàng MB Bank</h4>
-                    <p class="text-xs text-ivory/80 mb-1"><span data-i18n="gift_acc_holder">Chủ TK:</span> <strong>LA CHAN CO</strong></p>
-                    <p class="text-sm font-mono font-bold text-gold mb-4">190356789999</p>
-                    <button onclick="copyToClipboard('190356789999', 'Số tài khoản Chú Rể La Chấn Cơ')" class="w-full py-2.5 border border-gold text-gold hover:bg-gold hover:text-retro-dark rounded-xl text-xs font-bold uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer">
+            <!-- Luôn giữ 2 hộp mừng cưới trên cùng một hàng, kể cả mobile -->
+            <div class="grid grid-cols-2 gap-2 sm:gap-5 md:gap-8">
+                <div class="gift-card-shell bg-crimson-dark px-2 py-4 sm:p-6 rounded-2xl border-2 border-gold/40 text-center flex flex-col items-center shadow-2xl reveal-left min-w-0">
+                    <span data-i18n="gift_groom_tag" class="bg-gold text-retro-dark px-2 sm:px-4 py-1 rounded-full text-[9px] sm:text-xs font-bold tracking-wide sm:tracking-wider mb-3 sm:mb-4 whitespace-nowrap">MỪNG CƯỚI CHÚ RỂ</span>
+                    <button type="button" class="gift-reveal-wrap" onclick="toggleGiftQR(this)" aria-expanded="false" aria-label="Reveal QR code">
+                        <span class="gift-reveal-inner">
+                            <span class="gift-reveal-face gift-reveal-front">
+                                <svg class="ancient-coin" viewBox="0 0 120 120" aria-hidden="true">
+    <defs>
+        <radialGradient id="coinGoldGroom" cx="34%" cy="28%" r="72%">
+            <stop offset="0%" stop-color="#FFF0A8"/>
+            <stop offset="28%" stop-color="#EBC75A"/>
+            <stop offset="62%" stop-color="#B98214"/>
+            <stop offset="100%" stop-color="#6F4305"/>
+        </radialGradient>
+        <linearGradient id="coinEdgeGroom" x1="0" x2="1">
+            <stop stop-color="#8B5808"/><stop offset=".5" stop-color="#F5DE79"/><stop offset="1" stop-color="#805006"/>
+        </linearGradient>
+    </defs>
+    <circle cx="60" cy="60" r="51" fill="url(#coinGoldGroom)" stroke="url(#coinEdgeGroom)" stroke-width="5"/>
+    <circle cx="60" cy="60" r="43" fill="none" stroke="#7C4B06" stroke-width="1.4" opacity=".65"/>
+    <rect x="48" y="48" width="24" height="24" rx="1.5" fill="#4A1804" stroke="#F7DF79" stroke-width="2"/>
+    <g fill="#5D3305" font-family="Noto Serif SC, serif" font-size="16" font-weight="800" text-anchor="middle">
+        <text x="60" y="35">招</text><text x="60" y="98">寶</text>
+        <text x="27" y="66">財</text><text x="93" y="66">進</text>
+    </g>
+    <g fill="none" stroke="#6E3B05" stroke-width="1.5" opacity=".72">
+        <path d="M31 41c7-8 13-10 18-9M89 41c-7-8-13-10-18-9M31 79c7 8 13 10 18 9M89 79c-7 8-13 10-18 9"/>
+        <path d="M22 53c5-2 8-5 10-10M98 53c-5-2-8-5-10-10M22 67c5 2 8 5 10 10M98 67c-5 2-8 5-10 10"/>
+    </g>
+</svg>
+                            </span>
+                            <span class="gift-reveal-face gift-reveal-back">
+                                <img src="img/MSB_QR.jpg" alt="VietQR Groom" loading="lazy">
+                            </span>
+                        </span>
+                        <span data-i18n="gift_open_qr" class="gift-open-hint">Chạm để mở QR</span>
+                    </button>
+                    <div class="gift-account-details">
+                    <h4 data-i18n="gift_bank_mb" class="font-serif text-[11px] sm:text-base font-bold text-ivory leading-tight">Ngân Hàng MSB</h4>
+                    <p class="text-[9px] sm:text-xs text-ivory/80 mb-1 leading-tight"><span data-i18n="gift_acc_holder">Chủ TK:</span> <strong>LA CHAN CO</strong></p>
+                    <p class="text-[10px] sm:text-sm font-mono font-bold text-gold mb-3 sm:mb-4 break-all">04401015938449</p>
+                    <button onclick="copyToClipboard('04401015938449', 'groom')" class="w-full py-2 sm:py-2.5 px-1 border border-gold text-gold hover:bg-gold hover:text-retro-dark rounded-xl text-[9px] sm:text-xs font-bold uppercase transition-colors flex items-center justify-center gap-1 sm:gap-2 cursor-pointer">
                         <i data-lucide="copy" class="w-4 h-4"></i> <span data-i18n="btn_copy_stk">Sao Chép STK</span>
                     </button>
+                    </div>
                 </div>
 
-                <div class="bg-crimson-dark p-6 rounded-2xl border-2 border-gold/40 text-center flex flex-col items-center shadow-2xl reveal-right">
-                    <span data-i18n="gift_bride_tag" class="bg-gold text-retro-dark px-4 py-1 rounded-full text-xs font-bold tracking-wider mb-4">MỪNG CƯỚI CÔ DÂU</span>
-                    <div class="w-44 h-44 bg-white p-2 rounded-2xl border border-gold/40 shadow-md mb-4">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=STK-0071001234567-VCB-HUYNHHAONGHI" alt="VietQR Bride" loading="lazy" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="font-serif text-base font-bold text-ivory">Ngân Hàng Vietcombank</h4>
-                    <p class="text-xs text-ivory/80 mb-1"><span data-i18n="gift_acc_holder">Chủ TK:</span> <strong>HUYNH HAO NGHI</strong></p>
-                    <p class="text-sm font-mono font-bold text-gold mb-4">0071001234567</p>
-                    <button onclick="copyToClipboard('0071001234567', 'Số tài khoản Cô Dâu Huỳnh Hảo Nghi')" class="w-full py-2.5 border border-gold text-gold hover:bg-gold hover:text-retro-dark rounded-xl text-xs font-bold uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer">
+                <div class="gift-card-shell bg-crimson-dark px-2 py-4 sm:p-6 rounded-2xl border-2 border-gold/40 text-center flex flex-col items-center shadow-2xl reveal-right min-w-0">
+                    <span data-i18n="gift_bride_tag" class="bg-gold text-retro-dark px-2 sm:px-4 py-1 rounded-full text-[9px] sm:text-xs font-bold tracking-wide sm:tracking-wider mb-3 sm:mb-4 whitespace-nowrap">MỪNG CƯỚI CÔ DÂU</span>
+                    <button type="button" class="gift-reveal-wrap" onclick="toggleGiftQR(this)" aria-expanded="false" aria-label="Reveal QR code">
+                        <span class="gift-reveal-inner">
+                            <span class="gift-reveal-face gift-reveal-front">
+                                <svg class="ancient-coin" viewBox="0 0 120 120" aria-hidden="true">
+    <defs>
+        <radialGradient id="coinGoldBride" cx="34%" cy="28%" r="72%">
+            <stop offset="0%" stop-color="#FFF0A8"/>
+            <stop offset="28%" stop-color="#EBC75A"/>
+            <stop offset="62%" stop-color="#B98214"/>
+            <stop offset="100%" stop-color="#6F4305"/>
+        </radialGradient>
+        <linearGradient id="coinEdgeBride" x1="0" x2="1">
+            <stop stop-color="#8B5808"/><stop offset=".5" stop-color="#F5DE79"/><stop offset="1" stop-color="#805006"/>
+        </linearGradient>
+    </defs>
+    <circle cx="60" cy="60" r="51" fill="url(#coinGoldBride)" stroke="url(#coinEdgeBride)" stroke-width="5"/>
+    <circle cx="60" cy="60" r="43" fill="none" stroke="#7C4B06" stroke-width="1.4" opacity=".65"/>
+    <rect x="48" y="48" width="24" height="24" rx="1.5" fill="#4A1804" stroke="#F7DF79" stroke-width="2"/>
+    <g fill="#5D3305" font-family="Noto Serif SC, serif" font-size="16" font-weight="800" text-anchor="middle">
+        <text x="60" y="35">招</text><text x="60" y="98">寶</text>
+        <text x="27" y="66">財</text><text x="93" y="66">進</text>
+    </g>
+    <g fill="none" stroke="#6E3B05" stroke-width="1.5" opacity=".72">
+        <path d="M31 41c7-8 13-10 18-9M89 41c-7-8-13-10-18-9M31 79c7 8 13 10 18 9M89 79c-7 8-13 10-18 9"/>
+        <path d="M22 53c5-2 8-5 10-10M98 53c-5-2-8-5-10-10M22 67c5 2 8 5 10 10M98 67c-5 2-8 5-10 10"/>
+    </g>
+</svg>
+                            </span>
+                            <span class="gift-reveal-face gift-reveal-back">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=STK-0071001234567-VCB-HUYNHHAONGHI" alt="VietQR Bride" loading="lazy">
+                            </span>
+                        </span>
+                        <span data-i18n="gift_open_qr" class="gift-open-hint">Chạm để mở QR</span>
+                    </button>
+                    <div class="gift-account-details">
+                    <h4 data-i18n="gift_bank_vcb" class="font-serif text-[11px] sm:text-base font-bold text-ivory leading-tight">Ngân Hàng Vietcombank</h4>
+                    <p class="text-[9px] sm:text-xs text-ivory/80 mb-1 leading-tight"><span data-i18n="gift_acc_holder">Chủ TK:</span> <strong>HUYNH HAO NGHI</strong></p>
+                    <p class="text-[10px] sm:text-sm font-mono font-bold text-gold mb-3 sm:mb-4 break-all">0071001234567</p>
+                    <button onclick="copyToClipboard('0071001234567', 'bride')" class="w-full py-2 sm:py-2.5 px-1 border border-gold text-gold hover:bg-gold hover:text-retro-dark rounded-xl text-[9px] sm:text-xs font-bold uppercase transition-colors flex items-center justify-center gap-1 sm:gap-2 cursor-pointer">
                         <i data-lucide="copy" class="w-4 h-4"></i> <span data-i18n="btn_copy_stk">Sao Chép STK</span>
                     </button>
+                    </div>
                 </div>
             </div>
-        </div>
+                        </div>
+            </div>
+</div>
     </section>
 
     <!-- 12. FOOTER SECTION -->
@@ -1356,6 +2617,20 @@
                 hero_official_date: "CHỦ NHẬT | 11 . 10 . 2026",
                 hero_lunar_date: "(Tức Ngày 02 Tháng 09 Năm Bính Ngọ - Âm Lịch)",
                 hero_location_summary: "RIVERSIDE PALACE • 360D BẾN VÂN ĐỒN • QUẬN 4 • TP. HỒ CHÍ MINH",
+                family_title: "THÔNG TIN GIA ĐÌNH",
+                family_groom_side: "Nhà Trai",
+                family_bride_side: "Nhà Gái",
+                family_father: "Ba:",
+                family_mother: "Mẹ:",
+                family_groom_address: "Phường Bình Tân, TP.HCM",
+                family_bride_address: "Phường Phú Định, TP.HCM",
+                vuquy_kicker: "HỶ SỰ • LỄ VU QUY",
+                vuquy_title: "Lễ Vu Quy",
+                vuquy_desc: "Trân trọng kính mời quý khách cùng chung vui trong nghi lễ Vu Quy của gia đình nhà gái",
+                vuquy_time_label: "Thời Gian",
+                vuquy_time: "Sáng Thứ Bảy<br>10/10/2026",
+                vuquy_location_label: "Địa Điểm",
+                vuquy_location: "Nhà Hàng<br>Ái Huê 2",
                 cd_subtitle: "CÙNG ĐẾM NGƯỢC THỜI GIAN",
                 cd_title: "Đếm Ngược Tới Ngày Trọng Đại",
                 cd_days: "Ngày",
@@ -1377,10 +2652,10 @@
                 prog_time_tag3: "MỸ VỊ & ÂM NHẠC",
                 prog_step3_title: "Khai Tiệc & Ban Nhạc Acoustic Live",
                 prog_step3_desc: "Nâng ly khai tiệc mừng, thưởng thức thực đơn thịnh soạn hòa cùng những giai điệu Acoustic ngọt ngào, trữ tình và các bản tình ca hoa ngữ thập niên 80 hoài niệm.",
-                prog_badge_games: "GAMES & KARAOKE",
+                prog_badge_games: "KARAOKE",
                 prog_time_tag4: "VUI CƯỜI THẢ GA",
                 prog_step4_title: "Minigame & Giao Lưu Karaoke",
-                prog_step4_desc: "Bùng nổ sân khấu với trò chơi minigame vui nhộn, tung hoa cưới may mắn và cơ hội \"khoe giọng oanh vàng\" giao lưu Karaoke quẩy hết mình cùng dâu rể!",
+                prog_step4_desc: "Cơ hội \"khoe giọng oanh vàng\" giao lưu Karaoke bùng nổ và quẩy hết mình cùng dâu rể!",
                 prog_badge_farewell: "MEMORIES & THANKS",
                 prog_time_tag5: "TRỌN VẸN YÊU THƯƠNG",
                 prog_step5_title: "Chụp Ảnh Lưu Niệm & Lời Cảm Tạ",
@@ -1406,7 +2681,7 @@
                 loc_title: "Tiệc Cưới Trọng Đại",
                 loc_badge: "ĐỊA ĐIỂM DUY NHẤT",
                 loc_venue_name: "Trung Tâm Hội Nghị - Tiệc Cưới Riverside Palace",
-                loc_hall_name: "Sảnh Grand Ballroom (Tầng 2)",
+                loc_hall_name: "Sảnh Nile (Tầng 1)",
                 loc_date_txt: "Chủ Nhật, ngày 11 tháng 10 năm 2026",
                 loc_lunar_txt: "(Tức ngày 02 tháng 09 năm Bính Ngọ - Âm Lịch)",
                 loc_time_txt: "Đón Khách: 18:00 | Nghi Lễ: 18:30 - 18:45 | Khai Tiệc: 19:00",
@@ -1446,8 +2721,11 @@
                 gift_subtitle: "MỪNG CƯỚI ONLINE",
                 gift_title: "Hộp Mừng Cưới",
                 gift_desc: "Dành cho những tấm lòng ở xa muốn gửi quà mừng chúc phúc",
+                gift_open_qr: "Chạm để mở QR",
                 gift_groom_tag: "MỪNG CƯỚI CHÚ RỂ",
                 gift_bride_tag: "MỪNG CƯỚI CÔ DÂU",
+                gift_bank_mb: "Ngân Hàng MB Bank",
+                gift_bank_vcb: "Ngân Hàng Vietcombank",
                 gift_acc_holder: "Chủ TK:",
                 btn_copy_stk: "Sao Chép STK",
                 footer_thanks: "Trân Trọng Cảm Ơn!",
@@ -1485,10 +2763,24 @@
                 hero_official_date: "2026年10月11日 (星期日)",
                 hero_lunar_date: "(農曆 丙午年 九月初二日)",
                 hero_location_summary: "RIVERSIDE PALACE • 胡志明市第四郡奔雲敦街360D",
+                family_title: "雙方家長",
+                family_groom_side: "男方家",
+                family_bride_side: "女方家",
+                family_father: "父親：",
+                family_mother: "母親：",
+                family_groom_address: "胡志明市 Bình Tân 坊",
+                family_bride_address: "胡志明市 Phú Định 坊",
+                vuquy_kicker: "喜事 • 于歸之喜",
+                vuquy_title: "于歸之禮",
+                vuquy_desc: "誠邀貴賓蒞臨女方家宴，共同見證于歸之喜",
+                vuquy_time_label: "時間",
+                vuquy_time: "2026年10月10日<br>星期六上午",
+                vuquy_location_label: "地點",
+                vuquy_location: "Ái Huê 2<br>酒樓",
                 cd_subtitle: "倒計時迎接良辰",
                 cd_title: "距離我們的婚禮還有",
                 cd_days: "天",
-                cd_hours: "時",
+                cd_hours: "小時",
                 cd_minutes: "分",
                 cd_seconds: "秒",
                 prog_subtitle: "吉星高照 • 良辰吉日流程",
@@ -1506,10 +2798,10 @@
                 prog_time_tag3: "喜筵佳餚",
                 prog_step3_title: "喜筵開席 & Acoustic 樂團現場演奏",
                 prog_step3_desc: "全場舉杯同慶，在 Acoustic 樂團悠揚浪漫的現場演奏與經典粵語金曲中，共嚐精緻美饌。",
-                prog_badge_games: "GAMES & KARAOKE",
+                prog_badge_games: "KARAOKE",
                 prog_time_tag4: "開懷暢聚",
-                prog_step4_title: "趣味互動 & 卡拉OK大歡唱",
-                prog_step4_desc: "熱鬧歡樂的舞台互動遊戲、傳遞幸福拋花球，以及各路歌神好友一展歌喉的歡樂 Karaoke 環節！",
+                prog_step4_title: "卡拉OK大歡唱",
+                prog_step4_desc: "各路歌神好友齊聚一堂，一展歌喉，與新人一同開懷歡唱、嗨翻全場！",
                 prog_badge_farewell: "MEMORIES & THANKS",
                 prog_time_tag5: "圓滿謝幕",
                 prog_step5_title: "合影留念 & 謝賓送客",
@@ -1535,7 +2827,7 @@
                 loc_title: "盛大婚宴",
                 loc_badge: "唯一婚宴場地",
                 loc_venue_name: "Riverside Palace 國際會展婚宴中心",
-                loc_hall_name: "Grand Ballroom 大宴會廳 (2樓)",
+                loc_hall_name: "Nile 大宴會廳 (1樓)",
                 loc_date_txt: "2026年10月11日 星期日",
                 loc_lunar_txt: "(農曆 丙午年 九月初二日)",
                 loc_time_txt: "迎賓: 18:00 | 典禮: 18:30 - 18:45 | 開席: 19:00",
@@ -1575,8 +2867,11 @@
                 gift_subtitle: "線上禮金 / 賀禮",
                 gift_title: "祝福禮金帳戶",
                 gift_desc: "若遠道不克前來，可透過以下帳戶轉達心意與祝福",
+                gift_open_qr: "點擊打開",
                 gift_groom_tag: "新郎帳戶 (LA CHAN CO)",
                 gift_bride_tag: "新娘帳戶 (HUYNH HAO NGHI)",
+                gift_bank_mb: "MB Bank 銀行",
+                gift_bank_vcb: "Vietcombank 銀行",
                 gift_acc_holder: "戶名:",
                 btn_copy_stk: "複製帳號",
                 footer_thanks: "衷心感謝您的祝福！",
@@ -1587,7 +2882,7 @@
                 modal_btn_close: "關閉"
             },
             ja: {
-                nav_title: "コー & ギー",
+                nav_title: "ラ・チャン・コー ＆ フィン・ハオ・ギー",
                 nav_hero: "トップ",
                 nav_program: "タイムスケジュール",
                 nav_photobooth: "フォトブース",
@@ -1614,6 +2909,20 @@
                 hero_official_date: "2026年10月11日（日曜日）",
                 hero_lunar_date: "(旧暦 2026年9月2日)",
                 hero_location_summary: "RIVERSIDE PALACE • ホーチミン市4区 ベン・ヴァン・ドン通り 360D",
+                family_title: "ご両家のご紹介",
+                family_groom_side: "新郎家",
+                family_bride_side: "新婦家",
+                family_father: "父：",
+                family_mother: "母：",
+                family_groom_address: "ホーチミン市 Bình Tân 坊",
+                family_bride_address: "ホーチミン市 Phú Định 坊",
+                vuquy_kicker: "慶事 • 花嫁家の婚礼",
+                vuquy_title: "新婦家の婚礼（Vu Quy）",
+                vuquy_desc: "新婦側の婚礼の儀に、皆様を謹んでご招待申し上げます",
+                vuquy_time_label: "日時",
+                vuquy_time: "2026年10月10日（土）<br>午前",
+                vuquy_location_label: "会場",
+                vuquy_location: "Ái Huê 2<br>レストラン",
                 cd_subtitle: "大切な日まで",
                 cd_title: "結婚式までのカウントダウン",
                 cd_days: "日",
@@ -1635,10 +2944,10 @@
                 prog_time_tag3: "祝宴＆音楽",
                 prog_step3_title: "開宴 ＆ アコースティック生演奏",
                 prog_step3_desc: "美味しいお料理とともに、アコースティックバンドによる温かい生演奏と80年代の名曲をお楽しみください。",
-                prog_badge_games: "GAMES & KARAOKE",
+                prog_badge_games: "KARAOKE",
                 prog_time_tag4: "お楽しみイベント",
-                prog_step4_title: "ミニゲーム ＆ カラオケタイム",
-                prog_step4_desc: "会場全体で盛り上がるステージゲーム、ブーケトス、そして皆で楽しむカラオケパーティー！",
+                prog_step4_title: "カラオケタイム",
+                prog_step4_desc: "自慢の歌声を披露して、新郎新婦と一緒に思いっきり盛り上がりましょう！",
                 prog_badge_farewell: "MEMORIES & THANKS",
                 prog_time_tag5: "お見送り",
                 prog_step5_title: "記念撮影 ＆ お見送り",
@@ -1664,7 +2973,7 @@
                 loc_title: "披露宴会場のご案内",
                 loc_badge: "挙式・披露宴会場",
                 loc_venue_name: "Riverside Palace（リバーサイドパレス）",
-                loc_hall_name: "Grand Ballroom（2階大宴会場）",
+                loc_hall_name: "Nile（2階大宴会場）",
                 loc_date_txt: "2026年10月11日（日曜日）",
                 loc_lunar_txt: "(旧暦 丙午年 9月2日)",
                 loc_time_txt: "受付: 18:00 | 挙式: 18:30 - 18:45 | 開宴: 19:00",
@@ -1704,8 +3013,11 @@
                 gift_subtitle: "お祝い・御祝儀",
                 gift_title: "オンラインご祝儀のご案内",
                 gift_desc: "遠方などのご都合によりご出席が叶わない皆様のための口座情報です",
+                gift_open_qr: "タップしてQRを表示",
                 gift_groom_tag: "新郎口座 (ラ・チャン・コー)",
                 gift_bride_tag: "新婦口座 (フィン・ハオ・ギー)",
+                gift_bank_mb: "MB Bank（ベトナム軍隊商業銀行）",
+                gift_bank_vcb: "Vietcombank（ベトナム外貿商業銀行）",
                 gift_acc_holder: "口座名義:",
                 btn_copy_stk: "口座番号をコピー",
                 footer_thanks: "心より感謝申し上げます！",
@@ -1738,11 +3050,9 @@
                 }
             });
 
-            const toastText = document.getElementById('toast-text');
-            if (toastText) {
-                if (lang === 'zh') toastText.innerText = '已複製!';
-                else if (lang === 'ja') toastText.innerText = 'コピーしました!';
-                else toastText.innerText = 'Đã sao chép!';
+            // Refresh countdown immediately so 中文 also changes the running numbers to Hanzi.
+            if (typeof updateWeddingCountdown === 'function') {
+                updateWeddingCountdown();
             }
         };
 
@@ -1750,43 +3060,69 @@
 
         // DYNAMIC PHOTO GALLERY DATA
         const weddingGalleryList = [
-            {
-                src: 'img/NCQ_4070.jpg',
-                fallback: 'moviposterfunny.png',
-                caption: "Hong Kong 80's Style • 开心到飞起! 最紧要够开心!"
-            },
-            {
-                src: 'img/NCQ_4006.jpg',
-                fallback: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80',
-                caption: 'Khoảnh khắc trao nhẫn nguyện ước trăm năm'
-            },
+            // {
+            //     src: 'img/NCQ_4070.jpg',
+            //     fallback: 'moviposterfunny.png',
+            //     caption: "Hong Kong 80's Style • 开心到飞起! 最紧要够开心!"
+            // },
+            // {
+            //     src: 'img/NCQ_4006.jpg',
+            //     fallback: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80',
+            //     caption: 'Khoảnh khắc trao nhẫn nguyện ước trăm năm'
+            // },
             {
                 src: 'img/NCQ_3926.jpg',
-                caption: 'Nụ cười rạng rỡ ngày chung đôi'
+                // caption: 'Nụ cười rạng rỡ ngày chung đôi'
+            },
+            {
+                src: 'img/NCQ_4054.jpg',
+                // caption: 'Nụ cười rạng rỡ ngày chung đôi'
             },
             {
                 src: 'img/bason.JPG',
-                caption: 'Góc nghiêng dịu dàng của cô dâu Huỳnh Hảo Nghi'
+                // caption: 'Góc nghiêng dịu dàng của cô dâu Huỳnh Hảo Nghi'
+            },
+            
+            {
+                src: 'img/traveltripNhatrang.png',
+                // caption: 'Bình yên và hạnh phúc bên nhau'
             },
             {
                 src: 'img/damcuoi.JPG',
-                caption: 'Bình yên và hạnh phúc bên nhau'
+                // caption: 'Bình yên và hạnh phúc bên nhau'
             },
             {
-                src: 'img/nhatrang.JPG',
-                caption: 'Chiếc váy cưới lộng lẫy và thiêng liêng'
+                src: 'img/nguyenoanh.jpg',
+            },
+            
+            {
+                src: 'img/nuibaden.jpg',
+            },
+            {
+                src: 'img/nhatrang.png',
+                // caption: 'Chiếc váy cưới lộng lẫy và thiêng liêng'
+            },
+            
+            {
+                src: 'img/vinpearlnhatrang.jpg',
+                // caption: 'Chiếc váy cưới lộng lẫy và thiêng liêng'
+            },
+            
+            {
+                src: 'img/cothach.jpg',
+                // caption: 'Nắm tay anh đi qua mọi thăng trầm'
             },
             {
                 src: 'img/phuquoc.jpg',
-                caption: 'Nắm tay anh đi qua mọi thăng trầm'
+                // caption: 'Nắm tay anh đi qua mọi thăng trầm'
             },
             {
-                src: 'img/quanan.jpg',
-                caption: 'Từng ánh nhìn đong đầy yêu thương'
+                src: 'img/quanan.png',
+                // caption: 'Từng ánh nhìn đong đầy yêu thương'
             },
             {
                 src: 'img/vungtau.jpg',
-                caption: 'Từng ánh nhìn đong đầy yêu thương'
+                // caption: 'Từng ánh nhìn đong đầy yêu thương'
             }
         ];
 
@@ -2092,6 +3428,43 @@
             }
         };
 
+
+        // Countdown number formatter:
+        // 中文 -> Chinese numerals (37 = 三十七), VI/JA -> Arabic digits (37)
+        function formatWeddingCountdownNumber(value) {
+            const n = Math.max(0, Math.floor(Number(value) || 0));
+            if ((window.currentLang || 'vi') !== 'zh') {
+                return String(n).padStart(2, '0');
+            }
+
+            const d = ['零','一','二','三','四','五','六','七','八','九'];
+
+            function toHanzi(num) {
+                num = Math.floor(num);
+                if (num < 10) return d[num];
+                if (num < 20) return '十' + (num % 10 ? d[num % 10] : '');
+                if (num < 100) {
+                    return d[Math.floor(num / 10)] + '十' + (num % 10 ? d[num % 10] : '');
+                }
+                if (num < 1000) {
+                    const h = Math.floor(num / 100);
+                    const r = num % 100;
+                    if (r === 0) return d[h] + '百';
+                    if (r < 10) return d[h] + '百零' + d[r];
+                    return d[h] + '百' + toHanzi(r);
+                }
+                if (num < 10000) {
+                    const th = Math.floor(num / 1000);
+                    const r = num % 1000;
+                    if (r === 0) return d[th] + '千';
+                    return d[th] + '千' + (r < 100 ? '零' : '') + toHanzi(r);
+                }
+                return String(num);
+            }
+
+            return toHanzi(n);
+        }
+
         const targetWeddingDate = new Date('2026-10-11T18:00:00').getTime();
 
         function updateWeddingCountdown() {
@@ -2109,16 +3482,21 @@
                 const elMin = document.getElementById('cd-minutes');
                 const elSec = document.getElementById('cd-seconds');
 
-                if (elDays) elDays.innerText = String(days).padStart(2, '0');
-                if (elHours) elHours.innerText = String(hours).padStart(2, '0');
-                if (elMin) elMin.innerText = String(minutes).padStart(2, '0');
-                if (elSec) elSec.innerText = String(seconds).padStart(2, '0');
+                if (elDays) elDays.innerText = formatWeddingCountdownNumber(days);
+                if (elHours) elHours.innerText = formatWeddingCountdownNumber(hours);
+                if (elMin) elMin.innerText = formatWeddingCountdownNumber(minutes);
+                if (elSec) elSec.innerText = formatWeddingCountdownNumber(seconds);
+
+                [elDays, elHours, elMin, elSec].forEach(el => {
+                    if (!el) return;
+                    el.classList.toggle('countdown-number-hanzi', (window.currentLang || 'vi') === 'zh');
+                });
             }
         }
         setInterval(updateWeddingCountdown, 1000);
         updateWeddingCountdown();
 
-        window.copyToClipboard = function(text, label) {
+        window.copyToClipboard = function(text, targetType) {
             const tempInput = document.createElement("input");
             tempInput.value = text;
             document.body.appendChild(tempInput);
@@ -2129,9 +3507,18 @@
             const toast = document.getElementById('toast-msg');
             const toastText = document.getElementById('toast-text');
 
+            const labels = {
+                vi: { groom: "STK Chú Rể La Chấn Cơ", bride: "STK Cô Dâu Huỳnh Hảo Nghi" },
+                zh: { groom: "新郎帳號 (羅振基)", bride: "新娘帳號 (黃巧儀)" },
+                ja: { groom: "新郎口座 (ラ・チャン・コー)", bride: "新婦口座 (フィン・ハオ・ギー)" }
+            };
+
+            const lang = window.currentLang || 'vi';
+            const label = (labels[lang] && labels[lang][targetType]) ? labels[lang][targetType] : text;
+
             if (toastText) {
-                if (window.currentLang === 'zh') toastText.innerText = `已複製 ${label}!`;
-                else if (window.currentLang === 'ja') toastText.innerText = `${label} をコピーしました!`;
+                if (lang === 'zh') toastText.innerText = `已複製 ${label}!`;
+                else if (lang === 'ja') toastText.innerText = `${label} をコピーしました!`;
                 else toastText.innerText = `Đã sao chép ${label}!`;
             }
             if (toast) {
@@ -2141,11 +3528,6 @@
                 }, 3000);
             }
         };
-
-        // window.handleRSVPSubmit = function(event) {
-        //     event.preventDefault();
-        //     // Việc xử lý Submit RSVP thực tế sẽ được đưa vào block <script type="module"> ở bên dưới để lưu trữ vào Cloud Database
-        // };
 
         window.closeRSVPModal = function() {
             const modal = document.getElementById('rsvp-modal');
@@ -2250,8 +3632,6 @@ END:VCALENDAR`;
 
     <!-- GOOGLE SHEETS RSVP VIA GOOGLE APPS SCRIPT -->
     <script>
-        // BƯỚC DUY NHẤT CẦN CẤU HÌNH:
-        // Sau khi Deploy Google Apps Script dưới dạng Web App, dán URL /exec vào đây.
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPuAVRtovINeIkM9t_WMYZIKDi9Cm_ehISO_ziZrnOVKGnD9Qw_i6F4OjbxUT3MIk7tQ/exec';
 
         window.handleRSVPSubmit = async function(event) {
@@ -2267,7 +3647,13 @@ END:VCALENDAR`;
 
             if (!nameInput) return;
 
-            btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> ĐANG GỬI...';
+            const sendingText = {
+                vi: '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> ĐANG GỬI...',
+                zh: '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> 傳送中...',
+                ja: '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> 送信中...'
+            };
+
+            btn.innerHTML = sendingText[window.currentLang] || sendingText.vi;
             btn.disabled = true;
             if (window.lucide) window.lucide.createIcons();
 
@@ -2287,8 +3673,6 @@ END:VCALENDAR`;
                     submissionId: (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`
                 });
 
-                // Apps Script Web App nhận dữ liệu form-urlencoded. no-cors giúp hoạt động ổn định
-                // khi trang được host trên Vercel và endpoint nằm trên script.google.com.
                 await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -2322,5 +3706,311 @@ END:VCALENDAR`;
             }
         };
     </script>
+<script>
+
+        // Horizontal Chinese firecracker dividers between main sections.
+        function addHorizontalFirecrackerDividers() {
+            // Remove any old side-garland markup/classes if this file is reused after an earlier version.
+            document.querySelectorAll('.firecracker-garland').forEach(el => el.remove());
+            document.querySelectorAll('.firecracker-section').forEach(el => el.classList.remove('firecracker-section'));
+            document.querySelectorAll('.firecracker-divider').forEach(el => el.remove());
+
+            const sections = Array.from(document.querySelectorAll('body > section'));
+            sections.forEach((section, sectionIndex) => {
+                if (sectionIndex === 0) return; // no divider before the first section
+
+                const divider = document.createElement('div');
+                divider.className = 'firecracker-divider';
+                divider.setAttribute('aria-hidden', 'true');
+
+                const inner = document.createElement('div');
+                inner.className = 'firecracker-divider-inner';
+
+                const cord = document.createElement('div');
+                cord.className = 'firecracker-divider-cord';
+                inner.appendChild(cord);
+
+                const count = window.innerWidth <= 640 ? 13 : 19;
+                for (let i = 0; i < count; i++) {
+                    const cracker = document.createElement('span');
+                    cracker.className = 'horizontal-cracker';
+                    const base = 7 + i * (86 / Math.max(1, count - 1));
+                    const jitter = (((i * 19 + sectionIndex * 13) % 7) - 3) * 0.38;
+                    cracker.style.left = `${base + jitter}%`;
+                    cracker.style.animationDelay = `${-((i * .31 + sectionIndex * .27) % 3.4)}s`;
+                    inner.appendChild(cracker);
+                }
+
+                const knot = document.createElement('span');
+                knot.className = 'firecracker-divider-knot';
+                inner.appendChild(knot);
+
+                ['left', 'mid', 'right'].forEach(pos => {
+                    const spark = document.createElement('span');
+                    spark.className = `cracker-spark spark-${pos}`;
+                    inner.appendChild(spark);
+                });
+
+                divider.appendChild(inner);
+                section.parentNode.insertBefore(divider, section);
+            });
+        }
+        window.addEventListener('load', addHorizontalFirecrackerDividers);
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const oldCanvas = document.getElementById('petals-canvas');
+    if (oldCanvas) {
+        const fresh = oldCanvas.cloneNode(false);
+        oldCanvas.replaceWith(fresh);
+    }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+        // Hiệu ứng hỷ sự Trung Hoa: kim tuyến vàng + chữ 囍/福 + đèn lồng nhỏ
+        (() => {
+            const canvas = document.getElementById('petals-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let w = 0, h = 0, dpr = 1;
+
+            const symbols = ['囍', '福', '✦', '✧'];
+            const lanternChance = 0.16;
+
+            function resizeAuspiciousCanvas() {
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                w = window.innerWidth;
+                h = window.innerHeight;
+                canvas.width = Math.floor(w * dpr);
+                canvas.height = Math.floor(h * dpr);
+                canvas.style.width = w + 'px';
+                canvas.style.height = h + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                createParticles();
+            }
+
+            function makeParticle(randomY = true) {
+                const mobile = w < 640;
+                const r = Math.random();
+                return {
+                    x: Math.random() * w,
+                    y: randomY ? Math.random() * h : -30 - Math.random() * 100,
+                    size: mobile ? 8 + Math.random() * 8 : 10 + Math.random() * 12,
+                    speed: mobile ? 0.18 + Math.random() * 0.35 : 0.22 + Math.random() * 0.45,
+                    drift: (Math.random() - 0.5) * 0.22,
+                    phase: Math.random() * Math.PI * 2,
+                    swing: 8 + Math.random() * 15,
+                    alpha: 0.20 + Math.random() * 0.35,
+                    rot: (Math.random() - 0.5) * 0.35,
+                    rotSpeed: (Math.random() - 0.5) * 0.003,
+                    type: r < lanternChance ? 'lantern' : (r < 0.55 ? 'spark' : 'symbol'),
+                    symbol: symbols[Math.floor(Math.random() * symbols.length)]
+                };
+            }
+
+            function createParticles() {
+                const count = w < 640 ? 18 : 30;
+                particles = Array.from({ length: count }, () => makeParticle(true));
+            }
+
+            function drawLantern(p) {
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rot);
+                ctx.globalAlpha = p.alpha;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = 'rgba(212,175,55,.35)';
+                ctx.fillStyle = '#8C001B';
+                ctx.strokeStyle = '#D4AF37';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.roundRect(-p.size * .38, -p.size * .45, p.size * .76, p.size * .8, p.size * .18);
+                ctx.fill();
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(-p.size*.28, -p.size*.5);
+                ctx.lineTo(p.size*.28, -p.size*.5);
+                ctx.moveTo(0, p.size*.36);
+                ctx.lineTo(0, p.size*.68);
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            function drawParticle(p, t) {
+                p.x += p.drift + Math.sin(t * 0.0008 + p.phase) * 0.08;
+                p.y += p.speed;
+                p.rot += p.rotSpeed;
+
+                if (p.y > h + 45 || p.x < -50 || p.x > w + 50) {
+                    Object.assign(p, makeParticle(false));
+                }
+
+                if (p.type === 'lantern') {
+                    drawLantern(p);
+                    return;
+                }
+
+                ctx.save();
+                ctx.translate(p.x + Math.sin(t * 0.001 + p.phase) * p.swing, p.y);
+                ctx.rotate(p.rot);
+                ctx.globalAlpha = p.alpha;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                if (p.type === 'spark') {
+                    ctx.fillStyle = '#F3E5AB';
+                    ctx.shadowBlur = 8;
+                    ctx.shadowColor = 'rgba(212,175,55,.65)';
+                    ctx.font = `${p.size}px serif`;
+                    ctx.fillText(p.symbol, 0, 0);
+                } else {
+                    ctx.fillStyle = '#D4AF37';
+                    ctx.shadowBlur = 5;
+                    ctx.shadowColor = 'rgba(122,0,22,.45)';
+                    ctx.font = `600 ${p.size}px "Noto Serif SC", "Noto Serif", serif`;
+                    ctx.fillText(p.symbol, 0, 0);
+                }
+                ctx.restore();
+            }
+
+            function animateAuspicious(t) {
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach(p => drawParticle(p, t));
+                requestAnimationFrame(animateAuspicious);
+            }
+
+            window.addEventListener('resize', resizeAuspiciousCanvas, { passive: true });
+            resizeAuspiciousCanvas();
+            requestAnimationFrame(animateAuspicious);
+        })();
+
+});
+</script>
+<script>
+        // Bảo đảm nhãn countdown chuyển hoàn toàn sang tiếng Trung
+        function syncCountdownLanguage(lang) {
+            const map = {
+                vi: {days:'Ngày', hours:'Giờ', minutes:'Phút', seconds:'Giây'},
+                zh: {days:'天', hours:'小時', minutes:'分', seconds:'秒'},
+                ja: {days:'日', hours:'時間', minutes:'分', seconds:'秒'}
+            };
+            const t = map[lang] || map.vi;
+            const pairs = [
+                ['cd_days', t.days],
+                ['cd_hours', t.hours],
+                ['cd_minutes', t.minutes],
+                ['cd_seconds', t.seconds]
+            ];
+            pairs.forEach(([key, value]) => {
+                document.querySelectorAll(`[data-i18n="${key}"]`).forEach(el => el.textContent = value);
+            });
+        }
+
+        const originalSetLanguageForCountdown = window.setLanguage;
+        if (typeof originalSetLanguageForCountdown === 'function') {
+            window.setLanguage = function(lang) {
+                originalSetLanguageForCountdown(lang);
+                syncCountdownLanguage(lang);
+            };
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            syncCountdownLanguage(window.currentLang || 'vi');
+        });
+</script>
+<script>
+        function numberToChineseHanzi(n) {
+            n = Math.max(0, Math.floor(Number(n) || 0));
+            const digits = ['零','一','二','三','四','五','六','七','八','九'];
+            if (n < 10) return digits[n];
+            if (n < 20) return '十' + (n % 10 ? digits[n % 10] : '');
+            if (n < 100) {
+                const tens = Math.floor(n / 10);
+                const ones = n % 10;
+                return digits[tens] + '十' + (ones ? digits[ones] : '');
+            }
+            if (n < 1000) {
+                const hundreds = Math.floor(n / 100);
+                const rest = n % 100;
+                let s = digits[hundreds] + '百';
+                if (!rest) return s;
+                if (rest < 10) return s + '零' + digits[rest];
+                return s + numberToChineseHanzi(rest);
+            }
+            if (n < 10000) {
+                const thousands = Math.floor(n / 1000);
+                const rest = n % 1000;
+                let s = digits[thousands] + '千';
+                if (!rest) return s;
+                if (rest < 100) s += '零';
+                return s + numberToChineseHanzi(rest);
+            }
+            return String(n);
+        }
+
+        function renderCountdownNumbersForLanguage() {
+            document.documentElement.setAttribute('data-lang', window.currentLang || 'vi');
+            if (typeof updateWeddingCountdown === 'function') updateWeddingCountdown();
+        }
+
+        // Observe numeric updates from the existing countdown and immediately re-render in Hanzi for Chinese.
+        ['cd-days','cd-hours','cd-minutes','cd-seconds'].forEach(id => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const observer = new MutationObserver(() => {
+                if (el.dataset.hanziUpdating === '1') return;
+                const lang = window.currentLang || 'vi';
+                const text = el.textContent.trim();
+                if (lang === 'zh' && /^\d+$/.test(text)) {
+                    el.dataset.numericValue = String(Number(text));
+                    el.dataset.hanziUpdating = '1';
+                    el.textContent = numberToChineseHanzi(Number(text));
+                    el.classList.add('countdown-number-hanzi');
+                    el.dataset.hanziUpdating = '0';
+                } else if (lang !== 'zh' && /^\d+$/.test(text)) {
+                    el.dataset.numericValue = String(Number(text));
+                }
+            });
+            observer.observe(el, { childList: true, characterData: true, subtree: true });
+        });
+
+        const prevSetLanguageHanzi = window.setLanguage;
+        if (typeof prevSetLanguageHanzi === 'function') {
+            window.setLanguage = function(lang) {
+                prevSetLanguageHanzi(lang);
+                document.documentElement.setAttribute('data-lang', lang);
+                setTimeout(renderCountdownNumbersForLanguage, 0);
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(renderCountdownNumbersForLanguage, 50);
+        });
+</script>
+<script>
+        // Gift QR reveal: ancient coin flips into QR code.
+        window.toggleGiftQR = function(el) {
+            if (!el) return;
+            const open = !el.classList.contains('is-open');
+            el.classList.toggle('is-open', open);
+            el.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+            const card = el.closest('.gift-card-shell');
+            if (card) {
+                card.classList.toggle('gift-card-open', open);
+            }
+
+            if (open) {
+                el.classList.remove('is-opening');
+                void el.offsetWidth;
+                el.classList.add('is-opening');
+                setTimeout(() => el.classList.remove('is-opening'), 900);
+            }
+        };
+</script>
 </body>
 </html>
