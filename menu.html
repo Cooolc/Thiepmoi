@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Thiệp Cưới | La Chấn Cơ & Huỳnh Hảo Nghi</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', '"Playfair Display"', 'serif'],
+                        cinzel: ['"Cinzel"', 'serif'],
+                        script: ['"Pinyon Script"', 'cursive'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: {
+                            light: '#fae3a2',
+                            DEFAULT: '#d4af37',
+                            dark: '#9e7c25',
+                        },
+                        sage: {
+                            DEFAULT: '#2D4A3E',
+                            dark: '#1A3026',
+                            light: '#4A6B5D'
+                        },
+                        crimsonTheme: {
+                            DEFAULT: '#7A0016',
+                            dark: '#3D000A',
+                            soft: '#91172A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --gold-gradient: linear-gradient(135deg, #fceec5 0%, #d4af37 50%, #9e7c25 100%);
+            --shadow-ambient: 0 25px 45px rgba(25, 15, 8, 0.45), 0 10px 18px rgba(0, 0, 0, 0.25);
+            --shadow-hover: 0 35px 65px rgba(20, 10, 5, 0.6), 0 0 30px rgba(212, 175, 55, 0.25);
+        }
+
+        body {
+            background-color: #2b1d16;
+            color: #f7f3eb;
+            overflow-x: hidden;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 100vh;
+        }
+
+        /* Nền gỗ tự nhiên ấm áp */
+        .wood-scene {
+            background-color: #3d2b20;
+            background-image: 
+                radial-gradient(ellipse at 50% 40%, rgba(255, 235, 195, 0.15) 0%, rgba(30, 18, 12, 0.75) 100%),
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 40%),
+                linear-gradient(115deg, rgba(255, 255, 255, 0.04), transparent 45%, rgba(0, 0, 0, 0.4)),
+                url("./img/wooden-textured-background.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Khung chứa hiệu ứng phối cảnh 3D */
+        .envelope-stage {
+            perspective: 1600px;
+            perspective-origin: center center;
+        }
+
+        /* Vỏ bao phong bì chung */
+        .envelope-item {
+            position: absolute;
+            width: 320px;
+            height: 220px;
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                        box-shadow 0.5s ease, 
+                        z-index 0s ease 0.1s;
+            transform-style: preserve-3d;
+        }
+
+        @media (min-width: 640px) {
+            .envelope-item {
+                width: 410px;
+                height: 280px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .envelope-item {
+                width: 440px;
+                height: 300px;
+            }
+        }
+
+        /* Vị trí phong bì ĐỎ (Nằm hơi chếch bên trái, nằm đè ở dưới) */
+        .env-red {
+            left: calc(50% - 190px);
+            top: calc(50% - 150px);
+            transform: rotate(-7.5deg) translate3d(-20px, 15px, 0);
+            z-index: 10;
+        }
+
+        @media (min-width: 640px) {
+            .env-red {
+                left: calc(50% - 280px);
+                top: calc(50% - 170px);
+                transform: rotate(-7deg) translate3d(-35px, 20px, 0);
+            }
+        }
+
+        /* Vị trí phong bì XANH (Nằm hơi chếch bên phải, đè lên phong bì đỏ) */
+        .env-green {
+            left: calc(50% - 130px);
+            top: calc(50% - 100px);
+            transform: rotate(6.5deg) translate3d(20px, -5px, 15px);
+            z-index: 20;
+        }
+
+        @media (min-width: 640px) {
+            .env-green {
+                left: calc(50% - 170px);
+                top: calc(50% - 120px);
+                transform: rotate(6deg) translate3d(40px, -10px, 20px);
+            }
+        }
+
+        /* Khi rê chuột hoặc chạm: Tự động nổi lên đầu và làm thẳng lại nhẹ nhàng */
+        .envelope-item:hover,
+        .envelope-item.is-focused {
+            z-index: 50 !important;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .env-red:hover,
+        .env-red.is-focused {
+            transform: rotate(-2deg) translate3d(-15px, -15px, 40px) scale(1.03);
+        }
+
+        .env-green:hover,
+        .env-green.is-focused {
+            transform: rotate(1.5deg) translate3d(15px, -25px, 40px) scale(1.03);
+        }
+
+        /* Khối khung phong bì chính */
+        .envelope-box {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow-ambient);
+            overflow: hidden;
+            transition: box-shadow 0.4s ease;
+        }
+
+        .envelope-item.is-open .envelope-box {
+            overflow: visible;
+        }
+
+        /* Nắp gập tam giác (Flap) */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 65%;
+            transform-origin: top center;
+            transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s linear 0.3s;
+            z-index: 30;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .envelope-item.is-open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 5;
+        }
+
+        /* Thân phong bì mặt trước (Pocket) */
+        .envelope-pocket {
+            position: absolute;
+            inset: 0;
+            z-index: 20;
+            pointer-events: none;
+            border-radius: 8px;
+        }
+
+        /* Tờ thiệp nằm bên trong */
+        .envelope-card {
+            position: absolute;
+            top: 10px;
+            left: 5%;
+            width: 90%;
+            height: 88%;
+            background: #fffdf9;
+            border-radius: 6px;
+            z-index: 10;
+            transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s, box-shadow 0.6s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            pointer-events: none;
+        }
+
+        .envelope-item.is-open .envelope-card {
+            transform: translateY(-90px) scale(1.05);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.7), 0 0 30px rgba(212, 175, 55, 0.35);
+            z-index: 40;
+        }
+
+        @media (min-width: 640px) {
+            .envelope-item.is-open .envelope-card {
+                transform: translateY(-120px) scale(1.06);
+            }
+        }
+
+        /* Con dấu sáp (Wax Seal) */
+        .wax-seal {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            z-index: 35;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.55), inset 0 2px 3px rgba(255,255,255,0.4), inset 0 -3px 5px rgba(0,0,0,0.6);
+        }
+
+        @media (min-width: 640px) {
+            .wax-seal {
+                width: 68px;
+                height: 68px;
+            }
+        }
+
+        .envelope-item:hover .wax-seal {
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        .envelope-item.is-open .wax-seal {
+            transform: translate(-50%, -90%) scale(0.6);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Mũi tên và nhãn gợi ý chạm */
+        .envelope-tag {
+            position: absolute;
+            bottom: -34px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+        }
+
+        .envelope-item:hover .envelope-tag {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        /* Hiệu ứng tia sáng chiếu xéo */
+        .light-beam {
+            position: absolute;
+            top: -20%;
+            left: 8%;
+            width: 45%;
+            height: 140%;
+            transform: rotate(16deg);
+            background: linear-gradient(90deg, transparent, rgba(255,248,225,0.06), rgba(255,250,235,0.12), transparent);
+            filter: blur(20px);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative wood-scene select-none overflow-hidden">
+
+    <!-- Ánh sáng hắt dịu trên mặt bàn -->
+    <div class="light-beam"></div>
+
+    <!-- Canvas hạt bụi vàng & cánh hoa -->
+    <canvas id="sparkleCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Header tối giản: Tên cô dâu chú rể & Ngày cưới -->
+    <header class="relative z-20 pt-6 sm:pt-10 text-center px-4 max-w-2xl mx-auto">
+        <p class="font-script text-3xl sm:text-4xl text-amber-200/90 leading-none">Save the Date</p>
+        <h1 class="font-cinzel text-xl sm:text-2xl md:text-3xl tracking-widest text-amber-100 font-bold uppercase mt-1">
+            La Chấn Cơ <span class="font-serif italic font-normal text-gold">&amp;</span> Huỳnh Hảo Nghi
+        </h1>
+        <div class="flex items-center justify-center gap-3 text-[11px] sm:text-xs font-sans tracking-[0.25em] text-amber-200/70 mt-1 uppercase">
+            <span>Chủ Nhật • 11 . 10 . 2026</span>
+        </div>
+    </header>
+
+    <!-- Main Section: 2 Phong bì nằm đè lên nhau tự nhiên -->
+    <main class="relative z-20 flex-1 flex items-center justify-center w-full max-w-5xl mx-auto my-auto px-4 py-8">
+        <div class="envelope-stage relative w-full h-[360px] sm:h-[460px] md:h-[500px]">
+
+            <!-- ============================================================
+                 PHONG BÌ 1: ĐỎ TRUYỀN THỐNG (CHỮ HỶ 囍) - Trỏ về index.html
+                 ============================================================ -->
+            <div id="envRed" class="envelope-item env-red" onclick="openAndRedirect('red', './index.html')">
+                <div class="envelope-box" style="background: radial-gradient(circle at 40% 40%, #7d0e1b 0%, #45060e 100%);">
+                    
+                    <!-- Nắp gập tam giác (Flap) -->
+                    <div class="envelope-flap">
+                        <svg viewBox="0 0 440 190" class="w-full h-full drop-shadow-lg" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="redFlapGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#931321"/>
+                                    <stop offset="65%" stop-color="#730e1a"/>
+                                    <stop offset="100%" stop-color="#49070e"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="0,0 440,0 220,175" fill="url(#redFlapGrad)" stroke="#c49925" stroke-width="1.2"/>
+                            <!-- Viền nhũ vàng thanh tao phía trong nắp -->
+                            <polygon points="20,10 420,10 220,160" fill="none" stroke="#d4af37" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.6"/>
+                        </svg>
+                    </div>
+
+                    <!-- Thẻ thiệp nhô ra khi mở -->
+                    <div class="envelope-card">
+                        <div class="text-center w-full border-b border-amber-300/60 pb-1.5 flex justify-between items-center text-[10px] font-cinzel text-amber-900 uppercase">
+                            <span>Lễ Thành Hôn</span>
+                            <span class="text-red-700 text-base font-bold">囍</span>
+                            <span>11.10.2026</span>
+                        </div>
+                        <div class="text-center my-auto">
+                            <span class="text-red-700 font-cinzel text-2xl sm:text-3xl font-extrabold tracking-widest block">囍</span>
+                            <p class="font-script text-2xl sm:text-3xl text-red-900 leading-tight mt-1">Chấn Cơ &amp; Hảo Nghi</p>
+                        </div>
+                        <div class="text-[9px] sm:text-[10px] font-serif italic text-stone-600 border-t border-amber-200/80 pt-1 w-full text-center">
+                            Riverside Palace • 360D Bến Vân Đồn, Q.4
+                        </div>
+                    </div>
+
+                    <!-- Túi phong bì mặt trước -->
+                    <div class="envelope-pocket">
+                        <svg viewBox="0 0 440 300" class="w-full h-full" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="pocketBottomRed" x1="0%" y1="100%" x2="0%" y2="0%">
+                                    <stop offset="0%" stop-color="#3d050c"/>
+                                    <stop offset="100%" stop-color="#690c17"/>
+                                </linearGradient>
+                                <linearGradient id="pocketSideRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#7a0f1c"/>
+                                    <stop offset="100%" stop-color="#49070e"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Cánh trái -->
+                            <polygon points="0,0 220,160 0,300" fill="url(#pocketSideRed)" opacity="0.95"/>
+                            <!-- Cánh phải -->
+                            <polygon points="440,0 220,160 440,300" fill="url(#pocketSideRed)" opacity="0.95"/>
+                            <!-- Đáy dưới dâng lên -->
+                            <polygon points="0,300 440,300 220,135" fill="url(#pocketBottomRed)" stroke="#c49925" stroke-width="1.2"/>
+                            <!-- Viền chỉ vàng -->
+                            <polygon points="15,288 425,288 220,148" fill="none" stroke="#f6da8c" stroke-width="0.75" stroke-dasharray="3,3" opacity="0.5"/>
+                        </svg>
+
+                        <!-- Chữ Hỷ vàng in nhũ mặt trước -->
+                        <div class="absolute bottom-3 inset-x-0 text-center pointer-events-none">
+                            <span class="font-cinzel text-[10px] sm:text-xs text-amber-200/80 uppercase tracking-widest font-semibold drop-shadow">
+                                ✤ LỄ THÀNH HÔN • 囍 ✤
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Con Dấu Sáp Đỏ Vàng (Chữ 囍) -->
+                    <div class="wax-seal" style="background: radial-gradient(circle at 35% 30%, #ffd976 0%, #d4af37 55%, #7a5405 100%);">
+                        <span class="text-red-950 font-cinzel font-black text-2xl sm:text-3xl drop-shadow select-none">囍</span>
+                    </div>
+                </div>
+
+                <!-- Nhãn mô tả nhỏ gọn -->
+                <div class="envelope-tag">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-950/80 border border-gold/40 text-amber-200 text-[10px] sm:text-[11px] font-cinzel tracking-wider backdrop-blur-sm shadow-md">
+                        <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> Bản Truyền Thống
+                    </span>
+                </div>
+            </div>
+
+
+            <!-- ============================================================
+                 PHONG BÌ 2: XANH BOTANIC HIỆN ĐẠI (C & N) - Trỏ về index_xanh.html
+                 ============================================================ -->
+            <div id="envGreen" class="envelope-item env-green" onclick="openAndRedirect('green', './index_xanh.html')">
+                <div class="envelope-box" style="background: radial-gradient(circle at 40% 40%, #1e463a 0%, #0d211b 100%);">
+                    
+                    <!-- Nắp gập tam giác (Flap) -->
+                    <div class="envelope-flap">
+                        <svg viewBox="0 0 440 190" class="w-full h-full drop-shadow-lg" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="greenFlapGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#285a4b"/>
+                                    <stop offset="65%" stop-color="#1d4539"/>
+                                    <stop offset="100%" stop-color="#0f261f"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="0,0 440,0 220,175" fill="url(#greenFlapGrad)" stroke="#c5a880" stroke-width="1.2"/>
+                            <!-- Viền nhũ vàng thanh tao -->
+                            <polygon points="20,10 420,10 220,160" fill="none" stroke="#dfc298" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.65"/>
+                        </svg>
+                    </div>
+
+                    <!-- Thẻ thiệp nhô ra khi mở -->
+                    <div class="envelope-card">
+                        <div class="text-center w-full border-b border-emerald-300/60 pb-1.5 flex justify-between items-center text-[9px] font-serif text-emerald-900 uppercase">
+                            <span>Wedding Invitation</span>
+                            <span class="text-emerald-800 font-bold">✤ C &amp; N ✤</span>
+                            <span>11.10.2026</span>
+                        </div>
+                        <div class="text-center my-auto">
+                            <span class="text-emerald-800 font-serif text-xl sm:text-2xl font-bold tracking-widest block">C ♥ N</span>
+                            <p class="font-script text-2xl sm:text-3xl text-emerald-900 leading-tight mt-1">Chấn Cơ &amp; Hảo Nghi</p>
+                        </div>
+                        <div class="text-[9px] sm:text-[10px] font-serif italic text-stone-600 border-t border-emerald-200/80 pt-1 w-full text-center">
+                            Trung Tâm Hội Nghị Riverside Palace
+                        </div>
+                    </div>
+
+                    <!-- Túi phong bì mặt trước -->
+                    <div class="envelope-pocket">
+                        <svg viewBox="0 0 440 300" class="w-full h-full" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="pocketBottomGreen" x1="0%" y1="100%" x2="0%" y2="0%">
+                                    <stop offset="0%" stop-color="#091713"/>
+                                    <stop offset="100%" stop-color="#16382e"/>
+                                </linearGradient>
+                                <linearGradient id="pocketSideGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#1f4b3e"/>
+                                    <stop offset="100%" stop-color="#0d231c"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Cánh trái -->
+                            <polygon points="0,0 220,160 0,300" fill="url(#pocketSideGreen)" opacity="0.95"/>
+                            <!-- Cánh phải -->
+                            <polygon points="440,0 220,160 440,300" fill="url(#pocketSideGreen)" opacity="0.95"/>
+                            <!-- Đáy dưới dâng lên -->
+                            <polygon points="0,300 440,300 220,135" fill="url(#pocketBottomGreen)" stroke="#c5a880" stroke-width="1.2"/>
+                            <!-- Viền chỉ vàng -->
+                            <polygon points="15,288 425,288 220,148" fill="none" stroke="#f0ddba" stroke-width="0.75" stroke-dasharray="3,3" opacity="0.5"/>
+                        </svg>
+
+                        <!-- Chữ in nhã nhặn mặt trước -->
+                        <div class="absolute bottom-3 inset-x-0 text-center pointer-events-none">
+                            <span class="font-cinzel text-[10px] sm:text-xs text-emerald-200/85 uppercase tracking-widest font-semibold drop-shadow">
+                                ✤ DẠ TIỆC CƯỚI • C &amp; N ✤
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Con Dấu Sáp Đồng Lồng Chữ C & N -->
+                    <div class="wax-seal" style="background: radial-gradient(circle at 35% 30%, #e8d7be 0%, #b89363 55%, #5e3f17 100%);">
+                        <span class="text-emerald-950 font-serif font-bold text-xs sm:text-sm tracking-tighter drop-shadow select-none">C ♥ N</span>
+                    </div>
+                </div>
+
+                <!-- Nhãn mô tả nhỏ gọn -->
+                <div class="envelope-tag">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-400/40 text-emerald-200 text-[10px] sm:text-[11px] font-cinzel tracking-wider backdrop-blur-sm shadow-md">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Bản Hiện Đại
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer ngắn gọn: Chỉ dẫn chạm nhẹ -->
+    <footer class="relative z-20 pb-6 sm:pb-8 text-center text-xs text-amber-200/60 font-sans">
+        <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/30 border border-gold/20 backdrop-blur-sm">
+            <svg class="w-3.5 h-3.5 text-gold animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
+            <span>Chạm vào phong bì bạn muốn để mở thiệp</span>
+        </p>
+    </footer>
+
+    <script>
+        // ==========================================
+        // 1. ÂM THANH MỞ GIẤY (WEB AUDIO API TỔNG HỢP)
+        // ==========================================
+        function playPaperSound() {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                const audioCtx = new AudioCtx();
+                
+                // Tiếng chuông ngọc nhẹ (Chime)
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime); // E5
+                osc.frequency.exponentialRampToValueAtTime(987.77, audioCtx.currentTime + 0.25); // B5
+                
+                gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 0.04);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.7);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.75);
+
+                // Tiếng mở sột soạt nhẹ của bao giấy
+                const bufferSize = audioCtx.sampleRate * 0.2;
+                const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    output[i] = (Math.random() * 2 - 1) * 0.04;
+                }
+                const noiseSource = audioCtx.createBufferSource();
+                noiseSource.buffer = noiseBuffer;
+                const noiseGain = audioCtx.createGain();
+                noiseGain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                noiseGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+                noiseSource.connect(noiseGain);
+                noiseGain.connect(audioCtx.destination);
+                noiseSource.start();
+            } catch (e) {
+                // Không chặn trải nghiệm nếu autoplay bị cấm
+            }
+        }
+
+        // ==========================================
+        // 2. XỬ LÝ CHỌN PHONG BÌ & MỞ THIỆP CHUYỂN TRANG
+        // ==========================================
+        let isRedirecting = false;
+
+        function openAndRedirect(type, targetUrl) {
+            if (isRedirecting) return;
+            isRedirecting = true;
+
+            playPaperSound();
+
+            const envRed = document.getElementById('envRed');
+            const envGreen = document.getElementById('envGreen');
+            
+            const selectedEnv = (type === 'red') ? envRed : envGreen;
+            const otherEnv = (type === 'red') ? envGreen : envRed;
+
+            // Đưa phong bì được chọn nổi hẳn lên trên cùng
+            selectedEnv.classList.add('is-focused', 'is-open');
+            otherEnv.classList.remove('is-open', 'is-focused');
+            otherEnv.style.opacity = '0.4';
+            otherEnv.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+
+            // Bắn pháo hoa bụi vàng rực rỡ từ vị trí con dấu
+            if (typeof confetti === 'function') {
+                const rect = selectedEnv.getBoundingClientRect();
+                const x = (rect.left + rect.width / 2) / window.innerWidth;
+                const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+                confetti({
+                    particleCount: 50,
+                    spread: 60,
+                    origin: { x: x, y: y },
+                    colors: type === 'red' ? ['#d4af37', '#ffd700', '#9b1625'] : ['#c5a880', '#34d399', '#f0ddba']
+                });
+            }
+
+            // Sau khi nắp phong bì mở và thẻ nhô lên (0.8s) -> chuyển trang
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '0';
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 450);
+            }, 850);
+        }
+
+        // ==========================================
+        // 3. HIỆU ỨNG HẠT BỤI VÀNG LẤP LÁNH (CANVAS)
+        // ==========================================
+        const canvas = document.getElementById('sparkleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Sparkle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.6;
+                this.speedY = Math.random() * 0.4 + 0.15;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.alpha = Math.random() * 0.6 + 0.2;
+                this.alphaStep = (Math.random() * 0.01) + 0.005;
+                this.color = Math.random() > 0.4 ? '#f6d88c' : '#ffffff';
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.alpha += this.alphaStep;
+                if (this.alpha > 0.8 || this.alpha < 0.15) {
+                    this.alphaStep = -this.alphaStep;
+                }
+                if (this.y > canvas.height + 10) {
+                    this.y = -10;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, Math.min(1, this.alpha));
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = '#d4af37';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        const count = window.innerWidth < 640 ? 30 : 55;
+        for (let i = 0; i < count; i++) {
+            particles.push(new Sparkle());
+        }
+
+        function animateSparkles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateSparkles);
+        }
+        animateSparkles();
+    </script>
+</body>
+</html>
