@@ -141,24 +141,21 @@
             }
         }
 
-        /* Khi được chọn (Active) - Tự động nổi lên trên cùng */
-        .envelope-item.is-active {
-            z-index: 60 !important;
+        /* Khi rê chuột hoặc chạm: Tự động nổi lên đầu và làm thẳng lại nhẹ nhàng */
+        .envelope-item:hover,
+        .envelope-item.is-focused {
+            z-index: 50 !important;
             box-shadow: var(--shadow-hover);
         }
 
-        .env-red.is-active {
-            transform: rotate(-1.5deg) translate3d(-15px, -15px, 45px) scale(1.04);
+        .env-red:hover,
+        .env-red.is-focused {
+            transform: rotate(-2deg) translate3d(-15px, -15px, 40px) scale(1.03);
         }
 
-        .env-green.is-active {
-            transform: rotate(1.5deg) translate3d(15px, -20px, 45px) scale(1.04);
-        }
-
-        /* Phong bì nằm sau giữ nguyên độ nét, không làm mờ */
-        .envelope-item.is-inactive {
-            opacity: 1 !important;
-            filter: none !important;
+        .env-green:hover,
+        .env-green.is-focused {
+            transform: rotate(1.5deg) translate3d(15px, -25px, 40px) scale(1.03);
         }
 
         /* Khối khung phong bì chính */
@@ -237,116 +234,54 @@
             }
         }
 
-        /* Con dấu sáp (Wax Seal) nung dẻo chân thực */
+        /* Con dấu sáp (Wax Seal) */
         .wax-seal {
             position: absolute;
             top: 52%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 62px;
-            height: 62px;
-            border-radius: 49% 51% 52% 48% / 51% 48% 52% 49%;
-            z-index: 35;
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease, box-shadow 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 
-                0 10px 22px rgba(0, 0, 0, 0.6),
-                0 3px 6px rgba(0, 0, 0, 0.4),
-                inset 2px 2px 4px rgba(255, 255, 255, 0.45),
-                inset -3px -4px 6px rgba(0, 0, 0, 0.65),
-                0 0 0 1px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Vệt ánh sáng bóng trên vai sáp nung */
-        .wax-seal::before {
-            content: '';
-            position: absolute;
-            inset: 3px;
-            border-radius: 48% 52% 50% 50% / 53% 47% 53% 47%;
-            background: radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.15) 30%, transparent 60%);
-            pointer-events: none;
-        }
-
-        /* Lòng khuôn dấu đồng dập chìm */
-        .wax-seal-inner {
-            width: 44px;
-            height: 44px;
+            width: 58px;
+            height: 58px;
             border-radius: 50%;
+            z-index: 35;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.28);
-            box-shadow: 
-                inset 2px 3px 5px rgba(0, 0, 0, 0.7),
-                inset -1px -1px 3px rgba(255, 255, 255, 0.3),
-                0 1px 2px rgba(255, 255, 255, 0.2);
-            position: relative;
-            pointer-events: none;
-        }
-
-        /* Dấu sáp Vàng Kim Truyền Thống (Phong bì Đỏ) */
-        .wax-seal-gold {
-            background: 
-                radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.6) 0%, transparent 25%),
-                radial-gradient(circle at 38% 32%, #ffe89e 0%, #dbad43 32%, #b37f17 65%, #694404 100%);
-        }
-
-        .wax-seal-gold .wax-seal-inner {
-            background: radial-gradient(circle at 40% 35%, #cca03c, #8c600b 80%);
-        }
-
-        /* Dấu sáp Đồng Cổ Monogram (Phong bì Xanh) */
-        .wax-seal-copper {
-            background: 
-                radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.55) 0%, transparent 25%),
-                radial-gradient(circle at 38% 32%, #f8e5cb 0%, #cca773 32%, #996e39 65%, #4e3210 100%);
-        }
-
-        .wax-seal-copper .wax-seal-inner {
-            background: radial-gradient(circle at 40% 35%, #b98e57, #6e461a 80%);
-        }
-
-        /* Chữ dập chìm hiệu ứng 3D debossed */
-        .wax-seal-text {
-            user-select: none;
-            line-height: 1;
-        }
-
-        .seal-text-red {
-            color: #4a060e;
-            text-shadow: 
-                1px 1px 1px rgba(255, 235, 175, 0.45),
-                -1px -1px 2px rgba(0, 0, 0, 0.85),
-                0 0 1px rgba(0, 0, 0, 0.9);
-        }
-
-        .seal-text-green {
-            color: #0f261f;
-            text-shadow: 
-                1px 1px 1px rgba(255, 240, 210, 0.4),
-                -1px -1px 2px rgba(0, 0, 0, 0.85),
-                0 0 1px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.55), inset 0 2px 3px rgba(255,255,255,0.4), inset 0 -3px 5px rgba(0,0,0,0.6);
         }
 
         @media (min-width: 640px) {
             .wax-seal {
-                width: 70px;
-                height: 70px;
-            }
-            .wax-seal-inner {
-                width: 50px;
-                height: 50px;
+                width: 68px;
+                height: 68px;
             }
         }
 
+        .envelope-item:hover .wax-seal {
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
         .envelope-item.is-open .wax-seal {
-            transform: translate(-50%, -90%) scale(0.6) !important;
+            transform: translate(-50%, -90%) scale(0.6);
             opacity: 0;
             pointer-events: none;
-            animation: none !important;
+        }
+
+        /* Mũi tên và nhãn gợi ý chạm */
+        .envelope-tag {
+            position: absolute;
+            bottom: -34px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+        }
+
+        .envelope-item:hover .envelope-tag {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-2px);
         }
 
         /* Hiệu ứng tia sáng chiếu xéo */
@@ -389,7 +324,7 @@
             <!-- ============================================================
                  PHONG BÌ 1: ĐỎ TRUYỀN THỐNG (CHỮ HỶ 囍) - Trỏ về index.html
                  ============================================================ -->
-            <div id="envRed" class="envelope-item env-red" onclick="selectEnvelope('red')">
+            <div id="envRed" class="envelope-item env-red" onclick="openAndRedirect('red', './index.html')">
                 <div class="envelope-box" style="background: radial-gradient(circle at 40% 40%, #7d0e1b 0%, #45060e 100%);">
                     
                     <!-- Nắp gập tam giác (Flap) -->
@@ -455,23 +390,25 @@
                         </div>
                     </div>
 
-                    <!-- ================================================================= -->
-                    <!-- [CẤU HÌNH LINK 1]: DẤU SÁP PHONG BÌ ĐỎ (Chạm dấu sáp để mở thiệp) -->
-                    <!-- Đường dẫn mặc định được quản lý tại WEDDING_LINKS.red trong script -->
-                    <!-- ================================================================= -->
-                    <div class="wax-seal wax-seal-gold" onclick="openWithSeal(event, 'red')" title="Chạm dấu sáp để mở thiệp">
-                        <div class="wax-seal-inner">
-                            <span class="wax-seal-text seal-text-red font-cinzel font-black text-2xl sm:text-3xl">囍</span>
-                        </div>
+                    <!-- Con Dấu Sáp Đỏ Vàng (Chữ 囍) -->
+                    <div class="wax-seal" style="background: radial-gradient(circle at 35% 30%, #ffd976 0%, #d4af37 55%, #7a5405 100%);">
+                        <span class="text-red-950 font-cinzel font-black text-2xl sm:text-3xl drop-shadow select-none">囍</span>
                     </div>
+                </div>
+
+                <!-- Nhãn mô tả nhỏ gọn -->
+                <div class="envelope-tag">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-950/80 border border-gold/40 text-amber-200 text-[10px] sm:text-[11px] font-cinzel tracking-wider backdrop-blur-sm shadow-md">
+                        <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> Bản Truyền Thống
+                    </span>
                 </div>
             </div>
 
 
             <!-- ============================================================
-                 PHONG BÌ 2: XANH BOTANIC
+                 PHONG BÌ 2: XANH BOTANIC HIỆN ĐẠI (C & N) - Trỏ về index_xanh.html
                  ============================================================ -->
-            <div id="envGreen" class="envelope-item env-green is-active" onclick="selectEnvelope('green')">
+            <div id="envGreen" class="envelope-item env-green" onclick="openAndRedirect('green', './index_xanh.html')">
                 <div class="envelope-box" style="background: radial-gradient(circle at 40% 40%, #1e463a 0%, #0d211b 100%);">
                     
                     <!-- Nắp gập tam giác (Flap) -->
@@ -537,15 +474,17 @@
                         </div>
                     </div>
 
-                    <!-- ================================================================== -->
-                    <!-- [CẤU HÌNH LINK 2]: DẤU SÁP PHONG BÌ XANH (Chạm dấu sáp để mở thiệp) -->
-                    <!-- Đường dẫn mặc định được quản lý tại WEDDING_LINKS.green trong script -->
-                    <!-- ================================================================== -->
-                    <div class="wax-seal wax-seal-copper" onclick="openWithSeal(event, 'green')" title="Chạm dấu sáp để mở thiệp">
-                        <div class="wax-seal-inner">
-                            <span class="wax-seal-text seal-text-green font-serif font-bold text-xs sm:text-sm tracking-tighter">C ♥ N</span>
-                        </div>
+                    <!-- Con Dấu Sáp Đồng Lồng Chữ C & N -->
+                    <div class="wax-seal" style="background: radial-gradient(circle at 35% 30%, #e8d7be 0%, #b89363 55%, #5e3f17 100%);">
+                        <span class="text-emerald-950 font-serif font-bold text-xs sm:text-sm tracking-tighter drop-shadow select-none">C ♥ N</span>
                     </div>
+                </div>
+
+                <!-- Nhãn mô tả nhỏ gọn -->
+                <div class="envelope-tag">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-400/40 text-emerald-200 text-[10px] sm:text-[11px] font-cinzel tracking-wider backdrop-blur-sm shadow-md">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Bản Hiện Đại
+                    </span>
                 </div>
             </div>
 
@@ -553,22 +492,14 @@
     </main>
 
     <!-- Footer ngắn gọn: Chỉ dẫn chạm nhẹ -->
-    <footer class="relative z-20 pb-6 sm:pb-8 text-center text-xs text-amber-200/80 font-sans">
-        <p id="instructionText" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 border border-gold/30 backdrop-blur-sm shadow-md transition-all">
+    <footer class="relative z-20 pb-6 sm:pb-8 text-center text-xs text-amber-200/60 font-sans">
+        <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/30 border border-gold/20 backdrop-blur-sm">
             <svg class="w-3.5 h-3.5 text-gold animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
-            <span>Chạm phong bì để chọn, chạm <strong>dấu sáp</strong> để mở thiệp</span>
+            <span>Chạm vào phong bì bạn muốn để mở thiệp</span>
         </p>
     </footer>
 
     <script>
-        // =========================================================================
-        // [CẤU HÌNH LINK TRANG WEB TẠI ĐÂY]: THAY ĐỔI ĐƯỜNG DẪN 2 TRANG WEB TẠI ĐÂY
-        // =========================================================================
-        const WEDDING_LINKS = {
-            red: './index.html',        // <-- ĐỔI LINK CHO PHONG BÌ ĐỎ TẠI ĐÂY
-            green: './index_xanh.html'  // <-- ĐỔI LINK CHO PHONG BÌ XANH TẠI ĐÂY
-        };
-
         // ==========================================
         // 1. ÂM THANH MỞ GIẤY (WEB AUDIO API TỔNG HỢP)
         // ==========================================
@@ -615,89 +546,49 @@
         }
 
         // ==========================================
-        // 2. XỬ LÝ CHỌN PHONG BÌ & MỞ QUA DẤU SÁP
+        // 2. XỬ LÝ CHỌN PHONG BÌ & MỞ THIỆP CHUYỂN TRANG
         // ==========================================
-        let currentActive = 'green';
         let isRedirecting = false;
 
-        // Chạm vào thân phong bì -> Chọn phong bì đó nằm đè lên trên
-        function selectEnvelope(type) {
+        function openAndRedirect(type, targetUrl) {
             if (isRedirecting) return;
-            if (currentActive === type) return;
-
-            currentActive = type;
-            const envRed = document.getElementById('envRed');
-            const envGreen = document.getElementById('envGreen');
-            const instr = document.getElementById('instructionText');
-
-            if (type === 'red') {
-                envRed.classList.remove('is-inactive');
-                envRed.classList.add('is-active');
-                envGreen.classList.remove('is-active');
-                envGreen.classList.add('is-inactive');
-                if (instr) {
-                    instr.innerHTML = '<span class="w-2 h-2 rounded-full bg-red-400 inline-block animate-ping"></span><span>Chạm <strong>dấu sáp</strong> để mở thiệp!</span>';
-                }
-            } else {
-                envGreen.classList.remove('is-inactive');
-                envGreen.classList.add('is-active');
-                envRed.classList.remove('is-active');
-                envRed.classList.add('is-inactive');
-                if (instr) {
-                    instr.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-ping"></span><span>Chạm <strong>dấu sáp</strong> để mở thiệp!</span>';
-                }
-            }
-        }
-
-        // Chạm vào con dấu sáp -> Mở thiệp và chuyển sang trang tương ứng
-        function openWithSeal(event, type, customUrl) {
-            if (event) {
-                event.stopPropagation();
-            }
-
-            if (isRedirecting) return;
-
-            // Xác định đường dẫn tương ứng từ cấu hình WEDDING_LINKS
-            const targetUrl = customUrl || WEDDING_LINKS[type];
-
-            // Nếu chạm dấu sáp của phong bì chưa active -> active ngay và mở luôn
-            if (currentActive !== type) {
-                selectEnvelope(type);
-            }
-
             isRedirecting = true;
+
             playPaperSound();
 
             const envRed = document.getElementById('envRed');
             const envGreen = document.getElementById('envGreen');
+            
             const selectedEnv = (type === 'red') ? envRed : envGreen;
             const otherEnv = (type === 'red') ? envGreen : envRed;
 
-            // Đưa phong bì được chọn bung mở, phong bì nằm sau vẫn rõ ràng không bị mờ xám
-            selectedEnv.classList.add('is-open');
-            otherEnv.style.transition = 'transform 0.5s ease';
+            // Đưa phong bì được chọn nổi hẳn lên trên cùng
+            selectedEnv.classList.add('is-focused', 'is-open');
+            otherEnv.classList.remove('is-open', 'is-focused');
+            otherEnv.style.opacity = '0.4';
+            otherEnv.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
 
-            // Bắn pháo hoa bụi vàng từ vị trí con dấu
+            // Bắn pháo hoa bụi vàng rực rỡ từ vị trí con dấu
             if (typeof confetti === 'function') {
                 const rect = selectedEnv.getBoundingClientRect();
                 const x = (rect.left + rect.width / 2) / window.innerWidth;
                 const y = (rect.top + rect.height / 2) / window.innerHeight;
 
                 confetti({
-                    particleCount: 55,
-                    spread: 65,
+                    particleCount: 50,
+                    spread: 60,
                     origin: { x: x, y: y },
                     colors: type === 'red' ? ['#d4af37', '#ffd700', '#9b1625'] : ['#c5a880', '#34d399', '#f0ddba']
                 });
             }
 
-            // Nắp mở, thiệp nhô lên (0.85s) rồi mượt mà chuyển trang
+            // Sau khi nắp phong bì mở và thẻ nhô lên (0.8s) -> chuyển trang
             setTimeout(() => {
                 document.body.style.transition = 'opacity 0.5s ease';
                 document.body.style.opacity = '0';
                 setTimeout(() => {
                     window.location.href = targetUrl;
-                }, 400);
+                }, 450);
             }, 850);
         }
 

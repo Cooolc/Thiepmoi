@@ -1058,6 +1058,20 @@
             border-radius: 10px;
         }
 
+        /* PNG thỏi vàng - thay src trong HTML nếu muốn đổi ảnh */
+        .gift-gold-ingot-img {
+            display: block;
+            width: 82%;
+            height: 82%;
+            object-fit: contain;
+            filter: drop-shadow(0 7px 10px rgba(0,0,0,.35));
+            transition: transform .35s ease, filter .35s ease;
+        }
+        .gift-reveal-wrap:hover .gift-gold-ingot-img {
+            transform: scale(1.035);
+            filter: drop-shadow(0 9px 14px rgba(0,0,0,.40)) drop-shadow(0 0 8px rgba(212,175,55,.22));
+        }
+
         .ancient-coin {
             width: 82%;
             height: 82%;
@@ -1793,7 +1807,828 @@
             .envelope-perspective::after { bottom:-26px; }
         }
 
-    </style>
+    
+        /* ===== Family bride/groom playful wiggle ===== */
+        .family-avatar {
+            transform-origin: 50% 88%;
+            will-change: transform;
+        }
+        .family-card-chinese:nth-child(1) .family-avatar {
+            animation: familyWiggleGroom 3.1s ease-in-out infinite;
+        }
+        .family-card-chinese:nth-child(2) .family-avatar {
+            animation: familyWiggleBride 3.35s ease-in-out infinite;
+            animation-delay: -.65s;
+        }
+        .family-card-chinese:hover .family-avatar {
+            animation-duration: .72s;
+        }
+        @keyframes familyWiggleGroom {
+            0%,100% { transform: rotate(0deg) translateY(0); }
+            18% { transform: rotate(-3deg) translateY(-1px); }
+            36% { transform: rotate(3.5deg) translateY(-3px); }
+            54% { transform: rotate(-2deg) translateY(-1px); }
+            72% { transform: rotate(2deg) translateY(-2px); }
+        }
+        @keyframes familyWiggleBride {
+            0%,100% { transform: rotate(0deg) translateY(0); }
+            20% { transform: rotate(3deg) translateY(-2px); }
+            42% { transform: rotate(-3.5deg) translateY(-3px); }
+            62% { transform: rotate(2deg) translateY(-1px); }
+            80% { transform: rotate(-1.8deg) translateY(-2px); }
+        }
+
+        /* ===== Vu Quy extra detail: subtle map + lunar zodiac card ===== */
+        .vuquy-map-link {
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap:6px;
+            margin-top:9px;
+            padding:5px 10px;
+            border:1px solid rgba(212,175,55,.35);
+            border-radius:999px;
+            color:#F3E5AB;
+            background:rgba(212,175,55,.07);
+            font-family:"Noto Serif SC","Noto Serif",serif;
+            font-size:9px;
+            letter-spacing:.06em;
+            transition:background .25s ease,border-color .25s ease,transform .25s ease;
+        }
+        .vuquy-map-link:hover {
+            background:rgba(212,175,55,.15);
+            border-color:rgba(243,229,171,.62);
+            transform:translateY(-1px);
+        }
+        .vuquy-lunar-card {
+            margin-top:16px;
+            padding:14px;
+            border:1px solid rgba(212,175,55,.28);
+            border-radius:16px;
+            background:
+                radial-gradient(circle at 85% 20%,rgba(212,175,55,.08),transparent 26%),
+                linear-gradient(135deg,rgba(73,0,13,.80),rgba(35,0,7,.86));
+            position:relative;
+            overflow:hidden;
+        }
+        .vuquy-lunar-card::before {
+            content:"月";
+            position:absolute;
+            right:10px;
+            top:-13px;
+            font-family:"Noto Serif SC","Noto Serif",serif;
+            font-size:74px;
+            color:rgba(212,175,55,.035);
+            pointer-events:none;
+        }
+        .vuquy-lunar-grid {
+            display:grid;
+            grid-template-columns:72px 1fr;
+            align-items:center;
+            gap:13px;
+            position:relative;
+            z-index:1;
+        }
+        .vuquy-zodiac-medallion {
+            width:68px;
+            height:68px;
+            border-radius:50%;
+            display:grid;
+            place-items:center;
+            background:radial-gradient(circle at 34% 25%,#E6C45D,#A96E0B 58%,#5B3504);
+            border:2px solid rgba(243,229,171,.75);
+            box-shadow:inset 0 0 0 4px rgba(92,45,2,.17),0 7px 16px rgba(0,0,0,.28);
+        }
+        .vuquy-zodiac-medallion svg {
+            width:51px;
+            height:51px;
+            filter:drop-shadow(0 2px 2px rgba(0,0,0,.20));
+        }
+        .vuquy-lunar-title {
+            color:#D4AF37;
+            font-family:"Noto Serif SC","Noto Serif",serif;
+            font-size:9px;
+            text-transform:uppercase;
+            letter-spacing:.18em;
+            margin-bottom:3px;
+        }
+        .vuquy-lunar-main {
+            color:#FFF4D5;
+            font-family:"Noto Serif SC","Noto Serif",serif;
+            font-weight:700;
+            font-size:13px;
+            line-height:1.45;
+        }
+        .vuquy-lunar-sub {
+            color:rgba(243,229,171,.70);
+            font-family:"Noto Serif SC","Noto Serif",serif;
+            font-size:9px;
+            line-height:1.5;
+            margin-top:2px;
+        }
+        .vuquy-zodiac-tag {
+            display:inline-flex;
+            align-items:center;
+            gap:4px;
+            margin-top:5px;
+            color:#F3E5AB;
+            font-family:"Noto Serif SC","Noto Serif",serif;
+            font-size:9px;
+        }
+
+        @media (max-width:639px) {
+            .vuquy-lunar-card { padding:11px; border-radius:13px; }
+            .vuquy-lunar-grid { grid-template-columns:58px 1fr; gap:10px; }
+            .vuquy-zodiac-medallion { width:56px; height:56px; }
+            .vuquy-zodiac-medallion svg { width:42px; height:42px; }
+            .vuquy-lunar-main { font-size:11px; }
+            .vuquy-lunar-sub,.vuquy-zodiac-tag { font-size:8px; }
+            .vuquy-map-link { font-size:8px; padding:4px 8px; }
+        }
+        @media (prefers-reduced-motion:reduce) {
+            .family-card-chinese .family-avatar { animation:none !important; }
+        }
+
+    
+        /* Clearer zodiac horse illustration */
+        .vuquy-zodiac-medallion {
+            width: 76px !important;
+            height: 76px !important;
+            background: radial-gradient(circle at 34% 25%,#F5D96E,#B47A0C 58%,#6A3B03) !important;
+        }
+        .vuquy-zodiac-medallion svg {
+            width: 62px !important;
+            height: 62px !important;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,.28));
+        }
+        @media (max-width:639px) {
+            .vuquy-lunar-grid { grid-template-columns:66px 1fr !important; }
+            .vuquy-zodiac-medallion { width:64px !important; height:64px !important; }
+            .vuquy-zodiac-medallion svg { width:53px !important; height:53px !important; }
+        }
+
+
+        /* ===== Vu Quy: three concise information columns ===== */
+        .vuquy-three-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            align-items: stretch;
+            gap: 0;
+        }
+        .vuquy-info-col {
+            min-width: 0;
+            padding: 4px 18px 2px;
+            text-align: center;
+            position: relative;
+        }
+        .vuquy-info-col + .vuquy-info-col {
+            border-left: 1px solid rgba(212,175,55,.28);
+        }
+        .vuquy-info-icon {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(212,175,55,.62);
+            background: radial-gradient(circle at 34% 28%, rgba(212,175,55,.16), rgba(94,0,16,.85));
+            color: #D4AF37;
+            box-shadow: inset 0 0 0 4px rgba(212,175,55,.035), 0 7px 18px rgba(0,0,0,.18);
+        }
+
+        .vuquy-zodiac-medallion {
+            width: 92px !important;
+            height: 92px !important;
+            margin: 0 auto 10px !important;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at 34% 24%, #F5DE82 0%, #CE9A28 42%, #8B590A 72%, #5A3304 100%) !important;
+            border: 2px solid rgba(255,241,180,.86) !important;
+            box-shadow: inset 0 0 0 5px rgba(95,48,3,.15), 0 8px 20px rgba(0,0,0,.28);
+        }
+        .vuquy-zodiac-medallion svg {
+            width: 78px !important;
+            height: 78px !important;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,.22));
+        }
+
+        @media (max-width: 639px) {
+            .vuquy-info-col { padding: 2px 7px; }
+            .vuquy-info-icon { width: 44px; height: 44px; margin-bottom: 8px; }
+            .vuquy-zodiac-medallion {
+                width: 58px !important;
+                height: 58px !important;
+                margin-bottom: 7px !important;
+            }
+            .vuquy-zodiac-medallion svg {
+                width: 50px !important;
+                height: 50px !important;
+            }
+            .vuquy-info-col + .vuquy-info-col {
+                border-left-color: rgba(212,175,55,.22);
+            }
+        }
+
+
+        /* ===== Chinese seal-style buttons ===== */
+        .seal-btn,
+        button:not(.lang-btn):not(#music-toggle-btn):not(.gift-reveal-wrap),
+        a[href="#rsvp"],
+        .vuquy-map-link {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            border: 1px solid rgba(243,229,171,.72) !important;
+            background:
+                linear-gradient(180deg, #9D001C 0%, #760015 48%, #52000E 100%) !important;
+            color: #F7E6A7 !important;
+            box-shadow:
+                inset 0 0 0 2px rgba(212,175,55,.10),
+                inset 0 0 18px rgba(255,215,110,.04),
+                0 7px 18px rgba(0,0,0,.28),
+                0 0 10px rgba(212,175,55,.08);
+            font-family: "Noto Serif SC","Noto Serif",serif !important;
+            letter-spacing: .08em;
+            text-shadow: 0 1px 0 rgba(0,0,0,.35);
+            transition:
+                transform .22s ease,
+                box-shadow .22s ease,
+                border-color .22s ease,
+                background .22s ease;
+        }
+
+        /* inner seal frame */
+        .seal-btn::after,
+        button:not(.lang-btn):not(#music-toggle-btn):not(.gift-reveal-wrap)::after,
+        a[href="#rsvp"]::after,
+        .vuquy-map-link::after {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(212,175,55,.32);
+            border-radius: 6px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* subtle chopped-stone / stamp texture */
+        .seal-btn::before,
+        button:not(.lang-btn):not(#music-toggle-btn):not(.gift-reveal-wrap)::before,
+        a[href="#rsvp"]::before,
+        .vuquy-map-link::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            opacity: .38;
+            background-image:
+                repeating-linear-gradient(
+                    45deg,
+                    rgba(255,236,178,.035) 0 1px,
+                    transparent 1px 6px
+                ),
+                radial-gradient(circle at 20% 30%, rgba(255,235,170,.07), transparent 28%),
+                radial-gradient(circle at 78% 70%, rgba(0,0,0,.10), transparent 25%);
+            mix-blend-mode: screen;
+        }
+
+        .seal-btn:hover,
+        button:not(.lang-btn):not(#music-toggle-btn):not(.gift-reveal-wrap):hover,
+        a[href="#rsvp"]:hover,
+        .vuquy-map-link:hover {
+            transform: translateY(-1px) rotate(-.25deg);
+            border-color: #F3E5AB !important;
+            background:
+                linear-gradient(180deg, #B10021 0%, #860019 48%, #5C000F 100%) !important;
+            box-shadow:
+                inset 0 0 0 2px rgba(212,175,55,.14),
+                0 10px 22px rgba(0,0,0,.30),
+                0 0 16px rgba(212,175,55,.16);
+        }
+
+        .seal-btn:active,
+        button:not(.lang-btn):not(#music-toggle-btn):not(.gift-reveal-wrap):active,
+        a[href="#rsvp"]:active,
+        .vuquy-map-link:active {
+            transform: translateY(1px) scale(.985);
+            box-shadow:
+                inset 0 3px 10px rgba(0,0,0,.24),
+                0 4px 10px rgba(0,0,0,.20);
+        }
+
+        /* gold seal variant for the primary submit/copy actions */
+        .rsvp-submit-chinese,
+        .gift-account-details button,
+        #open-envelope-btn .wax-seal-button {
+            background:
+                linear-gradient(180deg,#E9C956 0%,#C89621 52%,#8B5A08 100%) !important;
+            color:#3A0905 !important;
+            border-color:#FFF0A8 !important;
+            text-shadow:none !important;
+        }
+
+        /* map button: compact red seal */
+        .vuquy-map-link {
+            padding: 5px 11px !important;
+            border-radius: 9px !important;
+            font-size: 9px !important;
+            line-height: 1;
+        }
+
+        /* top RSVP button stays compact but seal-like */
+        nav a[href="#rsvp"] {
+            padding-left: 14px !important;
+            padding-right: 14px !important;
+            border-radius: 9px !important;
+        }
+
+        /* language buttons are left pill-style for usability */
+        .lang-btn {
+            font-family: "Noto Serif SC","Noto Serif",serif !important;
+        }
+        .lang-btn.active {
+            background: linear-gradient(180deg,#E4C24C,#B98713) !important;
+            color:#3A0905 !important;
+            box-shadow: inset 0 0 0 1px rgba(255,244,190,.60);
+        }
+
+        /* add a tiny seal glyph to major actions */
+        .rsvp-submit-chinese span[data-i18n="btn_submit_rsvp"]::before,
+        .gift-account-details button span[data-i18n="btn_copy_stk"]::before,
+        .vuquy-map-link span::before,
+        nav a[href="#rsvp"]::before {
+            font-family: "Noto Serif SC","Noto Serif",serif;
+        }
+
+        @media (max-width:639px) {
+            button:not(.lang-btn):not(#music-toggle-btn):not(.gift-reveal-wrap),
+            a[href="#rsvp"],
+            .vuquy-map-link {
+                border-radius: 8px !important;
+            }
+            .seal-btn::after,
+            button:not(.lang-btn):not(#music-toggle-btn):not(.gift-reveal-wrap)::after,
+            a[href="#rsvp"]::after,
+            .vuquy-map-link::after {
+                inset: 3px;
+                border-radius: 5px;
+            }
+        }
+
+
+        /* ===== Wedding location section: fully unified Chinese style ===== */
+        #events {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 12% 18%, rgba(212,175,55,.08), transparent 22%),
+                radial-gradient(circle at 88% 82%, rgba(201,42,42,.10), transparent 24%),
+                linear-gradient(180deg,#3B000A 0%,#56000F 48%,#330007 100%);
+        }
+        #events::before {
+            content:"";
+            position:absolute;
+            inset:0;
+            pointer-events:none;
+            opacity:.38;
+            background-image:
+                repeating-linear-gradient(45deg,rgba(243,229,171,.024) 0 1px,transparent 1px 9px),
+                repeating-linear-gradient(-45deg,rgba(243,229,171,.018) 0 1px,transparent 1px 11px),
+                radial-gradient(circle at 1px 1px,rgba(255,231,173,.045) 1px,transparent 1.3px);
+            background-size:auto,auto,18px 18px;
+        }
+
+        .location-palace-card {
+            position:relative;
+            border-radius:26px;
+            padding:7px;
+            background:linear-gradient(135deg,#8E6508,#F3E5AB 34%,#D4AF37 56%,#7C5606);
+            box-shadow:0 24px 55px rgba(0,0,0,.42),0 0 24px rgba(212,175,55,.10);
+        }
+        .location-palace-inner {
+            position:relative;
+            border-radius:20px;
+            background:
+                radial-gradient(circle at 14% 14%,rgba(212,175,55,.07),transparent 24%),
+                linear-gradient(180deg,rgba(100,0,18,.98),rgba(45,0,8,.99));
+            border:1px solid rgba(243,229,171,.42);
+            padding:24px;
+            overflow:hidden;
+        }
+        .location-palace-inner::before {
+            content:"囍";
+            position:absolute;
+            right:-20px;
+            top:50%;
+            transform:translateY(-50%);
+            font-family:"Noto Serif SC","Noto Serif",serif;
+            font-size:180px;
+            line-height:1;
+            color:rgba(212,175,55,.025);
+            pointer-events:none;
+        }
+
+        .location-kicker {
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            padding:5px 10px;
+            border:1px solid rgba(212,175,55,.32);
+            border-radius:999px;
+            background:rgba(212,175,55,.07);
+            color:#F3E5AB;
+            font-family:"Noto Serif SC","Noto Serif",serif;
+            letter-spacing:.12em;
+        }
+
+        .location-venue-title {
+            font-family:"Noto Serif SC","Noto Serif","Playfair Display",serif !important;
+            text-shadow:0 2px 12px rgba(0,0,0,.28);
+        }
+
+        .location-info-list {
+            border-top:1px solid rgba(212,175,55,.18);
+            border-bottom:1px solid rgba(212,175,55,.12);
+            padding:14px 0;
+        }
+        .location-info-row {
+            display:grid;
+            grid-template-columns:42px 1fr;
+            gap:11px;
+            align-items:start;
+            padding:9px 0;
+        }
+        .location-info-icon {
+            width:36px;
+            height:36px;
+            border-radius:50%;
+            display:grid;
+            place-items:center;
+            border:1px solid rgba(212,175,55,.48);
+            background:radial-gradient(circle at 34% 28%,rgba(212,175,55,.16),rgba(72,0,12,.90));
+            color:#D4AF37;
+            box-shadow:inset 0 0 0 3px rgba(212,175,55,.03);
+        }
+        .location-info-row strong {
+            font-family:"Noto Serif SC","Noto Serif",serif;
+            color:#FFF3D2;
+            font-weight:700;
+        }
+        .location-info-row p {
+            font-family:"Noto Serif SC","Noto Serif",serif;
+        }
+
+        .location-map-frame {
+            position:relative;
+            border-radius:20px;
+            padding:5px;
+            background:linear-gradient(135deg,#8D6508,#F3E5AB 36%,#D4AF37 60%,#785307);
+            box-shadow:0 14px 30px rgba(0,0,0,.30);
+        }
+        .location-map-frame::before {
+            content:"地圖";
+            position:absolute;
+            top:8px;
+            left:50%;
+            transform:translateX(-50%);
+            z-index:3;
+            padding:3px 9px;
+            border-radius:999px;
+            background:rgba(66,0,11,.88);
+            border:1px solid rgba(212,175,55,.36);
+            color:#F3E5AB;
+            font-family:"Noto Serif SC","Noto Serif",serif;
+            font-size:9px;
+            letter-spacing:.14em;
+            pointer-events:none;
+        }
+        .location-map-inner {
+            border-radius:16px;
+            overflow:hidden;
+            background:#2B0007;
+            position:relative;
+        }
+        .location-map-inner::after {
+            content:"";
+            position:absolute;
+            inset:0;
+            pointer-events:none;
+            box-shadow:inset 0 0 28px rgba(72,0,12,.26);
+            border:1px solid rgba(94,0,16,.35);
+        }
+        .location-map-inner iframe {
+            filter:sepia(.18) saturate(.82) contrast(1.03) brightness(.94);
+        }
+
+        .location-corner {
+            position:absolute;
+            width:70px;
+            height:70px;
+            color:rgba(212,175,55,.52);
+            pointer-events:none;
+            z-index:1;
+        }
+        .location-corner.tl { top:10px; left:10px; }
+        .location-corner.tr { top:10px; right:10px; transform:scaleX(-1); }
+        .location-corner.bl { bottom:10px; left:10px; transform:scaleY(-1); }
+        .location-corner.br { bottom:10px; right:10px; transform:scale(-1); }
+
+        @media (max-width:639px) {
+            .location-palace-card { padding:4px; border-radius:19px; }
+            .location-palace-inner { padding:18px 14px; border-radius:15px; }
+            .location-corner { width:45px; height:45px; opacity:.65; }
+            .location-info-row { grid-template-columns:34px 1fr; gap:9px; padding:7px 0; }
+            .location-info-icon { width:30px; height:30px; }
+            .location-map-frame { padding:3px; border-radius:15px; }
+            .location-map-inner { border-radius:12px; }
+        }
+
+
+        /* ===== RSVP selects styled as antique Chinese scrolls ===== */
+        .rsvp-scroll-select-wrap {
+            position: relative;
+            padding: 0 10px;
+        }
+        .rsvp-scroll-select-wrap::before,
+        .rsvp-scroll-select-wrap::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: calc(100% + 8px);
+            border-radius: 6px;
+            z-index: 3;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg,#6A3A05 0%,#D2A238 45%,#F3D97C 55%,#8A5708 100%);
+            border: 1px solid rgba(255,239,171,.52);
+            box-shadow: 0 2px 6px rgba(0,0,0,.28);
+        }
+        .rsvp-scroll-select-wrap::before { left: 1px; }
+        .rsvp-scroll-select-wrap::after { right: 1px; }
+
+        .rsvp-scroll-select {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 100%;
+            padding: 13px 42px 13px 18px !important;
+            border-radius: 7px !important;
+            border-top: 1px solid rgba(243,229,171,.54) !important;
+            border-bottom: 1px solid rgba(243,229,171,.54) !important;
+            border-left: 0 !important;
+            border-right: 0 !important;
+            background:
+                linear-gradient(180deg,rgba(77,22,12,.96),rgba(39,8,7,.98)),
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(243,229,171,.025) 0 1px,
+                    transparent 1px 5px
+                ) !important;
+            color: #FFF3D1 !important;
+            font-family: "Noto Serif SC","Noto Serif",serif !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255,238,177,.04),
+                inset 0 -1px 0 rgba(0,0,0,.25),
+                0 5px 12px rgba(0,0,0,.18);
+            cursor: pointer;
+        }
+        .rsvp-scroll-select:hover,
+        .rsvp-scroll-select:focus {
+            border-top-color: #F3E5AB !important;
+            border-bottom-color: #F3E5AB !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255,238,177,.06),
+                0 0 0 2px rgba(212,175,55,.08),
+                0 6px 14px rgba(0,0,0,.20) !important;
+        }
+
+        .rsvp-scroll-arrow {
+            position: absolute;
+            right: 23px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 4;
+            pointer-events: none;
+            color: #D4AF37;
+            width: 14px;
+            height: 14px;
+            display: grid;
+            place-items: center;
+            font-size: 11px;
+            font-family: "Noto Serif SC","Noto Serif",serif;
+        }
+        .rsvp-scroll-arrow::before {
+            content: "◆";
+            font-size: 7px;
+        }
+
+        /* tiny cloud flourish behind select */
+        .rsvp-scroll-select-wrap .scroll-cloud {
+            position:absolute;
+            left:18px;
+            top:-7px;
+            color:rgba(212,175,55,.24);
+            font-size:11px;
+            pointer-events:none;
+            z-index:4;
+            font-family:"Noto Serif SC","Noto Serif",serif;
+        }
+
+        /* ===== Restore wax seal: exclude it from seal-button system ===== */
+        #open-envelope-btn {
+            border: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            border-radius: 999px !important;
+            color: inherit !important;
+            padding: 0 !important;
+            letter-spacing: normal !important;
+            text-shadow: none !important;
+            overflow: visible !important;
+        }
+        #open-envelope-btn::before,
+        #open-envelope-btn::after {
+            content: none !important;
+            display: none !important;
+        }
+        #open-envelope-btn:hover,
+        #open-envelope-btn:active {
+            transform: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            border-color: transparent !important;
+        }
+
+        .wax-seal-button {
+            background:
+                radial-gradient(circle at 35% 28%, #C92A2A 0%, #9D001C 38%, #720014 72%, #48000B 100%) !important;
+            border: 2px solid rgba(115,0,18,.90) !important;
+            box-shadow:
+                0 10px 18px rgba(0,0,0,.38),
+                0 0 0 3px rgba(212,175,55,.18),
+                inset 0 0 0 3px rgba(255,126,126,.05),
+                inset 0 -7px 12px rgba(48,0,7,.30) !important;
+            color: #F3E5AB !important;
+            border-radius: 999px !important;
+        }
+        .wax-seal-button > div {
+            border-color: rgba(212,175,55,.72) !important;
+            background: rgba(92,0,15,.22) !important;
+        }
+        .wax-seal-button span {
+            color: #F3E5AB !important;
+            text-shadow: 0 1px 2px rgba(0,0,0,.32) !important;
+        }
+
+        @media (max-width:639px) {
+            .rsvp-scroll-select-wrap { padding: 0 8px; }
+            .rsvp-scroll-select-wrap::before,
+            .rsvp-scroll-select-wrap::after {
+                width: 10px;
+                height: calc(100% + 6px);
+            }
+            .rsvp-scroll-select {
+                padding: 12px 34px 12px 14px !important;
+            }
+            .rsvp-scroll-arrow { right: 18px; }
+        }
+
+
+        /* ===== RSVP custom dropdown: replaces browser default option popup ===== */
+        .rsvp-scroll-select-wrap.is-customized .rsvp-scroll-select {
+            position: absolute !important;
+            inset: 0 10px !important;
+            width: calc(100% - 20px) !important;
+            height: 100% !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        .rsvp-custom-trigger {
+            position: relative;
+            width: 100%;
+            min-height: 44px;
+            padding: 12px 42px 12px 18px;
+            border-radius: 7px;
+            border-top: 1px solid rgba(243,229,171,.54);
+            border-bottom: 1px solid rgba(243,229,171,.54);
+            border-left: 0;
+            border-right: 0;
+            background:
+                linear-gradient(180deg,rgba(77,22,12,.96),rgba(39,8,7,.98)),
+                repeating-linear-gradient(0deg,rgba(243,229,171,.025) 0 1px,transparent 1px 5px);
+            color: #FFF3D1;
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: .875rem;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+            box-shadow: inset 0 1px 0 rgba(255,238,177,.04), inset 0 -1px 0 rgba(0,0,0,.25), 0 5px 12px rgba(0,0,0,.18);
+            transition: border-color .22s ease, box-shadow .22s ease, background .22s ease;
+        }
+        .rsvp-custom-trigger:hover,
+        .rsvp-custom-trigger:focus,
+        .rsvp-scroll-select-wrap.is-open .rsvp-custom-trigger {
+            border-top-color: #F3E5AB;
+            border-bottom-color: #F3E5AB;
+            box-shadow: inset 0 1px 0 rgba(255,238,177,.06), 0 0 0 2px rgba(212,175,55,.09), 0 7px 16px rgba(0,0,0,.24);
+        }
+        .rsvp-scroll-select-wrap.is-open .rsvp-scroll-arrow {
+            transform: translateY(-50%) rotate(45deg) scale(.92);
+            filter: drop-shadow(0 0 5px rgba(243,229,171,.5));
+        }
+        .rsvp-custom-menu {
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            top: calc(100% + 9px);
+            z-index: 60;
+            padding: 7px;
+            border: 1px solid rgba(243,229,171,.62);
+            border-radius: 12px;
+            background:
+                radial-gradient(circle at 15% 8%, rgba(212,175,55,.10), transparent 25%),
+                linear-gradient(180deg, #4B000D 0%, #2A0007 100%);
+            box-shadow: 0 18px 38px rgba(0,0,0,.46), 0 0 0 1px rgba(212,175,55,.12), inset 0 0 22px rgba(212,175,55,.035);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-7px) scale(.985);
+            transform-origin: top center;
+            transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+            overflow: hidden;
+        }
+        .rsvp-scroll-select-wrap.is-open .rsvp-custom-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .rsvp-custom-menu::before {
+            content: "囍";
+            position: absolute;
+            right: -7px;
+            bottom: -20px;
+            color: rgba(212,175,55,.055);
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: 64px;
+            line-height: 1;
+            pointer-events: none;
+        }
+        .rsvp-custom-option {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            width: 100%;
+            padding: 10px 12px;
+            margin: 1px 0;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background: transparent;
+            color: rgba(255,243,209,.86);
+            font-family: "Noto Serif SC","Noto Serif",serif;
+            font-size: 13px;
+            text-align: left;
+            cursor: pointer;
+            transition: background .16s ease, color .16s ease, border-color .16s ease, transform .16s ease;
+        }
+        .rsvp-custom-option::before {
+            content: "◆";
+            color: rgba(212,175,55,.48);
+            font-size: 6px;
+            flex: 0 0 auto;
+        }
+        .rsvp-custom-option:hover,
+        .rsvp-custom-option:focus {
+            outline: none;
+            color: #FFF8DB;
+            border-color: rgba(212,175,55,.32);
+            background: linear-gradient(90deg, rgba(140,0,27,.85), rgba(88,0,16,.72));
+            transform: translateX(2px);
+        }
+        .rsvp-custom-option[aria-selected="true"] {
+            color: #2A1004;
+            font-weight: 700;
+            border-color: rgba(255,244,191,.58);
+            background: linear-gradient(135deg,#AA820A 0%,#D4AF37 48%,#F3E5AB 100%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 3px 10px rgba(0,0,0,.18);
+        }
+        .rsvp-custom-option[aria-selected="true"]::before { color: #6B4423; }
+
+        @media (max-width:639px) {
+            .rsvp-scroll-select-wrap.is-customized .rsvp-scroll-select {
+                inset: 0 8px !important;
+                width: calc(100% - 16px) !important;
+            }
+            .rsvp-custom-trigger { padding: 11px 34px 11px 14px; font-size: .75rem; }
+            .rsvp-custom-menu { left: 8px; right: 8px; top: calc(100% + 7px); }
+            .rsvp-custom-option { padding: 10px 11px; font-size: 12px; }
+        }
+
+</style>
 </head>
 <body class="bg-crimson-deep text-ivory font-sans relative overflow-x-hidden selection:bg-gold selection:text-crimson-dark">
 
@@ -2177,25 +3012,99 @@
                 <div class="w-20 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-4 mb-7"></div>
             </div>
 
-            <div class="oriental-card bg-gradient-to-br from-[#640014] via-[#4B000D] to-[#2B0007] border border-gold/50 rounded-2xl sm:rounded-3xl shadow-2xl px-4 py-6 sm:p-8 reveal-zoom">
-                <div class="grid grid-cols-2 gap-3 sm:gap-8 text-center">
-                    <div class="min-w-0 border-r border-gold/25 pr-2 sm:pr-6">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-full border border-gold/50 bg-gold/10 flex items-center justify-center text-gold mb-3">
+            <div class="oriental-card bg-gradient-to-br from-[#640014] via-[#4B000D] to-[#2B0007] border border-gold/50 rounded-2xl sm:rounded-3xl shadow-2xl px-2 py-6 sm:px-5 sm:py-8 reveal-zoom">
+                <div class="vuquy-three-grid">
+                    <!-- Time -->
+                    <div class="vuquy-info-col">
+                        <div class="vuquy-info-icon">
                             <i data-lucide="calendar-days" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <p data-i18n="vuquy_time_label" class="oriental-kicker text-[9px] sm:text-xs text-gold/80 font-bold uppercase mb-1">Thời Gian</p>
-                        <p data-i18n="vuquy_time" class="font-serif text-[11px] sm:text-base md:text-lg font-semibold text-ivory leading-relaxed">Sáng Thứ Bảy<br>10/10/2026</p>
+                        <p data-i18n="vuquy_time_label" class="oriental-kicker text-[8px] sm:text-xs text-gold/80 font-bold uppercase mb-1">Thời Gian</p>
+                        <p data-i18n="vuquy_time" class="font-serif text-[10px] sm:text-sm md:text-base font-semibold text-ivory leading-relaxed">Sáng Thứ Bảy<br>10/10/2026</p>
                     </div>
-                    <div class="min-w-0 pl-2 sm:pl-6">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-full border border-gold/50 bg-gold/10 flex items-center justify-center text-gold mb-3">
+
+                    <!-- Location -->
+                    <div class="vuquy-info-col">
+                        <div class="vuquy-info-icon">
                             <i data-lucide="map-pin" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <p data-i18n="vuquy_location_label" class="oriental-kicker text-[9px] sm:text-xs text-gold/80 font-bold uppercase mb-1">Địa Điểm</p>
-                        <p data-i18n="vuquy_location" class="font-serif text-[11px] sm:text-base md:text-lg font-semibold text-ivory leading-relaxed">Nhà Hàng<br>Ái Huê 2</p>
+                        <p data-i18n="vuquy_location_label" class="oriental-kicker text-[8px] sm:text-xs text-gold/80 font-bold uppercase mb-1">Địa Điểm</p>
+                        <p data-i18n="vuquy_location" class="font-serif text-[10px] sm:text-sm md:text-base font-semibold text-ivory leading-relaxed">Nhà Hàng<br>Ái Huê 2</p>
+                        <a class="vuquy-map-link seal-btn"
+                           href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0+H%C3%A0ng+%C3%81i+Hu%C3%AA+2%2C+338+Tr%E1%BA%A7n+H%C6%B0ng+%C4%90%E1%BA%A1o%2C+Qu%E1%BA%ADn+5%2C+TP.HCM"
+                           target="_blank" rel="noopener noreferrer" aria-label="Google Maps - Nhà Hàng Ái Huê 2">
+                            <i data-lucide="navigation" class="w-3 h-3"></i>
+                            <span data-i18n="vuquy_map">Chỉ đường</span>
+                        </a>
+                    </div>
+
+                    <!-- Lunar / Zodiac -->
+                    <div class="vuquy-info-col">
+                        <div class="vuquy-zodiac-medallion" aria-hidden="true">
+                            <svg viewBox="0 0 120 120" fill="none">
+                                <!-- serious, recognisable full-body horse -->
+                                <path d="M27 79
+                                         C31 66 38 57 49 53
+                                         C58 49 69 50 78 53
+                                         C82 48 84 41 85 33
+                                         L93 20
+                                         L96 34
+                                         L105 38
+                                         C110 40 111 47 106 51
+                                         C102 54 98 55 92 56
+                                         C90 65 86 72 80 78
+                                         L84 101
+                                         L75 101
+                                         L69 80
+                                         L49 80
+                                         L43 101
+                                         L34 101
+                                         L37 78
+                                         C32 81 29 81 27 79Z"
+                                      fill="#8A4D08"
+                                      stroke="#FFF0A8"
+                                      stroke-width="2.6"
+                                      stroke-linejoin="round"/>
+                                <!-- neck / mane -->
+                                <path d="M79 53C72 48 70 42 74 34C77 29 81 25 86 22"
+                                      stroke="#FFF0A8" stroke-width="2.4" stroke-linecap="round"/>
+                                <path d="M82 48C78 45 77 40 79 35M86 44C82 41 82 36 84 31"
+                                      stroke="#5E2D04" stroke-width="2.2" stroke-linecap="round"/>
+                                <!-- tail -->
+                                <path d="M39 60C28 56 19 60 14 69C21 64 27 66 32 72"
+                                      stroke="#FFF0A8" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M39 63C30 62 25 66 22 73"
+                                      stroke="#6D3404" stroke-width="2.2" stroke-linecap="round"/>
+                                <!-- legs -->
+                                <path d="M48 79L46 101M70 79L73 101"
+                                      stroke="#FFF0A8" stroke-width="2.5" stroke-linecap="round"/>
+                                <!-- head details -->
+                                <circle cx="99" cy="43" r="1.9" fill="#FFF0A8"/>
+                                <path d="M104 49C101 51 97 51 94 50"
+                                      stroke="#FFF0A8" stroke-width="1.9" stroke-linecap="round"/>
+                                <!-- ears -->
+                                <path d="M90 29L86 18L94 26M97 31L99 20L102 32"
+                                      fill="#8A4D08" stroke="#FFF0A8" stroke-width="1.8" stroke-linejoin="round"/>
+                                <!-- traditional saddle -->
+                                <path d="M49 53C58 57 69 58 78 53L76 70H50Z"
+                                      fill="#9D001C" stroke="#F3E5AB" stroke-width="2"/>
+                                <circle cx="63" cy="62" r="6.2" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+                                <path d="M63 56V68M57 62H69" stroke="#D4AF37" stroke-width="1.2"/>
+                                <!-- ground -->
+                                <path d="M18 104H103" stroke="#FFF0A8" stroke-width="1.8" stroke-linecap="round" opacity=".75"/>
+                            </svg>
+                        </div>
+                        <p data-i18n="vuquy_lunar_label" class="oriental-kicker text-[8px] sm:text-xs text-gold/80 font-bold uppercase mb-1">Lịch Âm</p>
+                        <p data-i18n="vuquy_lunar_main" class="font-serif text-[9px] sm:text-sm md:text-base font-semibold text-ivory leading-relaxed">Mùng 01 tháng 09 • Năm Bính Ngọ</p>
+                        <p data-i18n="vuquy_lunar_sub" class="font-serif text-[8px] sm:text-xs text-ivory/65 leading-relaxed mt-1">Ngày Đinh Tỵ • Tháng Mậu Tuất</p>
+                        <p class="font-serif text-[8px] sm:text-xs text-gold-light mt-1">
+                            <span data-i18n="vuquy_zodiac">Năm con Ngựa</span>
+                        </p>
                     </div>
                 </div>
+
                 <div class="mt-6 pt-4 border-t border-gold/20 text-center">
-                    <span class="font-serif text-gold/80 text-sm tracking-[0.35em]">百年好合 • 永結同心</span>
+                    <span class="font-serif text-gold/80 text-[10px] sm:text-sm tracking-[0.25em] sm:tracking-[0.35em]">百年好合 • 永結同心</span>
                 </div>
             </div>
                         </div>
@@ -2662,81 +3571,108 @@
     </section>
 
     <!-- 7. EVENT LOCATION & GOOGLE MAPS -->
-    <section id="events" class="py-16 px-4 max-w-5xl mx-auto">
-        <div class="text-center mb-12">
-            <span data-i18n="loc_subtitle" class="text-xs font-bold uppercase tracking-widest text-gold reveal-init">THỜI GIAN &amp; ĐỊA ĐIỂM</span>
-            <h2 data-i18n="loc_title" class="font-serif text-3xl md:text-4xl font-bold text-ivory mt-1 reveal-init">Tiệc Cưới Trọng Đại</h2>
-            <div class="w-16 h-0.5 bg-gold mx-auto mt-3 reveal-zoom"></div>
-        </div>
+    <section id="events" class="py-16 px-4">
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="text-center mb-10">
+                <span data-i18n="loc_subtitle" class="text-xs font-bold uppercase tracking-[0.22em] text-gold reveal-init">THỜI GIAN &amp; ĐỊA ĐIỂM</span>
+                <h2 data-i18n="loc_title" class="font-serif text-3xl md:text-4xl font-bold text-ivory mt-1 reveal-init">Tiệc Cưới Trọng Đại</h2>
+                <div class="cn-mini-ornament mt-3">良辰 • 囍 • 吉地</div>
+            </div>
 
-        <div class="bg-crimson-dark rounded-3xl p-6 md:p-10 border-2 border-gold/40 shadow-2xl overflow-hidden reveal-init">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                
-                <div class="lg:col-span-6 space-y-6">
-                    <div data-i18n="loc_badge" class="inline-flex items-center gap-2 text-gold font-bold text-xs uppercase bg-gold/10 px-4 py-1.5 rounded-full border border-gold/30">
-                        <i data-lucide="map-pin" class="w-4 h-4"></i> ĐỊA ĐIỂM DUY NHẤT
-                    </div>
+            <div class="location-palace-card reveal-init">
+                <div class="location-palace-inner">
+                    <svg class="location-corner tl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                        <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    </svg>
+                    <svg class="location-corner tr" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                        <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    </svg>
+                    <svg class="location-corner bl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                        <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    </svg>
+                    <svg class="location-corner br" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                        <path d="M4 30c14 0 14-14 27-14 8 0 9 7 16 7 8 0 8-10 21-10M4 43c10 0 11-9 19-9 7 0 8 6 15 6 9 0 9-11 22-11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M5 5v27M5 5h27M11 11h15M11 11v15" stroke="currentColor" stroke-width="1.2"/>
+                    </svg>
 
-                    <div>
-                        <h3 data-i18n="loc_venue_name" class="font-serif text-2xl sm:text-3xl font-bold text-gold">Trung Tâm Hội Nghị - Tiệc Cưới Riverside Palace</h3>
-                        <p data-i18n="loc_hall_name" class="font-serif text-lg text-ivory mt-1">Sảnh Nile (Tầng 1)</p>
-                    </div>
+                    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-8 items-start">
+                        <div class="lg:col-span-6">
+                            <div data-i18n="loc_badge" class="location-kicker text-[10px] sm:text-xs font-bold uppercase mb-4">
+                                <i data-lucide="map-pin" class="w-4 h-4"></i> ĐỊA ĐIỂM DUY NHẤT
+                            </div>
 
-                    <div class="space-y-4 text-xs md:text-sm text-ivory/90 pt-2 border-t border-gold/20">
-                        <div class="flex items-start gap-3">
-                            <i data-lucide="calendar" class="w-5 h-5 text-gold shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong data-i18n="loc_date_txt">Chủ Nhật, ngày 11 tháng 10 năm 2026</strong>
-                                <p data-i18n="loc_lunar_txt" class="text-gold-light text-xs mt-0.5">(Tức ngày 02 tháng 09 năm Bính Ngọ - Âm Lịch)</p>
+                            <div class="mb-5">
+                                <h3 data-i18n="loc_venue_name" class="location-venue-title text-2xl sm:text-3xl font-bold text-gold leading-tight">
+                                    Trung Tâm Hội Nghị - Tiệc Cưới Riverside Palace
+                                </h3>
+                                <p data-i18n="loc_hall_name" class="font-serif text-base sm:text-lg text-ivory mt-2">
+                                    Sảnh Nile (Tầng 1)
+                                </p>
+                            </div>
+
+                            <div class="location-info-list">
+                                <div class="location-info-row">
+                                    <div class="location-info-icon"><i data-lucide="calendar" class="w-4 h-4"></i></div>
+                                    <div>
+                                        <strong data-i18n="loc_date_txt" class="block text-xs sm:text-sm">Chủ Nhật, ngày 11 tháng 10 năm 2026</strong>
+                                        <p data-i18n="loc_lunar_txt" class="text-gold-light/85 text-[10px] sm:text-xs mt-1">(Tức ngày 02 tháng 09 năm Bính Ngọ - Âm Lịch)</p>
+                                    </div>
+                                </div>
+
+                                <div class="location-info-row">
+                                    <div class="location-info-icon"><i data-lucide="clock" class="w-4 h-4"></i></div>
+                                    <div>
+                                        <strong data-i18n="loc_time_txt" class="block text-xs sm:text-sm">Đón Khách: 18:00 | Nghi Lễ: 18:30 - 18:45 | Khai Tiệc: 19:00</strong>
+                                        <p data-i18n="loc_time_sub" class="text-ivory/65 text-[10px] sm:text-xs mt-1">Rất mong quý khách có mặt đúng giờ để chung vui cùng gia đình</p>
+                                    </div>
+                                </div>
+
+                                <div class="location-info-row">
+                                    <div class="location-info-icon"><i data-lucide="navigation" class="w-4 h-4"></i></div>
+                                    <div>
+                                        <strong data-i18n="loc_address_txt" class="block text-xs sm:text-sm">360D Bến Vân Đồn, Phường 1, Quận 4, TP. Hồ Chí Minh</strong>
+                                        <p data-i18n="loc_parking_txt" class="text-ivory/65 text-[10px] sm:text-xs mt-1">Có bãi đỗ xe ô tô và xe máy rộng rãi, thuận tiện</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-5 grid grid-cols-2 gap-3">
+                                <a href="https://www.google.com/maps/place/Trung+T%C3%A2m+H%E1%BB%99i+Ngh%E1%BB%8B+-+Ti%E1%BB%87c+C%C6%B0%E1%BB%9Bi+Riverside+Palace/@10.7548545,106.6853873,17z/data=!3m1!4b1!4m6!3m5!1s0x31752f0fc935b50d:0xc11b8be0344d1561!8m2!3d10.7548545!4d106.6879622"
+                                   target="_blank" rel="noopener noreferrer"
+                                   class="seal-btn inline-flex items-center justify-center gap-2 py-3 px-3 text-[10px] sm:text-xs font-bold">
+                                    <i data-lucide="map" class="w-4 h-4"></i>
+                                    <span data-i18n="btn_open_maps">Mở Google Maps</span>
+                                </a>
+                                <a href="#calendar-save"
+                                   class="seal-btn inline-flex items-center justify-center gap-2 py-3 px-3 text-[10px] sm:text-xs font-bold">
+                                    <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                                    <span data-i18n="btn_mark_calendar">Đánh Dấu Lịch</span>
+                                </a>
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-3">
-                            <i data-lucide="clock" class="w-5 h-5 text-gold shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong data-i18n="loc_time_txt">Đón Khách: 18:00 | Nghi Lễ: 18:30 - 18:45 | Khai Tiệc: 19:00</strong>
-                                <p data-i18n="loc_time_sub" class="text-ivory/70 text-xs mt-0.5">Rất mong quý khách có mặt đúng giờ để chung vui cùng gia đình</p>
+                        <div class="lg:col-span-6">
+                            <div class="location-map-frame">
+                                <div class="location-map-inner w-full h-80 sm:h-96">
+                                    <iframe
+                                        title="Google Maps Riverside Palace 360D Bến Vân Đồn Quận 4"
+                                        src="https://maps.google.com/maps?q=Trung+T%C3%A2m+H%E1%BB%99i+Ngh%E1%BB%8B+-+Ti%E1%BB%87c+C%C6%B0%E1%BB%9Bi+Riverside+Palace,+360D+B%E1%BA%BFn+V%C3%A2n+%C4%90%E1%BB%93n,+Ph%C6%B0%E1%BB%9Dng+1,+Qu%E1%BA%ADn+4,+H%E1%BB%93+Ch%C3%AD+Minh&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                                        width="100%"
+                                        height="100%"
+                                        style="border:0;"
+                                        allowfullscreen=""
+                                        loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade"
+                                        class="w-full h-full">
+                                    </iframe>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="flex items-start gap-3">
-                            <i data-lucide="navigation" class="w-5 h-5 text-gold shrink-0 mt-0.5"></i>
-                            <div>
-                                <strong data-i18n="loc_address_txt">360D Bến Vân Đồn, Phường 1, Quận 4, TP. Hồ Chí Minh</strong>
-                                <p data-i18n="loc_parking_txt" class="text-ivory/70 text-xs mt-0.5">Có bãi đỗ xe ô tô và xe máy rộng rãi, thuận tiện</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-4 flex flex-wrap gap-3">
-                        <a href="https://www.google.com/maps/place/Trung+T%C3%A2m+H%E1%BB%99i+Ngh%E1%BB%8B+-+Ti%E1%BB%87c+C%C6%B0%E1%BB%9Bi+Riverside+Palace/@10.7548545,106.6853873,17z/data=!3m1!4b1!4m6!3m5!1s0x31752f0fc935b50d:0xc11b8be0344d1561!8m2!3d10.7548545!4d106.6879622" 
-                           target="_blank" rel="noopener noreferrer" 
-                           class="flex-1 min-w-[150px] inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-gold text-retro-dark text-xs font-bold hover:bg-gold-light transition-all shadow-md">
-                            <i data-lucide="map" class="w-4 h-4"></i> <span data-i18n="btn_open_maps">Mở Google Maps</span>
-                        </a>
-                        <a href="#calendar-save" 
-                           class="flex-1 min-w-[150px] inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl border border-gold text-gold text-xs font-semibold hover:bg-gold/10 transition-all">
-                            <i data-lucide="calendar-check" class="w-4 h-4"></i> <span data-i18n="btn_mark_calendar">Đánh Dấu Lịch</span>
-                        </a>
                     </div>
                 </div>
-
-                <div class="lg:col-span-6">
-                    <div class="w-full h-80 sm:h-96 rounded-2xl overflow-hidden border-2 border-gold/40 shadow-inner relative bg-retro-dark">
-                        <iframe 
-                            title="Google Maps Riverside Palace 360D Bến Vân Đồn Quận 4"
-                            src="https://maps.google.com/maps?q=Trung+T%C3%A2m+H%E1%BB%99i+Ngh%E1%BB%8B+-+Ti%E1%BB%87c+C%C6%B0%E1%BB%9Bi+Riverside+Palace,+360D+B%E1%BA%BFn+V%C3%A2n+%C4%90%E1%BB%93n,+Ph%C6%B0%E1%BB%9Dng+1,+Qu%E1%BA%ADn+4,+H%E1%BB%93+Ch%C3%AD+Minh&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            class="w-full h-full grayscale-[15%] contrast-[1.05]">
-                        </iframe>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
@@ -2993,33 +3929,33 @@
                             </div>
                             <div class="rsvp-field">
                                 <label data-i18n="rsvp_lbl_attend" class="block text-xs font-semibold text-gold uppercase mb-2">Xác nhận tham dự *</label>
-                                <select id="rsvp-attend" required class="rsvp-input-chinese w-full px-4 py-2.5 text-white outline-none text-xs md:text-sm">
+                                <div class="rsvp-scroll-select-wrap"><span class="scroll-cloud" aria-hidden="true">祥云</span><select id="rsvp-attend" required class="rsvp-scroll-select rsvp-input-chinese w-full px-4 py-2.5 text-white outline-none text-xs md:text-sm">
                                     <option value="Chắc chắn tham dự" data-i18n="rsvp_opt_yes">Chắc chắn tham dự</option>
                                     <option value="Rất tiếc không thể đến" data-i18n="rsvp_opt_no">Rất tiếc không thể đến</option>
-                                </select>
+                                </select><span class="rsvp-scroll-arrow" aria-hidden="true"></span></div>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div class="rsvp-field">
                                 <label data-i18n="rsvp_lbl_count" class="block text-xs font-semibold text-gold uppercase mb-2">Số lượng người đi cùng</label>
-                                <select id="rsvp-count" class="rsvp-input-chinese w-full px-4 py-2.5 text-white outline-none text-xs md:text-sm">
+                                <div class="rsvp-scroll-select-wrap"><span class="scroll-cloud" aria-hidden="true">祥云</span><select id="rsvp-count" class="rsvp-scroll-select rsvp-input-chinese w-full px-4 py-2.5 text-white outline-none text-xs md:text-sm">
                                     <option value="1 người" data-i18n="rsvp_count_1">Đi 1 người</option>
                                     <option value="2 người" data-i18n="rsvp_count_2">Đi 2 người (+1)</option>
                                     <option value="Gia đình" data-i18n="rsvp_count_fam">Đi cùng gia đình</option>
-                                </select>
+                                </select><span class="rsvp-scroll-arrow" aria-hidden="true"></span></div>
                             </div>
                             <div class="rsvp-field">
                                 <label data-i18n="rsvp_lbl_meal" class="block text-xs font-semibold text-gold uppercase mb-2">Khẩu vị tiệc</label>
-                                <select id="rsvp-meal" class="rsvp-input-chinese w-full px-4 py-2.5 text-white outline-none text-xs md:text-sm">
+                                <div class="rsvp-scroll-select-wrap"><span class="scroll-cloud" aria-hidden="true">祥云</span><select id="rsvp-meal" class="rsvp-scroll-select rsvp-input-chinese w-full px-4 py-2.5 text-white outline-none text-xs md:text-sm">
                                     <option value="Tiệc mặn" data-i18n="rsvp_meal_meat">Tiệc mặn truyền thống</option>
                                     <option value="Tiệc chay" data-i18n="rsvp_meal_veg">Tiệc chay thanh tịnh</option>
-                                </select>
+                                </select><span class="rsvp-scroll-arrow" aria-hidden="true"></span></div>
                             </div>
                         </div>
 
                         <div class="pt-1">
-                            <button type="submit" class="rsvp-submit-chinese w-full py-3.5 text-retro-dark font-black transition-all flex items-center justify-center gap-2 text-sm cursor-pointer hover:-translate-y-0.5">
+                            <button type="submit" class="rsvp-submit-chinese seal-btn w-full py-3.5 text-retro-dark font-black transition-all flex items-center justify-center gap-2 text-sm cursor-pointer hover:-translate-y-0.5">
                                 <span class="font-serif text-lg">囍</span>
                                 <span data-i18n="btn_submit_rsvp">XÁC NHẬN GỬI RSVP</span>
                                 <span class="font-serif text-lg">囍</span>
@@ -3074,30 +4010,7 @@
                     <button type="button" class="gift-reveal-wrap" onclick="toggleGiftQR(this)" aria-expanded="false" aria-label="Reveal QR code">
                         <span class="gift-reveal-inner">
                             <span class="gift-reveal-face gift-reveal-front">
-                                <svg class="ancient-coin" viewBox="0 0 120 120" aria-hidden="true">
-    <defs>
-        <radialGradient id="coinGoldGroom" cx="34%" cy="28%" r="72%">
-            <stop offset="0%" stop-color="#FFF0A8"/>
-            <stop offset="28%" stop-color="#EBC75A"/>
-            <stop offset="62%" stop-color="#B98214"/>
-            <stop offset="100%" stop-color="#6F4305"/>
-        </radialGradient>
-        <linearGradient id="coinEdgeGroom" x1="0" x2="1">
-            <stop stop-color="#8B5808"/><stop offset=".5" stop-color="#F5DE79"/><stop offset="1" stop-color="#805006"/>
-        </linearGradient>
-    </defs>
-    <circle cx="60" cy="60" r="51" fill="url(#coinGoldGroom)" stroke="url(#coinEdgeGroom)" stroke-width="5"/>
-    <circle cx="60" cy="60" r="43" fill="none" stroke="#7C4B06" stroke-width="1.4" opacity=".65"/>
-    <rect x="48" y="48" width="24" height="24" rx="1.5" fill="#4A1804" stroke="#F7DF79" stroke-width="2"/>
-    <g fill="#5D3305" font-family="Noto Serif SC, serif" font-size="16" font-weight="800" text-anchor="middle">
-        <text x="60" y="35">招</text><text x="60" y="98">寶</text>
-        <text x="27" y="66">財</text><text x="93" y="66">進</text>
-    </g>
-    <g fill="none" stroke="#6E3B05" stroke-width="1.5" opacity=".72">
-        <path d="M31 41c7-8 13-10 18-9M89 41c-7-8-13-10-18-9M31 79c7 8 13 10 18 9M89 79c-7 8-13 10-18 9"/>
-        <path d="M22 53c5-2 8-5 10-10M98 53c-5-2-8-5-10-10M22 67c5 2 8 5 10 10M98 67c-5 2-8 5-10 10"/>
-    </g>
-</svg>
+                                <img class="gift-gold-ingot-img" src="img/thoivang.png" alt="Thỏi vàng" loading="lazy">
                             </span>
                             <span class="gift-reveal-face gift-reveal-back">
                                 <img src="img/MSB_QR.jpg" alt="VietQR Groom" loading="lazy">
@@ -3109,7 +4022,7 @@
                     <h4 data-i18n="gift_bank_mb" class="font-serif text-[11px] sm:text-base font-bold text-ivory leading-tight">Ngân Hàng MSB</h4>
                     <p class="text-[9px] sm:text-xs text-ivory/80 mb-1 leading-tight"><span data-i18n="gift_acc_holder">Chủ TK:</span> <strong>LA CHAN CO</strong></p>
                     <p class="text-[10px] sm:text-sm font-mono font-bold text-gold mb-3 sm:mb-4 break-all">04401015938449</p>
-                    <button onclick="copyToClipboard('04401015938449', 'groom')" class="w-full py-2 sm:py-2.5 px-1 border border-gold text-gold hover:bg-gold hover:text-retro-dark rounded-xl text-[9px] sm:text-xs font-bold uppercase transition-colors flex items-center justify-center gap-1 sm:gap-2 cursor-pointer">
+                    <button onclick="copyToClipboard('04401015938449', 'groom')" class="seal-btn w-full py-2 sm:py-2.5 px-1 text-[9px] sm:text-xs font-bold uppercase transition-colors flex items-center justify-center gap-1 sm:gap-2 cursor-pointer">
                         <i data-lucide="copy" class="w-4 h-4"></i> <span data-i18n="btn_copy_stk">Sao Chép STK</span>
                     </button>
                     </div>
@@ -3155,7 +4068,7 @@
                     <h4 data-i18n="gift_bank_vcb" class="font-serif text-[11px] sm:text-base font-bold text-ivory leading-tight">Ngân Hàng Vietcombank</h4>
                     <p class="text-[9px] sm:text-xs text-ivory/80 mb-1 leading-tight"><span data-i18n="gift_acc_holder">Chủ TK:</span> <strong>HUYNH HAO NGHI</strong></p>
                     <p class="text-[10px] sm:text-sm font-mono font-bold text-gold mb-3 sm:mb-4 break-all">0071001234567</p>
-                    <button onclick="copyToClipboard('0071001234567', 'bride')" class="w-full py-2 sm:py-2.5 px-1 border border-gold text-gold hover:bg-gold hover:text-retro-dark rounded-xl text-[9px] sm:text-xs font-bold uppercase transition-colors flex items-center justify-center gap-1 sm:gap-2 cursor-pointer">
+                    <button onclick="copyToClipboard('0071001234567', 'bride')" class="seal-btn w-full py-2 sm:py-2.5 px-1 text-[9px] sm:text-xs font-bold uppercase transition-colors flex items-center justify-center gap-1 sm:gap-2 cursor-pointer">
                         <i data-lucide="copy" class="w-4 h-4"></i> <span data-i18n="btn_copy_stk">Sao Chép STK</span>
                     </button>
                     </div>
@@ -3242,6 +4155,11 @@
                 vuquy_time: "Sáng Thứ Bảy<br>10/10/2026",
                 vuquy_location_label: "Địa Điểm",
                 vuquy_location: "Nhà Hàng<br>Ái Huê 2",
+                vuquy_map: "Chỉ đường",
+                vuquy_lunar_label: "Lịch Âm",
+                vuquy_lunar_main: "Mùng 01 tháng 09 • Năm Bính Ngọ",
+                vuquy_lunar_sub: "Ngày Đinh Tỵ • Tháng Mậu Tuất",
+                vuquy_zodiac: "Năm con Ngựa",
                 cd_subtitle: "CÙNG ĐẾM NGƯỢC THỜI GIAN",
                 cd_title: "Đếm Ngược Tới Ngày Trọng Đại",
                 cd_days: "Ngày",
@@ -3388,6 +4306,11 @@
                 vuquy_time: "2026年10月10日<br>星期六上午",
                 vuquy_location_label: "地點",
                 vuquy_location: "Ái Huê 2<br>酒樓",
+                vuquy_map: "導航",
+                vuquy_lunar_label: "農曆",
+                vuquy_lunar_main: "九月初一 • 丙午年",
+                vuquy_lunar_sub: "丁巳日 • 戊戌月",
+                vuquy_zodiac: "生肖 • 馬",
                 cd_subtitle: "倒計時迎接良辰",
                 cd_title: "距離我們的婚禮還有",
                 cd_days: "天",
@@ -3534,6 +4457,11 @@
                 vuquy_time: "2026年10月10日（土）<br>午前",
                 vuquy_location_label: "会場",
                 vuquy_location: "Ái Huê 2<br>レストラン",
+                vuquy_map: "道順を見る",
+                vuquy_lunar_label: "旧暦",
+                vuquy_lunar_main: "旧暦9月1日 • 丙午年",
+                vuquy_lunar_sub: "丁巳日 • 戊戌月",
+                vuquy_zodiac: "干支 • 午（馬）",
                 cd_subtitle: "大切な日まで",
                 cd_title: "結婚式までのカウントダウン",
                 cd_days: "日",
@@ -4633,5 +5561,132 @@ document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.setAttribute('data-lang', 'zh');
         });
 </script>
+
+<script>
+    /* RSVP custom dropdown UI. Keeps the original <select> values for existing submit logic. */
+    document.addEventListener('DOMContentLoaded', function () {
+        const customSelects = [];
+
+        document.querySelectorAll('.rsvp-scroll-select').forEach(function (select) {
+            const wrap = select.closest('.rsvp-scroll-select-wrap');
+            if (!wrap || wrap.classList.contains('is-customized')) return;
+
+            wrap.classList.add('is-customized');
+
+            const trigger = document.createElement('button');
+            trigger.type = 'button';
+            trigger.className = 'rsvp-custom-trigger';
+            trigger.setAttribute('aria-haspopup', 'listbox');
+            trigger.setAttribute('aria-expanded', 'false');
+            trigger.setAttribute('aria-controls', select.id + '-custom-menu');
+
+            const menu = document.createElement('div');
+            menu.className = 'rsvp-custom-menu';
+            menu.id = select.id + '-custom-menu';
+            menu.setAttribute('role', 'listbox');
+
+            function rebuildOptions() {
+                menu.innerHTML = '';
+                Array.from(select.options).forEach(function (option, index) {
+                    const item = document.createElement('button');
+                    item.type = 'button';
+                    item.className = 'rsvp-custom-option';
+                    item.setAttribute('role', 'option');
+                    item.dataset.index = index;
+                    item.textContent = option.textContent;
+                    item.setAttribute('aria-selected', option.selected ? 'true' : 'false');
+                    item.addEventListener('click', function () {
+                        select.selectedIndex = index;
+                        select.dispatchEvent(new Event('change', { bubbles: true }));
+                        syncFromSelect();
+                        closeMenu();
+                        trigger.focus();
+                    });
+                    menu.appendChild(item);
+                });
+                syncFromSelect();
+            }
+
+            function syncFromSelect() {
+                const selected = select.options[select.selectedIndex];
+                trigger.textContent = selected ? selected.textContent : '';
+                menu.querySelectorAll('.rsvp-custom-option').forEach(function (item, index) {
+                    item.setAttribute('aria-selected', index === select.selectedIndex ? 'true' : 'false');
+                });
+            }
+
+            function openMenu() {
+                document.querySelectorAll('.rsvp-scroll-select-wrap.is-open').forEach(function (other) {
+                    if (other !== wrap) {
+                        other.classList.remove('is-open');
+                        const otherTrigger = other.querySelector('.rsvp-custom-trigger');
+                        if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                wrap.classList.add('is-open');
+                trigger.setAttribute('aria-expanded', 'true');
+                const selectedItem = menu.querySelector('[aria-selected="true"]');
+                if (selectedItem) setTimeout(function(){ selectedItem.focus({preventScroll:true}); }, 0);
+            }
+
+            function closeMenu() {
+                wrap.classList.remove('is-open');
+                trigger.setAttribute('aria-expanded', 'false');
+            }
+
+            trigger.addEventListener('click', function () {
+                wrap.classList.contains('is-open') ? closeMenu() : openMenu();
+            });
+
+            trigger.addEventListener('keydown', function (e) {
+                if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openMenu();
+                }
+            });
+
+            menu.addEventListener('keydown', function (e) {
+                const items = Array.from(menu.querySelectorAll('.rsvp-custom-option'));
+                const current = items.indexOf(document.activeElement);
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    items[(current + 1 + items.length) % items.length].focus();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    items[(current - 1 + items.length) % items.length].focus();
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    closeMenu();
+                    trigger.focus();
+                }
+            });
+
+            select.addEventListener('change', syncFromSelect);
+
+            // Keep custom labels synchronized when the existing i18n code changes option text.
+            const observer = new MutationObserver(function () {
+                rebuildOptions();
+            });
+            Array.from(select.options).forEach(function (option) {
+                observer.observe(option, { childList: true, characterData: true, subtree: true });
+            });
+
+            wrap.insertBefore(trigger, select.nextSibling);
+            wrap.appendChild(menu);
+            rebuildOptions();
+            customSelects.push({ wrap, trigger });
+        });
+
+        document.addEventListener('click', function (e) {
+            customSelects.forEach(function (item) {
+                if (!item.wrap.contains(e.target)) {
+                    item.wrap.classList.remove('is-open');
+                    item.trigger.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
