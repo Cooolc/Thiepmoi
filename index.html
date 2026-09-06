@@ -969,18 +969,6 @@
             transform: translateX(-50%);
         }
 
-        /* Keep section hanging knots behind/hidden while the opening envelope is on screen.
-           They are revealed only after the envelope overlay is completely removed. */
-        body:not(.invitation-opened) .cn-hanging-knot {
-            opacity: 0 !important;
-            visibility: hidden !important;
-        }
-        body.invitation-opened .cn-hanging-knot {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity .45s ease;
-        }
-
         /* section title flourish */
         .cn-title-flourish {
             display: inline-flex;
@@ -1973,17 +1961,9 @@
             height: 62px !important;
             filter: drop-shadow(0 2px 2px rgba(0,0,0,.28));
         }
-        .vuquy-zodiac-medallion .vuquy-zodiac-horse-img {
-            width: 66px;
-            height: 66px;
-            object-fit: contain;
-            display: block;
-            filter: drop-shadow(0 3px 3px rgba(0,0,0,.24));
-        }
         @media (max-width:639px) {
             .vuquy-lunar-grid { grid-template-columns:66px 1fr !important; }
             .vuquy-zodiac-medallion { width:64px !important; height:64px !important; }
-            .vuquy-zodiac-medallion .vuquy-zodiac-horse-img { width:54px; height:54px; }
             .vuquy-zodiac-medallion svg { width:53px !important; height:53px !important; }
         }
 
@@ -2648,205 +2628,6 @@
             .rsvp-custom-option { padding: 10px 11px; font-size: 12px; }
         }
 
-
-
-        /* ===== Chinese Wedding Flipbook Album ===== */
-        .wedding-flipbook-wrap { max-width: 820px; margin: 0 auto; position: relative; }
-        .wedding-flipbook {
-            width: min(92vw, 620px); aspect-ratio: 4 / 5; margin: 0 auto;
-            position: relative; perspective: 1800px; transform-style: preserve-3d;
-            filter: drop-shadow(0 24px 28px rgba(0,0,0,.38));
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
-        }
-        .book-page {
-            position: absolute; inset: 0; transform-origin: left center; transform-style: preserve-3d;
-            transition: transform 1.15s cubic-bezier(.38,.04,.18,1), filter .72s ease;
-            border-radius: 5px 16px 16px 5px; cursor: pointer;
-            will-change: auto;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .book-page.is-turning { will-change: transform; }
-        .book-page.is-turning .book-face {
-            transition: box-shadow .55s ease, filter .55s ease;
-            box-shadow: inset 12px 0 18px rgba(35,0,6,.22), inset 0 0 0 5px rgba(212,175,55,.06), 0 14px 28px rgba(34,0,6,.18);
-        }
-        .book-page.is-turned { transform: rotateY(-180deg); pointer-events: none; }
-        .book-face {
-            position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
-            overflow: hidden; border-radius: inherit;
-            border: 1px solid rgba(243,229,171,.55);
-            box-shadow: inset 12px 0 18px rgba(35,0,6,.22), inset 0 0 0 5px rgba(212,175,55,.06);
-        }
-        .book-face.back { transform: rotateY(180deg); background: #f4e5c7; }
-        .book-paper {
-            background: linear-gradient(105deg,#f1dfb9 0%,#fff7df 12%,#f8ebcb 50%,#ead4aa 100%);
-            padding: clamp(16px,4vw,34px); display:flex; flex-direction:column;
-        }
-        .book-photo-frame {
-            flex: 1; min-height: 0; padding: 8px; border: 1px solid #a47b20; position:relative;
-            background:#fff8e6; box-shadow: 0 8px 18px rgba(67,25,5,.18);
-        }
-        .book-photo-frame::before { content:'囍'; position:absolute; right:8px; bottom:2px; z-index:2; color:rgba(122,0,22,.68); font:700 20px 'Noto Serif SC',serif; }
-        .book-photo-frame img { width:100%; height:100%; object-fit:cover; display:block; }
-        .book-page-caption { color:#6b251d; text-align:center; margin-top:13px; font-family:'Noto Serif SC','Noto Serif',serif; font-size:12px; letter-spacing:.08em; min-height:18px; }
-        .book-page-number { position:absolute; bottom:7px; left:50%; transform:translateX(-50%); color:#9a7320; font-size:9px; letter-spacing:.18em; }
-        .book-cover {
-            background:
-              radial-gradient(circle at 50% 42%,rgba(243,229,171,.12),transparent 30%),
-              repeating-linear-gradient(45deg,rgba(212,175,55,.025) 0 1px,transparent 1px 12px),
-              linear-gradient(145deg,#8f001b,#59000f 56%,#350008);
-            display:flex; align-items:center; justify-content:center; padding:26px;
-        }
-        .book-cover::before { content:''; position:absolute; inset:14px; border:1px solid rgba(243,229,171,.72); box-shadow:inset 0 0 0 4px rgba(212,175,55,.08); border-radius:4px 12px 12px 4px; }
-        .book-cover::after { content:''; position:absolute; left:28px; top:8%; bottom:8%; width:2px; background:linear-gradient(transparent,#D4AF37,#F3E5AB,#D4AF37,transparent); box-shadow:4px 0 0 rgba(212,175,55,.18); }
-        .book-cover-content { position:relative; z-index:2; text-align:center; color:#F3E5AB; }
-        .book-cover-double-happiness { font:900 clamp(74px,18vw,118px)/1 'Noto Serif SC',serif; text-shadow:0 4px 18px rgba(0,0,0,.35),0 0 18px rgba(212,175,55,.18); }
-        .book-cover-title { margin-top:14px; font:700 clamp(20px,5vw,31px)/1.3 'Noto Serif SC','Noto Serif',serif; letter-spacing:.12em; }
-        .book-cover-subtitle { margin-top:10px; font-size:10px; letter-spacing:.28em; color:rgba(243,229,171,.78); text-transform:uppercase; }
-        .book-cover-names { margin-top:25px; font-family:'Cormorant Garamond','Noto Serif',serif; font-size:17px; letter-spacing:.08em; color:#fff3ca; }
-        .book-cover-date { margin-top:5px; font-size:10px; letter-spacing:.2em; color:rgba(243,229,171,.75); }
-        .book-back-pattern { width:100%; height:100%; display:grid; place-items:center; color:rgba(122,0,22,.12); font:900 92px 'Noto Serif SC',serif; border:10px solid #ead6ae; }
-        .book-controls { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:24px; }
-        .book-control-btn { width:44px; height:44px; border-radius:50%; border:1px solid rgba(243,229,171,.62); background:linear-gradient(145deg,#790016,#4a000d); color:#F3E5AB; display:grid; place-items:center; box-shadow:0 7px 16px rgba(0,0,0,.25); transition:.25s ease; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
-        .book-control-btn:hover:not(:disabled) { transform:translateY(-2px); background:#D4AF37; color:#3B000A; }
-        .book-control-btn:disabled { opacity:.3; cursor:not-allowed; }
-        .book-counter { min-width:110px; text-align:center; color:#F3E5AB; font-family:'Noto Serif SC','Noto Serif',serif; font-size:11px; letter-spacing:.12em; }
-        .book-hint { text-align:center; color:rgba(243,229,171,.7); font-size:10px; letter-spacing:.08em; margin-top:12px; }
-        @media (max-width:639px) {
-            .wedding-flipbook { width:min(88vw,430px); filter: drop-shadow(0 14px 16px rgba(0,0,0,.28)); }
-            .book-paper { padding:14px 14px 25px; }
-            .book-photo-frame { padding:5px; }
-            .book-page-caption { margin-top:8px; font-size:10px; }
-            .book-cover::after { left:19px; }
-            .book-cover-content { transform:scale(.92); }
-        }
-
-        /* Ornate Chinese wedding cover */
-        .book-cover { isolation:isolate; }
-        .book-cover .cover-lattice {
-            position:absolute; inset:24px; z-index:0; border:1px solid rgba(243,229,171,.34);
-            background:
-                linear-gradient(45deg, transparent 46%, rgba(212,175,55,.08) 47% 53%, transparent 54%) 0 0/24px 24px,
-                linear-gradient(-45deg, transparent 46%, rgba(212,175,55,.055) 47% 53%, transparent 54%) 0 0/24px 24px;
-            -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.85),rgba(0,0,0,.25) 48%,rgba(0,0,0,.85));
-            mask-image:linear-gradient(to bottom,rgba(0,0,0,.85),rgba(0,0,0,.25) 48%,rgba(0,0,0,.85));
-        }
-        .book-cover .cover-cloud { position:absolute; width:108px; height:62px; opacity:.52; z-index:1; }
-        .book-cover .cover-cloud.tl { left:22px; top:28px; }
-        .book-cover .cover-cloud.tr { right:22px; top:28px; transform:scaleX(-1); }
-        .book-cover .cover-cloud.bl { left:22px; bottom:28px; transform:scaleY(-1); }
-        .book-cover .cover-cloud.br { right:22px; bottom:28px; transform:scale(-1); }
-        .book-cover .cover-top-knot {
-            position:absolute; left:50%; top:28px; width:28px; height:28px; transform:translateX(-50%) rotate(45deg);
-            border:1px solid rgba(243,229,171,.8); background:#7A0016; box-shadow:inset 0 0 0 4px rgba(212,175,55,.08); z-index:2;
-        }
-        .book-cover .cover-top-knot::after { content:'囍'; position:absolute; inset:0; display:grid; place-items:center; transform:rotate(-45deg); font:700 11px 'Noto Serif SC',serif; color:#F3E5AB; }
-        .book-cover .cover-medallion {
-            width:132px; height:132px; margin:0 auto; border-radius:50%; display:grid; place-items:center; position:relative;
-            background:radial-gradient(circle,#9c001d 0 48%,#620010 49% 61%,#a97c10 62% 64%,#650010 65% 100%);
-            border:2px solid #D4AF37; box-shadow:0 0 0 6px rgba(212,175,55,.07),0 10px 25px rgba(0,0,0,.34),inset 0 0 18px rgba(0,0,0,.28);
-        }
-        .book-cover .cover-medallion::before,.book-cover .cover-medallion::after { content:'◆'; position:absolute; color:#F3E5AB; font-size:10px; }
-        .book-cover .cover-medallion::before { top:7px; } .book-cover .cover-medallion::after { bottom:7px; }
-        .book-cover-double-happiness { font-size:82px; }
-        .book-cover .cover-divider { display:flex; align-items:center; justify-content:center; gap:8px; margin:13px auto 0; color:#D4AF37; font-size:8px; }
-        .book-cover .cover-divider::before,.book-cover .cover-divider::after { content:''; width:56px; height:1px; background:linear-gradient(90deg,transparent,#D4AF37); }
-        .book-cover .cover-divider::after { background:linear-gradient(90deg,#D4AF37,transparent); }
-        .book-cover .cover-seal {
-            position:absolute; right:38px; bottom:34px; width:38px; height:38px; border-radius:4px; border:1px solid rgba(243,229,171,.74);
-            display:grid; place-items:center; color:#F3E5AB; font:700 15px 'Noto Serif SC',serif; transform:rotate(-7deg); opacity:.85;
-        }
-        .book-cover .cover-side-text { position:absolute; left:42px; top:50%; transform:translateY(-50%); writing-mode:vertical-rl; font:600 9px 'Noto Serif SC',serif; letter-spacing:.22em; color:rgba(243,229,171,.58); z-index:2; }
-
-        /* Ending page */
-        .book-end-page {
-            background:
-                radial-gradient(circle at 50% 42%,rgba(212,175,55,.13),transparent 31%),
-                linear-gradient(155deg,#6f0014,#3b000a 68%,#260005);
-            color:#F3E5AB; display:flex; align-items:center; justify-content:center; text-align:center; padding:28px; border:1px solid rgba(212,175,55,.52);
-        }
-        .book-end-page::before { content:''; position:absolute; inset:15px; border:1px solid rgba(243,229,171,.52); box-shadow:inset 0 0 0 4px rgba(212,175,55,.06); }
-        .book-end-inner { position:relative; z-index:2; width:100%; }
-        .book-end-symbol { font:900 76px/1 'Noto Serif SC',serif; color:#D4AF37; text-shadow:0 4px 16px rgba(0,0,0,.34); }
-        .book-end-title { margin-top:15px; font:700 24px/1.35 'Noto Serif SC','Noto Serif',serif; letter-spacing:.08em; }
-        .book-end-message { max-width:320px; margin:13px auto 0; color:rgba(255,245,214,.86); font:500 11px/1.8 'Noto Serif SC','Noto Serif',serif; }
-        .book-end-blessing { margin-top:20px; color:#D4AF37; font:600 10px/1.7 'Noto Serif SC',serif; letter-spacing:.18em; }
-        .book-end-names { margin-top:18px; font:600 17px 'Cormorant Garamond','Noto Serif',serif; color:#fff3ca; }
-        .book-restart-btn {
-            margin:18px auto 0;
-            min-height:40px;
-            padding:8px 16px;
-            border-radius:999px;
-            border:1px solid rgba(243,229,171,.65);
-            background:linear-gradient(135deg,rgba(122,0,22,.96),rgba(82,0,14,.98));
-            color:#F3E5AB;
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-            gap:7px;
-            font:600 10px/1.2 'Noto Serif SC','Noto Serif',serif;
-            letter-spacing:.08em;
-            box-shadow:0 7px 18px rgba(0,0,0,.24), inset 0 0 0 2px rgba(212,175,55,.05);
-            transition:transform .22s ease, background .22s ease, color .22s ease;
-            touch-action:manipulation;
-            -webkit-tap-highlight-color:transparent;
-        }
-        .book-restart-btn:hover { transform:translateY(-1px); background:#D4AF37; color:#3B000A; }
-        .book-restart-btn:active { transform:translateY(0) scale(.98); }
-        .book-instant-reset .book-page { transition:none !important; }
-        @media (max-width:639px) {
-            .book-cover .cover-medallion { width:108px; height:108px; }
-            .book-cover-double-happiness { font-size:66px; }
-            .book-cover .cover-cloud { width:76px; height:45px; }
-            .book-cover .cover-side-text { left:29px; font-size:7px; }
-            .book-cover .cover-seal { right:28px; bottom:27px; width:32px; height:32px; font-size:12px; }
-            .book-end-symbol { font-size:62px; }
-            .book-end-title { font-size:20px; }
-            .book-end-message { font-size:10px; }
-        }
-
-        @media (prefers-reduced-motion: reduce) { .book-page { transition-duration:.01ms; } }
-
-
-
-        /* ===== V8 iOS Safari performance / reload protection ===== */
-        html, body {
-            overscroll-behavior-y: none;
-        }
-        #wedding-flipbook,
-        #wedding-flipbook * {
-            -webkit-tap-highlight-color: transparent;
-        }
-        #wedding-flipbook {
-            touch-action: manipulation;
-        }
-        .book-photo-frame img {
-            content-visibility: auto;
-        }
-        @media (max-width: 767px) {
-            /* Avoid keeping decorative elements permanently promoted to GPU layers on iPhone. */
-            .family-avatar { will-change: auto !important; }
-            .family-card-chinese .family-avatar,
-            .firecracker-divider-inner,
-            .horizontal-cracker,
-            .cracker-spark,
-            .hero-lantern,
-            .hero-spark {
-                animation: none !important;
-            }
-            #envelope-overlay {
-                -webkit-backdrop-filter: none !important;
-                backdrop-filter: none !important;
-            }
-            .book-face {
-                box-shadow: inset 8px 0 12px rgba(35,0,6,.16), inset 0 0 0 3px rgba(212,175,55,.05), 0 8px 16px rgba(34,0,6,.13) !important;
-            }
-        }
-
 </style>
 </head>
 <body class="bg-crimson-deep text-ivory font-sans relative overflow-x-hidden selection:bg-gold selection:text-crimson-dark">
@@ -3260,12 +3041,58 @@
                     <!-- Lunar / Zodiac -->
                     <div class="vuquy-info-col">
                         <div class="vuquy-zodiac-medallion" aria-hidden="true">
-                            <img
-                                class="vuquy-zodiac-horse-img"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Horse-red.svg/960px-Horse-red.svg.png"
-                                alt="Ngựa Bính Ngọ phong cách cắt giấy Trung Hoa"
-                                loading="lazy"
-                                decoding="async">
+                            <svg viewBox="0 0 120 120" fill="none">
+                                <!-- serious, recognisable full-body horse -->
+                                <path d="M27 79
+                                         C31 66 38 57 49 53
+                                         C58 49 69 50 78 53
+                                         C82 48 84 41 85 33
+                                         L93 20
+                                         L96 34
+                                         L105 38
+                                         C110 40 111 47 106 51
+                                         C102 54 98 55 92 56
+                                         C90 65 86 72 80 78
+                                         L84 101
+                                         L75 101
+                                         L69 80
+                                         L49 80
+                                         L43 101
+                                         L34 101
+                                         L37 78
+                                         C32 81 29 81 27 79Z"
+                                      fill="#8A4D08"
+                                      stroke="#FFF0A8"
+                                      stroke-width="2.6"
+                                      stroke-linejoin="round"/>
+                                <!-- neck / mane -->
+                                <path d="M79 53C72 48 70 42 74 34C77 29 81 25 86 22"
+                                      stroke="#FFF0A8" stroke-width="2.4" stroke-linecap="round"/>
+                                <path d="M82 48C78 45 77 40 79 35M86 44C82 41 82 36 84 31"
+                                      stroke="#5E2D04" stroke-width="2.2" stroke-linecap="round"/>
+                                <!-- tail -->
+                                <path d="M39 60C28 56 19 60 14 69C21 64 27 66 32 72"
+                                      stroke="#FFF0A8" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M39 63C30 62 25 66 22 73"
+                                      stroke="#6D3404" stroke-width="2.2" stroke-linecap="round"/>
+                                <!-- legs -->
+                                <path d="M48 79L46 101M70 79L73 101"
+                                      stroke="#FFF0A8" stroke-width="2.5" stroke-linecap="round"/>
+                                <!-- head details -->
+                                <circle cx="99" cy="43" r="1.9" fill="#FFF0A8"/>
+                                <path d="M104 49C101 51 97 51 94 50"
+                                      stroke="#FFF0A8" stroke-width="1.9" stroke-linecap="round"/>
+                                <!-- ears -->
+                                <path d="M90 29L86 18L94 26M97 31L99 20L102 32"
+                                      fill="#8A4D08" stroke="#FFF0A8" stroke-width="1.8" stroke-linejoin="round"/>
+                                <!-- traditional saddle -->
+                                <path d="M49 53C58 57 69 58 78 53L76 70H50Z"
+                                      fill="#9D001C" stroke="#F3E5AB" stroke-width="2"/>
+                                <circle cx="63" cy="62" r="6.2" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+                                <path d="M63 56V68M57 62H69" stroke="#D4AF37" stroke-width="1.2"/>
+                                <!-- ground -->
+                                <path d="M18 104H103" stroke="#FFF0A8" stroke-width="1.8" stroke-linecap="round" opacity=".75"/>
+                            </svg>
                         </div>
                         <p data-i18n="vuquy_lunar_label" class="oriental-kicker text-[8px] sm:text-xs text-gold/80 font-bold uppercase mb-1">Lịch Âm</p>
                         <p data-i18n="vuquy_lunar_main" class="font-serif text-[9px] sm:text-sm md:text-base font-semibold text-ivory leading-relaxed">Mùng 01 tháng 09 • Năm Bính Ngọ</p>
@@ -4003,20 +3830,55 @@
                 <div class="w-16 h-0.5 bg-gold mx-auto mt-3 reveal-zoom"></div>
             </div>
 
-            <!-- Sổ ảnh cưới lật trang phong cách Hỷ Sự Trung Hoa -->
-            <div class="wedding-flipbook-wrap reveal-zoom">
-                <div id="wedding-flipbook" class="wedding-flipbook" aria-label="Wedding flipbook"></div>
-                <div class="book-controls">
-                    <button id="book-prev" class="book-control-btn" type="button" onclick="prevBookPage()" aria-label="Trang trước"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                    <div id="book-counter" class="book-counter" data-i18n="book_counter_cover">BÌA • 囍</div>
-                    <button id="book-next" class="book-control-btn" type="button" onclick="nextBookPage()" aria-label="Trang sau"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
-                </div>
-                <p id="book-hint" class="book-hint" data-i18n="book_hint">Chạm vào sổ hoặc dùng mũi tên để lật trang</p>
+            <!-- Masonry Multi-Column Layout for Photos -->
+            <div id="gallery-grid" class="columns-2 sm:columns-3 lg:columns-4 gap-3 sm:gap-4 space-y-3 sm:space-y-4">
+                <!-- Javascript sẽ tự động gắn hiệu ứng animation ngẫu nhiên vào từng tấm ảnh -->
+            </div>
+
+            <!-- Nút Xem Thêm / Thu Gọn Ảnh -->
+            <div id="gallery-more-wrapper" class="text-center mt-8 hidden">
+                <button onclick="toggleGalleryExpand()" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-gold bg-crimson-dark/80 text-gold text-xs font-bold uppercase tracking-wider hover:bg-gold hover:text-retro-dark transition-all shadow-md cursor-pointer">
+                    <span id="gallery-toggle-text" data-i18n="gal_btn_more">Xem Thêm Ảnh</span>
+                    <i id="gallery-toggle-icon" data-lucide="chevron-down" class="w-4 h-4"></i>
+                </button>
             </div>
                         </div>
             </div>
 </div>
     </section>
+
+    <!-- Lightbox Modal Container -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center p-2 sm:p-4 backdrop-blur-md transition-opacity duration-300 select-none">
+        <!-- Close Button -->
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/80 hover:text-gold transition-colors z-50 p-2 cursor-pointer bg-retro-dark/60 rounded-full border border-gold/30" title="Đóng">
+            <i data-lucide="x" class="w-6 h-6 sm:w-8 sm:h-8"></i>
+        </button>
+
+        <!-- Previous Button -->
+        <button onclick="prevLightbox(event)" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-retro-dark/85 border border-gold/60 text-gold flex items-center justify-center hover:scale-110 hover:bg-gold hover:text-retro-dark transition-all z-50 cursor-pointer shadow-2xl" title="Ảnh trước">
+            <i data-lucide="chevron-left" class="w-6 h-6 sm:w-8 sm:h-8"></i>
+        </button>
+
+        <!-- Next Button -->
+        <button onclick="nextLightbox(event)" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-retro-dark/85 border border-gold/60 text-gold flex items-center justify-center hover:scale-110 hover:bg-gold hover:text-retro-dark transition-all z-50 cursor-pointer shadow-2xl" title="Ảnh tiếp theo">
+            <i data-lucide="chevron-right" class="w-6 h-6 sm:w-8 sm:h-8"></i>
+        </button>
+
+        <!-- Center Container -->
+        <div id="lightbox-content-box" class="max-w-5xl w-full flex flex-col items-center justify-center relative z-40 px-6 sm:px-14">
+            <div class="relative flex items-center justify-center max-w-full max-h-[75vh]">
+                <img id="lightbox-img" 
+                     src="" 
+                     alt="Wedding photo preview" 
+                     class="max-h-[72vh] w-auto max-w-full rounded-2xl border-2 border-gold/50 shadow-2xl transition-all duration-300 object-contain mx-auto bg-retro-dark">
+                
+                <span id="lightbox-counter" class="absolute top-3 right-3 bg-retro-dark/90 text-gold text-xs font-mono px-3 py-1 rounded-full border border-gold/40 shadow-md">1 / 8</span>
+            </div>
+            
+            <p id="lightbox-caption" class="font-serif text-sm sm:text-base md:text-lg text-gold mt-3 font-semibold px-4 drop-shadow text-center"></p>
+            <p data-i18n="lightbox_hint" class="text-[11px] text-ivory/50 mt-1 sm:hidden">Vuốt sang trái / phải để chuyển ảnh</p>
+        </div>
+    </div>
 
     <!-- 10. RSVP FORM SECTION -->
     <section id="rsvp" class="rsvp-section-chinese py-16 sm:py-20 border-t border-gold/30">
@@ -4368,21 +4230,6 @@
                 btn_ics_cal: "Tải File Lịch (.ics cho Apple / Outlook)",
                 gal_subtitle: "ALBUM HÌNH ẢNH",
                 gal_title: "Khoảnh Khắc Đáng Nhớ",
-                book_cover_title: "HỶ SỰ KỶ NIỆM",
-                book_cover_subtitle: "Sổ Ảnh Cưới · Lương Duyên Vĩnh Kết",
-                book_cover_side: "BÁCH NIÊN HẢO HỢP",
-                book_cover_seal: "HỶ",
-                book_cover_names: "Chấn Cơ & Hảo Nghi",
-                book_caption_default: "Trăm năm hòa hợp · Vĩnh kết đồng tâm",
-                book_counter_cover: "BÌA • 囍",
-                book_counter_page: "TRANG {current} / {total}",
-                book_counter_end: "KẾT • 百年好合",
-                book_hint: "Chạm vào sổ hoặc dùng mũi tên để lật trang",
-                book_end_title: "Cảm Ơn Vì Đã Cùng Chúng Mình Đi Qua Những Kỷ Niệm",
-                book_end_message: "Mỗi tấm ảnh là một chương nhỏ trên hành trình yêu thương. Cảm ơn bạn đã lật đến trang cuối cùng của cuốn sổ này.",
-                book_end_blessing: "百年好合 · 永结同心 · 白头偕老",
-                book_end_names: "Chấn Cơ & Hảo Nghi",
-                book_restart: "Quay Lại Trang Đầu",
                 gal_btn_more: "Xem Thêm Ảnh",
                 lightbox_hint: "Vuốt sang trái / phải để chuyển ảnh",
                 rsvp_subtitle: "XÁC NHẬN THAM DỰ",
@@ -4534,21 +4381,6 @@
                 btn_ics_cal: "下載日曆檔 (.ics 支援 Apple/Outlook)",
                 gal_subtitle: "甜蜜影像",
                 gal_title: "幸福瞬間紀錄",
-                book_cover_title: "囍事紀念",
-                book_cover_subtitle: "婚禮相簿 · 良緣永結",
-                book_cover_side: "百年好合",
-                book_cover_seal: "囍",
-                book_cover_names: "振基 & 好儀",
-                book_caption_default: "百年好合 · 永結同心",
-                book_counter_cover: "封面 • 囍",
-                book_counter_page: "第 {current} 頁 / 共 {total} 頁",
-                book_counter_end: "終章 • 百年好合",
-                book_hint: "點擊相簿或使用箭頭翻頁",
-                book_end_title: "感謝您陪我們翻閱這些珍貴回憶",
-                book_end_message: "每一張照片，都是我們愛情旅程中的一個小篇章。謝謝您一路翻到這本相簿的最後一頁。",
-                book_end_blessing: "百年好合 · 永結同心 · 白頭偕老",
-                book_end_names: "振基 & 好儀",
-                book_restart: "返回封面",
                 gal_btn_more: "查看更多照片",
                 lightbox_hint: "左右滑動可切換上一張 / 下一張照片",
                 rsvp_subtitle: "出席回覆",
@@ -4700,21 +4532,6 @@
                 btn_ics_cal: "カレンダーファイルをダウンロード (.ics)",
                 gal_subtitle: "フォトアルバム",
                 gal_title: "かけがえのない思い出",
-                book_cover_title: "慶びの記念帖",
-                book_cover_subtitle: "ウェディングアルバム · 良縁永結",
-                book_cover_side: "百年好合",
-                book_cover_seal: "喜",
-                book_cover_names: "チャン・コー & ハオ・ギー",
-                book_caption_default: "末永く仲睦まじく · 永遠に心ひとつに",
-                book_counter_cover: "表紙 • 囍",
-                book_counter_page: "{current} / {total} ページ",
-                book_counter_end: "終章 • 百年好合",
-                book_hint: "アルバムをタップ、または矢印でページをめくれます",
-                book_end_title: "最後のページまでご覧いただきありがとうございます",
-                book_end_message: "一枚一枚の写真は、二人の歩みを綴った小さな物語です。このアルバムの最後までお付き合いいただき、ありがとうございます。",
-                book_end_blessing: "百年好合 · 永結同心 · 白頭偕老",
-                book_end_names: "チャン・コー & ハオ・ギー",
-                book_restart: "表紙に戻る",
                 gal_btn_more: "写真をもっと見る",
                 lightbox_hint: "左右にスワイプして前後の写真を表示できます",
                 rsvp_subtitle: "出欠のご確認",
@@ -4775,9 +4592,6 @@
             // Refresh countdown immediately so 中文 also changes the running numbers to Hanzi.
             if (typeof updateWeddingCountdown === 'function') {
                 updateWeddingCountdown();
-            }
-            if (typeof refreshBookLanguage === 'function') {
-                refreshBookLanguage();
             }
         };
 
@@ -4851,350 +4665,185 @@
             }
         ];
 
-        let currentBookPage = 0; // 0 = bìa, 1..n = ảnh, n+1 = trang kết
-        let isBookTurning = false;
-        let bookTurnTimer = null;
-        let lastBookTapAt = 0;
-        const BOOK_TURN_LOCK_MS = 1240;
+        let currentLightboxIndex = 0;
+        let isGalleryExpanded = false;
+        const INITIAL_VISIBLE_PHOTOS = 8;
 
-        function beginBookTurnLock(page) {
-            isBookTurning = true;
-            if (page) page.classList.add('is-turning');
-            const book = document.getElementById('wedding-flipbook');
-            if (book) book.setAttribute('aria-busy', 'true');
-            clearTimeout(bookTurnTimer);
-            bookTurnTimer = setTimeout(() => {
-                isBookTurning = false;
-                document.querySelectorAll('#wedding-flipbook .book-page.is-turning').forEach(p => p.classList.remove('is-turning'));
-                const currentBook = document.getElementById('wedding-flipbook');
-                if (currentBook) currentBook.removeAttribute('aria-busy');
-                if (typeof updateBookUIOnly === 'function') updateBookUIOnly();
-            }, BOOK_TURN_LOCK_MS);
-        }
-
-        function setupBookInteractions() {
-            const book = document.getElementById('wedding-flipbook');
-            if (!book || book.dataset.interactionsReady === 'true') return;
-            book.dataset.interactionsReady = 'true';
-
-            // iOS Safari: prevent native double-tap zoom / delayed duplicate activation.
-            book.addEventListener('dblclick', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }, { passive: false });
-
-            book.addEventListener('click', function(e) {
-                const page = e.target.closest('.book-page');
-                if (!page || !book.contains(page)) return;
-                const endIndex = weddingGalleryList.length + 1;
-                if (currentBookPage >= endIndex || isBookTurning) return;
-
-                const now = Date.now();
-                if (now - lastBookTapAt < BOOK_TURN_LOCK_MS) {
-                    e.preventDefault();
-                    return;
-                }
-                lastBookTapAt = now;
-                e.preventDefault();
-                nextBookPage();
-            }, { passive: false });
-        }
-
-        function bookT(key, fallback = '') {
-            const lang = window.currentLang || 'vi';
-            return (i18nTranslations[lang] && i18nTranslations[lang][key] !== undefined)
-                ? i18nTranslations[lang][key]
-                : fallback;
-        }
-
-        function coverCloudSvg() {
-            return `<svg class="cover-cloud" viewBox="0 0 120 70" fill="none" aria-hidden="true">
-                <path d="M7 45c10-15 23-17 34-8 5-18 31-20 38-2 13-8 29 1 32 15H7Z" stroke="#D4AF37" stroke-width="1.4"/>
-                <path d="M18 51c7-8 16-10 24-4 7-11 23-11 31 0 9-6 20-3 26 5" stroke="#F3E5AB" stroke-opacity=".72" stroke-width="1.1" stroke-linecap="round"/>
-            </svg>`;
-        }
+        const animVariants = [
+            'gal-anim-rise',
+            'gal-anim-tilt-left',
+            'gal-anim-tilt-right',
+            'gal-anim-from-left',
+            'gal-anim-from-right',
+            'gal-anim-flip',
+            'gal-anim-pop'
+        ];
 
         function renderGallery() {
-            const book = document.getElementById('wedding-flipbook');
-            if (!book) return;
-            book.innerHTML = '';
+            const container = document.getElementById('gallery-grid');
+            const toggleWrapper = document.getElementById('gallery-more-wrapper');
+            if (!container) return;
 
-            const pages = [
-                { type: 'cover' },
-                ...weddingGalleryList.map(item => ({ type: 'photo', item })),
-                { type: 'end' }
-            ];
+            container.innerHTML = '';
+            const photosToDisplay = isGalleryExpanded ? weddingGalleryList : weddingGalleryList.slice(0, INITIAL_VISIBLE_PHOTOS);
 
-            pages.forEach((entry, index) => {
-                const page = document.createElement('div');
-                page.className = 'book-page';
-                page.dataset.page = index;
-                page.style.zIndex = String(pages.length - index + 5);
+            photosToDisplay.forEach((item, index) => {
+                const randomAnim = animVariants[Math.floor(Math.random() * animVariants.length)];
+                const randomDuration = (0.75 + Math.random() * 0.4).toFixed(2);
+                const randomDelay = ((index % 4) * 0.12 + Math.random() * 0.1).toFixed(2);
 
-                if (entry.type === 'cover') {
-                    const cloud = coverCloudSvg();
-                    page.innerHTML = `
-                        <div class="book-face book-cover">
-                            <div class="cover-lattice" aria-hidden="true"></div>
-                            ${cloud.replace('cover-cloud','cover-cloud tl')}
-                            ${cloud.replace('cover-cloud','cover-cloud tr')}
-                            ${cloud.replace('cover-cloud','cover-cloud bl')}
-                            ${cloud.replace('cover-cloud','cover-cloud br')}
-                            <div class="cover-top-knot" aria-hidden="true"></div>
-                            <div class="cover-side-text">${bookT('book_cover_side','百年好合')}</div>
-                            <div class="book-cover-content">
-                                <div class="cover-medallion"><div class="book-cover-double-happiness">囍</div></div>
-                                <div class="cover-divider">◆</div>
-                                <div class="book-cover-title">${bookT('book_cover_title','HỶ SỰ KỶ NIỆM')}</div>
-                                <div class="book-cover-subtitle">${bookT('book_cover_subtitle','Wedding Memories · 良缘永结')}</div>
-                                <div class="book-cover-names">${bookT('book_cover_names','Chấn Cơ & Hảo Nghi')}</div>
-                                <div class="book-cover-date">11 · 10 · 2026</div>
+                const photoCard = document.createElement('div');
+                photoCard.className = `gal-random-item ${randomAnim} relative rounded-2xl overflow-hidden group cursor-pointer border border-gold/40 shadow-lg break-inside-avoid mb-3 sm:mb-4 bg-retro-dark transform transition-all hover:-translate-y-1 hover:border-gold hover:shadow-gold-glow`;
+                
+                photoCard.style.transitionDuration = `${randomDuration}s`;
+                photoCard.style.transitionDelay = `${randomDelay}s`;
+                photoCard.onclick = () => openLightbox(index);
+
+                photoCard.innerHTML = `
+                    <div class="relative w-full overflow-hidden">
+                        <img src="${item.src}" 
+                             onerror="if('${item.fallback}'){this.onerror=null;this.src='${item.fallback}';}"
+                             alt="${item.caption || 'Wedding Photo'}" 
+                             loading="lazy" 
+                             class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500 block">
+                        
+                        <div class="absolute inset-0 bg-retro-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5 sm:p-4">
+                            <div class="flex justify-end">
+                                <div class="w-8 h-8 rounded-full bg-gold/20 border border-gold text-gold flex items-center justify-center backdrop-blur-xs">
+                                    <i data-lucide="zoom-in" class="w-4 h-4"></i>
+                                </div>
                             </div>
-                            <div class="cover-seal">${bookT('book_cover_seal','HỶ')}</div>
+                            <p class="text-xs text-gold font-serif line-clamp-2 leading-tight drop-shadow font-medium">${item.caption || ''}</p>
                         </div>
-                        <div class="book-face back"><div class="book-back-pattern">囍</div></div>`;
-                } else if (entry.type === 'photo') {
-                    const item = entry.item;
-                    const photoNumber = index;
-                    page.innerHTML = `
-                        <div class="book-face book-paper">
-                            <div class="book-photo-frame">
-                                <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="${item.src}" data-fallback="${item.fallback || ''}" alt="${item.caption || 'Wedding Photo'}" decoding="async" loading="lazy">
-                            </div>
-                            <div class="book-page-caption">${item.caption || bookT('book_caption_default','百年好合 · 永结同心')}</div>
-                            <div class="book-page-number">${String(photoNumber).padStart(2,'0')}</div>
-                        </div>
-                        <div class="book-face back"><div class="book-back-pattern">囍</div></div>`;
-                } else {
-                    page.innerHTML = `
-                        <div class="book-face book-end-page">
-                            <div class="book-end-inner">
-                                <div class="book-end-symbol">囍</div>
-                                <div class="book-end-title">${bookT('book_end_title','Cảm ơn bạn')}</div>
-                                <div class="book-end-message">${bookT('book_end_message','')}</div>
-                                <div class="book-end-blessing">${bookT('book_end_blessing','百年好合 · 永结同心 · 白头偕老')}</div>
-                                <div class="book-end-names">${bookT('book_end_names','Chấn Cơ & Hảo Nghi')}</div>
-                                <button type="button" class="book-restart-btn" onclick="event.stopPropagation(); returnBookToCover();" aria-label="${bookT('book_restart','Quay lại trang đầu')}">
-                                    <span aria-hidden="true">↺</span>
-                                    <span>${bookT('book_restart','Quay lại trang đầu')}</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="book-face back"><div class="book-back-pattern">囍</div></div>`;
-                }
-                book.appendChild(page);
+                    </div>
+                `;
+                container.appendChild(photoCard);
             });
-            const maxPage = weddingGalleryList.length + 1;
-            currentBookPage = Math.min(currentBookPage, maxPage);
-            updateBookState(false);
+
+            if (weddingGalleryList.length > INITIAL_VISIBLE_PHOTOS && toggleWrapper) {
+                toggleWrapper.classList.remove('hidden');
+            } else if (toggleWrapper) {
+                toggleWrapper.classList.add('hidden');
+            }
+
             if (window.lucide) lucide.createIcons();
+            initScrollRevealObserver();
         }
 
-        const BOOK_PLACEHOLDER_SRC = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+        window.toggleGalleryExpand = function() {
+            isGalleryExpanded = !isGalleryExpanded;
+            const toggleText = document.getElementById('gallery-toggle-text');
+            const toggleIcon = document.getElementById('gallery-toggle-icon');
 
-        function loadBookImage(img) {
-            if (!img || img.dataset.loaded === '1') return;
-            const src = img.dataset.src;
-            if (!src) return;
-            img.dataset.loaded = '1';
-            img.onerror = function() {
-                const fallback = img.dataset.fallback;
-                if (fallback && img.src !== fallback) {
-                    img.onerror = null;
-                    img.src = fallback;
-                }
-            };
-            img.src = src;
-        }
-
-        function releaseBookImage(img) {
-            if (!img || img.dataset.loaded !== '1') return;
-            img.onerror = null;
-            img.src = BOOK_PLACEHOLDER_SRC;
-            img.dataset.loaded = '0';
-        }
-
-        function syncBookImageMemory() {
-            const pages = [...document.querySelectorAll('#wedding-flipbook .book-page')];
-            // Keep only the current page, the previous page, and the next two pages decoded.
-            // This is important on iPhone Safari where stacked absolute pages can defeat native lazy-loading.
-            const keepFrom = Math.max(0, currentBookPage - 1);
-            const keepTo = Math.min(pages.length - 1, currentBookPage + 2);
-
-            pages.forEach((page, index) => {
-                const img = page.querySelector('.book-photo-frame img[data-src]');
-                if (!img) return;
-                if (index >= keepFrom && index <= keepTo) loadBookImage(img);
-                else releaseBookImage(img);
-            });
-        }
-
-        function updateBookState(animate = true) {
-            const pages = [...document.querySelectorAll('#wedding-flipbook .book-page')];
-            pages.forEach((page, index) => {
-                const turned = index < currentBookPage;
-                page.classList.toggle('is-turned', turned);
-                page.style.zIndex = turned ? String(index + 1) : String(pages.length - index + 5);
-            });
-            const prev = document.getElementById('book-prev');
-            const next = document.getElementById('book-next');
-            const counter = document.getElementById('book-counter');
-            const endIndex = weddingGalleryList.length + 1;
-            if (prev) prev.disabled = currentBookPage === 0;
-            if (next) next.disabled = currentBookPage >= endIndex;
-            if (counter) {
-                if (currentBookPage === 0) {
-                    counter.textContent = bookT('book_counter_cover','BÌA • 囍');
-                } else if (currentBookPage === endIndex) {
-                    counter.textContent = bookT('book_counter_end','KẾT • 百年好合');
-                } else {
-                    counter.textContent = bookT('book_counter_page','TRANG {current} / {total}')
-                        .replace('{current}', currentBookPage)
-                        .replace('{total}', weddingGalleryList.length);
-                }
+            if (toggleText) {
+                if (window.currentLang === 'zh') toggleText.innerText = isGalleryExpanded ? '收起相片' : '查看更多相片';
+                else if (window.currentLang === 'ja') toggleText.innerText = isGalleryExpanded ? '閉じる' : 'もっと見る';
+                else toggleText.innerText = isGalleryExpanded ? 'Thu Gọn Ảnh' : 'Xem Thêm Ảnh';
             }
-            const hint = document.getElementById('book-hint');
-            if (hint) hint.textContent = bookT('book_hint','Chạm vào sổ hoặc dùng mũi tên để lật trang');
-            syncBookImageMemory();
-        }
+            if (toggleIcon) toggleIcon.setAttribute('data-lucide', isGalleryExpanded ? 'chevron-up' : 'chevron-down');
 
-        function refreshBookLanguage() {
-            if (isBookTurning) return;
             renderGallery();
-            syncBookImageMemory();
+        };
+
+        window.openLightbox = function(index) {
+            currentLightboxIndex = typeof index === 'number' ? index : 0;
+            updateLightboxContent();
+
+            const modal = document.getElementById('lightbox-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        };
+
+        window.closeLightbox = function() {
+            const modal = document.getElementById('lightbox-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        };
+
+        window.nextLightbox = function(event) {
+            if (event) event.stopPropagation();
+            if (weddingGalleryList.length === 0) return;
+            currentLightboxIndex = (currentLightboxIndex + 1) % weddingGalleryList.length;
+            updateLightboxContent();
+        };
+
+        window.prevLightbox = function(event) {
+            if (event) event.stopPropagation();
+            if (weddingGalleryList.length === 0) return;
+            currentLightboxIndex = (currentLightboxIndex - 1 + weddingGalleryList.length) % weddingGalleryList.length;
+            updateLightboxContent();
+        };
+
+        function updateLightboxContent() {
+            const item = weddingGalleryList[currentLightboxIndex];
+            if (!item) return;
+
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+            const counter = document.getElementById('lightbox-counter');
+
+            if (img) {
+                img.style.opacity = '0.3';
+                img.src = item.src;
+                img.onerror = function() {
+                    if (item.fallback) {
+                        this.onerror = null;
+                        this.src = item.fallback;
+                    }
+                };
+                img.onload = () => { img.style.opacity = '1'; };
+            }
+
+            if (cap) cap.innerText = item.caption || '';
+            if (counter) counter.innerText = `${currentLightboxIndex + 1} / ${weddingGalleryList.length}`;
         }
 
-        function updateBookUIOnly() {
-            const prev = document.getElementById('book-prev');
-            const next = document.getElementById('book-next');
-            const counter = document.getElementById('book-counter');
-            const endIndex = weddingGalleryList.length + 1;
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('lightbox-modal');
+            if (modal && !modal.classList.contains('hidden')) {
+                if (e.key === 'ArrowRight') window.nextLightbox();
+                if (e.key === 'ArrowLeft') window.prevLightbox();
+                if (e.key === 'Escape') window.closeLightbox();
+            }
+        });
 
-            if (prev) prev.disabled = currentBookPage === 0 || isBookTurning;
-            if (next) next.disabled = currentBookPage >= endIndex || isBookTurning;
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const lightboxModal = document.getElementById('lightbox-modal');
 
-            if (counter) {
-                if (currentBookPage === 0) {
-                    counter.textContent = bookT('book_counter_cover','BÌA • 囍');
-                } else if (currentBookPage === endIndex) {
-                    counter.textContent = bookT('book_counter_end','KẾT • 百年好合');
-                } else {
-                    counter.textContent = bookT('book_counter_page','TRANG {current} / {total}')
-                        .replace('{current}', currentBookPage)
-                        .replace('{total}', weddingGalleryList.length);
+        if (lightboxModal) {
+            lightboxModal.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            lightboxModal.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipeGesture();
+            }, { passive: true });
+
+            lightboxModal.addEventListener('click', function(e) {
+                if (e.target === lightboxModal || e.target.id === 'lightbox-content-box') {
+                    window.closeLightbox();
                 }
+            });
+        }
+
+        function handleSwipeGesture() {
+            const swipeThreshold = 45;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                window.nextLightbox();
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                window.prevLightbox();
             }
         }
-
-        function finishBookTurn(page, callback) {
-            let finished = false;
-            const done = () => {
-                if (finished) return;
-                finished = true;
-                page.removeEventListener('transitionend', onEnd);
-                if (callback) callback();
-            };
-            const onEnd = (e) => {
-                if (e.target === page && e.propertyName === 'transform') done();
-            };
-            page.addEventListener('transitionend', onEnd);
-            // Safari fallback in case transitionend is skipped.
-            setTimeout(done, BOOK_TURN_LOCK_MS + 120);
-        }
-
-        window.nextBookPage = function() {
-            const endIndex = weddingGalleryList.length + 1;
-            if (isBookTurning || currentBookPage >= endIndex) return;
-
-            const pages = [...document.querySelectorAll('#wedding-flipbook .book-page')];
-            const pageIndex = currentBookPage;
-            const turningPage = pages[pageIndex];
-            if (!turningPage) return;
-
-            // Critical for Safari/iPhone: keep the CURRENT page above the next page
-            // for the whole turn. Lowering z-index before the transform starts makes
-            // the next photo appear instantly, which looks like an image swap.
-            const topZ = pages.length + 20;
-            turningPage.style.zIndex = String(topZ);
-            beginBookTurnLock(turningPage);
-
-            // Force Safari to commit the current visual frame before starting rotation.
-            void turningPage.offsetWidth;
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    turningPage.classList.add('is-turned');
-                    currentBookPage = pageIndex + 1;
-                    updateBookUIOnly();
-
-                    finishBookTurn(turningPage, () => {
-                        // Only after the physical page has landed do we move it behind.
-                        turningPage.style.zIndex = String(pageIndex + 1);
-                        updateBookState(false);
-                        updateBookUIOnly();
-                    });
-                });
-            });
-        };
-
-        window.returnBookToCover = function() {
-            if (isBookTurning) return;
-            const book = document.getElementById('wedding-flipbook');
-            if (!book) return;
-            const pages = [...book.querySelectorAll('.book-page')];
-            book.classList.add('book-instant-reset');
-            pages.forEach(page => {
-                page.classList.remove('is-turned', 'is-turning');
-            });
-            currentBookPage = 0;
-            updateBookState(false);
-            updateBookUIOnly();
-            // Force the reset frame, then restore normal page-turn transitions.
-            void book.offsetWidth;
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => book.classList.remove('book-instant-reset'));
-            });
-        };
-
-        window.prevBookPage = function() {
-            if (isBookTurning || currentBookPage <= 0) return;
-
-            const pages = [...document.querySelectorAll('#wedding-flipbook .book-page')];
-            const targetIndex = currentBookPage - 1;
-            const turningPage = pages[targetIndex];
-            if (!turningPage) return;
-
-            // Bring the previous sheet to the top BEFORE rotating it back into view.
-            turningPage.style.zIndex = String(pages.length + 20);
-            beginBookTurnLock(turningPage);
-            void turningPage.offsetWidth;
-
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    turningPage.classList.remove('is-turned');
-                    currentBookPage = targetIndex;
-                    updateBookUIOnly();
-
-                    finishBookTurn(turningPage, () => {
-                        updateBookState(false);
-                        updateBookUIOnly();
-                    });
-                });
-            });
-        };
 
         document.addEventListener('DOMContentLoaded', function() {
-            try {
-                if (sessionStorage.getItem('weddingEnvelopeOpened') === '1') {
-                    const overlay = document.getElementById('envelope-overlay');
-                    const musicControl = document.getElementById('music-control');
-                    if (overlay) overlay.style.display = 'none';
-                    if (musicControl) musicControl.classList.remove('opacity-0', 'pointer-events-none');
-                    document.body.classList.add('invitation-opened');
-                }
-            } catch (e) {}
-
             renderGallery();
-            setupBookInteractions();
             if (window.lucide) {
                 lucide.createIcons();
             }
@@ -5236,12 +4885,7 @@
             }
         }
 
-        let envelopeOpening = false;
         window.openWeddingEnvelope = function() {
-            if (envelopeOpening) return;
-            envelopeOpening = true;
-            try { sessionStorage.setItem('weddingEnvelopeOpened', '1'); } catch (e) {}
-
             const overlay = document.getElementById('envelope-overlay');
             const musicControl = document.getElementById('music-control');
             const topFlap = document.getElementById('envelope-top-flap');
@@ -5261,11 +4905,9 @@
 
             if (typeof confetti === 'function') {
                 setTimeout(function() {
-                    const mobileConfetti = window.matchMedia('(max-width: 767px)').matches;
                     confetti({
-                        particleCount: mobileConfetti ? 45 : 90,
-                        spread: mobileConfetti ? 65 : 80,
-                        ticks: mobileConfetti ? 120 : 180,
+                        particleCount: 130,
+                        spread: 85,
                         origin: { y: 0.55 }
                     });
                 }, 400);
@@ -5291,7 +4933,6 @@
 
             setTimeout(function() {
                 if (overlay) overlay.style.display = 'none';
-                document.body.classList.add('invitation-opened');
             }, 3700);
         };
 
@@ -5471,7 +5112,7 @@ END:VCALENDAR`;
             resizePetalCanvas();
 
             const petalsArray = [];
-            const maxPetals = window.matchMedia('(max-width: 767px)').matches ? 10 : 20;
+            const maxPetals = 25;
 
             class Petal {
                 constructor() {
@@ -5515,28 +5156,16 @@ END:VCALENDAR`;
                 petalsArray.push(new Petal());
             }
 
-            let petalRafId = 0;
-            let lastPetalFrame = 0;
-            const PETAL_FRAME_MS = 1000 / 30;
-
-            function animatePetals(timestamp) {
-                petalRafId = requestAnimationFrame(animatePetals);
-                if (document.hidden) return;
-                if (timestamp - lastPetalFrame < PETAL_FRAME_MS) return;
-                lastPetalFrame = timestamp;
-
+            function animatePetals() {
                 ctx.clearRect(0, 0, petalCanvas.width, petalCanvas.height);
                 petalsArray.forEach(p => {
                     p.update();
                     p.draw();
                 });
+                requestAnimationFrame(animatePetals);
             }
 
-            petalRafId = requestAnimationFrame(animatePetals);
-
-            document.addEventListener('visibilitychange', function() {
-                if (!document.hidden) lastPetalFrame = performance.now();
-            });
+            animatePetals();
         }
     </script>
 
@@ -5893,7 +5522,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.setLanguage = function(lang) {
                 prevSetLanguageHanzi(lang);
                 document.documentElement.setAttribute('data-lang', lang);
-                document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : lang;
                 setTimeout(renderCountdownNumbersForLanguage, 0);
             };
         }
@@ -5925,33 +5553,12 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
         document.addEventListener('DOMContentLoaded', function() {
-            /*
-             * Initial language from URL path:
-             *   /      -> Vietnamese
-             *   /cn    -> Chinese
-             *   /jp    -> Japanese
-             * Also supports trailing slash and nested deployment paths
-             * such as /wedding/cn or /wedding/jp.
-             */
-            const pathParts = window.location.pathname
-                .split('/')
-                .filter(Boolean)
-                .map(part => part.toLowerCase());
-
-            const urlLang = pathParts[pathParts.length - 1];
-            const initialLang = urlLang === 'cn'
-                ? 'zh'
-                : urlLang === 'jp'
-                    ? 'ja'
-                    : 'vi';
-
+            // Default / init language is Traditional Chinese.
             if (typeof window.setLanguage === 'function') {
-                window.setLanguage(initialLang);
+                window.setLanguage('zh');
             }
-
-            const htmlLang = initialLang === 'zh' ? 'zh-Hant' : initialLang;
-            document.documentElement.lang = htmlLang;
-            document.documentElement.setAttribute('data-lang', initialLang);
+            document.documentElement.lang = 'zh';
+            document.documentElement.setAttribute('data-lang', 'zh');
         });
 </script>
 
@@ -6078,20 +5685,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-    });
-</script>
-
-
-<script>
-    // Safari can restore a page from bfcache; keep the envelope state consistent on pageshow.
-    window.addEventListener('pageshow', function() {
-        try {
-            if (sessionStorage.getItem('weddingEnvelopeOpened') === '1') {
-                const overlay = document.getElementById('envelope-overlay');
-                if (overlay) overlay.style.display = 'none';
-                document.body.classList.add('invitation-opened');
-            }
-        } catch (e) {}
     });
 </script>
 
