@@ -2811,6 +2811,42 @@
 
         @media (prefers-reduced-motion: reduce) { .book-page { transition-duration:.01ms; } }
 
+
+
+        /* ===== V8 iOS Safari performance / reload protection ===== */
+        html, body {
+            overscroll-behavior-y: none;
+        }
+        #wedding-flipbook,
+        #wedding-flipbook * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        #wedding-flipbook {
+            touch-action: manipulation;
+        }
+        .book-photo-frame img {
+            content-visibility: auto;
+        }
+        @media (max-width: 767px) {
+            /* Avoid keeping decorative elements permanently promoted to GPU layers on iPhone. */
+            .family-avatar { will-change: auto !important; }
+            .family-card-chinese .family-avatar,
+            .firecracker-divider-inner,
+            .horizontal-cracker,
+            .cracker-spark,
+            .hero-lantern,
+            .hero-spark {
+                animation: none !important;
+            }
+            #envelope-overlay {
+                -webkit-backdrop-filter: none !important;
+                backdrop-filter: none !important;
+            }
+            .book-face {
+                box-shadow: inset 8px 0 12px rgba(35,0,6,.16), inset 0 0 0 3px rgba(212,175,55,.05), 0 8px 16px rgba(34,0,6,.13) !important;
+            }
+        }
+
 </style>
 </head>
 <body class="bg-crimson-deep text-ivory font-sans relative overflow-x-hidden selection:bg-gold selection:text-crimson-dark">
@@ -4923,7 +4959,7 @@
                     page.innerHTML = `
                         <div class="book-face book-paper">
                             <div class="book-photo-frame">
-                                <img src="${item.src}" onerror="if('${item.fallback || ''}'){this.onerror=null;this.src='${item.fallback || ''}';}" alt="${item.caption || 'Wedding Photo'}" loading="lazy">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="${item.src}" data-fallback="${item.fallback || ''}" alt="${item.caption || 'Wedding Photo'}" decoding="async" loading="lazy">
                             </div>
                             <div class="book-page-caption">${item.caption || bookT('book_caption_default','百年好合 · 永结同心')}</div>
                             <div class="book-page-number">${String(photoNumber).padStart(2,'0')}</div>
@@ -4954,6 +4990,45 @@
             if (window.lucide) lucide.createIcons();
         }
 
+        const BOOK_PLACEHOLDER_SRC = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+
+        function loadBookImage(img) {
+            if (!img || img.dataset.loaded === '1') return;
+            const src = img.dataset.src;
+            if (!src) return;
+            img.dataset.loaded = '1';
+            img.onerror = function() {
+                const fallback = img.dataset.fallback;
+                if (fallback && img.src !== fallback) {
+                    img.onerror = null;
+                    img.src = fallback;
+                }
+            };
+            img.src = src;
+        }
+
+        function releaseBookImage(img) {
+            if (!img || img.dataset.loaded !== '1') return;
+            img.onerror = null;
+            img.src = BOOK_PLACEHOLDER_SRC;
+            img.dataset.loaded = '0';
+        }
+
+        function syncBookImageMemory() {
+            const pages = [...document.querySelectorAll('#wedding-flipbook .book-page')];
+            // Keep only the current page, the previous page, and the next two pages decoded.
+            // This is important on iPhone Safari where stacked absolute pages can defeat native lazy-loading.
+            const keepFrom = Math.max(0, currentBookPage - 1);
+            const keepTo = Math.min(pages.length - 1, currentBookPage + 2);
+
+            pages.forEach((page, index) => {
+                const img = page.querySelector('.book-photo-frame img[data-src]');
+                if (!img) return;
+                if (index >= keepFrom && index <= keepTo) loadBookImage(img);
+                else releaseBookImage(img);
+            });
+        }
+
         function updateBookState(animate = true) {
             const pages = [...document.querySelectorAll('#wedding-flipbook .book-page')];
             pages.forEach((page, index) => {
@@ -4980,10 +5055,13 @@
             }
             const hint = document.getElementById('book-hint');
             if (hint) hint.textContent = bookT('book_hint','Chạm vào sổ hoặc dùng mũi tên để lật trang');
+            syncBookImageMemory();
         }
 
         function refreshBookLanguage() {
+            if (isBookTurning) return;
             renderGallery();
+            syncBookImageMemory();
         }
 
         function updateBookUIOnly() {
@@ -5105,6 +5183,16 @@
         };
 
         document.addEventListener('DOMContentLoaded', function() {
+            try {
+                if (sessionStorage.getItem('weddingEnvelopeOpened') === '1') {
+                    const overlay = document.getElementById('envelope-overlay');
+                    const musicControl = document.getElementById('music-control');
+                    if (overlay) overlay.style.display = 'none';
+                    if (musicControl) musicControl.classList.remove('opacity-0', 'pointer-events-none');
+                    document.body.classList.add('invitation-opened');
+                }
+            } catch (e) {}
+
             renderGallery();
             setupBookInteractions();
             if (window.lucide) {
@@ -5148,7 +5236,12 @@
             }
         }
 
+        let envelopeOpening = false;
         window.openWeddingEnvelope = function() {
+            if (envelopeOpening) return;
+            envelopeOpening = true;
+            try { sessionStorage.setItem('weddingEnvelopeOpened', '1'); } catch (e) {}
+
             const overlay = document.getElementById('envelope-overlay');
             const musicControl = document.getElementById('music-control');
             const topFlap = document.getElementById('envelope-top-flap');
@@ -5168,9 +5261,11 @@
 
             if (typeof confetti === 'function') {
                 setTimeout(function() {
+                    const mobileConfetti = window.matchMedia('(max-width: 767px)').matches;
                     confetti({
-                        particleCount: 130,
-                        spread: 85,
+                        particleCount: mobileConfetti ? 45 : 90,
+                        spread: mobileConfetti ? 65 : 80,
+                        ticks: mobileConfetti ? 120 : 180,
                         origin: { y: 0.55 }
                     });
                 }, 400);
@@ -5376,7 +5471,7 @@ END:VCALENDAR`;
             resizePetalCanvas();
 
             const petalsArray = [];
-            const maxPetals = 25;
+            const maxPetals = window.matchMedia('(max-width: 767px)').matches ? 10 : 20;
 
             class Petal {
                 constructor() {
@@ -5420,16 +5515,28 @@ END:VCALENDAR`;
                 petalsArray.push(new Petal());
             }
 
-            function animatePetals() {
+            let petalRafId = 0;
+            let lastPetalFrame = 0;
+            const PETAL_FRAME_MS = 1000 / 30;
+
+            function animatePetals(timestamp) {
+                petalRafId = requestAnimationFrame(animatePetals);
+                if (document.hidden) return;
+                if (timestamp - lastPetalFrame < PETAL_FRAME_MS) return;
+                lastPetalFrame = timestamp;
+
                 ctx.clearRect(0, 0, petalCanvas.width, petalCanvas.height);
                 petalsArray.forEach(p => {
                     p.update();
                     p.draw();
                 });
-                requestAnimationFrame(animatePetals);
             }
 
-            animatePetals();
+            petalRafId = requestAnimationFrame(animatePetals);
+
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) lastPetalFrame = performance.now();
+            });
         }
     </script>
 
@@ -5971,6 +6078,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    });
+</script>
+
+
+<script>
+    // Safari can restore a page from bfcache; keep the envelope state consistent on pageshow.
+    window.addEventListener('pageshow', function() {
+        try {
+            if (sessionStorage.getItem('weddingEnvelopeOpened') === '1') {
+                const overlay = document.getElementById('envelope-overlay');
+                if (overlay) overlay.style.display = 'none';
+                document.body.classList.add('invitation-opened');
+            }
+        } catch (e) {}
     });
 </script>
 
