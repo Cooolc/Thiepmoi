@@ -969,6 +969,18 @@
             transform: translateX(-50%);
         }
 
+        /* Keep section hanging knots behind/hidden while the opening envelope is on screen.
+           They are revealed only after the envelope overlay is completely removed. */
+        body:not(.invitation-opened) .cn-hanging-knot {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        body.invitation-opened .cn-hanging-knot {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity .45s ease;
+        }
+
         /* section title flourish */
         .cn-title-flourish {
             display: inline-flex;
@@ -1961,9 +1973,17 @@
             height: 62px !important;
             filter: drop-shadow(0 2px 2px rgba(0,0,0,.28));
         }
+        .vuquy-zodiac-medallion .vuquy-zodiac-horse-img {
+            width: 66px;
+            height: 66px;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 3px 3px rgba(0,0,0,.24));
+        }
         @media (max-width:639px) {
             .vuquy-lunar-grid { grid-template-columns:66px 1fr !important; }
             .vuquy-zodiac-medallion { width:64px !important; height:64px !important; }
+            .vuquy-zodiac-medallion .vuquy-zodiac-horse-img { width:54px; height:54px; }
             .vuquy-zodiac-medallion svg { width:53px !important; height:53px !important; }
         }
 
@@ -2644,7 +2664,7 @@
         }
         .book-page {
             position: absolute; inset: 0; transform-origin: left center; transform-style: preserve-3d;
-            transition: transform 1.28s cubic-bezier(.38,.04,.18,1), filter .8s ease;
+            transition: transform 1.15s cubic-bezier(.38,.04,.18,1), filter .72s ease;
             border-radius: 5px 16px 16px 5px; cursor: pointer;
             will-change: auto;
             -webkit-tap-highlight-color: transparent;
@@ -2756,6 +2776,28 @@
         .book-end-message { max-width:320px; margin:13px auto 0; color:rgba(255,245,214,.86); font:500 11px/1.8 'Noto Serif SC','Noto Serif',serif; }
         .book-end-blessing { margin-top:20px; color:#D4AF37; font:600 10px/1.7 'Noto Serif SC',serif; letter-spacing:.18em; }
         .book-end-names { margin-top:18px; font:600 17px 'Cormorant Garamond','Noto Serif',serif; color:#fff3ca; }
+        .book-restart-btn {
+            margin:18px auto 0;
+            min-height:40px;
+            padding:8px 16px;
+            border-radius:999px;
+            border:1px solid rgba(243,229,171,.65);
+            background:linear-gradient(135deg,rgba(122,0,22,.96),rgba(82,0,14,.98));
+            color:#F3E5AB;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap:7px;
+            font:600 10px/1.2 'Noto Serif SC','Noto Serif',serif;
+            letter-spacing:.08em;
+            box-shadow:0 7px 18px rgba(0,0,0,.24), inset 0 0 0 2px rgba(212,175,55,.05);
+            transition:transform .22s ease, background .22s ease, color .22s ease;
+            touch-action:manipulation;
+            -webkit-tap-highlight-color:transparent;
+        }
+        .book-restart-btn:hover { transform:translateY(-1px); background:#D4AF37; color:#3B000A; }
+        .book-restart-btn:active { transform:translateY(0) scale(.98); }
+        .book-instant-reset .book-page { transition:none !important; }
         @media (max-width:639px) {
             .book-cover .cover-medallion { width:108px; height:108px; }
             .book-cover-double-happiness { font-size:66px; }
@@ -3182,58 +3224,12 @@
                     <!-- Lunar / Zodiac -->
                     <div class="vuquy-info-col">
                         <div class="vuquy-zodiac-medallion" aria-hidden="true">
-                            <svg viewBox="0 0 120 120" fill="none">
-                                <!-- serious, recognisable full-body horse -->
-                                <path d="M27 79
-                                         C31 66 38 57 49 53
-                                         C58 49 69 50 78 53
-                                         C82 48 84 41 85 33
-                                         L93 20
-                                         L96 34
-                                         L105 38
-                                         C110 40 111 47 106 51
-                                         C102 54 98 55 92 56
-                                         C90 65 86 72 80 78
-                                         L84 101
-                                         L75 101
-                                         L69 80
-                                         L49 80
-                                         L43 101
-                                         L34 101
-                                         L37 78
-                                         C32 81 29 81 27 79Z"
-                                      fill="#8A4D08"
-                                      stroke="#FFF0A8"
-                                      stroke-width="2.6"
-                                      stroke-linejoin="round"/>
-                                <!-- neck / mane -->
-                                <path d="M79 53C72 48 70 42 74 34C77 29 81 25 86 22"
-                                      stroke="#FFF0A8" stroke-width="2.4" stroke-linecap="round"/>
-                                <path d="M82 48C78 45 77 40 79 35M86 44C82 41 82 36 84 31"
-                                      stroke="#5E2D04" stroke-width="2.2" stroke-linecap="round"/>
-                                <!-- tail -->
-                                <path d="M39 60C28 56 19 60 14 69C21 64 27 66 32 72"
-                                      stroke="#FFF0A8" stroke-width="3" stroke-linecap="round"/>
-                                <path d="M39 63C30 62 25 66 22 73"
-                                      stroke="#6D3404" stroke-width="2.2" stroke-linecap="round"/>
-                                <!-- legs -->
-                                <path d="M48 79L46 101M70 79L73 101"
-                                      stroke="#FFF0A8" stroke-width="2.5" stroke-linecap="round"/>
-                                <!-- head details -->
-                                <circle cx="99" cy="43" r="1.9" fill="#FFF0A8"/>
-                                <path d="M104 49C101 51 97 51 94 50"
-                                      stroke="#FFF0A8" stroke-width="1.9" stroke-linecap="round"/>
-                                <!-- ears -->
-                                <path d="M90 29L86 18L94 26M97 31L99 20L102 32"
-                                      fill="#8A4D08" stroke="#FFF0A8" stroke-width="1.8" stroke-linejoin="round"/>
-                                <!-- traditional saddle -->
-                                <path d="M49 53C58 57 69 58 78 53L76 70H50Z"
-                                      fill="#9D001C" stroke="#F3E5AB" stroke-width="2"/>
-                                <circle cx="63" cy="62" r="6.2" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
-                                <path d="M63 56V68M57 62H69" stroke="#D4AF37" stroke-width="1.2"/>
-                                <!-- ground -->
-                                <path d="M18 104H103" stroke="#FFF0A8" stroke-width="1.8" stroke-linecap="round" opacity=".75"/>
-                            </svg>
+                            <img
+                                class="vuquy-zodiac-horse-img"
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Horse-red.svg/960px-Horse-red.svg.png"
+                                alt="Ngựa Bính Ngọ phong cách cắt giấy Trung Hoa"
+                                loading="lazy"
+                                decoding="async">
                         </div>
                         <p data-i18n="vuquy_lunar_label" class="oriental-kicker text-[8px] sm:text-xs text-gold/80 font-bold uppercase mb-1">Lịch Âm</p>
                         <p data-i18n="vuquy_lunar_main" class="font-serif text-[9px] sm:text-sm md:text-base font-semibold text-ivory leading-relaxed">Mùng 01 tháng 09 • Năm Bính Ngọ</p>
@@ -4350,6 +4346,7 @@
                 book_end_message: "Mỗi tấm ảnh là một chương nhỏ trên hành trình yêu thương. Cảm ơn bạn đã lật đến trang cuối cùng của cuốn sổ này.",
                 book_end_blessing: "百年好合 · 永结同心 · 白头偕老",
                 book_end_names: "Chấn Cơ & Hảo Nghi",
+                book_restart: "Quay Lại Trang Đầu",
                 gal_btn_more: "Xem Thêm Ảnh",
                 lightbox_hint: "Vuốt sang trái / phải để chuyển ảnh",
                 rsvp_subtitle: "XÁC NHẬN THAM DỰ",
@@ -4515,6 +4512,7 @@
                 book_end_message: "每一張照片，都是我們愛情旅程中的一個小篇章。謝謝您一路翻到這本相簿的最後一頁。",
                 book_end_blessing: "百年好合 · 永結同心 · 白頭偕老",
                 book_end_names: "振基 & 好儀",
+                book_restart: "返回封面",
                 gal_btn_more: "查看更多照片",
                 lightbox_hint: "左右滑動可切換上一張 / 下一張照片",
                 rsvp_subtitle: "出席回覆",
@@ -4680,6 +4678,7 @@
                 book_end_message: "一枚一枚の写真は、二人の歩みを綴った小さな物語です。このアルバムの最後までお付き合いいただき、ありがとうございます。",
                 book_end_blessing: "百年好合 · 永結同心 · 白頭偕老",
                 book_end_names: "チャン・コー & ハオ・ギー",
+                book_restart: "表紙に戻る",
                 gal_btn_more: "写真をもっと見る",
                 lightbox_hint: "左右にスワイプして前後の写真を表示できます",
                 rsvp_subtitle: "出欠のご確認",
@@ -4820,7 +4819,7 @@
         let isBookTurning = false;
         let bookTurnTimer = null;
         let lastBookTapAt = 0;
-        const BOOK_TURN_LOCK_MS = 1380;
+        const BOOK_TURN_LOCK_MS = 1240;
 
         function beginBookTurnLock(page) {
             isBookTurning = true;
@@ -4939,6 +4938,10 @@
                                 <div class="book-end-message">${bookT('book_end_message','')}</div>
                                 <div class="book-end-blessing">${bookT('book_end_blessing','百年好合 · 永结同心 · 白头偕老')}</div>
                                 <div class="book-end-names">${bookT('book_end_names','Chấn Cơ & Hảo Nghi')}</div>
+                                <button type="button" class="book-restart-btn" onclick="event.stopPropagation(); returnBookToCover();" aria-label="${bookT('book_restart','Quay lại trang đầu')}">
+                                    <span aria-hidden="true">↺</span>
+                                    <span>${bookT('book_restart','Quay lại trang đầu')}</span>
+                                </button>
                             </div>
                         </div>
                         <div class="book-face back"><div class="book-back-pattern">囍</div></div>`;
@@ -5052,6 +5055,25 @@
                         updateBookUIOnly();
                     });
                 });
+            });
+        };
+
+        window.returnBookToCover = function() {
+            if (isBookTurning) return;
+            const book = document.getElementById('wedding-flipbook');
+            if (!book) return;
+            const pages = [...book.querySelectorAll('.book-page')];
+            book.classList.add('book-instant-reset');
+            pages.forEach(page => {
+                page.classList.remove('is-turned', 'is-turning');
+            });
+            currentBookPage = 0;
+            updateBookState(false);
+            updateBookUIOnly();
+            // Force the reset frame, then restore normal page-turn transitions.
+            void book.offsetWidth;
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => book.classList.remove('book-instant-reset'));
             });
         };
 
@@ -5174,6 +5196,7 @@
 
             setTimeout(function() {
                 if (overlay) overlay.style.display = 'none';
+                document.body.classList.add('invitation-opened');
             }, 3700);
         };
 
@@ -5763,6 +5786,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.setLanguage = function(lang) {
                 prevSetLanguageHanzi(lang);
                 document.documentElement.setAttribute('data-lang', lang);
+                document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : lang;
                 setTimeout(renderCountdownNumbersForLanguage, 0);
             };
         }
@@ -5794,12 +5818,33 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Default / init language is Traditional Chinese.
+            /*
+             * Initial language from URL path:
+             *   /      -> Vietnamese
+             *   /cn    -> Chinese
+             *   /jp    -> Japanese
+             * Also supports trailing slash and nested deployment paths
+             * such as /wedding/cn or /wedding/jp.
+             */
+            const pathParts = window.location.pathname
+                .split('/')
+                .filter(Boolean)
+                .map(part => part.toLowerCase());
+
+            const urlLang = pathParts[pathParts.length - 1];
+            const initialLang = urlLang === 'cn'
+                ? 'zh'
+                : urlLang === 'jp'
+                    ? 'ja'
+                    : 'vi';
+
             if (typeof window.setLanguage === 'function') {
-                window.setLanguage('zh');
+                window.setLanguage(initialLang);
             }
-            document.documentElement.lang = 'zh';
-            document.documentElement.setAttribute('data-lang', 'zh');
+
+            const htmlLang = initialLang === 'zh' ? 'zh-Hant' : initialLang;
+            document.documentElement.lang = htmlLang;
+            document.documentElement.setAttribute('data-lang', initialLang);
         });
 </script>
 
