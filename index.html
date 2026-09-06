@@ -2636,11 +2636,23 @@
             width: min(92vw, 620px); aspect-ratio: 4 / 5; margin: 0 auto;
             position: relative; perspective: 1800px; transform-style: preserve-3d;
             filter: drop-shadow(0 24px 28px rgba(0,0,0,.38));
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
         .book-page {
             position: absolute; inset: 0; transform-origin: left center; transform-style: preserve-3d;
-            transition: transform .9s cubic-bezier(.2,.72,.2,1), filter .55s ease;
-            border-radius: 5px 16px 16px 5px; cursor: pointer; will-change: transform;
+            transition: transform 1.28s cubic-bezier(.38,.04,.18,1), filter .8s ease;
+            border-radius: 5px 16px 16px 5px; cursor: pointer;
+            will-change: auto;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .book-page.is-turning { will-change: transform; }
+        .book-page.is-turning .book-face {
+            transition: box-shadow .55s ease, filter .55s ease;
+            box-shadow: inset 12px 0 18px rgba(35,0,6,.22), inset 0 0 0 5px rgba(212,175,55,.06), 0 14px 28px rgba(34,0,6,.18);
         }
         .book-page.is-turned { transform: rotateY(-180deg); pointer-events: none; }
         .book-face {
@@ -2679,13 +2691,13 @@
         .book-cover-date { margin-top:5px; font-size:10px; letter-spacing:.2em; color:rgba(243,229,171,.75); }
         .book-back-pattern { width:100%; height:100%; display:grid; place-items:center; color:rgba(122,0,22,.12); font:900 92px 'Noto Serif SC',serif; border:10px solid #ead6ae; }
         .book-controls { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:24px; }
-        .book-control-btn { width:44px; height:44px; border-radius:50%; border:1px solid rgba(243,229,171,.62); background:linear-gradient(145deg,#790016,#4a000d); color:#F3E5AB; display:grid; place-items:center; box-shadow:0 7px 16px rgba(0,0,0,.25); transition:.25s ease; }
+        .book-control-btn { width:44px; height:44px; border-radius:50%; border:1px solid rgba(243,229,171,.62); background:linear-gradient(145deg,#790016,#4a000d); color:#F3E5AB; display:grid; place-items:center; box-shadow:0 7px 16px rgba(0,0,0,.25); transition:.25s ease; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
         .book-control-btn:hover:not(:disabled) { transform:translateY(-2px); background:#D4AF37; color:#3B000A; }
         .book-control-btn:disabled { opacity:.3; cursor:not-allowed; }
         .book-counter { min-width:110px; text-align:center; color:#F3E5AB; font-family:'Noto Serif SC','Noto Serif',serif; font-size:11px; letter-spacing:.12em; }
         .book-hint { text-align:center; color:rgba(243,229,171,.7); font-size:10px; letter-spacing:.08em; margin-top:12px; }
         @media (max-width:639px) {
-            .wedding-flipbook { width:min(88vw,430px); }
+            .wedding-flipbook { width:min(88vw,430px); filter: drop-shadow(0 14px 16px rgba(0,0,0,.28)); }
             .book-paper { padding:14px 14px 25px; }
             .book-photo-frame { padding:5px; }
             .book-page-caption { margin-top:8px; font-size:10px; }
@@ -4805,6 +4817,53 @@
         ];
 
         let currentBookPage = 0; // 0 = bìa, 1..n = ảnh, n+1 = trang kết
+        let isBookTurning = false;
+        let bookTurnTimer = null;
+        let lastBookTapAt = 0;
+        const BOOK_TURN_LOCK_MS = 1380;
+
+        function beginBookTurnLock(page) {
+            isBookTurning = true;
+            if (page) page.classList.add('is-turning');
+            const book = document.getElementById('wedding-flipbook');
+            if (book) book.setAttribute('aria-busy', 'true');
+            clearTimeout(bookTurnTimer);
+            bookTurnTimer = setTimeout(() => {
+                isBookTurning = false;
+                document.querySelectorAll('#wedding-flipbook .book-page.is-turning').forEach(p => p.classList.remove('is-turning'));
+                const currentBook = document.getElementById('wedding-flipbook');
+                if (currentBook) currentBook.removeAttribute('aria-busy');
+                if (typeof updateBookUIOnly === 'function') updateBookUIOnly();
+            }, BOOK_TURN_LOCK_MS);
+        }
+
+        function setupBookInteractions() {
+            const book = document.getElementById('wedding-flipbook');
+            if (!book || book.dataset.interactionsReady === 'true') return;
+            book.dataset.interactionsReady = 'true';
+
+            // iOS Safari: prevent native double-tap zoom / delayed duplicate activation.
+            book.addEventListener('dblclick', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }, { passive: false });
+
+            book.addEventListener('click', function(e) {
+                const page = e.target.closest('.book-page');
+                if (!page || !book.contains(page)) return;
+                const endIndex = weddingGalleryList.length + 1;
+                if (currentBookPage >= endIndex || isBookTurning) return;
+
+                const now = Date.now();
+                if (now - lastBookTapAt < BOOK_TURN_LOCK_MS) {
+                    e.preventDefault();
+                    return;
+                }
+                lastBookTapAt = now;
+                e.preventDefault();
+                nextBookPage();
+            }, { passive: false });
+        }
 
         function bookT(key, fallback = '') {
             const lang = window.currentLang || 'vi';
@@ -4836,7 +4895,6 @@
                 page.className = 'book-page';
                 page.dataset.page = index;
                 page.style.zIndex = String(pages.length - index + 5);
-                if (entry.type !== 'end') page.onclick = () => nextBookPage();
 
                 if (entry.type === 'cover') {
                     const cloud = coverCloudSvg();
@@ -4925,16 +4983,108 @@
             renderGallery();
         }
 
+        function updateBookUIOnly() {
+            const prev = document.getElementById('book-prev');
+            const next = document.getElementById('book-next');
+            const counter = document.getElementById('book-counter');
+            const endIndex = weddingGalleryList.length + 1;
+
+            if (prev) prev.disabled = currentBookPage === 0 || isBookTurning;
+            if (next) next.disabled = currentBookPage >= endIndex || isBookTurning;
+
+            if (counter) {
+                if (currentBookPage === 0) {
+                    counter.textContent = bookT('book_counter_cover','BÌA • 囍');
+                } else if (currentBookPage === endIndex) {
+                    counter.textContent = bookT('book_counter_end','KẾT • 百年好合');
+                } else {
+                    counter.textContent = bookT('book_counter_page','TRANG {current} / {total}')
+                        .replace('{current}', currentBookPage)
+                        .replace('{total}', weddingGalleryList.length);
+                }
+            }
+        }
+
+        function finishBookTurn(page, callback) {
+            let finished = false;
+            const done = () => {
+                if (finished) return;
+                finished = true;
+                page.removeEventListener('transitionend', onEnd);
+                if (callback) callback();
+            };
+            const onEnd = (e) => {
+                if (e.target === page && e.propertyName === 'transform') done();
+            };
+            page.addEventListener('transitionend', onEnd);
+            // Safari fallback in case transitionend is skipped.
+            setTimeout(done, BOOK_TURN_LOCK_MS + 120);
+        }
+
         window.nextBookPage = function() {
             const endIndex = weddingGalleryList.length + 1;
-            if (currentBookPage < endIndex) { currentBookPage++; updateBookState(); }
+            if (isBookTurning || currentBookPage >= endIndex) return;
+
+            const pages = [...document.querySelectorAll('#wedding-flipbook .book-page')];
+            const pageIndex = currentBookPage;
+            const turningPage = pages[pageIndex];
+            if (!turningPage) return;
+
+            // Critical for Safari/iPhone: keep the CURRENT page above the next page
+            // for the whole turn. Lowering z-index before the transform starts makes
+            // the next photo appear instantly, which looks like an image swap.
+            const topZ = pages.length + 20;
+            turningPage.style.zIndex = String(topZ);
+            beginBookTurnLock(turningPage);
+
+            // Force Safari to commit the current visual frame before starting rotation.
+            void turningPage.offsetWidth;
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    turningPage.classList.add('is-turned');
+                    currentBookPage = pageIndex + 1;
+                    updateBookUIOnly();
+
+                    finishBookTurn(turningPage, () => {
+                        // Only after the physical page has landed do we move it behind.
+                        turningPage.style.zIndex = String(pageIndex + 1);
+                        updateBookState(false);
+                        updateBookUIOnly();
+                    });
+                });
+            });
         };
+
         window.prevBookPage = function() {
-            if (currentBookPage > 0) { currentBookPage--; updateBookState(); }
+            if (isBookTurning || currentBookPage <= 0) return;
+
+            const pages = [...document.querySelectorAll('#wedding-flipbook .book-page')];
+            const targetIndex = currentBookPage - 1;
+            const turningPage = pages[targetIndex];
+            if (!turningPage) return;
+
+            // Bring the previous sheet to the top BEFORE rotating it back into view.
+            turningPage.style.zIndex = String(pages.length + 20);
+            beginBookTurnLock(turningPage);
+            void turningPage.offsetWidth;
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    turningPage.classList.remove('is-turned');
+                    currentBookPage = targetIndex;
+                    updateBookUIOnly();
+
+                    finishBookTurn(turningPage, () => {
+                        updateBookState(false);
+                        updateBookUIOnly();
+                    });
+                });
+            });
         };
 
         document.addEventListener('DOMContentLoaded', function() {
             renderGallery();
+            setupBookInteractions();
             if (window.lucide) {
                 lucide.createIcons();
             }
