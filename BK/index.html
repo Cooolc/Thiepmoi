@@ -1058,6 +1058,20 @@
             border-radius: 10px;
         }
 
+        /* PNG thỏi vàng - thay src trong HTML nếu muốn đổi ảnh */
+        .gift-gold-ingot-img {
+            display: block;
+            width: 82%;
+            height: 82%;
+            object-fit: contain;
+            filter: drop-shadow(0 7px 10px rgba(0,0,0,.35));
+            transition: transform .35s ease, filter .35s ease;
+        }
+        .gift-reveal-wrap:hover .gift-gold-ingot-img {
+            transform: scale(1.035);
+            filter: drop-shadow(0 9px 14px rgba(0,0,0,.40)) drop-shadow(0 0 8px rgba(212,175,55,.22));
+        }
+
         .ancient-coin {
             width: 82%;
             height: 82%;
@@ -2152,9 +2166,9 @@
         @media (max-width:639px) {
             button:not(.lang-btn):not(#music-toggle-btn):not(.gift-reveal-wrap),
             a[href="#rsvp"],
-            .vuquy-map-link {
+            /* .vuquy-map-link {
                 border-radius: 8px !important;
-            }
+            } */
             .seal-btn::after,
             button:not(.lang-btn):not(#music-toggle-btn):not(.gift-reveal-wrap)::after,
             a[href="#rsvp"]::after,
@@ -3996,30 +4010,7 @@
                     <button type="button" class="gift-reveal-wrap" onclick="toggleGiftQR(this)" aria-expanded="false" aria-label="Reveal QR code">
                         <span class="gift-reveal-inner">
                             <span class="gift-reveal-face gift-reveal-front">
-                                <svg class="ancient-coin" viewBox="0 0 120 120" aria-hidden="true">
-    <defs>
-        <radialGradient id="coinGoldGroom" cx="34%" cy="28%" r="72%">
-            <stop offset="0%" stop-color="#FFF0A8"/>
-            <stop offset="28%" stop-color="#EBC75A"/>
-            <stop offset="62%" stop-color="#B98214"/>
-            <stop offset="100%" stop-color="#6F4305"/>
-        </radialGradient>
-        <linearGradient id="coinEdgeGroom" x1="0" x2="1">
-            <stop stop-color="#8B5808"/><stop offset=".5" stop-color="#F5DE79"/><stop offset="1" stop-color="#805006"/>
-        </linearGradient>
-    </defs>
-    <circle cx="60" cy="60" r="51" fill="url(#coinGoldGroom)" stroke="url(#coinEdgeGroom)" stroke-width="5"/>
-    <circle cx="60" cy="60" r="43" fill="none" stroke="#7C4B06" stroke-width="1.4" opacity=".65"/>
-    <rect x="48" y="48" width="24" height="24" rx="1.5" fill="#4A1804" stroke="#F7DF79" stroke-width="2"/>
-    <g fill="#5D3305" font-family="Noto Serif SC, serif" font-size="16" font-weight="800" text-anchor="middle">
-        <text x="60" y="35">招</text><text x="60" y="98">寶</text>
-        <text x="27" y="66">財</text><text x="93" y="66">進</text>
-    </g>
-    <g fill="none" stroke="#6E3B05" stroke-width="1.5" opacity=".72">
-        <path d="M31 41c7-8 13-10 18-9M89 41c-7-8-13-10-18-9M31 79c7 8 13 10 18 9M89 79c-7 8-13 10-18 9"/>
-        <path d="M22 53c5-2 8-5 10-10M98 53c-5-2-8-5-10-10M22 67c5 2 8 5 10 10M98 67c-5 2-8 5-10 10"/>
-    </g>
-</svg>
+                                <img class="gift-gold-ingot-img" src="img/thoivang.png" alt="Thỏi vàng" loading="lazy">
                             </span>
                             <span class="gift-reveal-face gift-reveal-back">
                                 <img src="img/MSB_QR.jpg" alt="VietQR Groom" loading="lazy">
