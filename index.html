@@ -969,6 +969,18 @@
             transform: translateX(-50%);
         }
 
+        /* Keep section hanging knots behind/hidden while the opening envelope is on screen.
+           They are revealed only after the envelope overlay is completely removed. */
+        body:not(.invitation-opened) .cn-hanging-knot {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        body.invitation-opened .cn-hanging-knot {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity .45s ease;
+        }
+
         /* section title flourish */
         .cn-title-flourish {
             display: inline-flex;
@@ -1961,9 +1973,17 @@
             height: 62px !important;
             filter: drop-shadow(0 2px 2px rgba(0,0,0,.28));
         }
+        .vuquy-zodiac-medallion .vuquy-zodiac-horse-img {
+            width: 66px;
+            height: 66px;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 3px 3px rgba(0,0,0,.24));
+        }
         @media (max-width:639px) {
             .vuquy-lunar-grid { grid-template-columns:66px 1fr !important; }
             .vuquy-zodiac-medallion { width:64px !important; height:64px !important; }
+            .vuquy-zodiac-medallion .vuquy-zodiac-horse-img { width:54px; height:54px; }
             .vuquy-zodiac-medallion svg { width:53px !important; height:53px !important; }
         }
 
@@ -2628,6 +2648,41 @@
             .rsvp-custom-option { padding: 10px 11px; font-size: 12px; }
         }
 
+
+
+        /* ===== V8 iOS Safari performance / reload protection ===== */
+        html, body {
+            overscroll-behavior-y: none;
+        }
+@media (max-width: 767px) {
+            /* Avoid keeping decorative elements permanently promoted to GPU layers on iPhone. */
+            .family-avatar { will-change: auto !important; }
+            .family-card-chinese .family-avatar,
+            .firecracker-divider-inner,
+            .horizontal-cracker,
+            .cracker-spark,
+            .hero-lantern,
+            .hero-spark {
+                animation: none !important;
+            }
+            #envelope-overlay {
+                -webkit-backdrop-filter: none !important;
+                backdrop-filter: none !important;
+            }
+            }
+
+
+        /* Gallery lightbox zoom */
+        #lightbox-image-stage { touch-action: none; }
+        #lightbox-img {
+            transform-origin: center center;
+            will-change: transform;
+            transition: transform .18s ease, opacity .2s ease;
+        }
+        #lightbox-modal button {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
 </style>
 </head>
 <body class="bg-crimson-deep text-ivory font-sans relative overflow-x-hidden selection:bg-gold selection:text-crimson-dark">
@@ -3031,7 +3086,7 @@
                         <p data-i18n="vuquy_location_label" class="oriental-kicker text-[8px] sm:text-xs text-gold/80 font-bold uppercase mb-1">Địa Điểm</p>
                         <p data-i18n="vuquy_location" class="font-serif text-[10px] sm:text-sm md:text-base font-semibold text-ivory leading-relaxed">Nhà Hàng<br>Ái Huê 2</p>
                         <a class="vuquy-map-link seal-btn"
-                           href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0+H%C3%A0ng+%C3%81i+Hu%C3%AA+2%2C+338+Tr%E1%BA%A7n+H%C6%B0ng+%C4%90%E1%BA%A1o%2C+Qu%E1%BA%ADn+5%2C+TP.HCM"
+                           href="https://www.google.com/maps/dir/?api=1&destination=338-350%20Tr%E1%BA%A7n%20H%C6%B0ng%20%C4%90%E1%BA%A1o%20B%2C%20Ph%C6%B0%E1%BB%9Dng%2011%2C%20Qu%E1%BA%ADn%205%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh&destination_place_id=ChIJ245VTQwvdTERoJjl87LXYCw&travelmode=driving"
                            target="_blank" rel="noopener noreferrer" aria-label="Google Maps - Nhà Hàng Ái Huê 2">
                             <i data-lucide="navigation" class="w-3 h-3"></i>
                             <span data-i18n="vuquy_map">Chỉ đường</span>
@@ -3041,58 +3096,12 @@
                     <!-- Lunar / Zodiac -->
                     <div class="vuquy-info-col">
                         <div class="vuquy-zodiac-medallion" aria-hidden="true">
-                            <svg viewBox="0 0 120 120" fill="none">
-                                <!-- serious, recognisable full-body horse -->
-                                <path d="M27 79
-                                         C31 66 38 57 49 53
-                                         C58 49 69 50 78 53
-                                         C82 48 84 41 85 33
-                                         L93 20
-                                         L96 34
-                                         L105 38
-                                         C110 40 111 47 106 51
-                                         C102 54 98 55 92 56
-                                         C90 65 86 72 80 78
-                                         L84 101
-                                         L75 101
-                                         L69 80
-                                         L49 80
-                                         L43 101
-                                         L34 101
-                                         L37 78
-                                         C32 81 29 81 27 79Z"
-                                      fill="#8A4D08"
-                                      stroke="#FFF0A8"
-                                      stroke-width="2.6"
-                                      stroke-linejoin="round"/>
-                                <!-- neck / mane -->
-                                <path d="M79 53C72 48 70 42 74 34C77 29 81 25 86 22"
-                                      stroke="#FFF0A8" stroke-width="2.4" stroke-linecap="round"/>
-                                <path d="M82 48C78 45 77 40 79 35M86 44C82 41 82 36 84 31"
-                                      stroke="#5E2D04" stroke-width="2.2" stroke-linecap="round"/>
-                                <!-- tail -->
-                                <path d="M39 60C28 56 19 60 14 69C21 64 27 66 32 72"
-                                      stroke="#FFF0A8" stroke-width="3" stroke-linecap="round"/>
-                                <path d="M39 63C30 62 25 66 22 73"
-                                      stroke="#6D3404" stroke-width="2.2" stroke-linecap="round"/>
-                                <!-- legs -->
-                                <path d="M48 79L46 101M70 79L73 101"
-                                      stroke="#FFF0A8" stroke-width="2.5" stroke-linecap="round"/>
-                                <!-- head details -->
-                                <circle cx="99" cy="43" r="1.9" fill="#FFF0A8"/>
-                                <path d="M104 49C101 51 97 51 94 50"
-                                      stroke="#FFF0A8" stroke-width="1.9" stroke-linecap="round"/>
-                                <!-- ears -->
-                                <path d="M90 29L86 18L94 26M97 31L99 20L102 32"
-                                      fill="#8A4D08" stroke="#FFF0A8" stroke-width="1.8" stroke-linejoin="round"/>
-                                <!-- traditional saddle -->
-                                <path d="M49 53C58 57 69 58 78 53L76 70H50Z"
-                                      fill="#9D001C" stroke="#F3E5AB" stroke-width="2"/>
-                                <circle cx="63" cy="62" r="6.2" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
-                                <path d="M63 56V68M57 62H69" stroke="#D4AF37" stroke-width="1.2"/>
-                                <!-- ground -->
-                                <path d="M18 104H103" stroke="#FFF0A8" stroke-width="1.8" stroke-linecap="round" opacity=".75"/>
-                            </svg>
+                            <img
+                                class="vuquy-zodiac-horse-img"
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Horse-red.svg/960px-Horse-red.svg.png"
+                                alt="Ngựa Bính Ngọ phong cách cắt giấy Trung Hoa"
+                                loading="lazy"
+                                decoding="async">
                         </div>
                         <p data-i18n="vuquy_lunar_label" class="oriental-kicker text-[8px] sm:text-xs text-gold/80 font-bold uppercase mb-1">Lịch Âm</p>
                         <p data-i18n="vuquy_lunar_main" class="font-serif text-[9px] sm:text-sm md:text-base font-semibold text-ivory leading-relaxed">Mùng 01 tháng 09 • Năm Bính Ngọ</p>
@@ -3640,7 +3649,7 @@
                             </div>
 
                             <div class="pt-5 grid grid-cols-2 gap-3">
-                                <a href="https://www.google.com/maps/place/Trung+T%C3%A2m+H%E1%BB%99i+Ngh%E1%BB%8B+-+Ti%E1%BB%87c+C%C6%B0%E1%BB%9Bi+Riverside+Palace/@10.7548545,106.6853873,17z/data=!3m1!4b1!4m6!3m5!1s0x31752f0fc935b50d:0xc11b8be0344d1561!8m2!3d10.7548545!4d106.6879622"
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Riverside%20Palace%2C%20360D%20B%E1%BA%BFn%20V%C3%A2n%20%C4%90%E1%BB%93n%2C%20V%C4%A9nh%20H%E1%BB%99i%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh&destination_place_id=ChIJDbU1yQ8vdTERYRUNO-CLG8E&travelmode=driving"
                                    target="_blank" rel="noopener noreferrer"
                                    class="seal-btn inline-flex items-center justify-center gap-2 py-3 px-3 text-[10px] sm:text-xs font-bold">
                                     <i data-lucide="map" class="w-4 h-4"></i>
@@ -3847,38 +3856,44 @@
 </div>
     </section>
 
-    <!-- Lightbox Modal Container -->
-    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center p-2 sm:p-4 backdrop-blur-md transition-opacity duration-300 select-none">
-        <!-- Close Button -->
-        <button onclick="closeLightbox()" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/80 hover:text-gold transition-colors z-50 p-2 cursor-pointer bg-retro-dark/60 rounded-full border border-gold/30" title="Đóng">
-            <i data-lucide="x" class="w-6 h-6 sm:w-8 sm:h-8"></i>
-        </button>
-
-        <!-- Previous Button -->
-        <button onclick="prevLightbox(event)" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-retro-dark/85 border border-gold/60 text-gold flex items-center justify-center hover:scale-110 hover:bg-gold hover:text-retro-dark transition-all z-50 cursor-pointer shadow-2xl" title="Ảnh trước">
-            <i data-lucide="chevron-left" class="w-6 h-6 sm:w-8 sm:h-8"></i>
-        </button>
-
-        <!-- Next Button -->
-        <button onclick="nextLightbox(event)" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-retro-dark/85 border border-gold/60 text-gold flex items-center justify-center hover:scale-110 hover:bg-gold hover:text-retro-dark transition-all z-50 cursor-pointer shadow-2xl" title="Ảnh tiếp theo">
-            <i data-lucide="chevron-right" class="w-6 h-6 sm:w-8 sm:h-8"></i>
-        </button>
-
-        <!-- Center Container -->
-        <div id="lightbox-content-box" class="max-w-5xl w-full flex flex-col items-center justify-center relative z-40 px-6 sm:px-14">
-            <div class="relative flex items-center justify-center max-w-full max-h-[75vh]">
-                <img id="lightbox-img" 
-                     src="" 
-                     alt="Wedding photo preview" 
-                     class="max-h-[72vh] w-auto max-w-full rounded-2xl border-2 border-gold/50 shadow-2xl transition-all duration-300 object-contain mx-auto bg-retro-dark">
-                
-                <span id="lightbox-counter" class="absolute top-3 right-3 bg-retro-dark/90 text-gold text-xs font-mono px-3 py-1 rounded-full border border-gold/40 shadow-md">1 / 8</span>
+    <!-- Gallery Lightbox: zoom + previous/next -->
+    <div id="lightbox-modal"
+         class="hidden fixed inset-0 z-[9999] bg-black/95 items-center justify-center p-2 sm:p-5"
+         role="dialog" aria-modal="true" aria-label="Photo viewer">
+        <div id="lightbox-content-box" class="relative w-full h-full flex items-center justify-center overflow-hidden">
+            <button type="button" onclick="closeLightbox()"
+                    class="absolute top-3 right-3 z-30 w-11 h-11 rounded-full border border-gold/50 bg-crimson-dark/90 text-gold flex items-center justify-center"
+                    aria-label="Close photo viewer">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+<div id="lightbox-image-stage" class="relative w-full h-full flex items-center justify-center overflow-hidden touch-none">
+                <img id="lightbox-img" src="" alt=""
+                     class="max-w-[92vw] max-h-[78vh] object-contain select-none transition-opacity duration-200"
+                     draggable="false">
             </div>
-            
-            <p id="lightbox-caption" class="font-serif text-sm sm:text-base md:text-lg text-gold mt-3 font-semibold px-4 drop-shadow text-center"></p>
-            <p data-i18n="lightbox_hint" class="text-[11px] text-ivory/50 mt-1 sm:hidden">Vuốt sang trái / phải để chuyển ảnh</p>
+
+            <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 max-w-[94vw] pointer-events-none">
+                <div class="flex items-center gap-2 pointer-events-auto">
+                    <button type="button" onclick="changeLightboxZoom(-0.25, event)"
+                            class="w-10 h-10 rounded-full border border-gold/40 bg-crimson-dark/90 text-gold flex items-center justify-center"
+                            aria-label="Zoom out"><i data-lucide="zoom-out" class="w-4 h-4"></i></button>
+                    <button type="button" onclick="resetLightboxZoom(event)"
+                            class="h-10 px-3 rounded-full border border-gold/40 bg-crimson-dark/90 text-gold text-xs font-bold">
+                        <span id="lightbox-zoom-label">100%</span>
+                    </button>
+                    <button type="button" onclick="changeLightboxZoom(0.25, event)"
+                            class="w-10 h-10 rounded-full border border-gold/40 bg-crimson-dark/90 text-gold flex items-center justify-center"
+                            aria-label="Zoom in"><i data-lucide="zoom-in" class="w-4 h-4"></i></button>
+                </div>
+                <div class="text-center">
+                    <div id="lightbox-counter" class="text-gold text-xs font-bold mb-1"></div>
+                    <div id="lightbox-caption" class="text-ivory/85 text-xs sm:text-sm font-serif"></div>
+                    <div data-i18n="lightbox_hint" class="text-ivory/55 text-[10px] mt-1">Vuốt sang trái / phải để chuyển ảnh</div>
+                </div>
+            </div>
         </div>
     </div>
+
 
     <!-- 10. RSVP FORM SECTION -->
     <section id="rsvp" class="rsvp-section-chinese py-16 sm:py-20 border-t border-gold/30">
@@ -4007,7 +4022,7 @@
             <div class="grid grid-cols-2 gap-2 sm:gap-5 md:gap-8">
                 <div class="gift-card-shell bg-crimson-dark px-2 py-4 sm:p-6 rounded-2xl border-2 border-gold/40 text-center flex flex-col items-center shadow-2xl reveal-left min-w-0">
                     <span data-i18n="gift_groom_tag" class="bg-gold text-retro-dark px-2 sm:px-4 py-1 rounded-full text-[9px] sm:text-xs font-bold tracking-wide sm:tracking-wider mb-3 sm:mb-4 whitespace-nowrap">MỪNG CƯỚI CHÚ RỂ</span>
-                    <button type="button" class="gift-reveal-wrap" onclick="toggleGiftQR(this)" aria-expanded="false" aria-label="Reveal QR code">
+                    <button type="button" class="gift-reveal-wrap" onclick="toggleGiftQR(this)" aria-expanded="false" aria-label="Reveal QR code" data-qr-src="img/MSB_QR.jpg">
                         <span class="gift-reveal-inner">
                             <span class="gift-reveal-face gift-reveal-front">
                                 <img class="gift-gold-ingot-img" src="img/thoivang.png" alt="Thỏi vàng" loading="lazy">
@@ -4018,6 +4033,10 @@
                         </span>
                         <span data-i18n="gift_open_qr" class="gift-open-hint">Chạm để mở QR</span>
                     </button>
+                    <button type="button" onclick="saveGiftQR('img/MSB_QR.jpg', 'QR-Chu-Re-MSB.jpg', event)"
+                            class="mt-1 mb-2 text-[9px] sm:text-xs text-gold/90 underline underline-offset-4 decoration-gold/50"
+                            data-i18n="gift_save_qr">Lưu / Chia Sẻ QR</button>
+
                     <div class="gift-account-details">
                     <h4 data-i18n="gift_bank_mb" class="font-serif text-[11px] sm:text-base font-bold text-ivory leading-tight">Ngân Hàng MSB</h4>
                     <p class="text-[9px] sm:text-xs text-ivory/80 mb-1 leading-tight"><span data-i18n="gift_acc_holder">Chủ TK:</span> <strong>LA CHAN CO</strong></p>
@@ -4030,7 +4049,7 @@
 
                 <div class="gift-card-shell bg-crimson-dark px-2 py-4 sm:p-6 rounded-2xl border-2 border-gold/40 text-center flex flex-col items-center shadow-2xl reveal-right min-w-0">
                     <span data-i18n="gift_bride_tag" class="bg-gold text-retro-dark px-2 sm:px-4 py-1 rounded-full text-[9px] sm:text-xs font-bold tracking-wide sm:tracking-wider mb-3 sm:mb-4 whitespace-nowrap">MỪNG CƯỚI CÔ DÂU</span>
-                    <button type="button" class="gift-reveal-wrap" onclick="toggleGiftQR(this)" aria-expanded="false" aria-label="Reveal QR code">
+                    <button type="button" class="gift-reveal-wrap" onclick="toggleGiftQR(this)" aria-expanded="false" aria-label="Reveal QR code" data-qr-src="https://img.vietqr.io/image/VCB-0071001234567-compact2.jpg?accountName=HUYNH%20HAO%20NGHI&addInfo=MUNG%20CUOI%20CHAN%20CO%20HAO%20NGHI">
                         <span class="gift-reveal-inner">
                             <span class="gift-reveal-face gift-reveal-front">
                                 <svg class="ancient-coin" viewBox="0 0 120 120" aria-hidden="true">
@@ -4059,11 +4078,15 @@
 </svg>
                             </span>
                             <span class="gift-reveal-face gift-reveal-back">
-                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=STK-0071001234567-VCB-HUYNHHAONGHI" alt="VietQR Bride" loading="lazy">
+                                <img src="https://img.vietqr.io/image/VCB-0071001234567-compact2.jpg?accountName=HUYNH%20HAO%20NGHI&addInfo=MUNG%20CUOI%20CHAN%20CO%20HAO%20NGHI" alt="VietQR Bride" loading="lazy">
                             </span>
                         </span>
                         <span data-i18n="gift_open_qr" class="gift-open-hint">Chạm để mở QR</span>
                     </button>
+                    <button type="button" onclick="saveGiftQR('https://img.vietqr.io/image/VCB-0071001234567-compact2.jpg?accountName=HUYNH%20HAO%20NGHI&addInfo=MUNG%20CUOI%20CHAN%20CO%20HAO%20NGHI', 'QR-Co-Dau-Vietcombank.jpg', event)"
+                            class="mt-1 mb-2 text-[9px] sm:text-xs text-gold/90 underline underline-offset-4 decoration-gold/50"
+                            data-i18n="gift_save_qr">Lưu / Chia Sẻ QR</button>
+
                     <div class="gift-account-details">
                     <h4 data-i18n="gift_bank_vcb" class="font-serif text-[11px] sm:text-base font-bold text-ivory leading-tight">Ngân Hàng Vietcombank</h4>
                     <p class="text-[9px] sm:text-xs text-ivory/80 mb-1 leading-tight"><span data-i18n="gift_acc_holder">Chủ TK:</span> <strong>HUYNH HAO NGHI</strong></p>
@@ -4077,7 +4100,12 @@
                         </div>
             </div>
 </div>
-    </section>
+    
+            <p data-i18n="gift_mobile_qr_hint"
+               class="mt-4 text-center text-[10px] sm:text-xs text-ivory/65 leading-relaxed">
+                Trên điện thoại: chọn “Lưu / Chia Sẻ QR” → lưu ảnh vào máy → mở app ngân hàng → Quét QR → chọn ảnh từ thư viện.
+            </p>
+</section>
 
     <!-- 12. FOOTER SECTION -->
     <footer class="py-12 bg-retro-dark text-ivory text-center border-t-2 border-gold/40 reveal-init">
@@ -4251,9 +4279,11 @@
                 gift_title: "Hộp Mừng Cưới",
                 gift_desc: "Dành cho những tấm lòng ở xa muốn gửi quà mừng chúc phúc",
                 gift_open_qr: "Chạm để mở QR",
+                gift_save_qr: "Lưu / Chia Sẻ QR",
+                gift_mobile_qr_hint: "Trên điện thoại: chọn “Lưu / Chia Sẻ QR” → lưu ảnh vào máy → mở app ngân hàng → Quét QR → chọn ảnh từ thư viện.",
                 gift_groom_tag: "MỪNG CƯỚI CHÚ RỂ",
                 gift_bride_tag: "MỪNG CƯỚI CÔ DÂU",
-                gift_bank_mb: "Ngân Hàng MB Bank",
+                gift_bank_mb: "Ngân Hàng MSB",
                 gift_bank_vcb: "Ngân Hàng Vietcombank",
                 gift_acc_holder: "Chủ TK:",
                 btn_copy_stk: "Sao Chép STK",
@@ -4402,9 +4432,11 @@
                 gift_title: "祝福禮金帳戶",
                 gift_desc: "若遠道不克前來，可透過以下帳戶轉達心意與祝福",
                 gift_open_qr: "點擊打開",
+                gift_save_qr: "儲存 / 分享 QR",
+                gift_mobile_qr_hint: "手機使用：點「儲存 / 分享 QR」→ 將圖片存到手機 → 開啟銀行 App → 掃描 QR → 從相簿選擇圖片。",
                 gift_groom_tag: "新郎帳戶 (LA CHAN CO)",
                 gift_bride_tag: "新娘帳戶 (HUYNH HAO NGHI)",
-                gift_bank_mb: "MB Bank 銀行",
+                gift_bank_mb: "MSB 銀行",
                 gift_bank_vcb: "Vietcombank 銀行",
                 gift_acc_holder: "戶名:",
                 btn_copy_stk: "複製帳號",
@@ -4553,9 +4585,11 @@
                 gift_title: "オンラインご祝儀のご案内",
                 gift_desc: "遠方などのご都合によりご出席が叶わない皆様のための口座情報です",
                 gift_open_qr: "タップしてQRを表示",
+                gift_save_qr: "QRを保存 / 共有",
+                gift_mobile_qr_hint: "スマホでは：「QRを保存 / 共有」→ 画像を保存 → 銀行アプリ → QR読取 → 写真ライブラリから選択。",
                 gift_groom_tag: "新郎口座 (ラ・チャン・コー)",
                 gift_bride_tag: "新婦口座 (フィン・ハオ・ギー)",
-                gift_bank_mb: "MB Bank（ベトナム軍隊商業銀行）",
+                gift_bank_mb: "MSB（Maritime Bank）",
                 gift_bank_vcb: "Vietcombank（ベトナム外貿商業銀行）",
                 gift_acc_holder: "口座名義:",
                 btn_copy_stk: "口座番号をコピー",
@@ -4592,6 +4626,9 @@
             // Refresh countdown immediately so 中文 also changes the running numbers to Hanzi.
             if (typeof updateWeddingCountdown === 'function') {
                 updateWeddingCountdown();
+            }
+            if (typeof refreshBookLanguage === 'function') {
+                refreshBookLanguage();
             }
         };
 
@@ -4666,6 +4703,12 @@
         ];
 
         let currentLightboxIndex = 0;
+        let lightboxZoom = 1;
+        let lightboxPanX = 0;
+        let lightboxPanY = 0;
+        let lightboxLastTap = 0;
+        let lightboxPinchStartDistance = 0;
+        let lightboxPinchStartZoom = 1;
         let isGalleryExpanded = false;
         const INITIAL_VISIBLE_PHOTOS = 8;
 
@@ -4747,6 +4790,7 @@
 
         window.openLightbox = function(index) {
             currentLightboxIndex = typeof index === 'number' ? index : 0;
+            resetLightboxZoom();
             updateLightboxContent();
 
             const modal = document.getElementById('lightbox-modal');
@@ -4768,6 +4812,7 @@
             if (event) event.stopPropagation();
             if (weddingGalleryList.length === 0) return;
             currentLightboxIndex = (currentLightboxIndex + 1) % weddingGalleryList.length;
+            resetLightboxZoom();
             updateLightboxContent();
         };
 
@@ -4775,6 +4820,7 @@
             if (event) event.stopPropagation();
             if (weddingGalleryList.length === 0) return;
             currentLightboxIndex = (currentLightboxIndex - 1 + weddingGalleryList.length) % weddingGalleryList.length;
+            resetLightboxZoom();
             updateLightboxContent();
         };
 
@@ -4802,6 +4848,34 @@
             if (counter) counter.innerText = `${currentLightboxIndex + 1} / ${weddingGalleryList.length}`;
         }
 
+
+        function applyLightboxTransform() {
+            const img = document.getElementById('lightbox-img');
+            const label = document.getElementById('lightbox-zoom-label');
+            if (!img) return;
+            lightboxZoom = Math.min(4, Math.max(1, lightboxZoom));
+            if (lightboxZoom === 1) {
+                lightboxPanX = 0;
+                lightboxPanY = 0;
+            }
+            img.style.transform = `translate3d(${lightboxPanX}px, ${lightboxPanY}px, 0) scale(${lightboxZoom})`;
+            if (label) label.textContent = `${Math.round(lightboxZoom * 100)}%`;
+        }
+
+        window.changeLightboxZoom = function(delta, event) {
+            if (event) event.stopPropagation();
+            lightboxZoom += Number(delta) || 0;
+            applyLightboxTransform();
+        };
+
+        window.resetLightboxZoom = function(event) {
+            if (event) event.stopPropagation();
+            lightboxZoom = 1;
+            lightboxPanX = 0;
+            lightboxPanY = 0;
+            applyLightboxTransform();
+        };
+
         document.addEventListener('keydown', function(e) {
             const modal = document.getElementById('lightbox-modal');
             if (modal && !modal.classList.contains('hidden')) {
@@ -4812,19 +4886,19 @@
         });
 
         let touchStartX = 0;
+        let touchStartY = 0;
         let touchEndX = 0;
+        let touchEndY = 0;
+        let lightboxPanStartX = 0;
+        let lightboxPanStartY = 0;
         const lightboxModal = document.getElementById('lightbox-modal');
+        const lightboxStage = document.getElementById('lightbox-image-stage');
+
+        function getTouchDistance(t1, t2) {
+            return Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+        }
 
         if (lightboxModal) {
-            lightboxModal.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-
-            lightboxModal.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipeGesture();
-            }, { passive: true });
-
             lightboxModal.addEventListener('click', function(e) {
                 if (e.target === lightboxModal || e.target.id === 'lightbox-content-box') {
                     window.closeLightbox();
@@ -4832,15 +4906,83 @@
             });
         }
 
-        function handleSwipeGesture() {
-            const swipeThreshold = 45;
-            if (touchEndX < touchStartX - swipeThreshold) {
-                window.nextLightbox();
-            }
-            if (touchEndX > touchStartX + swipeThreshold) {
-                window.prevLightbox();
-            }
+        if (lightboxStage) {
+            lightboxStage.addEventListener('click', function(e) {
+                if (lightboxZoom > 1 || e.target !== lightboxStage) return;
+                if (window.matchMedia && !window.matchMedia('(pointer: fine)').matches) return;
+                const rect = lightboxStage.getBoundingClientRect();
+                const localX = e.clientX - rect.left;
+                if (localX < rect.width * 0.35) window.prevLightbox();
+                else if (localX > rect.width * 0.65) window.nextLightbox();
+            });
+
+            lightboxStage.addEventListener('touchstart', function(e) {
+                if (e.touches.length === 2) {
+                    lightboxPinchStartDistance = getTouchDistance(e.touches[0], e.touches[1]);
+                    lightboxPinchStartZoom = lightboxZoom;
+                    return;
+                }
+                const t = e.touches[0];
+                touchStartX = touchEndX = t.clientX;
+                touchStartY = touchEndY = t.clientY;
+                lightboxPanStartX = lightboxPanX;
+                lightboxPanStartY = lightboxPanY;
+            }, { passive: true });
+
+            lightboxStage.addEventListener('touchmove', function(e) {
+                if (e.touches.length === 2 && lightboxPinchStartDistance > 0) {
+                    e.preventDefault();
+                    const distance = getTouchDistance(e.touches[0], e.touches[1]);
+                    lightboxZoom = lightboxPinchStartZoom * (distance / lightboxPinchStartDistance);
+                    applyLightboxTransform();
+                    return;
+                }
+
+                if (e.touches.length === 1) {
+                    const t = e.touches[0];
+                    touchEndX = t.clientX;
+                    touchEndY = t.clientY;
+                    if (lightboxZoom > 1) {
+                        e.preventDefault();
+                        lightboxPanX = lightboxPanStartX + (touchEndX - touchStartX);
+                        lightboxPanY = lightboxPanStartY + (touchEndY - touchStartY);
+                        applyLightboxTransform();
+                    }
+                }
+            }, { passive: false });
+
+            lightboxStage.addEventListener('touchend', function(e) {
+                lightboxPinchStartDistance = 0;
+
+                if (lightboxZoom <= 1) {
+                    const dx = touchEndX - touchStartX;
+                    const dy = touchEndY - touchStartY;
+                    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+                        if (dx < 0) window.nextLightbox();
+                        else window.prevLightbox();
+                        return;
+                    }
+                }
+
+                const now = Date.now();
+                if (now - lightboxLastTap < 300) {
+                    lightboxZoom = lightboxZoom > 1 ? 1 : 2;
+                    lightboxPanX = 0;
+                    lightboxPanY = 0;
+                    applyLightboxTransform();
+                    lightboxLastTap = 0;
+                } else {
+                    lightboxLastTap = now;
+                }
+            }, { passive: true });
+
+            lightboxStage.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                lightboxZoom += e.deltaY < 0 ? 0.2 : -0.2;
+                applyLightboxTransform();
+            }, { passive: false });
         }
+
 
         document.addEventListener('DOMContentLoaded', function() {
             renderGallery();
@@ -5522,6 +5664,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.setLanguage = function(lang) {
                 prevSetLanguageHanzi(lang);
                 document.documentElement.setAttribute('data-lang', lang);
+                document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : lang;
                 setTimeout(renderCountdownNumbersForLanguage, 0);
             };
         }
@@ -5532,6 +5675,65 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
         // Gift QR reveal: ancient coin flips into QR code.
+
+        window.saveGiftQR = async function(src, filename, event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            const button = event && event.currentTarget ? event.currentTarget : null;
+            const originalHtml = button ? button.innerHTML : '';
+            const lang = window.currentLang || 'vi';
+            const loadingText = lang === 'zh' ? '處理中…' : lang === 'ja' ? '処理中…' : 'Đang xử lý…';
+
+            if (button) {
+                button.disabled = true;
+                button.textContent = loadingText;
+            }
+
+            try {
+                const response = await fetch(src, { mode: 'cors', cache: 'no-store' });
+                if (!response.ok) throw new Error('QR image fetch failed');
+
+                const blob = await response.blob();
+                const type = blob.type || 'image/jpeg';
+                const safeName = filename || (type.includes('png') ? 'VietQR.png' : 'VietQR.jpg');
+                const file = new File([blob], safeName, { type });
+
+                // Best experience on iPhone/Android: native Share Sheet.
+                if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        files: [file],
+                        title: 'VietQR'
+                    });
+                    return;
+                }
+
+                // Desktop / browsers without file sharing: normal download.
+                const objectUrl = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = objectUrl;
+                link.download = safeName;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                setTimeout(() => URL.revokeObjectURL(objectUrl), 1500);
+            } catch (error) {
+                console.warn('Could not directly save QR:', error);
+
+                // Some remote QR providers block CORS. Opening the image itself is the
+                // most reliable Safari fallback; the guest can long-press -> Save to Photos.
+                const opened = window.open(src, '_blank', 'noopener,noreferrer');
+                if (!opened) window.location.href = src;
+            } finally {
+                if (button) {
+                    button.disabled = false;
+                    button.innerHTML = originalHtml;
+                }
+            }
+        };
+
         window.toggleGiftQR = function(el) {
             if (!el) return;
             const open = !el.classList.contains('is-open');
@@ -5553,12 +5755,33 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Default / init language is Traditional Chinese.
+            /*
+             * Initial language from URL path:
+             *   /      -> Vietnamese
+             *   /cn    -> Chinese
+             *   /jp    -> Japanese
+             * Also supports trailing slash and nested deployment paths
+             * such as /wedding/cn or /wedding/jp.
+             */
+            const pathParts = window.location.pathname
+                .split('/')
+                .filter(Boolean)
+                .map(part => part.toLowerCase());
+
+            const urlLang = pathParts[pathParts.length - 1];
+            const initialLang = urlLang === 'cn'
+                ? 'zh'
+                : urlLang === 'jp'
+                    ? 'ja'
+                    : 'vi';
+
             if (typeof window.setLanguage === 'function') {
-                window.setLanguage('zh');
+                window.setLanguage(initialLang);
             }
-            document.documentElement.lang = 'zh';
-            document.documentElement.setAttribute('data-lang', 'zh');
+
+            const htmlLang = initialLang === 'zh' ? 'zh-Hant' : initialLang;
+            document.documentElement.lang = htmlLang;
+            document.documentElement.setAttribute('data-lang', initialLang);
         });
 </script>
 
@@ -5685,6 +5908,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    });
+</script>
+
+
+<script>
+    // Safari can restore a page from bfcache; keep the envelope state consistent on pageshow.
+    window.addEventListener('pageshow', function() {
+        try {
+            if (sessionStorage.getItem('weddingEnvelopeOpened') === '1') {
+                const overlay = document.getElementById('envelope-overlay');
+                if (overlay) overlay.style.display = 'none';
+                document.body.classList.add('invitation-opened');
+            }
+        } catch (e) {}
     });
 </script>
 
