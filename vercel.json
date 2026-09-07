@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/cn",
+      "destination": "/"
+    },
+    {
+      "source": "/jp",
+      "destination": "/"
+    },
+    {
+      "source": "/cn/",
+      "destination": "/"
+    },
+    {
+      "source": "/jp/",
+      "destination": "/"
+    }
+  ]
+}
