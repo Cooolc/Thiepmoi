@@ -2672,6 +2672,13 @@
             }
 
 
+        /* Gift QR action: hidden until the coin / gold ingot is opened */
+        .gift-qr-actions {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity .22s ease, transform .22s ease;
+        }
+
         /* Gallery lightbox zoom */
         #lightbox-image-stage { touch-action: none; }
         #lightbox-img {
@@ -2682,6 +2689,32 @@
         #lightbox-modal button {
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
+        }
+        /* Keep the close control pinned to the viewport.
+           The site's generic button rule sets position:relative, so override it here. */
+        #lightbox-close-btn {
+            position: fixed !important;
+            top: max(14px, env(safe-area-inset-top)) !important;
+            right: max(14px, env(safe-area-inset-right)) !important;
+            left: auto !important;
+            bottom: auto !important;
+            transform: none !important;
+            z-index: 10020 !important;
+            margin: 0 !important;
+        }
+
+        #lightbox-close-btn:hover,
+        #lightbox-close-btn:active {
+            transform: none !important;
+        }
+
+        @media (max-width: 639px) {
+            #lightbox-close-btn {
+                width: 42px !important;
+                height: 42px !important;
+                top: max(10px, env(safe-area-inset-top)) !important;
+                right: max(10px, env(safe-area-inset-right)) !important;
+            }
         }
 </style>
 </head>
@@ -2815,6 +2848,7 @@
             
             <div class="hidden lg:flex items-center gap-5 text-xs uppercase tracking-wider font-medium text-ivory/90">
                 <a href="#hero" data-i18n="nav_hero" class="hover:text-gold transition-colors">Trang Đầu</a>
+                <a href="#invitation" data-i18n="nav_invitation" class="hover:text-gold transition-colors">Lời Mời</a>
                 <a href="#program" data-i18n="nav_program" class="hover:text-gold transition-colors">Lịch Trình Tiệc</a>
                 <a href="#photobooth" data-i18n="nav_photobooth" class="hover:text-gold transition-colors">Góc Photobooth</a>
                 <a href="#events" data-i18n="nav_events" class="hover:text-gold transition-colors">Địa Điểm</a>
@@ -2931,6 +2965,28 @@
                     <p data-i18n="hero_location_summary" class="text-xs text-gold/90 font-sans tracking-wide uppercase mt-2">
                         RIVERSIDE PALACE • 360D BẾN VÂN ĐỒN • QUẬN 4 • TP. HỒ CHÍ MINH
                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERSONAL GUEST INVITATION -->
+    <section id="invitation" class="py-12 sm:py-16 bg-gradient-to-b from-crimson-dark via-[#52000E] to-crimson-deep border-y border-gold/30">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="cn-section-frame reveal-zoom">
+                <div class="cn-section-frame-inner text-center py-10 sm:py-12 px-5 sm:px-10">
+                    <div class="cn-hanging-knot" aria-hidden="true"></div>
+                    <div class="cn-ornate-bg" aria-hidden="true"></div>
+                    <div class="text-gold text-3xl sm:text-4xl font-serif mb-3">囍</div>
+                    <p data-i18n="invite_kicker" class="oriental-kicker text-[10px] sm:text-xs font-bold uppercase text-gold tracking-[0.24em]">TRÂN TRỌNG KÍNH MỜI</p>
+                    <h2 id="guest-invitation-name" data-i18n="invite_guest" class="font-serif oriental-title text-2xl sm:text-4xl text-ivory mt-4 mb-4">Quý khách</h2>
+                    <div class="w-16 h-px bg-gold/70 mx-auto mb-5"></div>
+                    <p data-i18n="invite_message" class="font-serif text-sm sm:text-lg text-ivory/90 leading-relaxed max-w-2xl mx-auto">Đến tham dự tiệc cưới và chung vui cùng gia đình chúng tôi trong ngày hạnh phúc của</p>
+                    <p class="font-serif text-xl sm:text-2xl text-gold-light font-bold mt-4">
+                        <span data-i18n="groom_name">La Chấn Cơ</span> <span class="text-gold/70">&amp;</span> <span data-i18n="bride_name">Huỳnh Hảo Nghi</span>
+                    </p>
+                    <p data-i18n="invite_closing" class="font-serif italic text-xs sm:text-sm text-ivory/70 mt-5">Sự hiện diện của quý khách là niềm vinh hạnh và niềm vui lớn đối với gia đình chúng tôi.</p>
+                    <a href="#events" data-i18n="invite_details" class="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-full border border-gold/50 bg-gold/10 text-gold-light text-xs sm:text-sm font-semibold hover:bg-gold hover:text-retro-dark transition-all">Xem thời gian &amp; địa điểm</a>
                 </div>
             </div>
         </div>
@@ -3086,7 +3142,7 @@
                         <p data-i18n="vuquy_location_label" class="oriental-kicker text-[8px] sm:text-xs text-gold/80 font-bold uppercase mb-1">Địa Điểm</p>
                         <p data-i18n="vuquy_location" class="font-serif text-[10px] sm:text-sm md:text-base font-semibold text-ivory leading-relaxed">Nhà Hàng<br>Ái Huê 2</p>
                         <a class="vuquy-map-link seal-btn"
-                           href="https://www.google.com/maps/dir/?api=1&destination=338-350%20Tr%E1%BA%A7n%20H%C6%B0ng%20%C4%90%E1%BA%A1o%20B%2C%20Ph%C6%B0%E1%BB%9Dng%2011%2C%20Qu%E1%BA%ADn%205%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh&destination_place_id=ChIJ245VTQwvdTERoJjl87LXYCw&travelmode=driving"
+                           href="https://www.google.com/maps/dir/?api=1&destination=Nh%C3%A0%20H%C3%A0ng%20%C3%81i%20Hu%C3%AA%202&destination_place_id=ChIJ245VTQwvdTERoJjl87LXYCw&travelmode=driving"
                            target="_blank" rel="noopener noreferrer" aria-label="Google Maps - Nhà Hàng Ái Huê 2">
                             <i data-lucide="navigation" class="w-3 h-3"></i>
                             <span data-i18n="vuquy_map">Chỉ đường</span>
@@ -3122,7 +3178,7 @@
     </section>
 
     <!-- 4. LIVE COUNTDOWN TIMER -->
-    <section class="py-12 bg-crimson-dark border-y-2 border-gold/30">
+    <section id="countdown" class="py-12 bg-crimson-dark border-y-2 border-gold/30">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <span data-i18n="cd_subtitle" class="font-serif text-gold text-xs uppercase tracking-widest block mb-1 reveal-init">CÙNG ĐẾM NGƯỢC THỜI GIAN</span>
             <h2 data-i18n="cd_title" class="font-serif oriental-title text-2xl md:text-3xl font-bold text-ivory mb-2 reveal-init">
@@ -3861,8 +3917,8 @@
          class="hidden fixed inset-0 z-[9999] bg-black/95 items-center justify-center p-2 sm:p-5"
          role="dialog" aria-modal="true" aria-label="Photo viewer">
         <div id="lightbox-content-box" class="relative w-full h-full flex items-center justify-center overflow-hidden">
-            <button type="button" onclick="closeLightbox()"
-                    class="absolute top-3 right-3 z-30 w-11 h-11 rounded-full border border-gold/50 bg-crimson-dark/90 text-gold flex items-center justify-center"
+            <button id="lightbox-close-btn" type="button" onclick="closeLightbox()"
+                    class="w-11 h-11 rounded-full border border-gold/50 bg-crimson-dark/90 text-gold flex items-center justify-center"
                     aria-label="Close photo viewer">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
@@ -4022,23 +4078,23 @@
             <div class="grid grid-cols-2 gap-2 sm:gap-5 md:gap-8">
                 <div class="gift-card-shell bg-crimson-dark px-2 py-4 sm:p-6 rounded-2xl border-2 border-gold/40 text-center flex flex-col items-center shadow-2xl reveal-left min-w-0">
                     <span data-i18n="gift_groom_tag" class="bg-gold text-retro-dark px-2 sm:px-4 py-1 rounded-full text-[9px] sm:text-xs font-bold tracking-wide sm:tracking-wider mb-3 sm:mb-4 whitespace-nowrap">MỪNG CƯỚI CHÚ RỂ</span>
-                    <button type="button" class="gift-reveal-wrap" onclick="toggleGiftQR(this)" aria-expanded="false" aria-label="Reveal QR code" data-qr-src="img/MSB_QR.jpg">
+                    <button type="button" class="gift-reveal-wrap" onclick="toggleGiftQR(this)" aria-expanded="false" aria-label="Reveal QR code" data-qr-src="img/qr_groom_msb.jpg">
                         <span class="gift-reveal-inner">
                             <span class="gift-reveal-face gift-reveal-front">
                                 <img class="gift-gold-ingot-img" src="img/thoivang.png" alt="Thỏi vàng" loading="lazy">
                             </span>
                             <span class="gift-reveal-face gift-reveal-back">
-                                <img src="img/MSB_QR.jpg" alt="VietQR Groom" loading="lazy">
+                                <img src="img/qr_groom_msb.jpg" alt="VietQR Chú rể - MSB - LA CHAN CO" loading="lazy">
                             </span>
                         </span>
                         <span data-i18n="gift_open_qr" class="gift-open-hint">Chạm để mở QR</span>
                     </button>
-                    <button type="button" onclick="saveGiftQR('img/MSB_QR.jpg', 'QR-Chu-Re-MSB.jpg', event)"
-                            class="mt-1 mb-2 text-[9px] sm:text-xs text-gold/90 underline underline-offset-4 decoration-gold/50"
-                            data-i18n="gift_save_qr">Lưu / Chia Sẻ QR</button>
+                    <button type="button" onclick="saveGiftQR('img/qr_groom_msb.jpg', 'QR-Chu-Re-MSB-LA-CHAN-CO.jpg', event)"
+                            class="gift-qr-actions hidden mt-1 mb-2 text-[9px] sm:text-xs text-gold/90 underline underline-offset-4 decoration-gold/50"
+                            data-i18n="gift_save_qr">Tải QR về máy</button>
 
                     <div class="gift-account-details">
-                    <h4 data-i18n="gift_bank_mb" class="font-serif text-[11px] sm:text-base font-bold text-ivory leading-tight">Ngân Hàng MSB</h4>
+                    <h4 data-i18n="gift_bank_groom" class="font-serif text-[11px] sm:text-base font-bold text-ivory leading-tight">Ngân Hàng MSB</h4>
                     <p class="text-[9px] sm:text-xs text-ivory/80 mb-1 leading-tight"><span data-i18n="gift_acc_holder">Chủ TK:</span> <strong>LA CHAN CO</strong></p>
                     <p class="text-[10px] sm:text-sm font-mono font-bold text-gold mb-3 sm:mb-4 break-all">04401015938449</p>
                     <button onclick="copyToClipboard('04401015938449', 'groom')" class="seal-btn w-full py-2 sm:py-2.5 px-1 text-[9px] sm:text-xs font-bold uppercase transition-colors flex items-center justify-center gap-1 sm:gap-2 cursor-pointer">
@@ -4049,7 +4105,7 @@
 
                 <div class="gift-card-shell bg-crimson-dark px-2 py-4 sm:p-6 rounded-2xl border-2 border-gold/40 text-center flex flex-col items-center shadow-2xl reveal-right min-w-0">
                     <span data-i18n="gift_bride_tag" class="bg-gold text-retro-dark px-2 sm:px-4 py-1 rounded-full text-[9px] sm:text-xs font-bold tracking-wide sm:tracking-wider mb-3 sm:mb-4 whitespace-nowrap">MỪNG CƯỚI CÔ DÂU</span>
-                    <button type="button" class="gift-reveal-wrap" onclick="toggleGiftQR(this)" aria-expanded="false" aria-label="Reveal QR code" data-qr-src="https://img.vietqr.io/image/VCB-0071001234567-compact2.jpg?accountName=HUYNH%20HAO%20NGHI&addInfo=MUNG%20CUOI%20CHAN%20CO%20HAO%20NGHI">
+                    <button type="button" class="gift-reveal-wrap" onclick="toggleGiftQR(this)" aria-expanded="false" aria-label="Reveal QR code" data-qr-src="img/qr_bride_mb.jpg">
                         <span class="gift-reveal-inner">
                             <span class="gift-reveal-face gift-reveal-front">
                                 <svg class="ancient-coin" viewBox="0 0 120 120" aria-hidden="true">
@@ -4078,20 +4134,20 @@
 </svg>
                             </span>
                             <span class="gift-reveal-face gift-reveal-back">
-                                <img src="https://img.vietqr.io/image/VCB-0071001234567-compact2.jpg?accountName=HUYNH%20HAO%20NGHI&addInfo=MUNG%20CUOI%20CHAN%20CO%20HAO%20NGHI" alt="VietQR Bride" loading="lazy">
+                                <img src="img/qr_bride_mb.jpg" alt="VietQR Cô dâu - MB Bank - HUYNH HAO NGHI" loading="lazy">
                             </span>
                         </span>
                         <span data-i18n="gift_open_qr" class="gift-open-hint">Chạm để mở QR</span>
                     </button>
-                    <button type="button" onclick="saveGiftQR('https://img.vietqr.io/image/VCB-0071001234567-compact2.jpg?accountName=HUYNH%20HAO%20NGHI&addInfo=MUNG%20CUOI%20CHAN%20CO%20HAO%20NGHI', 'QR-Co-Dau-Vietcombank.jpg', event)"
-                            class="mt-1 mb-2 text-[9px] sm:text-xs text-gold/90 underline underline-offset-4 decoration-gold/50"
-                            data-i18n="gift_save_qr">Lưu / Chia Sẻ QR</button>
+                    <button type="button" onclick="saveGiftQR('img/qr_bride_mb.jpg', 'QR-Co-Dau-MB-HUYNH-HAO-NGHI.jpg', event)"
+                            class="gift-qr-actions hidden mt-1 mb-2 text-[9px] sm:text-xs text-gold/90 underline underline-offset-4 decoration-gold/50"
+                            data-i18n="gift_save_qr">Tải QR về máy</button>
 
                     <div class="gift-account-details">
-                    <h4 data-i18n="gift_bank_vcb" class="font-serif text-[11px] sm:text-base font-bold text-ivory leading-tight">Ngân Hàng Vietcombank</h4>
+                    <h4 data-i18n="gift_bank_bride" class="font-serif text-[11px] sm:text-base font-bold text-ivory leading-tight">Ngân Hàng MB Bank</h4>
                     <p class="text-[9px] sm:text-xs text-ivory/80 mb-1 leading-tight"><span data-i18n="gift_acc_holder">Chủ TK:</span> <strong>HUYNH HAO NGHI</strong></p>
-                    <p class="text-[10px] sm:text-sm font-mono font-bold text-gold mb-3 sm:mb-4 break-all">0071001234567</p>
-                    <button onclick="copyToClipboard('0071001234567', 'bride')" class="seal-btn w-full py-2 sm:py-2.5 px-1 text-[9px] sm:text-xs font-bold uppercase transition-colors flex items-center justify-center gap-1 sm:gap-2 cursor-pointer">
+                    <p class="text-[10px] sm:text-sm font-mono font-bold text-gold mb-3 sm:mb-4 break-all">0909655616</p>
+                    <button onclick="copyToClipboard('0909655616', 'bride')" class="seal-btn w-full py-2 sm:py-2.5 px-1 text-[9px] sm:text-xs font-bold uppercase transition-colors flex items-center justify-center gap-1 sm:gap-2 cursor-pointer">
                         <i data-lucide="copy" class="w-4 h-4"></i> <span data-i18n="btn_copy_stk">Sao Chép STK</span>
                     </button>
                     </div>
@@ -4103,7 +4159,7 @@
     
             <p data-i18n="gift_mobile_qr_hint"
                class="mt-4 text-center text-[10px] sm:text-xs text-ivory/65 leading-relaxed">
-                Trên điện thoại: chọn “Lưu / Chia Sẻ QR” → lưu ảnh vào máy → mở app ngân hàng → Quét QR → chọn ảnh từ thư viện.
+                Trên điện thoại: chạm đồng tiền/thỏi vàng để mở QR → chọn “Lưu / Chia Sẻ QR” → lưu ảnh → mở app ngân hàng → Quét QR → chọn ảnh từ thư viện.
             </p>
 </section>
 
@@ -4144,6 +4200,7 @@
             vi: {
                 nav_title: "LA CHẤN CƠ & HUỲNH HẢO NGHI",
                 nav_hero: "Trang Đầu",
+                nav_invitation: "Lời Mời",
                 nav_program: "Lịch Trình Tiệc",
                 nav_photobooth: "Góc Photobooth",
                 nav_events: "Địa Điểm",
@@ -4169,6 +4226,11 @@
                 hero_official_date: "CHỦ NHẬT | 11 . 10 . 2026",
                 hero_lunar_date: "(Tức Ngày 02 Tháng 09 Năm Bính Ngọ - Âm Lịch)",
                 hero_location_summary: "RIVERSIDE PALACE • 360D BẾN VÂN ĐỒN • QUẬN 4 • TP. HỒ CHÍ MINH",
+                invite_kicker: "TRÂN TRỌNG KÍNH MỜI",
+                invite_guest: "Quý khách",
+                invite_message: "Đến tham dự tiệc cưới và chung vui cùng gia đình chúng tôi trong ngày hạnh phúc của",
+                invite_closing: "Sự hiện diện của quý khách là niềm vinh hạnh và niềm vui lớn đối với gia đình chúng tôi.",
+                invite_details: "Xem thời gian & địa điểm",
                 family_title: "THÔNG TIN GIA ĐÌNH",
                 family_groom_side: "Nhà Trai",
                 family_bride_side: "Nhà Gái",
@@ -4279,12 +4341,12 @@
                 gift_title: "Hộp Mừng Cưới",
                 gift_desc: "Dành cho những tấm lòng ở xa muốn gửi quà mừng chúc phúc",
                 gift_open_qr: "Chạm để mở QR",
-                gift_save_qr: "Lưu / Chia Sẻ QR",
-                gift_mobile_qr_hint: "Trên điện thoại: chọn “Lưu / Chia Sẻ QR” → lưu ảnh vào máy → mở app ngân hàng → Quét QR → chọn ảnh từ thư viện.",
+                gift_save_qr: "Tải QR về máy",
+                gift_mobile_qr_hint: "Trên điện thoại: chạm đồng tiền/thỏi vàng để mở QR → chọn “Tải QR về máy” → mở app ngân hàng → Quét QR → chọn ảnh vừa tải.",
                 gift_groom_tag: "MỪNG CƯỚI CHÚ RỂ",
                 gift_bride_tag: "MỪNG CƯỚI CÔ DÂU",
-                gift_bank_mb: "Ngân Hàng MSB",
-                gift_bank_vcb: "Ngân Hàng Vietcombank",
+                gift_bank_groom: "Ngân Hàng MSB",
+                gift_bank_bride: "Ngân Hàng MB Bank",
                 gift_acc_holder: "Chủ TK:",
                 btn_copy_stk: "Sao Chép STK",
                 footer_thanks: "Trân Trọng Cảm Ơn!",
@@ -4297,6 +4359,7 @@
             zh: {
                 nav_title: "羅振基 & 黃巧儀",
                 nav_hero: "首頁",
+                nav_invitation: "喜帖邀請",
                 nav_program: "婚禮流程",
                 nav_photobooth: "即拍即印拍照區",
                 nav_events: "婚宴地點",
@@ -4322,6 +4385,11 @@
                 hero_official_date: "2026年10月11日 (星期日)",
                 hero_lunar_date: "(農曆 丙午年 九月初二日)",
                 hero_location_summary: "RIVERSIDE PALACE • 胡志明市第四郡奔雲敦街360D",
+                invite_kicker: "誠摯邀請",
+                invite_guest: "尊敬的貴賓",
+                invite_message: "蒞臨我們的婚宴，與雙方家人一同見證並分享",
+                invite_closing: "您的蒞臨將是我們與家人莫大的榮幸與喜悅。",
+                invite_details: "查看時間與地點",
                 family_title: "雙方家長",
                 family_groom_side: "男方家",
                 family_bride_side: "女方家",
@@ -4432,12 +4500,12 @@
                 gift_title: "祝福禮金帳戶",
                 gift_desc: "若遠道不克前來，可透過以下帳戶轉達心意與祝福",
                 gift_open_qr: "點擊打開",
-                gift_save_qr: "儲存 / 分享 QR",
-                gift_mobile_qr_hint: "手機使用：點「儲存 / 分享 QR」→ 將圖片存到手機 → 開啟銀行 App → 掃描 QR → 從相簿選擇圖片。",
+                gift_save_qr: "下載 QR 圖片",
+                gift_mobile_qr_hint: "手機使用：先點金幣／金元寶開啟 QR → 點「下載 QR 圖片」→ 開啟銀行 App → 掃描 QR → 選擇剛下載的圖片。",
                 gift_groom_tag: "新郎帳戶 (LA CHAN CO)",
                 gift_bride_tag: "新娘帳戶 (HUYNH HAO NGHI)",
-                gift_bank_mb: "MSB 銀行",
-                gift_bank_vcb: "Vietcombank 銀行",
+                gift_bank_groom: "MSB 銀行",
+                gift_bank_bride: "MB Bank 銀行",
                 gift_acc_holder: "戶名:",
                 btn_copy_stk: "複製帳號",
                 footer_thanks: "衷心感謝您的祝福！",
@@ -4450,6 +4518,7 @@
             ja: {
                 nav_title: "ラ・チャン・コー ＆ フィン・ハオ・ギー",
                 nav_hero: "トップ",
+                nav_invitation: "ご招待",
                 nav_program: "タイムスケジュール",
                 nav_photobooth: "フォトブース",
                 nav_events: "アクセス・会場",
@@ -4475,6 +4544,11 @@
                 hero_official_date: "2026年10月11日（日曜日）",
                 hero_lunar_date: "(旧暦 2026年9月2日)",
                 hero_location_summary: "RIVERSIDE PALACE • ホーチミン市4区 ベン・ヴァン・ドン通り 360D",
+                invite_kicker: "謹んでご招待申し上げます",
+                invite_guest: "ご来賓の皆様",
+                invite_message: "私たちの結婚披露宴にご出席いただき、両家とともに幸せな一日をお祝いください",
+                invite_closing: "皆様のご出席を、私たちならびに両家一同、心よりお待ちしております。",
+                invite_details: "日時・会場を見る",
                 family_title: "ご両家のご紹介",
                 family_groom_side: "新郎家",
                 family_bride_side: "新婦家",
@@ -4585,12 +4659,12 @@
                 gift_title: "オンラインご祝儀のご案内",
                 gift_desc: "遠方などのご都合によりご出席が叶わない皆様のための口座情報です",
                 gift_open_qr: "タップしてQRを表示",
-                gift_save_qr: "QRを保存 / 共有",
-                gift_mobile_qr_hint: "スマホでは：「QRを保存 / 共有」→ 画像を保存 → 銀行アプリ → QR読取 → 写真ライブラリから選択。",
+                gift_save_qr: "QR画像をダウンロード",
+                gift_mobile_qr_hint: "スマホでは：コイン／金塊をタップしてQRを表示 →「QR画像をダウンロード」→ 銀行アプリでQR読取 → ダウンロードした画像を選択。",
                 gift_groom_tag: "新郎口座 (ラ・チャン・コー)",
                 gift_bride_tag: "新婦口座 (フィン・ハオ・ギー)",
-                gift_bank_mb: "MSB（Maritime Bank）",
-                gift_bank_vcb: "Vietcombank（ベトナム外貿商業銀行）",
+                gift_bank_groom: "MSB（Maritime Bank）",
+                gift_bank_bride: "MB Bank（Military Bank）",
                 gift_acc_holder: "口座名義:",
                 btn_copy_stk: "口座番号をコピー",
                 footer_thanks: "心より感謝申し上げます！",
@@ -5388,6 +5462,31 @@ END:VCALENDAR`;
         };
     </script>
 <script>
+    // Arrange the invitation flow in a natural order and personalize the guest name via ?guest=...
+    (function () {
+        const footer = document.querySelector('body > footer');
+        const order = ['hero', 'invitation', 'family-info', 'vu-quy', 'events', 'countdown', 'program', 'photobooth', 'gallery', 'calendar-save', 'rsvp', 'gift'];
+        if (footer) {
+            order.forEach(id => {
+                const section = document.getElementById(id);
+                if (section) footer.parentNode.insertBefore(section, footer);
+            });
+        }
+
+        const guestEl = document.getElementById('guest-invitation-name');
+        if (guestEl) {
+            const params = new URLSearchParams(window.location.search);
+            const guest = (params.get('guest') || '').trim();
+            if (guest) {
+                guestEl.removeAttribute('data-i18n');
+                guestEl.textContent = guest.slice(0, 80);
+                document.title = `Thiệp mời ${guest} • La Chấn Cơ & Huỳnh Hảo Nghi`;
+            }
+        }
+    })();
+</script>
+
+<script>
 
         // Horizontal Chinese firecracker dividers between main sections.
         function addHorizontalFirecrackerDividers() {
@@ -5699,18 +5798,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const blob = await response.blob();
                 const type = blob.type || 'image/jpeg';
                 const safeName = filename || (type.includes('png') ? 'VietQR.png' : 'VietQR.jpg');
-                const file = new File([blob], safeName, { type });
-
-                // Best experience on iPhone/Android: native Share Sheet.
-                if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-                    await navigator.share({
-                        files: [file],
-                        title: 'VietQR'
-                    });
-                    return;
-                }
-
-                // Desktop / browsers without file sharing: normal download.
+                // Always download the QR image directly instead of opening the Share Sheet.
                 const objectUrl = URL.createObjectURL(blob);
                 const link = document.createElement('a');
                 link.href = objectUrl;
@@ -5722,10 +5810,14 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 console.warn('Could not directly save QR:', error);
 
-                // Some remote QR providers block CORS. Opening the image itself is the
-                // most reliable Safari fallback; the guest can long-press -> Save to Photos.
-                const opened = window.open(src, '_blank', 'noopener,noreferrer');
-                if (!opened) window.location.href = src;
+                // Fallback for browsers where fetch/blob download fails.
+                const fallbackLink = document.createElement('a');
+                fallbackLink.href = src;
+                fallbackLink.download = filename || 'VietQR.jpg';
+                fallbackLink.rel = 'noopener';
+                document.body.appendChild(fallbackLink);
+                fallbackLink.click();
+                fallbackLink.remove();
             } finally {
                 if (button) {
                     button.disabled = false;
@@ -5743,6 +5835,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = el.closest('.gift-card-shell');
             if (card) {
                 card.classList.toggle('gift-card-open', open);
+                const actions = card.querySelector('.gift-qr-actions');
+                if (actions) {
+                    actions.classList.toggle('hidden', !open);
+                }
             }
 
             if (open) {
