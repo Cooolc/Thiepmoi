@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Album Hình Cưới Sang Trọng</title>
+    <!-- Font chữ -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body {
+            /* Nền màu gỗ ấm hoặc màu nhạt để tôn lên quyển album */
+            background-color: #d1c7bd;
+            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+        }
+
+        .wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .flip-book {
+            display: none; /* Ẩn trước khi khởi tạo xong để tránh vỡ giao diện */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Bóng đổ đậm cho quyển sách dày */
+        }
+
+        /* Chung cho trang ruột */
+        .page {
+            background-color: #fffaf0; /* Trắng ngà sang trọng */
+            color: #333;
+            overflow: hidden;
+            box-sizing: border-box;
+            /* Tạo gân lồi lõm nhẹ ở gáy sách bên trong */
+            background-image: linear-gradient(to right, #e8dfc8 0%, #fffaf0 5%, #fffaf0 95%, #e8dfc8 100%);
+        }
+
+        .page.--left {
+            border-right: 0;
+            box-shadow: inset -10px 0 40px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        .page.--right {
+            border-left: 0;
+            box-shadow: inset 10px 0 40px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* === BÌA ALBUM SANG TRỌNG === */
+        .page-cover {
+            background-color: #111820; /* Xanh Navy sâu thẳm / Đen tuyền sang trọng */
+            background-image: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.6) 100%), url('https://www.transparenttextures.com/patterns/dark-leather.png'); /* Cảm giác vân da cao cấp có chiều sâu */
+            color: #d4af37; /* Vàng Gold */
+            position: relative;
+            box-shadow: inset -5px 0 20px rgba(0,0,0,0.8);
+        }
+
+        .page-cover-bottom {
+            box-shadow: inset 5px 0 20px rgba(0,0,0,0.8);
+        }
+
+        /* Gân gáy sách (Spine) ở mép bìa */
+        .page-cover-front::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 45px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.85) 15%, rgba(0,0,0,0.6) 40%, rgba(255,255,255,0) 100%);
+            z-index: 2;
+            border-right: 1px solid rgba(0,0,0,0.7);
+            box-shadow: 5px 0 10px rgba(0,0,0,0.3);
+        }
+
+        .page-cover-bottom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45px;
+            height: 100%;
+            background: linear-gradient(to left, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.85) 15%, rgba(0,0,0,0.6) 40%, rgba(255,255,255,0) 100%);
+            z-index: 2;
+            border-left: 1px solid rgba(0,0,0,0.7);
+            box-shadow: -5px 0 10px rgba(0,0,0,0.3);
+        }
+
+        /* Các đường gân nổi trên gáy bìa trước */
+        .page-cover-front::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 45px;
+            height: 100%;
+            background: 
+                linear-gradient(to bottom, 
+                    transparent 15%, 
+                    rgba(0,0,0,0.8) 15%, rgba(255,255,255,0.15) 16%, rgba(0,0,0,0.6) 17%, transparent 17%, 
+                    transparent 49%, 
+                    rgba(0,0,0,0.8) 49%, rgba(255,255,255,0.15) 50%, rgba(0,0,0,0.6) 51%, transparent 51%, 
+                    transparent 83%, 
+                    rgba(0,0,0,0.8) 83%, rgba(255,255,255,0.15) 84%, rgba(0,0,0,0.6) 85%, transparent 85%);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .page-cover-bottom::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45px;
+            height: 100%;
+            background: 
+                linear-gradient(to bottom, 
+                    transparent 15%, 
+                    rgba(0,0,0,0.8) 15%, rgba(255,255,255,0.15) 16%, rgba(0,0,0,0.6) 17%, transparent 17%, 
+                    transparent 49%, 
+                    rgba(0,0,0,0.8) 49%, rgba(255,255,255,0.15) 50%, rgba(0,0,0,0.6) 51%, transparent 51%, 
+                    transparent 83%, 
+                    rgba(0,0,0,0.8) 83%, rgba(255,255,255,0.15) 84%, rgba(0,0,0,0.6) 85%, transparent 85%);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* Khung viền mạ vàng khắc chìm/nổi trên bìa */
+        .cover-inner {
+            position: absolute;
+            top: 30px;
+            bottom: 30px;
+            left: 65px; /* Tránh gáy sách */
+            right: 30px;
+            border: 2px solid #d4af37;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 
+                inset 0 0 25px rgba(212, 175, 55, 0.2), 
+                inset 0 0 5px rgba(212, 175, 55, 0.4), 
+                0 0 15px rgba(0,0,0,0.7);
+            background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+            border-radius: 2px;
+        }
+
+        .page-cover-bottom .cover-inner {
+            left: 30px;
+            right: 65px; /* Tránh gáy sách mặt sau */
+        }
+
+        /* Họa tiết 4 góc viền vàng */
+        .ornament {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid transparent;
+        }
+        .ornament-tl { top: -6px; left: -6px; border-top-color: #d4af37; border-left-color: #d4af37; }
+        .ornament-tr { top: -6px; right: -6px; border-top-color: #d4af37; border-right-color: #d4af37; }
+        .ornament-bl { bottom: -6px; left: -6px; border-bottom-color: #d4af37; border-left-color: #d4af37; }
+        .ornament-br { bottom: -6px; right: -6px; border-bottom-color: #d4af37; border-right-color: #d4af37; }
+
+        .cover-inner h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4em;
+            margin: 0;
+            color: #d4af37; /* Chữ vàng */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            line-height: 1.1;
+        }
+
+        .cover-inner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1em;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            color: #c9a632;
+            font-weight: 400;
+        }
+
+        .cover-inner .date {
+            margin-top: 40px;
+            font-style: italic;
+            color: #b09533;
+            letter-spacing: 1px;
+        }
+
+        /* === BÊN TRONG ALBUM (Ruột sách) === */
+        .page-content {
+            padding: 25px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Khung ảnh kiểu cổ điển, nhã nhặn */
+        .photo-frame {
+            width: 100%;
+            height: 70%;
+            background: #fff;
+            padding: 12px 12px 35px 12px; /* Dạng khung polaroid/ấn phẩm */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e0d8c3;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 1px solid #f4f4f4;
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6em;
+            color: #444;
+        }
+
+        .page-text {
+            margin-top: 25px;
+            font-size: 1em;
+            color: #555;
+            text-align: center;
+            line-height: 1.6;
+            font-style: italic;
+            padding: 0 10px;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 15px;
+            font-size: 0.85em;
+            color: #bfa57c;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-weight: bold;
+        }
+
+        .page.--left .page-number { left: 25px; }
+        .page.--right .page-number { right: 25px; }
+
+        /* === MÀN HÌNH ĐIỆN THOẠI === */
+        @media (max-width: 600px) {
+            .wrapper {
+                padding: 15px;
+            }
+            .cover-inner h1 {
+                font-size: 2.8em;
+            }
+            .cover-inner h2 {
+                font-size: 0.8em;
+                letter-spacing: 2px;
+            }
+            .page-cover-front::before,
+            .page-cover-bottom::before {
+                width: 25px; /* Thu nhỏ gáy sách */
+            }
+            .cover-inner {
+                left: 35px; top: 15px; bottom: 15px; right: 15px;
+                padding: 10px;
+            }
+            .page-cover-bottom .cover-inner {
+                left: 15px; right: 35px; top: 15px; bottom: 15px;
+            }
+            .photo-frame {
+                height: 60%;
+                padding: 8px 8px 25px 8px;
+            }
+            .photo-caption {
+                font-size: 1.3em;
+            }
+            .page-text {
+                font-size: 0.9em;
+                margin-top: 15px;
+            }
+            .page-content {
+                padding: 15px;
+            }
+        }
+
+        /* Hướng dẫn thao tác */
+        .instruction {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #1a222b;
+            background: rgba(212, 175, 55, 0.9); /* Vàng Gold */
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.95em;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+            transition: opacity 0.5s;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+            100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- Audio Player -->
+        <audio id="bgMusic" loop>
+            <source src="wedding-music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <button id="musicToggle" style="position: absolute; top: 20px; right: 20px; z-index: 1000; background: rgba(0,0,0,0.5); border: 1px solid #d4af37; color: #d4af37; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            🔊
+        </button>
+
+        <div class="flip-book" id="flipbook">
+            
+            <!-- BÌA TRƯỚC (Bìa cứng) -->
+            <div class="page page-cover page-cover-front" data-density="hard">
+                <div class="cover-inner">
+                    <div class="ornament ornament-tl"></div>
+                    <div class="ornament ornament-tr"></div>
+                    <div class="ornament ornament-bl"></div>
+                    <div class="ornament ornament-br"></div>
+                    <h1>Wedding Album</h1>
+                    <h2>Ghi Dấu Tình Yêu</h2>
+                    <div class="date">The best day of our lives</div>
+                </div>
+            </div>
+
+            
+            <!-- Trang 1 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/1788164926979_118076118048819110_6369139958250790502_3c62bc88fcfd5947693df769a7cb9130.jpg" alt="Ảnh cưới 1" loading="lazy">
+                        <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="page-number">1</div>
+                </div>
+            </div>
+            <!-- Trang 2 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/1788164927033_118076118048819110_6369139958250790502_1441bac328e1b8824c62b83a8b375c4d.jpg" alt="Ảnh cưới 2" loading="lazy">
+                        <div class="photo-caption">Yêu thương</div>
+                    </div>
+                    <div class="page-number">2</div>
+                </div>
+            </div>
+            <!-- Trang 3 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/NCQ_3246.jpg" alt="Ảnh cưới 3" loading="lazy">
+                        <div class="photo-caption">Hạnh phúc</div>
+                    </div>
+                    <div class="page-number">3</div>
+                </div>
+            </div>
+            <!-- Trang 4 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/NCQ_3487.jpg" alt="Ảnh cưới 4" loading="lazy">
+                        <div class="photo-caption">Bên nhau</div>
+                    </div>
+                    <div class="page-number">4</div>
+                </div>
+            </div>
+            <!-- Trang 5 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/NCQ_3926.jpg" alt="Ảnh cưới 5" loading="lazy">
+                        <div class="photo-caption">Nụ cười</div>
+                    </div>
+                    <div class="page-number">5</div>
+                </div>
+            </div>
+            <!-- Trang 6 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/NCQ_4006.jpg" alt="Ảnh cưới 6" loading="lazy">
+                        <div class="photo-caption">Khoảnh khắc</div>
+                    </div>
+                    <div class="page-number">6</div>
+                </div>
+            </div>
+            <!-- Trang 7 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/NCQ_4054.jpg" alt="Ảnh cưới 7" loading="lazy">
+                        <div class="photo-caption">Tình yêu</div>
+                    </div>
+                    <div class="page-number">7</div>
+                </div>
+            </div>
+            <!-- Trang 8 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/NCQ_4070.jpg" alt="Ảnh cưới 8" loading="lazy">
+                        <div class="photo-caption">Ánh mắt</div>
+                    </div>
+                    <div class="page-number">8</div>
+                </div>
+            </div>
+            <!-- Trang 9 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/bason.JPG" alt="Ảnh cưới 9" loading="lazy">
+                        <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="page-number">9</div>
+                </div>
+            </div>
+            <!-- Trang 10 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/cafecho.jpg" alt="Ảnh cưới 10" loading="lazy">
+                        <div class="photo-caption">Yêu thương</div>
+                    </div>
+                    <div class="page-number">10</div>
+                </div>
+            </div>
+            <!-- Trang 11 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/cothach.jpg" alt="Ảnh cưới 11" loading="lazy">
+                        <div class="photo-caption">Hạnh phúc</div>
+                    </div>
+                    <div class="page-number">11</div>
+                </div>
+            </div>
+            <!-- Trang 12 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/damcuoi.JPG" alt="Ảnh cưới 12" loading="lazy">
+                        <div class="photo-caption">Bên nhau</div>
+                    </div>
+                    <div class="page-number">12</div>
+                </div>
+            </div>
+            <!-- Trang 13 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/grandword.jpg" alt="Ảnh cưới 13" loading="lazy">
+                        <div class="photo-caption">Nụ cười</div>
+                    </div>
+                    <div class="page-number">13</div>
+                </div>
+            </div>
+            <!-- Trang 14 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/moviposterfunny.png" alt="Ảnh cưới 14" loading="lazy">
+                        <div class="photo-caption">Khoảnh khắc</div>
+                    </div>
+                    <div class="page-number">14</div>
+                </div>
+            </div>
+            <!-- Trang 15 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/nguyenoanh.jpg" alt="Ảnh cưới 15" loading="lazy">
+                        <div class="photo-caption">Tình yêu</div>
+                    </div>
+                    <div class="page-number">15</div>
+                </div>
+            </div>
+            <!-- Trang 16 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/nhatrang.png" alt="Ảnh cưới 16" loading="lazy">
+                        <div class="photo-caption">Ánh mắt</div>
+                    </div>
+                    <div class="page-number">16</div>
+                </div>
+            </div>
+            <!-- Trang 17 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/nuibaden.png" alt="Ảnh cưới 17" loading="lazy">
+                        <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="page-number">17</div>
+                </div>
+            </div>
+            <!-- Trang 18 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/phanthiet.jpg" alt="Ảnh cưới 18" loading="lazy">
+                        <div class="photo-caption">Yêu thương</div>
+                    </div>
+                    <div class="page-number">18</div>
+                </div>
+            </div>
+            <!-- Trang 19 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/phuquoc.jpg" alt="Ảnh cưới 19" loading="lazy">
+                        <div class="photo-caption">Hạnh phúc</div>
+                    </div>
+                    <div class="page-number">19</div>
+                </div>
+            </div>
+            <!-- Trang 20 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/quanan.png" alt="Ảnh cưới 20" loading="lazy">
+                        <div class="photo-caption">Bên nhau</div>
+                    </div>
+                    <div class="page-number">20</div>
+                </div>
+            </div>
+            <!-- Trang 21 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/running.jpg" alt="Ảnh cưới 21" loading="lazy">
+                        <div class="photo-caption">Nụ cười</div>
+                    </div>
+                    <div class="page-number">21</div>
+                </div>
+            </div>
+            <!-- Trang 22 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/toppingbeaf.jpg" alt="Ảnh cưới 22" loading="lazy">
+                        <div class="photo-caption">Khoảnh khắc</div>
+                    </div>
+                    <div class="page-number">22</div>
+                </div>
+            </div>
+            <!-- Trang 23 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/traveltripNhatrang.png" alt="Ảnh cưới 23" loading="lazy">
+                        <div class="photo-caption">Tình yêu</div>
+                    </div>
+                    <div class="page-number">23</div>
+                </div>
+            </div>
+            <!-- Trang 24 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/vinpearlnhatrang.jpg" alt="Ảnh cưới 24" loading="lazy">
+                        <div class="photo-caption">Ánh mắt</div>
+                    </div>
+                    <div class="page-number">24</div>
+                </div>
+            </div>
+            <!-- Trang 25 -->
+            <div class="page">
+                <div class="page-content">
+                    <div class="photo-frame">
+                        <img src="./album_img/vungtau.jpg" alt="Ảnh cưới 25" loading="lazy">
+                        <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="page-number">25</div>
+                </div>
+            </div>
+            <!-- BÌA SAU (Bìa cứng) -->
+            <div class="page page-cover page-cover-bottom" data-density="hard">
+                <div class="cover-inner">
+                    <div class="ornament ornament-tl"></div>
+                    <div class="ornament ornament-tr"></div>
+                    <div class="ornament ornament-bl"></div>
+                    <div class="ornament ornament-br"></div>
+                    <h2 style="margin-top: 0; color: #d4af37; font-size: 1.5em; border-bottom: 1px solid #d4af37; padding-bottom: 10px;">The End</h2>
+                    <div style="font-family: 'Great Vibes', cursive; font-size: 2.5em; color: #d4af37; margin-top: 20px;">Trân trọng</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Nút hướng dẫn nổi bật -->
+    <div class="instruction" id="instruction">🖐 Vuốt nhẹ hoặc Click mép sách để mở album</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const flipBookEl = document.getElementById('flipbook');
+            const bgMusic = document.getElementById('bgMusic');
+            const musicToggle = document.getElementById('musicToggle');
+            
+            // Hiện cấu trúc sau khi load DOM
+            flipBookEl.style.display = 'block';
+
+            // Quản lý nhạc nền
+            let isMusicPlaying = false;
+            
+            function toggleMusic() {
+                if (bgMusic.paused) {
+                    bgMusic.play().then(() => {
+                        isMusicPlaying = true;
+                        musicToggle.innerText = '🔊';
+                    }).catch(e => console.log('Autoplay prevented', e));
+                } else {
+                    bgMusic.pause();
+                    isMusicPlaying = false;
+                    musicToggle.innerText = '🔇';
+                }
+            }
+
+            musicToggle.addEventListener('click', toggleMusic);
+
+            // Bật nhạc khi người dùng tương tác lần đầu
+            document.body.addEventListener('click', function() {
+                if (!isMusicPlaying && bgMusic.paused) {
+                    toggleMusic();
+                }
+            }, { once: true });
+
+            // Cấu hình St.PageFlip
+            const pageFlip = new St.PageFlip(flipBookEl, {
+                width: 420, // Base width
+                height: 600, // Base height
+                size: "stretch", // Tự động co giãn theo container (rất quan trọng cho responsive)
+                minWidth: 280, // Kích thước tối thiểu (dành cho mobile)
+                maxWidth: 550, 
+                minHeight: 400,
+                maxHeight: 750,
+                maxShadowOpacity: 0.6, // Bóng đổ tối để tạo độ sâu thật
+                showCover: true, // Khi init quyển sách sẽ ĐÓNG
+                mobileScrollSupport: false, 
+                usePortrait: true // Kích hoạt hiển thị lướt 1 trang khi xoay dọc điện thoại
+            });
+
+            // Tải nội dung các trang từ HTML
+            pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+            // Ẩn hướng dẫn khi người dùng lật trang đầu tiên
+            pageFlip.on('flip', (e) => {
+                const instruction = document.getElementById('instruction');
+                if(instruction && instruction.style.opacity !== '0') {
+                    instruction.style.opacity = '0';
+                    setTimeout(() => {
+                        instruction.style.display = 'none';
+                    }, 500);
+                }
+            });
+
+            // Lật trang bằng phím mũi tên
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    pageFlip.flipNext();
+                } else if (e.key === 'ArrowLeft') {
+                    pageFlip.flipPrev();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

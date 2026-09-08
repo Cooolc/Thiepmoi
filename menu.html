@@ -125,24 +125,41 @@
             }
         }
 
-        /* Vị trí phong bì XANH (Nằm hơi chếch bên phải, đè lên phong bì đỏ) */
-        .env-green {
-            left: calc(50% - 130px);
-            top: calc(50% - 100px);
-            transform: rotate(6.5deg) translate3d(20px, -5px, 15px);
+        /* Vị trí Album (Nằm hơi chếch bên phải, đè lên phong bì đỏ) */
+        .album-item {
+            position: absolute;
+            width: 240px;
+            height: 320px;
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                        box-shadow 0.5s ease, 
+                        z-index 0s ease 0.1s;
+            transform-style: preserve-3d;
+            left: calc(50% - 60px);
+            top: calc(50% - 150px);
+            transform: rotate(5deg) translate3d(20px, -5px, 15px);
             z-index: 20;
         }
 
         @media (min-width: 640px) {
-            .env-green {
-                left: calc(50% - 170px);
-                top: calc(50% - 120px);
-                transform: rotate(6deg) translate3d(40px, -10px, 20px);
+            .album-item {
+                width: 280px;
+                height: 380px;
+                left: calc(50% - 70px);
+                top: calc(50% - 180px);
+                transform: rotate(5deg) translate3d(40px, -10px, 20px);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .album-item {
+                width: 300px;
+                height: 400px;
             }
         }
 
         /* Khi được chọn (Active) - Tự động nổi lên trên cùng */
-        .envelope-item.is-active {
+        .envelope-item.is-active, .album-item.is-active {
             z-index: 60 !important;
             box-shadow: var(--shadow-hover);
         }
@@ -151,12 +168,12 @@
             transform: rotate(-1.5deg) translate3d(-15px, -15px, 45px) scale(1.04);
         }
 
-        .env-green.is-active {
+        .album-item.is-active {
             transform: rotate(1.5deg) translate3d(15px, -20px, 45px) scale(1.04);
         }
 
-        /* Phong bì nằm sau giữ nguyên độ nét, không làm mờ */
-        .envelope-item.is-inactive {
+        /* Phong bì/Album nằm sau giữ nguyên độ nét, không làm mờ */
+        .envelope-item.is-inactive, .album-item.is-inactive {
             opacity: 1 !important;
             filter: none !important;
         }
@@ -174,6 +191,97 @@
 
         .envelope-item.is-open .envelope-box {
             overflow: visible;
+        }
+
+        /* Hình dạng của quyển album */
+        .album-cover {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 4px 12px 12px 4px;
+            background-color: #111820; /* Xanh Navy sâu thẳm / Đen tuyền sang trọng */
+            background-image: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.6) 100%), url('https://www.transparenttextures.com/patterns/dark-leather.png');
+            box-shadow: 
+                inset -5px 0 20px rgba(0,0,0,0.8),
+                10px 10px 20px rgba(0,0,0,0.4),
+                var(--shadow-ambient);
+            border-left: 16px solid #0a0e13; /* Gáy sách màu tối hơn */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            overflow: hidden;
+            transition: box-shadow 0.4s ease;
+            color: #d4af37;
+        }
+
+        /* Gân gáy sách */
+        .album-cover::before {
+            content: '';
+            position: absolute;
+            left: -16px;
+            top: 0;
+            bottom: 0;
+            width: 16px;
+            background: linear-gradient(to right, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.85) 15%, rgba(0,0,0,0.6) 40%, rgba(255,255,255,0) 100%);
+            border-right: 1px solid rgba(0,0,0,0.7);
+            box-shadow: 5px 0 10px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+
+        /* Các gờ nổi trên gáy sách (spine ridges) */
+        .album-spine-ridges {
+            position: absolute;
+            left: -16px;
+            top: 0;
+            bottom: 0;
+            width: 16px;
+            background: 
+                linear-gradient(to bottom, 
+                    transparent 15%, 
+                    rgba(0,0,0,0.8) 15%, rgba(255,255,255,0.15) 16%, rgba(0,0,0,0.6) 17%, transparent 17%, 
+                    transparent 49%, 
+                    rgba(0,0,0,0.8) 49%, rgba(255,255,255,0.15) 50%, rgba(0,0,0,0.6) 51%, transparent 51%, 
+                    transparent 83%, 
+                    rgba(0,0,0,0.8) 83%, rgba(255,255,255,0.15) 84%, rgba(0,0,0,0.6) 85%, transparent 85%);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* Hiệu ứng viền trang sách bên phải dày hơn */
+        .album-cover::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 6px;
+            bottom: 6px;
+            width: 8px;
+            background: repeating-linear-gradient(to bottom, #cfc6b6, #cfc6b6 1px, #fff 1px, #fff 2px);
+            border-radius: 0 4px 4px 0;
+            box-shadow: inset 2px 0 4px rgba(0,0,0,0.1);
+        }
+
+        /* Nội dung Album */
+        .album-content {
+            width: 100%;
+            height: 100%;
+            border: 2px solid #d4af37;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            position: relative;
+            background: rgba(0,0,0,0.1);
+            box-shadow: 
+                inset 0 0 25px rgba(212, 175, 55, 0.2), 
+                inset 0 0 5px rgba(212, 175, 55, 0.4), 
+                0 0 15px rgba(0,0,0,0.7);
+        }
+
+        .album-item.is-open {
+            transform: rotate(0deg) translate3d(15px, -40px, 60px) scale(1.08) !important;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
         }
 
         /* Nắp gập tam giác (Flap) */
@@ -298,17 +406,6 @@
             background: radial-gradient(circle at 40% 35%, #cca03c, #8c600b 80%);
         }
 
-        /* Dấu sáp Đồng Cổ Monogram (Phong bì Xanh) */
-        .wax-seal-copper {
-            background: 
-                radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.55) 0%, transparent 25%),
-                radial-gradient(circle at 38% 32%, #f8e5cb 0%, #cca773 32%, #996e39 65%, #4e3210 100%);
-        }
-
-        .wax-seal-copper .wax-seal-inner {
-            background: radial-gradient(circle at 40% 35%, #b98e57, #6e461a 80%);
-        }
-
         /* Chữ dập chìm hiệu ứng 3D debossed */
         .wax-seal-text {
             user-select: none;
@@ -319,14 +416,6 @@
             color: #4a060e;
             text-shadow: 
                 1px 1px 1px rgba(255, 235, 175, 0.45),
-                -1px -1px 2px rgba(0, 0, 0, 0.85),
-                0 0 1px rgba(0, 0, 0, 0.9);
-        }
-
-        .seal-text-green {
-            color: #0f261f;
-            text-shadow: 
-                1px 1px 1px rgba(255, 240, 210, 0.4),
                 -1px -1px 2px rgba(0, 0, 0, 0.85),
                 0 0 1px rgba(0, 0, 0, 0.9);
         }
@@ -389,7 +478,7 @@
             <!-- ============================================================
                  PHONG BÌ 1: ĐỎ TRUYỀN THỐNG (CHỮ HỶ 囍) - Trỏ về index.html
                  ============================================================ -->
-            <div id="envRed" class="envelope-item env-red" onclick="selectEnvelope('red')">
+            <div id="envRed" class="envelope-item env-red" onclick="selectItem('red')">
                 <div class="envelope-box" style="background: radial-gradient(circle at 40% 40%, #7d0e1b 0%, #45060e 100%);">
                     
                     <!-- Nắp gập tam giác (Flap) -->
@@ -456,8 +545,7 @@
                     </div>
 
                     <!-- ================================================================= -->
-                    <!-- [CẤU HÌNH LINK 1]: DẤU SÁP PHONG BÌ ĐỎ (Chạm dấu sáp để mở thiệp) -->
-                    <!-- Đường dẫn mặc định được quản lý tại WEDDING_LINKS.red trong script -->
+                    <!-- DẤU SÁP PHONG BÌ ĐỎ (Chạm dấu sáp để mở thiệp) -->
                     <!-- ================================================================= -->
                     <div class="wax-seal wax-seal-gold" onclick="openWithSeal(event, 'red')" title="Chạm dấu sáp để mở thiệp">
                         <div class="wax-seal-inner">
@@ -469,81 +557,28 @@
 
 
             <!-- ============================================================
-                 PHONG BÌ 2: XANH BOTANIC
+                 ALBUM: THAY THẾ PHONG BÌ XANH
                  ============================================================ -->
-            <div id="envGreen" class="envelope-item env-green is-active" onclick="selectEnvelope('green')">
-                <div class="envelope-box" style="background: radial-gradient(circle at 40% 40%, #1e463a 0%, #0d211b 100%);">
-                    
-                    <!-- Nắp gập tam giác (Flap) -->
-                    <div class="envelope-flap">
-                        <svg viewBox="0 0 440 190" class="w-full h-full drop-shadow-lg" preserveAspectRatio="none">
-                            <defs>
-                                <linearGradient id="greenFlapGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" stop-color="#285a4b"/>
-                                    <stop offset="65%" stop-color="#1d4539"/>
-                                    <stop offset="100%" stop-color="#0f261f"/>
-                                </linearGradient>
-                            </defs>
-                            <polygon points="0,0 440,0 220,175" fill="url(#greenFlapGrad)" stroke="#c5a880" stroke-width="1.2"/>
-                            <!-- Viền nhũ vàng thanh tao -->
-                            <polygon points="20,10 420,10 220,160" fill="none" stroke="#dfc298" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.65"/>
-                        </svg>
-                    </div>
-
-                    <!-- Thẻ thiệp nhô ra khi mở -->
-                    <div class="envelope-card">
-                        <div class="text-center w-full border-b border-emerald-300/60 pb-1.5 flex justify-between items-center text-[9px] font-serif text-emerald-900 uppercase">
-                            <span>Wedding Invitation</span>
-                            <span class="text-emerald-800 font-bold">✤ C &amp; N ✤</span>
-                            <span>11.10.2026</span>
-                        </div>
-                        <div class="text-center my-auto">
-                            <span class="text-emerald-800 font-serif text-xl sm:text-2xl font-bold tracking-widest block">C ♥ N</span>
-                            <p class="font-script text-2xl sm:text-3xl text-emerald-900 leading-tight mt-1">Chấn Cơ &amp; Hảo Nghi</p>
-                        </div>
-                        <div class="text-[9px] sm:text-[10px] font-serif italic text-stone-600 border-t border-emerald-200/80 pt-1 w-full text-center">
-                            Trung Tâm Hội Nghị Riverside Palace
-                        </div>
-                    </div>
-
-                    <!-- Túi phong bì mặt trước -->
-                    <div class="envelope-pocket">
-                        <svg viewBox="0 0 440 300" class="w-full h-full" preserveAspectRatio="none">
-                            <defs>
-                                <linearGradient id="pocketBottomGreen" x1="0%" y1="100%" x2="0%" y2="0%">
-                                    <stop offset="0%" stop-color="#091713"/>
-                                    <stop offset="100%" stop-color="#16382e"/>
-                                </linearGradient>
-                                <linearGradient id="pocketSideGreen" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#1f4b3e"/>
-                                    <stop offset="100%" stop-color="#0d231c"/>
-                                </linearGradient>
-                            </defs>
-                            <!-- Cánh trái -->
-                            <polygon points="0,0 220,160 0,300" fill="url(#pocketSideGreen)" opacity="0.95"/>
-                            <!-- Cánh phải -->
-                            <polygon points="440,0 220,160 440,300" fill="url(#pocketSideGreen)" opacity="0.95"/>
-                            <!-- Đáy dưới dâng lên -->
-                            <polygon points="0,300 440,300 220,135" fill="url(#pocketBottomGreen)" stroke="#c5a880" stroke-width="1.2"/>
-                            <!-- Viền chỉ vàng -->
-                            <polygon points="15,288 425,288 220,148" fill="none" stroke="#f0ddba" stroke-width="0.75" stroke-dasharray="3,3" opacity="0.5"/>
-                        </svg>
-
-                        <!-- Chữ in nhã nhặn mặt trước -->
-                        <div class="absolute bottom-3 inset-x-0 text-center pointer-events-none">
-                            <span class="font-cinzel text-[10px] sm:text-xs text-emerald-200/85 uppercase tracking-widest font-semibold drop-shadow">
-                                ✤ DẠ TIỆC CƯỚI • C &amp; N ✤
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- ================================================================== -->
-                    <!-- [CẤU HÌNH LINK 2]: DẤU SÁP PHONG BÌ XANH (Chạm dấu sáp để mở thiệp) -->
-                    <!-- Đường dẫn mặc định được quản lý tại WEDDING_LINKS.green trong script -->
-                    <!-- ================================================================== -->
-                    <div class="wax-seal wax-seal-copper" onclick="openWithSeal(event, 'green')" title="Chạm dấu sáp để mở thiệp">
-                        <div class="wax-seal-inner">
-                            <span class="wax-seal-text seal-text-green font-serif font-bold text-xs sm:text-sm tracking-tighter">C ♥ N</span>
+            <div id="albumItem" class="album-item is-active" onclick="selectItem('album')">
+                <div class="album-cover">
+                    <div class="album-spine-ridges"></div>
+                    <div class="album-content">
+                        <!-- Khung hình hoặc chữ -->
+                        <div class="w-full h-full p-2 sm:p-4 flex flex-col items-center justify-center relative">
+                            <!-- Góc hoa văn -->
+                            <div class="absolute top-0 left-0 text-gold text-lg sm:text-xl" style="transform: translate(-30%, -30%);">✥</div>
+                            <div class="absolute top-0 right-0 text-gold text-lg sm:text-xl" style="transform: translate(30%, -30%);">✥</div>
+                            <div class="absolute bottom-0 left-0 text-gold text-lg sm:text-xl" style="transform: translate(-30%, 30%);">✥</div>
+                            <div class="absolute bottom-0 right-0 text-gold text-lg sm:text-xl" style="transform: translate(30%, 30%);">✥</div>
+                            
+                            <span class="font-cinzel text-[10px] sm:text-xs text-amber-500 tracking-widest uppercase mb-3">Our Memories</span>
+                            <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-amber-500 shadow-[0_0_15px_rgba(212,175,55,0.4)] overflow-hidden mb-3">
+                                <img src="./album_img/NCQ_3246.jpg" class="w-full h-full object-cover" alt="Album Cover">
+                            </div>
+                            <h2 class="font-script text-3xl sm:text-4xl text-amber-400 leading-tight" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Wedding Album</h2>
+                            <p class="font-cinzel text-[8px] sm:text-[10px] text-amber-500/80 mt-1 uppercase tracking-widest">Chấn Cơ &amp; Hảo Nghi</p>
+                            
+                            <span class="mt-3 sm:mt-4 font-serif text-[9px] sm:text-[10px] text-amber-600 uppercase tracking-widest border-t border-amber-500/50 pt-2 w-20 text-center inline-block">Tap to open</span>
                         </div>
                     </div>
                 </div>
@@ -555,8 +590,8 @@
     <!-- Footer ngắn gọn: Chỉ dẫn chạm nhẹ -->
     <footer class="relative z-20 pb-6 sm:pb-8 text-center text-xs text-amber-200/80 font-sans">
         <p id="instructionText" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 border border-gold/30 backdrop-blur-sm shadow-md transition-all">
-            <svg class="w-3.5 h-3.5 text-gold animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
-            <span>Chạm phong bì để chọn, chạm <strong>dấu sáp</strong> để mở thiệp</span>
+            <span class="w-2 h-2 rounded-full bg-amber-400 inline-block animate-ping"></span>
+            <span>Chạm <strong>lần nữa</strong> để mở Album!</span>
         </p>
     </footer>
 
@@ -566,7 +601,7 @@
         // =========================================================================
         const WEDDING_LINKS = {
             red: './index.html',        // <-- ĐỔI LINK CHO PHONG BÌ ĐỎ TẠI ĐÂY
-            green: './index_xanh.html'  // <-- ĐỔI LINK CHO PHONG BÌ XANH TẠI ĐÂY
+            album: './album.html'       // <-- ĐỔI LINK CHO ALBUM TẠI ĐÂY
         };
 
         // ==========================================
@@ -615,71 +650,109 @@
         }
 
         // ==========================================
-        // 2. XỬ LÝ CHỌN PHONG BÌ & MỞ QUA DẤU SÁP
+        // 2. XỬ LÝ CHỌN PHONG BÌ/ALBUM & MỞ
         // ==========================================
-        let currentActive = 'green';
+        let currentActive = 'album';
         let isRedirecting = false;
 
-        // Chạm vào thân phong bì -> Chọn phong bì đó nằm đè lên trên
-        function selectEnvelope(type) {
+        function selectItem(type) {
             if (isRedirecting) return;
-            if (currentActive === type) return;
-
-            currentActive = type;
+            
             const envRed = document.getElementById('envRed');
-            const envGreen = document.getElementById('envGreen');
+            const albumEl = document.getElementById('albumItem');
             const instr = document.getElementById('instructionText');
 
             if (type === 'red') {
+                if (currentActive === 'red') {
+                    // Nếu đã là red, không làm gì khi click vào thân (phải click dấu sáp mới mở)
+                    return;
+                }
+                currentActive = 'red';
                 envRed.classList.remove('is-inactive');
                 envRed.classList.add('is-active');
-                envGreen.classList.remove('is-active');
-                envGreen.classList.add('is-inactive');
+                albumEl.classList.remove('is-active');
+                albumEl.classList.add('is-inactive');
                 if (instr) {
                     instr.innerHTML = '<span class="w-2 h-2 rounded-full bg-red-400 inline-block animate-ping"></span><span>Chạm <strong>dấu sáp</strong> để mở thiệp!</span>';
                 }
-            } else {
-                envGreen.classList.remove('is-inactive');
-                envGreen.classList.add('is-active');
+            } else if (type === 'album') {
+                if (currentActive === 'album') {
+                    // Nếu đã là album và click lần nữa -> Mở Album
+                    openAlbum();
+                    return;
+                }
+                currentActive = 'album';
+                albumEl.classList.remove('is-inactive');
+                albumEl.classList.add('is-active');
                 envRed.classList.remove('is-active');
                 envRed.classList.add('is-inactive');
                 if (instr) {
-                    instr.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-ping"></span><span>Chạm <strong>dấu sáp</strong> để mở thiệp!</span>';
+                    instr.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400 inline-block animate-ping"></span><span>Chạm <strong>lần nữa</strong> để mở Album!</span>';
                 }
             }
         }
 
-        // Chạm vào con dấu sáp -> Mở thiệp và chuyển sang trang tương ứng
-        function openWithSeal(event, type, customUrl) {
+        function openWithSeal(event, type) {
             if (event) {
                 event.stopPropagation();
             }
 
             if (isRedirecting) return;
-
-            // Xác định đường dẫn tương ứng từ cấu hình WEDDING_LINKS
-            const targetUrl = customUrl || WEDDING_LINKS[type];
-
-            // Nếu chạm dấu sáp của phong bì chưa active -> active ngay và mở luôn
+            
+            // Đưa lên trên cùng nếu chưa active
             if (currentActive !== type) {
-                selectEnvelope(type);
+                selectItem(type);
             }
 
             isRedirecting = true;
             playPaperSound();
 
+            const targetUrl = WEDDING_LINKS[type] || './index.html';
             const envRed = document.getElementById('envRed');
-            const envGreen = document.getElementById('envGreen');
-            const selectedEnv = (type === 'red') ? envRed : envGreen;
-            const otherEnv = (type === 'red') ? envGreen : envRed;
+            const albumEl = document.getElementById('albumItem');
+            
+            envRed.classList.add('is-open');
+            if(albumEl) albumEl.style.transition = 'transform 0.5s ease';
 
-            // Đưa phong bì được chọn bung mở, phong bì nằm sau vẫn rõ ràng không bị mờ xám
-            selectedEnv.classList.add('is-open');
-            otherEnv.style.transition = 'transform 0.5s ease';
+            try {
+                if (typeof confetti === 'function') {
+                    const rect = envRed.getBoundingClientRect();
+                    const x = (rect.left + rect.width / 2) / window.innerWidth;
+                    const y = (rect.top + rect.height / 2) / window.innerHeight;
 
-            // Bắn pháo hoa bụi vàng từ vị trí con dấu
+                    confetti({
+                        particleCount: 55,
+                        spread: 65,
+                        origin: { x: x, y: y },
+                        colors: ['#d4af37', '#ffd700', '#9b1625']
+                    });
+                }
+            } catch (e) {
+                console.error("Confetti error", e);
+            }
+
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '0';
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 400);
+            }, 850);
+        }
+
+        function openAlbum() {
+            if (isRedirecting) return;
+            isRedirecting = true;
+            playPaperSound();
+
+            const albumEl = document.getElementById('albumItem');
+            const envRed = document.getElementById('envRed');
+            
+            albumEl.classList.add('is-open');
+            envRed.style.transition = 'transform 0.5s ease';
+
             if (typeof confetti === 'function') {
-                const rect = selectedEnv.getBoundingClientRect();
+                const rect = albumEl.getBoundingClientRect();
                 const x = (rect.left + rect.width / 2) / window.innerWidth;
                 const y = (rect.top + rect.height / 2) / window.innerHeight;
 
@@ -687,16 +760,15 @@
                     particleCount: 55,
                     spread: 65,
                     origin: { x: x, y: y },
-                    colors: type === 'red' ? ['#d4af37', '#ffd700', '#9b1625'] : ['#c5a880', '#34d399', '#f0ddba']
+                    colors: ['#ffffff', '#f0eada', '#d4af37']
                 });
             }
 
-            // Nắp mở, thiệp nhô lên (0.85s) rồi mượt mà chuyển trang
             setTimeout(() => {
                 document.body.style.transition = 'opacity 0.5s ease';
                 document.body.style.opacity = '0';
                 setTimeout(() => {
-                    window.location.href = targetUrl;
+                    window.location.href = WEDDING_LINKS['album'];
                 }, 400);
             }, 850);
         }
