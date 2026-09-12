@@ -3046,8 +3046,8 @@
                     <div class="family-blessing">新郎 • 吉祥如意</div>
                     <div data-i18n="family_groom_side" class="text-gold font-serif font-bold text-sm sm:text-lg uppercase tracking-wider mb-3">Nhà Trai</div>
                     <div class="space-y-1.5 font-serif text-ivory leading-snug">
-                        <p class="text-[11px] sm:text-sm"><span data-i18n="family_father" class="text-gold/80">Ba:</span> <strong>La Thành Phát</strong></p>
-                        <p class="text-[11px] sm:text-sm"><span data-i18n="family_mother" class="text-gold/80">Mẹ:</span> <strong>Thái Lý Ên</strong></p>
+                        <p class="text-[11px] sm:text-sm"><span data-i18n="family_father" class="text-gold/80">Ba:</span> <strong data-i18n="groom_father_name">La Thành Phát</strong></p>
+                        <p class="text-[11px] sm:text-sm"><span data-i18n="family_mother" class="text-gold/80">Mẹ:</span> <strong data-i18n="groom_mother_name">Thái Lý Ên</strong></p>
                         <p data-i18n="family_groom_address" class="pt-2 mt-2 border-t border-gold/20 text-[10px] sm:text-xs text-ivory/75">Phường Bình Tân, TP.HCM</p>
                     </div>
                 </div>
@@ -3071,8 +3071,8 @@
                     <div class="family-blessing">新娘 • 百年好合</div>
                     <div data-i18n="family_bride_side" class="text-gold font-serif font-bold text-sm sm:text-lg uppercase tracking-wider mb-3">Nhà Gái</div>
                     <div class="space-y-1.5 font-serif text-ivory leading-snug">
-                        <p class="text-[11px] sm:text-sm"><span data-i18n="family_father" class="text-gold/80">Ba:</span> <strong>Huỳnh Lập Biếu</strong></p>
-                        <p class="text-[11px] sm:text-sm flex items-center justify-center gap-1 flex-wrap"><span><span data-i18n="family_mother" class="text-gold/80">Mẹ:</span> <strong>Lâm Thị Thu Thuỷ</strong></span><span class="text-base sm:text-lg opacity-80" aria-label="hoa sen tưởng niệm" title="Hoa sen tưởng niệm" style="filter: grayscale(1) brightness(1.45) contrast(.85);">🪷</span></p>
+                        <p class="text-[11px] sm:text-sm"><span data-i18n="family_father" class="text-gold/80">Ba:</span> <strong data-i18n="bride_father_name">Huỳnh Lập Biếu</strong></p>
+                        <p class="text-[11px] sm:text-sm flex items-center justify-center gap-1 flex-wrap"><span><span data-i18n="family_mother" class="text-gold/80">Mẹ:</span> <strong data-i18n="bride_mother_name">Lâm Thị Thu Thuỷ</strong></span><span class="text-base sm:text-lg opacity-80" aria-label="hoa sen tưởng niệm" title="Hoa sen tưởng niệm" style="filter: grayscale(1) brightness(1.45) contrast(.85);">🪷</span></p>
                         <p data-i18n="family_bride_address" class="pt-2 mt-2 border-t border-gold/20 text-[10px] sm:text-xs text-ivory/75">Phường Phú Định, TP.HCM</p>
                     </div>
                 </div>
@@ -3785,7 +3785,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div class="rsvp-field">
                                 <label data-i18n="rsvp_lbl_name" class="block text-xs font-semibold text-gold uppercase mb-2">Họ và tên *</label>
-                                <input type="text" id="rsvp-name" required placeholder="Ví dụ: Nguyễn Văn A" class="rsvp-input-chinese w-full px-4 py-2.5 text-white placeholder-ivory/40 outline-none text-xs md:text-sm">
+                                <input type="text" id="rsvp-name" required placeholder="Ví dụ: Nguyễn Văn A" data-i18n-placeholder="rsvp_placeholder" class="rsvp-input-chinese w-full px-4 py-2.5 text-white placeholder-ivory/40 outline-none text-xs md:text-sm">
                             </div>
                             <div class="rsvp-field">
                                 <label data-i18n="rsvp_lbl_attend" class="block text-xs font-semibold text-gold uppercase mb-2">Xác nhận tham dự *</label>
@@ -4025,8 +4025,13 @@
                 family_bride_side: "Nhà Gái",
                 family_father: "Ba:",
                 family_mother: "Mẹ:",
+                groom_father_name: "La Thành Phát",
+                groom_mother_name: "Thái Lý Ên",
+                bride_father_name: "Huỳnh Lập Biếu",
+                bride_mother_name: "Lâm Thị Thu Thuỷ",
                 family_groom_address: "Phường Bình Tân, TP.HCM",
                 family_bride_address: "Phường Phú Định, TP.HCM",
+                rsvp_placeholder: "Ví dụ: Nguyễn Văn A",
                 vuquy_kicker: "HỶ SỰ • LỄ VU QUY",
                 vuquy_title: "Lễ Vu Quy",
                 vuquy_desc: "Trân trọng kính mời quý khách cùng chung vui trong nghi lễ Vu Quy của gia đình nhà gái",
@@ -4146,7 +4151,7 @@
                 modal_btn_close: "Đóng"
             },
             zh: {
-                nav_title: "李振基 & 黃巧儀",
+                nav_title: "李振基 & 李巧兒",
                 nav_hero: "首頁",
                 nav_invitation: "喜帖邀請",
                 nav_program: "婚禮流程",
@@ -4158,7 +4163,7 @@
                 btn_rsvp_top: "確認出席 (RSVP)",
                 env_sub: "SAVE OUR DATE",
                 env_tag: "喜宴請柬 • 奉柬之喜",
-                couple_names: "李振基 & 黃巧儀",
+                couple_names: "李振基 & 李巧兒",
                 env_welcome: "敬備喜筵 恭候光臨",
                 env_date: "2026年10月11日 星期日",
                 env_venue: "Riverside Palace 婚宴中心 (胡志明市第四郡)",
@@ -4167,7 +4172,7 @@
                 hero_badge_save: "SAVE OUR DATE • 新婚之喜",
                 hero_greeting: "敬備喜筵 恭請光臨",
                 groom_name: "李振基",
-                bride_name: "黃巧儀",
+                bride_name: "李巧兒",
                 hero_quote: "「百年好合結良緣，攜手一生共白頭。」",
                 hero_subquote: "✦ 最緊要夠開心 • 歡樂無限 幸福相伴 ✦",
                 hero_photo_date: "2026年10月11日 星期日",
@@ -4184,15 +4189,20 @@
                 family_bride_side: "女方家",
                 family_father: "父親：",
                 family_mother: "母親：",
-                family_groom_address: "胡志明市 Bình Tân 坊",
-                family_bride_address: "胡志明市 Phú Định 坊",
+                groom_father_name: "李兆發",
+                groom_mother_name: "李丽英",
+                bride_father_name: "李立標",
+                bride_mother_name: "林氏秋水",
+                family_groom_address: "胡志明市 平新坊",
+                family_bride_address: "胡志明市 富定坊",
+                rsvp_placeholder: "例如：張三",
                 vuquy_kicker: "喜事 • 于歸之喜",
                 vuquy_title: "于歸之禮",
                 vuquy_desc: "誠邀貴賓蒞臨女方家宴，共同見證于歸之喜",
                 vuquy_time_label: "時間",
                 vuquy_time: "2026年10月10日<br>星期六上午",
                 vuquy_location_label: "地點",
-                vuquy_location: "Ái Huê 2<br>酒樓",
+                vuquy_location: "愛華 2<br>酒樓",
                 vuquy_map: "導航",
                 vuquy_lunar_label: "農曆",
                 vuquy_lunar_main: "九月初一 • 丙午年",
@@ -4299,7 +4309,7 @@
                 btn_copy_stk: "複製帳號",
                 footer_thanks: "衷心感謝您的祝福！",
                 footer_quote: "「您的蒞臨是我們全體家人最大的榮耀！」",
-                footer_signature: "李振基 & 黃巧儀 • 2026 喜結良緣",
+                footer_signature: "李振基 & 李巧兒 • 2026 喜結良緣",
                 modal_thanks_title: "感謝您的回覆！",
                 modal_thanks_desc: "您的出席資訊已成功記錄並發送給新人。我們衷心期待在婚禮當天與您相聚！",
                 modal_btn_close: "關閉"
@@ -4343,8 +4353,13 @@
                 family_bride_side: "新婦家",
                 family_father: "父：",
                 family_mother: "母：",
+                groom_father_name: "La Thành Phát",
+                groom_mother_name: "Thái Lý Ên",
+                bride_father_name: "Huỳnh Lập Biếu",
+                bride_mother_name: "Lâm Thị Thu Thuỷ",
                 family_groom_address: "ホーチミン市 Bình Tân 坊",
                 family_bride_address: "ホーチミン市 Phú Định 坊",
+                rsvp_placeholder: "例：山田 太郎",
                 vuquy_kicker: "慶事 • 花嫁家の婚礼",
                 vuquy_title: "新婦家の婚礼（Vu Quy）",
                 vuquy_desc: "新婦側の婚礼の儀に、皆様を謹んでご招待申し上げます",
@@ -4478,6 +4493,13 @@
                 }
             });
 
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (i18nTranslations[lang][key] !== undefined) {
+                    el.placeholder = i18nTranslations[lang][key];
+                }
+            });
+
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 if (btn.getAttribute('data-lang-choice') === lang) {
                     btn.classList.add('active');
@@ -4528,9 +4550,6 @@
             },
             {
                 src: 'album_img/running.jpg',
-            },
-            {
-                src: 'album_img/truotco.jpg',
             },
             {
                 src: 'album_img/phanthiet.jpg',
@@ -5076,7 +5095,7 @@
 
             const labels = {
                 vi: { groom: "STK Chú Rể La Chấn Cơ", bride: "STK Cô Dâu Huỳnh Hảo Nghi" },
-                zh: { groom: "新郎帳號 (李振基)", bride: "新娘帳號 (黃巧儀)" },
+                zh: { groom: "新郎帳號 (李振基)", bride: "新娘帳號 (李巧兒)" },
                 ja: { groom: "新郎口座 (ラ・チャン・コー)", bride: "新婦口座 (フィン・ハオ・ギー)" }
             };
 
