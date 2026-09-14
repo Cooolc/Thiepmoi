@@ -2511,6 +2511,21 @@
   });
   </script>
 
-
+  <script>
+    window.addEventListener('pageshow', function() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (sessionStorage.getItem('weddingEnvelopeOpened') === '1' || urlParams.get('opened') === '1') {
+          const screen = document.getElementById('envelopeScreen');
+          if (screen) {
+            screen.style.display = 'none';
+          }
+          if (typeof playMusic === 'function') {
+            playMusic();
+          }
+        }
+      } catch (e) {}
+    });
+  </script>
 </body>
 </html>

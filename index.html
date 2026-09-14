@@ -3689,12 +3689,17 @@
                 <!-- Javascript sẽ tự động gắn hiệu ứng animation ngẫu nhiên vào từng tấm ảnh -->
             </div>
 
-            <!-- Nút Xem Thêm / Thu Gọn Ảnh -->
-            <div id="gallery-more-wrapper" class="text-center mt-8 hidden">
-                <button onclick="toggleGalleryExpand()" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-gold bg-crimson-dark/80 text-gold text-xs font-bold uppercase tracking-wider hover:bg-gold hover:text-retro-dark transition-all shadow-md cursor-pointer">
+            <!-- Nút Xem Thêm / Thu Gọn Ảnh & Link Album 3D -->
+            <div id="gallery-more-wrapper" class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10 hidden">
+                <button onclick="toggleGalleryExpand()" class="inline-flex items-center justify-center gap-2 px-6 py-3 min-w-[180px] rounded-full border border-gold bg-crimson-dark/80 text-gold text-xs font-bold uppercase tracking-wider hover:bg-gold hover:text-retro-dark transition-all shadow-md cursor-pointer">
                     <span id="gallery-toggle-text" data-i18n="gal_btn_more">Xem Thêm Ảnh</span>
                     <i id="gallery-toggle-icon" data-lucide="chevron-down" class="w-4 h-4"></i>
                 </button>
+                
+                <a href="./album.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 min-w-[180px] rounded-full bg-gold text-retro-dark border border-gold text-xs font-bold uppercase tracking-wider hover:bg-gold-light hover:scale-105 transition-all shadow-[0_0_15px_rgba(212,175,55,0.4)] cursor-pointer">
+                    <i data-lucide="book-open" class="w-4 h-4"></i>
+                    <span data-i18n="gal_btn_album">Mở Album 3D</span>
+                </a>
             </div>
                         </div>
             </div>
@@ -4115,6 +4120,7 @@
                 gal_subtitle: "ALBUM HÌNH ẢNH",
                 gal_title: "Khoảnh Khắc Đáng Nhớ",
                 gal_btn_more: "Xem Thêm Ảnh",
+                gal_btn_album: "Mở Album 3D",
                 lightbox_hint: "Vuốt sang trái / phải để chuyển ảnh",
                 rsvp_subtitle: "XÁC NHẬN THAM DỰ",
                 rsvp_title: "Gửi RSVP Cho Chúng Mình",
@@ -4279,6 +4285,7 @@
                 gal_subtitle: "甜蜜影像",
                 gal_title: "幸福瞬間紀錄",
                 gal_btn_more: "查看更多照片",
+                gal_btn_album: "打开 3D 相册",
                 lightbox_hint: "左右滑動可切換上一張 / 下一張照片",
                 rsvp_subtitle: "出席回覆",
                 rsvp_title: "請填寫出席確認表 (RSVP)",
@@ -4443,6 +4450,7 @@
                 gal_subtitle: "フォトアルバム",
                 gal_title: "かけがえのない思い出",
                 gal_btn_more: "写真をもっと見る",
+                gal_btn_album: "3Dアルバムを開く",
                 lightbox_hint: "左右にスワイプして前後の写真を表示できます",
                 rsvp_subtitle: "出欠のご確認",
                 rsvp_title: "ご出欠の連絡（RSVP）",
@@ -4604,7 +4612,55 @@
             {
                 src: 'album_img/vungtau.jpg',
                 // caption: 'Từng ánh nhìn đong đầy yêu thương'
-            }
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_2741.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_2868.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_3009.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_3102.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_3141.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_3178.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_3275.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_3458.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_3535.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_3761.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_3824.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_3867.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_3939.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_4006.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_4022.jpg',
+            },
+            {
+                src: 'album_img/hinhcuoi/NCQ_4112.jpg',
+            },
         ];
 
         let currentLightboxIndex = 0;
@@ -5843,10 +5899,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Safari can restore a page from bfcache; keep the envelope state consistent on pageshow.
     window.addEventListener('pageshow', function() {
         try {
-            if (sessionStorage.getItem('weddingEnvelopeOpened') === '1') {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (sessionStorage.getItem('weddingEnvelopeOpened') === '1' || urlParams.get('opened') === '1') {
                 const overlay = document.getElementById('envelope-overlay');
                 if (overlay) overlay.style.display = 'none';
                 document.body.classList.add('invitation-opened');
+                
+                // Hiển thị nút bật/tắt nhạc
+                const musicControl = document.getElementById('music-control');
+                if (musicControl) {
+                    musicControl.classList.remove('opacity-0', 'pointer-events-none');
+                }
+                
+                // Thử phát nhạc (có thể bị trình duyệt chặn nếu chưa có tương tác)
+                if (typeof window.toggleAudio === 'function') {
+                    window.toggleAudio(true);
+                }
             }
         } catch (e) {}
     });

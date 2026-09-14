@@ -368,6 +368,18 @@
                 0 0 0 1px rgba(0, 0, 0, 0.15);
         }
 
+        /* Phản hồi tương tác cho dấu sáp */
+        .wax-seal:hover {
+            transform: translate(-50%, -50%) scale(1.06);
+            box-shadow: 0 12px 26px rgba(0,0,0,.7), 0 0 18px rgba(255,215,80,.38), inset 2px 2px 4px rgba(255,255,255,.5), inset -3px -4px 6px rgba(0,0,0,.65);
+        }
+        .wax-seal.is-pressed {
+            transform: translate(-50%, -50%) scale(0.88) !important;
+            box-shadow: 0 3px 7px rgba(0,0,0,.7), 0 0 12px rgba(255,215,80,.28), inset 3px 4px 7px rgba(0,0,0,.72), inset -1px -1px 2px rgba(255,255,255,.22) !important;
+            filter: brightness(.92);
+        }
+        .wax-seal.is-pressed .wax-seal-inner { transform: scale(.96); }
+
         /* Vệt ánh sáng bóng trên vai sáp nung */
         .wax-seal::before {
             content: '';
@@ -547,7 +559,7 @@
                     <!-- ================================================================= -->
                     <!-- DẤU SÁP PHONG BÌ ĐỎ (Chạm dấu sáp để mở thiệp) -->
                     <!-- ================================================================= -->
-                    <div class="wax-seal wax-seal-gold" onclick="openWithSeal(event, 'red')" title="Chạm dấu sáp để mở thiệp">
+                    <div id="redWaxSeal" class="wax-seal wax-seal-gold" title="Chạm dấu sáp để mở thiệp" role="button" aria-label="Mở thiệp cưới">
                         <div class="wax-seal-inner">
                             <span class="wax-seal-text seal-text-red font-cinzel font-black text-2xl sm:text-3xl">囍</span>
                         </div>
@@ -692,14 +704,57 @@
             }
         }
 
-        function openWithSeal(event, type) {
-            if (event) {
-                event.stopPropagation();
-            }
+        // Bắt thao tác theo vị trí thật của dấu sáp, kể cả khi Album nằm đè lên.
+        const redWaxSeal = document.getElementById('redWaxSeal');
+        let sealPointerDown = false;
+        let suppressNextClick = false;
 
+        function isPointInsideRedSeal(clientX, clientY) {
+            if (!redWaxSeal) return false;
+            const r = redWaxSeal.getBoundingClientRect();
+            const pad = 10;
+            return clientX >= r.left - pad && clientX <= r.right + pad &&
+                   clientY >= r.top - pad && clientY <= r.bottom + pad;
+        }
+
+        document.addEventListener('pointerdown', function(e) {
+            if (isRedirecting || !isPointInsideRedSeal(e.clientX, e.clientY)) return;
+            sealPointerDown = true;
+            redWaxSeal.classList.add('is-pressed');
+            if (currentActive !== 'red') selectItem('red');
+            e.preventDefault();
+            e.stopPropagation();
+        }, true);
+
+        document.addEventListener('pointerup', function(e) {
+            if (!sealPointerDown) return;
+            const releasedOnSeal = isPointInsideRedSeal(e.clientX, e.clientY);
+            sealPointerDown = false;
+            redWaxSeal.classList.remove('is-pressed');
+            e.preventDefault();
+            e.stopPropagation();
+            if (releasedOnSeal) {
+                suppressNextClick = true;
+                openWithSeal('red');
+            }
+        }, true);
+
+        document.addEventListener('pointercancel', function() {
+            sealPointerDown = false;
+            if (redWaxSeal) redWaxSeal.classList.remove('is-pressed');
+        }, true);
+
+        document.addEventListener('click', function(e) {
+            if (!suppressNextClick) return;
+            suppressNextClick = false;
+            e.preventDefault();
+            e.stopPropagation();
+        }, true);
+
+        function openWithSeal(type) {
             if (isRedirecting) return;
-            
-            // Đưa lên trên cùng nếu chưa active
+
+            // Nếu phong bì đỏ chưa active thì đưa nó lên trên và tiếp tục mở ngay.
             if (currentActive !== type) {
                 selectItem(type);
             }
@@ -735,7 +790,18 @@
                 document.body.style.transition = 'opacity 0.5s ease';
                 document.body.style.opacity = '0';
                 setTimeout(() => {
-                    window.location.href = targetUrl;
+                    try {
+                        sessionStorage.setItem('weddingEnvelopeOpened', '1');
+                    } catch (e) {}
+                    
+                    let finalUrl = targetUrl;
+                    if (finalUrl.indexOf('?') > -1) {
+                        finalUrl += '&opened=1';
+                    } else {
+                        finalUrl += '?opened=1';
+                    }
+                    
+                    window.location.href = finalUrl;
                 }, 400);
             }, 850);
         }
@@ -768,7 +834,18 @@
                 document.body.style.transition = 'opacity 0.5s ease';
                 document.body.style.opacity = '0';
                 setTimeout(() => {
-                    window.location.href = WEDDING_LINKS['album'];
+                    try {
+                        sessionStorage.setItem('weddingEnvelopeOpened', '1');
+                    } catch (e) {}
+                    
+                    let finalUrl = WEDDING_LINKS['album'];
+                    if (finalUrl.indexOf('?') > -1) {
+                        finalUrl += '&opened=1';
+                    } else {
+                        finalUrl += '?opened=1';
+                    }
+                    
+                    window.location.href = finalUrl;
                 }, 400);
             }, 850);
         }
