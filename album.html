@@ -330,6 +330,230 @@
             50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
             100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
         }
+    
+        /* --- NEW EDITORIAL LAYOUT STYLES --- */
+        .layout-full {
+            padding: 0 !important;
+            align-items: stretch;
+            justify-content: stretch;
+        }
+        .layout-full img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .layout-collage {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: stretch;
+            padding: 30px 20px;
+            height: 100%;
+            box-sizing: border-box;
+            background-color: #fffaf0;
+        }
+        .collage-header {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .font-vibes {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
+            line-height: 1.1;
+            color: #333;
+            margin: 0;
+            font-weight: normal;
+        }
+        .date-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9em;
+            color: #555;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+        .collage-images {
+            flex-grow: 1;
+            position: relative;
+            margin: 15px 0;
+            width: 100%;
+        }
+        .img-wrapper {
+            position: absolute;
+            background: #fff;
+            padding: 6px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .img-1 {
+            top: 0;
+            right: 0;
+            width: 60%;
+            bottom: 35%;
+            z-index: 2;
+        }
+        .img-2 {
+            bottom: 0;
+            left: 0;
+            width: 55%;
+            top: 40%;
+            z-index: 1;
+        }
+        .collage-footer {
+            text-align: right;
+        }
+        .collage-footer p {
+            font-size: 0.8em;
+            color: #555;
+            line-height: 1.6;
+            font-style: italic;
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .layout-split {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 15px;
+            padding: 20px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .split-img {
+            flex: 1;
+            width: 100%;
+            background: #fff;
+            padding: 8px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+            position: relative;
+        }
+        .split-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Cập nhật lại khung ảnh cũ cho đẹp hơn */
+        .photo-frame {
+            width: 90%;
+            height: 70%;
+            background: #fff;
+            padding: 12px 12px 40px 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e0d8c3;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: auto;
+            margin-top: 5%;
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover để không có viền thừa */
+        }
+
+    
+        .layout-split-vert {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            gap: 15px;
+            padding: 20px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .split-vert-img {
+            flex: 1;
+            height: 100%;
+            background: #fff;
+            padding: 6px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+            position: relative;
+        }
+        .split-vert-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    
+        .layout-landscape {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #fffaf0;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .layout-landscape img {
+            width: 100%;
+            height: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 5px solid #fff;
+        }
+
+    
+        .layout-stacked {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #fffaf0;
+            height: 100%;
+            box-sizing: border-box;
+            gap: 20px;
+        }
+        .layout-stacked img {
+            width: 100%;
+            height: auto;
+            max-height: 45%;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 4px solid #fff;
+        }
+        .ornament-block {
+            text-align: center;
+            padding: 20px;
+        }
+        .ornament-block h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3em;
+            color: #bfa57c;
+            margin: 0;
+            font-weight: normal;
+        }
+        .ornament-block p {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .polaroid-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background-color: #fffaf0;
+            padding: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -361,364 +585,318 @@
             </div>
 
             
-                        <!-- Trang 1 -->
+                                                                        <!-- Trang 1 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_2577.jpg" alt="Ảnh cưới 1" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">1</div>
+                <div class="page-content layout-stacked">
+                    <img src="./album_img/hinhcuoi/NCQ_2672.jpg" loading="lazy">
+                    <img src="./album_img/hinhcuoi/NCQ_3009.jpg" loading="lazy">
                 </div>
             </div>
             <!-- Trang 2 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_2627.jpg" alt="Ảnh cưới 2" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">2</div>
+                <div class="page-content layout-stacked">
+                    <img src="./album_img/hinhcuoi/NCQ_3102.jpg" loading="lazy">
+                    <img src="./album_img/hinhcuoi/NCQ_3164.jpg" loading="lazy">
                 </div>
             </div>
             <!-- Trang 3 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_2672.jpg" alt="Ảnh cưới 3" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">3</div>
+                <div class="page-content layout-stacked">
+                    <img src="./album_img/hinhcuoi/NCQ_3178.jpg" loading="lazy">
+                    <img src="./album_img/hinhcuoi/NCQ_3246.jpg" loading="lazy">
                 </div>
             </div>
             <!-- Trang 4 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_2693.jpg" alt="Ảnh cưới 4" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">4</div>
+                <div class="page-content layout-stacked">
+                    <img src="./album_img/hinhcuoi/NCQ_3254.jpg" loading="lazy">
+                    <img src="./album_img/hinhcuoi/NCQ_3275.jpg" loading="lazy">
                 </div>
             </div>
             <!-- Trang 5 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_2741.jpg" alt="Ảnh cưới 5" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">5</div>
+                <div class="page-content layout-stacked">
+                    <img src="./album_img/hinhcuoi/NCQ_3288.jpg" loading="lazy">
+                    <img src="./album_img/hinhcuoi/NCQ_3458.jpg" loading="lazy">
                 </div>
             </div>
             <!-- Trang 6 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_2857.jpg" alt="Ảnh cưới 6" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">6</div>
+                <div class="page-content layout-stacked">
+                    <img src="./album_img/hinhcuoi/NCQ_3542.jpg" loading="lazy">
+                    <img src="./album_img/hinhcuoi/NCQ_3667.jpg" loading="lazy">
                 </div>
             </div>
             <!-- Trang 7 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_2868.jpg" alt="Ảnh cưới 7" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
+                <div class="page-content layout-stacked">
+                    <div class="ornament-block">
+                        <h3>Love Story</h3>
                     </div>
-                    <div class="page-number">7</div>
+                    <img src="./album_img/hinhcuoi/NCQ_4006.jpg" loading="lazy">
+                    <div class="ornament-block" style="padding-top:0;">
+                        <p>Cảm ơn vì đã đến và trở thành ngoại lệ của anh.</p>
+                    </div>
                 </div>
             </div>
             <!-- Trang 8 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_2896.jpg" alt="Ảnh cưới 8" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">8</div>
+                <div class="page-content layout-full">
+                    <img src="./album_img/hinhcuoi/NCQ_2577.jpg" loading="lazy" style="object-position: center 20%;">
                 </div>
             </div>
             <!-- Trang 9 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3009.jpg" alt="Ảnh cưới 9" loading="lazy">
+                <div class="page-content polaroid-container">
+                    <div class="ornament-block" style="margin-bottom: -15px; z-index: 10;">
+                        <h3 style="font-size: 2.2em;">Forever</h3>
+                    </div>
+                    <div class="photo-frame" style="margin-top: 0; height: 60%;">
+                        <img src="./album_img/hinhcuoi/NCQ_2627.jpg" loading="lazy">
                         <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="ornament-block">
+                        <p>Bên em, mỗi ngày đều là một ngày nắng đẹp.</p>
                     </div>
                     <div class="page-number">9</div>
                 </div>
             </div>
             <!-- Trang 10 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3066.jpg" alt="Ảnh cưới 10" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">10</div>
+                <div class="page-content layout-full">
+                    <img src="./album_img/hinhcuoi/NCQ_2693.jpg" loading="lazy" style="object-position: center 20%;">
                 </div>
             </div>
             <!-- Trang 11 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3102.jpg" alt="Ảnh cưới 11" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">11</div>
+                <div class="page-content layout-full">
+                    <img src="./album_img/hinhcuoi/NCQ_2741.jpg" loading="lazy" style="object-position: center 20%;">
                 </div>
             </div>
             <!-- Trang 12 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3141.jpg" alt="Ảnh cưới 12" loading="lazy">
+                <div class="page-content polaroid-container">
+                    <div class="ornament-block" style="margin-bottom: -15px; z-index: 10;">
+                        <h3 style="font-size: 2.2em;">Forever</h3>
+                    </div>
+                    <div class="photo-frame" style="margin-top: 0; height: 60%;">
+                        <img src="./album_img/hinhcuoi/NCQ_2857.jpg" loading="lazy">
                         <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="ornament-block">
+                        <p>Bên em, mỗi ngày đều là một ngày nắng đẹp.</p>
                     </div>
                     <div class="page-number">12</div>
                 </div>
             </div>
             <!-- Trang 13 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3146.jpg" alt="Ảnh cưới 13" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">13</div>
+                <div class="page-content layout-full">
+                    <img src="./album_img/hinhcuoi/NCQ_2868.jpg" loading="lazy" style="object-position: center 20%;">
                 </div>
             </div>
             <!-- Trang 14 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3164.jpg" alt="Ảnh cưới 14" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">14</div>
+                <div class="page-content layout-full">
+                    <img src="./album_img/hinhcuoi/NCQ_2896.jpg" loading="lazy" style="object-position: center 20%;">
                 </div>
             </div>
             <!-- Trang 15 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3178.jpg" alt="Ảnh cưới 15" loading="lazy">
+                <div class="page-content polaroid-container">
+                    <div class="ornament-block" style="margin-bottom: -15px; z-index: 10;">
+                        <h3 style="font-size: 2.2em;">Forever</h3>
+                    </div>
+                    <div class="photo-frame" style="margin-top: 0; height: 60%;">
+                        <img src="./album_img/hinhcuoi/NCQ_3066.jpg" loading="lazy">
                         <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="ornament-block">
+                        <p>Bên em, mỗi ngày đều là một ngày nắng đẹp.</p>
                     </div>
                     <div class="page-number">15</div>
                 </div>
             </div>
             <!-- Trang 16 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3246.jpg" alt="Ảnh cưới 16" loading="lazy">
+                <div class="page-content polaroid-container">
+                    <div class="ornament-block" style="margin-bottom: -15px; z-index: 10;">
+                        <h3 style="font-size: 2.2em;">Forever</h3>
+                    </div>
+                    <div class="photo-frame" style="margin-top: 0; height: 60%;">
+                        <img src="./album_img/hinhcuoi/NCQ_3141.jpg" loading="lazy">
                         <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="ornament-block">
+                        <p>Nắm tay nhau đi qua giông bão, để trân trọng những ngày nắng trong.</p>
                     </div>
                     <div class="page-number">16</div>
                 </div>
             </div>
             <!-- Trang 17 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3254.jpg" alt="Ảnh cưới 17" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
+                <div class="page-content layout-collage">
+                    <div class="collage-header">
+                        <h3 class="font-vibes">Chấn Cơ<br>&amp; Hảo Nghi</h3>
+                        <p class="date-text">11 - 10 - 2026</p>
                     </div>
-                    <div class="page-number">17</div>
+                    <div class="collage-images">
+                        <div class="img-wrapper img-1">
+                            <img src="./album_img/hinhcuoi/NCQ_3146.jpg" loading="lazy" style="object-position: center 20%;">
+                        </div>
+                        <div class="img-wrapper img-2">
+                            <img src="./album_img/hinhcuoi/NCQ_3331.jpg" loading="lazy" style="object-position: center 20%;">
+                        </div>
+                    </div>
+                    <div class="collage-footer">
+                        <p>Mỗi ánh nhìn, mỗi nụ cười đều kể một câu chuyện.<br>Một hành trình bắt đầu từ yêu thương<br>và được lưu giữ bằng những khoảnh khắc đẹp nhất.</p>
+                    </div>
                 </div>
             </div>
             <!-- Trang 18 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3275.jpg" alt="Ảnh cưới 18" loading="lazy">
+                <div class="page-content polaroid-container">
+                    <div class="ornament-block" style="margin-bottom: -15px; z-index: 10;">
+                        <h3 style="font-size: 2.2em;">Forever</h3>
+                    </div>
+                    <div class="photo-frame" style="margin-top: 0; height: 60%;">
+                        <img src="./album_img/hinhcuoi/NCQ_3487.jpg" loading="lazy">
                         <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="ornament-block">
+                        <p>Nắm tay nhau đi qua giông bão, để trân trọng những ngày nắng trong.</p>
                     </div>
                     <div class="page-number">18</div>
                 </div>
             </div>
             <!-- Trang 19 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3288.jpg" alt="Ảnh cưới 19" loading="lazy">
+                <div class="page-content polaroid-container">
+                    <div class="ornament-block" style="margin-bottom: -15px; z-index: 10;">
+                        <h3 style="font-size: 2.2em;">Forever</h3>
+                    </div>
+                    <div class="photo-frame" style="margin-top: 0; height: 60%;">
+                        <img src="./album_img/hinhcuoi/NCQ_3535.jpg" loading="lazy">
                         <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="ornament-block">
+                        <p>Bên em, mỗi ngày đều là một ngày nắng đẹp.</p>
                     </div>
                     <div class="page-number">19</div>
                 </div>
             </div>
             <!-- Trang 20 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3331.jpg" alt="Ảnh cưới 20" loading="lazy">
+                <div class="page-content polaroid-container">
+                    <div class="ornament-block" style="margin-bottom: -15px; z-index: 10;">
+                        <h3 style="font-size: 2.2em;">Forever</h3>
+                    </div>
+                    <div class="photo-frame" style="margin-top: 0; height: 60%;">
+                        <img src="./album_img/hinhcuoi/NCQ_3636.jpg" loading="lazy">
                         <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="ornament-block">
+                        <p>Nắm tay nhau đi qua giông bão, để trân trọng những ngày nắng trong.</p>
                     </div>
                     <div class="page-number">20</div>
                 </div>
             </div>
             <!-- Trang 21 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3458.jpg" alt="Ảnh cưới 21" loading="lazy">
+                <div class="page-content polaroid-container">
+                    <div class="ornament-block" style="margin-bottom: -15px; z-index: 10;">
+                        <h3 style="font-size: 2.2em;">Forever</h3>
+                    </div>
+                    <div class="photo-frame" style="margin-top: 0; height: 60%;">
+                        <img src="./album_img/hinhcuoi/NCQ_3761.jpg" loading="lazy">
                         <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="ornament-block">
+                        <p>Nắm tay nhau đi qua giông bão, để trân trọng những ngày nắng trong.</p>
                     </div>
                     <div class="page-number">21</div>
                 </div>
             </div>
             <!-- Trang 22 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3487.jpg" alt="Ảnh cưới 22" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
+                <div class="page-content layout-collage">
+                    <div class="collage-header">
+                        <h3 class="font-vibes">Chấn Cơ<br>&amp; Hảo Nghi</h3>
+                        <p class="date-text">11 - 10 - 2026</p>
                     </div>
-                    <div class="page-number">22</div>
+                    <div class="collage-images">
+                        <div class="img-wrapper img-1">
+                            <img src="./album_img/hinhcuoi/NCQ_3824.jpg" loading="lazy" style="object-position: center 20%;">
+                        </div>
+                        <div class="img-wrapper img-2">
+                            <img src="./album_img/hinhcuoi/NCQ_3867.jpg" loading="lazy" style="object-position: center 20%;">
+                        </div>
+                    </div>
+                    <div class="collage-footer">
+                        <p>Mỗi ánh nhìn, mỗi nụ cười đều kể một câu chuyện.<br>Một hành trình bắt đầu từ yêu thương<br>và được lưu giữ bằng những khoảnh khắc đẹp nhất.</p>
+                    </div>
                 </div>
             </div>
             <!-- Trang 23 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3535.jpg" alt="Ảnh cưới 23" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
+                <div class="page-content layout-collage">
+                    <div class="collage-header">
+                        <h3 class="font-vibes">Chấn Cơ<br>&amp; Hảo Nghi</h3>
+                        <p class="date-text">11 - 10 - 2026</p>
                     </div>
-                    <div class="page-number">23</div>
+                    <div class="collage-images">
+                        <div class="img-wrapper img-1">
+                            <img src="./album_img/hinhcuoi/NCQ_3901.jpg" loading="lazy" style="object-position: center 20%;">
+                        </div>
+                        <div class="img-wrapper img-2">
+                            <img src="./album_img/hinhcuoi/NCQ_3903.jpg" loading="lazy" style="object-position: center 20%;">
+                        </div>
+                    </div>
+                    <div class="collage-footer">
+                        <p>Mỗi ánh nhìn, mỗi nụ cười đều kể một câu chuyện.<br>Một hành trình bắt đầu từ yêu thương<br>và được lưu giữ bằng những khoảnh khắc đẹp nhất.</p>
+                    </div>
                 </div>
             </div>
             <!-- Trang 24 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3542.jpg" alt="Ảnh cưới 24" loading="lazy">
+                <div class="page-content polaroid-container">
+                    <div class="ornament-block" style="margin-bottom: -15px; z-index: 10;">
+                        <h3 style="font-size: 2.2em;">Forever</h3>
+                    </div>
+                    <div class="photo-frame" style="margin-top: 0; height: 60%;">
+                        <img src="./album_img/hinhcuoi/NCQ_3939.jpg" loading="lazy">
                         <div class="photo-caption">Kỷ niệm</div>
+                    </div>
+                    <div class="ornament-block">
+                        <p>Cảm ơn vì đã đến và trở thành ngoại lệ của anh.</p>
                     </div>
                     <div class="page-number">24</div>
                 </div>
             </div>
             <!-- Trang 25 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3636.jpg" alt="Ảnh cưới 25" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
+                <div class="page-content layout-collage">
+                    <div class="collage-header">
+                        <h3 class="font-vibes">Chấn Cơ<br>&amp; Hảo Nghi</h3>
+                        <p class="date-text">11 - 10 - 2026</p>
                     </div>
-                    <div class="page-number">25</div>
+                    <div class="collage-images">
+                        <div class="img-wrapper img-1">
+                            <img src="./album_img/hinhcuoi/NCQ_3970.jpg" loading="lazy" style="object-position: center 20%;">
+                        </div>
+                        <div class="img-wrapper img-2">
+                            <img src="./album_img/hinhcuoi/NCQ_4022.jpg" loading="lazy" style="object-position: center 20%;">
+                        </div>
+                    </div>
+                    <div class="collage-footer">
+                        <p>Mỗi ánh nhìn, mỗi nụ cười đều kể một câu chuyện.<br>Một hành trình bắt đầu từ yêu thương<br>và được lưu giữ bằng những khoảnh khắc đẹp nhất.</p>
+                    </div>
                 </div>
             </div>
             <!-- Trang 26 -->
             <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3667.jpg" alt="Ảnh cưới 26" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">26</div>
-                </div>
-            </div>
-            <!-- Trang 27 -->
-            <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3761.jpg" alt="Ảnh cưới 27" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">27</div>
-                </div>
-            </div>
-            <!-- Trang 28 -->
-            <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3824.jpg" alt="Ảnh cưới 28" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">28</div>
-                </div>
-            </div>
-            <!-- Trang 29 -->
-            <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3867.jpg" alt="Ảnh cưới 29" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">29</div>
-                </div>
-            </div>
-            <!-- Trang 30 -->
-            <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3901.jpg" alt="Ảnh cưới 30" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">30</div>
-                </div>
-            </div>
-            <!-- Trang 31 -->
-            <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3903.jpg" alt="Ảnh cưới 31" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">31</div>
-                </div>
-            </div>
-            <!-- Trang 32 -->
-            <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3939.jpg" alt="Ảnh cưới 32" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">32</div>
-                </div>
-            </div>
-            <!-- Trang 33 -->
-            <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_3970.jpg" alt="Ảnh cưới 33" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">33</div>
-                </div>
-            </div>
-            <!-- Trang 34 -->
-            <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_4006.jpg" alt="Ảnh cưới 34" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">34</div>
-                </div>
-            </div>
-            <!-- Trang 35 -->
-            <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_4022.jpg" alt="Ảnh cưới 35" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">35</div>
-                </div>
-            </div>
-            <!-- Trang 36 -->
-            <div class="page">
-                <div class="page-content">
-                    <div class="photo-frame">
-                        <img src="./album_img/hinhcuoi/NCQ_4112.jpg" alt="Ảnh cưới 36" loading="lazy">
-                        <div class="photo-caption">Kỷ niệm</div>
-                    </div>
-                    <div class="page-number">36</div>
+                <div class="page-content layout-full">
+                    <img src="./album_img/hinhcuoi/NCQ_4112.jpg" loading="lazy" style="object-position: center 20%;">
                 </div>
             </div>
             <!-- BÌA SAU (Bìa cứng) -->
