@@ -107,7 +107,7 @@ def add_full(img):
     pages_html += f"""            <!-- Trang {page_num} -->
             <div class="page">
                 <div class="page-content layout-full">
-                    <img src="./album_img/hinhcuoi/{img}" loading="lazy" style="object-position: center 20%;">
+                    <img src="./album_img/hinhcuoi/{img}" style="object-position: center 20%;">
                 </div>
             </div>\n"""
     page_num += 1
@@ -123,10 +123,10 @@ def add_collage(img1, img2):
                     </div>
                     <div class="collage-images">
                         <div class="img-wrapper img-1">
-                            <img src="./album_img/hinhcuoi/{img1}" loading="lazy" style="object-position: center 20%;">
+                            <img src="./album_img/hinhcuoi/{img1}" style="object-position: center 20%;">
                         </div>
                         <div class="img-wrapper img-2">
-                            <img src="./album_img/hinhcuoi/{img2}" loading="lazy" style="object-position: center 20%;">
+                            <img src="./album_img/hinhcuoi/{img2}" style="object-position: center 20%;">
                         </div>
                     </div>
                     <div class="collage-footer">
@@ -151,8 +151,8 @@ def add_stacked_landscapes(img1, img2=None):
         pages_html += f"""            <!-- Trang {page_num} -->
             <div class="page">
                 <div class="page-content layout-stacked">
-                    <img src="./album_img/hinhcuoi/{img1}" loading="lazy">
-                    <img src="./album_img/hinhcuoi/{img2}" loading="lazy">
+                    <img src="./album_img/hinhcuoi/{img1}">
+                    <img src="./album_img/hinhcuoi/{img2}">
                 </div>
             </div>\n"""
     else:
@@ -162,7 +162,7 @@ def add_stacked_landscapes(img1, img2=None):
                     <div class="ornament-block">
                         <h3>Love Story</h3>
                     </div>
-                    <img src="./album_img/hinhcuoi/{img1}" loading="lazy">
+                    <img src="./album_img/hinhcuoi/{img1}">
                     <div class="ornament-block" style="padding-top:0;">
                         <p>{q}</p>
                     </div>
@@ -180,7 +180,7 @@ def add_polaroid(img):
                         <h3 style="font-size: 2.2em;">Forever</h3>
                     </div>
                     <div class="photo-frame" style="margin-top: 0; height: 60%;">
-                        <img src="./album_img/hinhcuoi/{img}" loading="lazy">
+                        <img src="./album_img/hinhcuoi/{img}">
                         <div class="photo-caption">Kỷ niệm</div>
                     </div>
                     <div class="ornament-block">
